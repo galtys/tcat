@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicons - http://realfavicongenerator.net/ -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="img/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="img/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="img/favicons/manifest.json">
+    <link rel="mask-icon" href="img/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+    <title>BootstrapCreative Admin</title>
+
+    <!--
+    ####################################################
+    C S S - bootstrap, custom styles
+    ####################################################
+    -->
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+
+
+  </head>
+
+  <body class="admin">
+
+    <!--
+    ####################################################
+    N A V B A R
+    ####################################################
+    -->
+    <!-- If you need sticky-top to work in lower versions of IE https://github.com/filamentgroup/fixed-sticky -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top ">
+
+      <div class="navbar-toggler-right">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <!-- Important - make sure to have the toggler button outside of the container -->
+
+      <a class="navbar-brand" href="#">
+        <img src="img/bootstrapcreative-icon.svg" width="25" height="25" class="d-inline-block align-top" alt="">
+        <span class="">BootstrapCreative </span>
+      </a>
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="nav navbar-nav justify-content-end w-100">
+          <li class="nav-item">
+            <a class="nav-link" href="../../homepage/layout/" target="_blank">Visit Site <i class="fa fa-external-link"
+                aria-hidden="true"></i> </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item float-lg-right">
+            <a href="" class="nav-link "><i class="fa fa-bell text-warning" aria-hidden="true"></i> <span class="badge-pill badge-danger text-light">3</span></a>
+          </li>
+          <li class="nav-item dropdown user">
+
+            <a class="nav-link dropdown-toggle" href="#" role="button" id="responsiveNavbarDropdown" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false"><img src="https://secure.gravatar.com/avatar/38eff4a7ab7f391783f71ccb38508df6?s=30"
+                alt="" class="rounded-circle"> Hi Jacob Lett</a>
+
+            <div class="dropdown-menu" aria-labelledby="responsiveNavbarDropdown">
+              <a class="dropdown-item" href="#">Edit My Profile</a>
+              <a class="dropdown-item" href="#">Log Out</a>
+              <a class="dropdown-item" href="#">Help</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+
+
+
+
+    <!--
+    ####################################################
+    B O D Y
+    ####################################################
+    -->
+    <div class="container-fluid">
+      <div class="row">
+
+        <!--
+        ####################################################
+        S I D E B A R
+        ####################################################
+        -->
+        <div class="col-lg-2 sidebar">
+
+          <!-- sidebar navigation -->
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="#"><i class="fas fa-tachometer-alt" aria-hidden="true"></i> Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fa fa-user-circle" aria-hidden="true"></i> Users</a>
+            </li>
+            <li class="nav-item dropdown dropdown-tree btn-group">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-file-image" aria-hidden="true"></i> File Manager</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">All Files</a>
+                <a class="dropdown-item" href="#">Add New File</a>
+                <a class="dropdown-item" href="#">Edit File</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown dropdown-tree btn-group">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-file" aria-hidden="true"></i> Pages</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">All Files</a>
+                <a class="dropdown-item" href="#">Add New File</a>
+                <a class="dropdown-item" href="#">Edit File</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown dropdown-tree btn-group">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-thumbtack" aria-hidden="true"></i> Posts</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">All Posts</a>
+                <a class="dropdown-item" href="#">Add New Post</a>
+                <a class="dropdown-item" href="#">Edit Post</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fa fa-calendar" aria-hidden="true"></i> Events</a>
+            </li>
+          </ul>
+          <!-- /.nav -->
+
+          </div>
+          <!-- /.sidebar -->
+
+        <!--
+        ####################################################
+        M A I N  C O N T E N T
+        ####################################################
+        -->
+        <div class="col main">
+          <h2>Dashboard<small> - Good morning Jacob.</small></h2>
+
+          <div class="alert alert-warning" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>Note</strong> You have three unpublshed drafts. <a href="">Edit</a>
+          </div>
+          <!-- /.alert -->
+
+          <!-- Card Deck Charts -->
+          <div class="card-deck">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Traffic</h4>
+                <canvas id="chartLine"></canvas>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Leads</h4>
+                  <canvas id="chartBar" ></canvas>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Content</h4>
+                <canvas id="chartPie"></canvas>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-deck -->
+
+          <!-- Content Edit Table -->
+          <div class="card mt-3">
+            <div class="card-body">
+              <h4>Recent Activity</h4>
+              <table class="table table-responsive d-md-table">
+                <thead>
+                  <tr>
+                    <th colspan="2">Title</th>
+                    <th>Author</th>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="bg-faded">
+                    <td scope="row">1</td>
+                    <td>Is Your Responsive Site Painfully Slow on Mobile? <small>Draft</small></td>
+                    <td>Jacob Lett</td>
+                    <td>2/4/19</td>
+                    <td>Post</td>
+                    <td class="no-wrap"><a href=""><i class="fa fa-pencil pr-1"></i>Edit</a> | <a href=""><i class="fa fa-trash pr-1"></i>Delete</a></td>
+                  </tr>
+                  <tr>
+                    <td scope="row">2</td>
+                    <td>How to Use Google Analytics Event Goals as AdWords Conversions</td>
+                    <td>Sam Tryherhee</td>
+                    <td>2/12/19</td>
+                    <td>Post</td>
+                    <td><a href=""><i class="fa fa-pencil pr-1"></i>Edit</a> | <a href=""><i class="fa fa-trash pr-1"></i>Delete</a></td>
+                  </tr>
+                  <tr>
+                    <td scope="row">3</td>
+                    <td>How we increased our blog's readership by 45% in three months</td>
+                    <td>Jacob Lett</td>
+                    <td>2/22/19</td>
+                    <td>Post</td>
+                    <td><a href=""><i class="fa fa-pencil pr-1"></i>Edit</a> | <a href=""><i class="fa fa-trash pr-1"></i>Delete</a></td>
+                  </tr>
+                  <tr>
+                    <td scope="row">4</td>
+                    <td>Going responsive helped CompanyX grow their organic search traffic by 45%</td>
+                    <td>Zig Ziglar</td>
+                    <td>3/2/19</td>
+                    <td>Post</td>
+                    <td><a href=""><i class="fa fa-pencil pr-1"></i>Edit</a> | <a href=""><i class="fa fa-trash pr-1"></i>Delete</a></td>
+                  </tr>
+                  <tr>
+                    <td scope="row">5</td>
+                    <td>About Us</td>
+                    <td>Sam Tryherhee</td>
+                    <td>3/2/19</td>
+                    <td>Page</td>
+                    <td><a href=""><i class="fa fa-pencil pr-1"></i>Edit</a> | <a href=""><i class="fa fa-trash pr-1"></i>Delete</a></td>
+                  </tr>
+                  <tr>
+                    <td scope="row">6</td>
+                    <td>Services</td>
+                    <td>Jacob Lett</td>
+                    <td>4/12/19</td>
+                    <td>Page</td>
+                    <td><a href=""><i class="fa fa-pencil pr-1"></i>Edit</a> | <a href=""><i class="fa fa-trash pr-1"></i>Delete</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- /.card -->
+
+          <!--
+          ####################################################
+          F O O T E R
+          ####################################################
+          -->
+          <footer class="footer py-3">
+            <div class="container-fluid">
+              <a href="//BootstrapCreative.com">© BootstrapCreative</a>
+            </div>
+          </footer>
+
+
+        </div>
+        <!-- /.main -->
+
+      </div>
+      <!-- /.row -->
+
+
+    </div>
+    <!-- /.container-fluid -->
+
+
+
+    <!--
+    ####################################################
+    J A V A S C R I P T - jquery, bootstrap, plugins
+    Placed at the end of the document so the pages load faster
+    ####################################################
+    -->
+
+    <!-- jQuery - Grab from a CDN and if not available grab a local copy -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- local fallback in case the CDN is down -->
+    <script>
+      window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')
+    </script>
+
+    <!-- Bootstrap core JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+
+
+
+  </body>
+</html>
