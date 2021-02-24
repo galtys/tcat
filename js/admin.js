@@ -1,30 +1,54 @@
-
-var new_row = '<tr >  <td scope="row">AB</td>   <td></td> <td id="so4_qty" >1</td>  <td>Unit</td> <td>STE20</td> <td>188</td> <td>0</td>   <td></td>  </tr>'
-
 console.log('admin.js loaded');
 
-document.getElementById("so2_qty").innerText=77;
+function add_row(key, row) {  //key = "so_table1"
+    var x=document.getElementById(key);
+    x.insertAdjacentHTML('beforeend',row);
+}
 
-var x=document.getElementById("so_table1")
+function insert_adjancent_html(key,position,row) {
+    var x=document.getElementById(key);
+    x.insertAdjacentHTML(position,row);
+}
 
-x.insertAdjacentHTML('beforeend',new_row)
 
 function update_qty(key, value) {
+  //document.getElementById("so2_qty").innerText=77;
+
   document.getElementById(key).innerText=value;
 }
 function get_qty(key) {
-  return document.getElementById(key).innerText
+    return document.getElementById(key).innerText;
 }
 
 function console_log(msg) {
-    console.log(msg)
+    console.log(msg);
 }
 
-var md = forge.md.sha1.create();
-md.update('The quick brown fox jumps over the lazy dog');
-console.log(md.digest().toHex());
+function calc_sha1(msg) {
+   var md1 = forge.md.sha1.create();
+   md1.update(msg);
+   return md1.digest().toHex();
+}
+
+function calc_sha256(msg) {
+   var md1 = forge.md.sha256.create();
+   md1.update(msg);
+   return md1.digest().toHex();
+}
+
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+ //0   xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
+//var md = forge.md.sha1.create();
+//md.update('The quick brown fox jumps over the lazy dog');
+//console.log(md.digest().toHex());
 
 
-var md = forge.md.sha256.create();
-md.update('The quick brown fox jumps over the lazy dog');
-console.log(md.digest().toHex());
+//var md = forge.md.sha256.create();
+//md.update('The quick brown fox jumps over the lazy dog');
+//console.log(md.digest().toHex());
