@@ -1,9 +1,10 @@
 console.log('admin.js loaded');
 
-function add_row(key, row) {  //key = "so_table1"
-    var x=document.getElementById(key);
-    x.insertAdjacentHTML('beforeend',row);
-}
+
+//function add_row(key, row) {  //key = "so_table1"
+//    var x=document.getElementById(key);
+//    x.insertAdjacentHTML('beforeend',row);
+//}
 
 function insert_adjancent_html(key,position,row) {
     var x=document.getElementById(key);

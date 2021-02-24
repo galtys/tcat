@@ -1,5 +1,7 @@
 module Snippets
 
+import Printf
+
 %access public export
 
 
@@ -43,15 +45,14 @@ table_card = """
           </div>  <!-- /.card -->
 """
 
+format_row : String
+format_row = """<tr >  <td scope="row">%s</td>   <td></td> <td id="so4_qty" >%d</td>  <td>Unit</td> <td>STE20</td> <td>%d</td> <td>0</td>     </tr>"""
 
+new_row : String -> Int -> Int -> String
+new_row sku qty price = printf format_row sku qty price
 
-
-
-
-
-
-
-
+example_row : String
+example_row = """<tr >  <td scope="row">AB</td>   <td></td> <td id="so4_qty" >1</td>  <td>Unit</td> <td>STE20</td> <td>188</td> <td>0</td>     </tr>"""
 
 
 

@@ -11,8 +11,6 @@ function get_qty(key) {
   return document.getElementById(key).innerText
 
 --}
-new_row : String
-new_row = """<tr >  <td scope="row">AB</td>   <td></td> <td id="so4_qty" >1</td>  <td>Unit</td> <td>STE20</td> <td>188</td> <td>0</td>     </tr>"""
 
 update_qty : String -> String -> JS_IO ()
 update_qty = foreign FFI_JS "update_qty(%0,%1)" (String -> String -> JS_IO ())
@@ -42,9 +40,12 @@ partial main : JS_IO ()
 main = do
    insert_beforeend "so_composite" table_card
 
-   new_row_sha1 <- calc_sha1 new_row
-   new_row_sha256 <- calc_sha256 new_row
-   add_row "so_table1" new_row
+   new_row_sha1 <- calc_sha1 example_row
+   new_row_sha256 <- calc_sha256 example_row
+   insert_beforeend "so_table1" example_row
+   
+   insert_beforeend "so_table1" $ new_row "DSX4" 3 833
+   
    console_log new_row_sha1
    console_log new_row_sha256
       
