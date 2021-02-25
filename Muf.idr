@@ -28,7 +28,7 @@ insert_adjancent_html : String -> String -> String -> JS_IO ()
 insert_adjancent_html = foreign FFI_JS "insert_adjancent_html(%0,%1,%2)" (String -> String -> String -> JS_IO ())
 
 insert_beforeend : String -> String -> JS_IO ()
-insert_beforeend key row = insert_adjancent_html key "beforeend" row
+binsert_beforeend key row = insert_adjancent_html key "beforeend" row
 
 calc_sha1 : String -> JS_IO String
 calc_sha1 = foreign FFI_JS "calc_sha1(%0)" (String -> JS_IO String)
