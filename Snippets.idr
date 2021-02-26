@@ -4,8 +4,6 @@ import Printf
 
 %access public export
 
-
-
 table_card : String
 table_card = """
           <!-- Content Edit Table -->
