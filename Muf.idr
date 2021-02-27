@@ -37,8 +37,11 @@ calc_sha1 = foreign FFI_JS "calc_sha1(%0)" (String -> JS_IO String)
 calc_sha256 : String -> JS_IO String
 calc_sha256 = foreign FFI_JS "calc_sha256(%0)" (String -> JS_IO String)
 
+aline : OrderLine
+aline = MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 11 0)
+
 test_list : List OrderLine
-test_list = [MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 11 0),
+test_list = [aline,
              MkOrderLine (MkOrderLineKey 1 7 2 2 100 73) (Tt 5 0),
              MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 0 3),
              MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 0 2),
@@ -53,9 +56,9 @@ main = do
 
    new_row_sha1 <- calc_sha1 example_row
    new_row_sha256 <- calc_sha256 example_row
-   insert_beforeend "so_table1" example_row
+--   insert_beforeend "so_table1" example_row
    
-   insert_beforeend "so_table1" $ new_row "DSX4" 3 81
+   insert_beforeend "so_table1" $ line2row aline
    
    console_log new_row_sha1
    console_log new_row_sha256

@@ -5,6 +5,12 @@ import Exchange
 
 %access public export
 
+{-
+		    <!--
+                    <td class="no-wrap"><a href=""><i class="fa fa-pencil pr-1"></i>Edit</a> | <a href=""><i class="fa fa-trash pr-1"></i>Delete</a></td>-->
+                  </tr>
+-}
+
 table_card : String
 table_card = """
           <!-- Content Edit Table -->
@@ -31,12 +37,9 @@ table_card = """
                     <td id="so1_qty" >3</td>
                     <td>Unit</td>
                     <td>STE20</td>
-                    <td>188</td>
+                    <td>118</td>
 		    <td>0</td>
 	    
-		    <!--
-                    <td class="no-wrap"><a href=""><i class="fa fa-pencil pr-1"></i>Edit</a> | <a href=""><i class="fa fa-trash pr-1"></i>Delete</a></td>-->
-                  </tr>
 		  
                 </tbody>
               </table>
@@ -45,16 +48,17 @@ table_card = """
 """
 
 format_row : String
-format_row = """<tr >  <td scope="row">%s</td>   <td></td> <td id="so4_qty" >%d</td>  <td>Unit</td> <td>STE20</td> <td>%d</td> <td>0</td>     </tr>"""
+format_row = """<tr >  <td scope="row">%s</td>   <td></td> <td id="%s" >%d</td>  <td>Unit</td> <td>STE20</td> <td>%d</td> <td>0</td>     </tr>"""
 
-new_row : String -> Integer -> Integer -> String
-new_row sku qty price = printf format_row sku qty price
+new_row : String -> String -> Integer -> Integer -> String
+new_row sku key qty price = printf format_row sku key qty price
 
-line2html : OrderLine -> String
-line2html (MkOrderLine (MkOrderLineKey p1 p2 line sku1 sku2 price_unit) qty) = new_row sku q price where
+line2row : OrderLine -> String
+line2row (MkOrderLine lk@(MkOrderLineKey p1 p2 line sku1 sku2 price_unit) qty) = new_row sku key q price where
       sku = i2s sku1
+      key = linekey2string lk
       q = t2int qty
-      price = 54
+      price = price_unit
 
 example_row : String
 example_row = """<tr >  <td scope="row">AB</td>   <td></td> <td id="so4_qty" >1</td>  <td>Unit</td> <td>STE20</td> <td>188</td> <td>0</td>     </tr>"""
