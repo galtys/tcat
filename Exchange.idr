@@ -54,12 +54,8 @@ i2s x = the String (cast x)
 linekey2string : OrderLineKey -> String
 linekey2string (MkOrderLineKey p1 p2 line sku1 sku2 price_unit) = i2s(p1)++i2s(p2)++i2s(line)++i2s(sku1)++i2s(sku2)++i2s(price_unit)
 
-linekey2int : OrderLineKey -> Integer
-linekey2int (MkOrderLineKey p1 p2 line sku1 sku2 price_unit) = p1*p2*line*sku1*sku2*price_unit
-
 Show OrderLineKey where
      show (MkOrderLineKey p1 p2 line sku1 sku2 price_unit) = "(p1:"++show(p1)++"p2:"++show(p2)++"line:"++show(line)++"sku1:"++show(sku1)++"sku2:"++show(sku2)++"price_unit:"++show(price_unit)
-
 
 eqstr : String -> String -> Bool
 eqstr x y = (==) x y
@@ -68,14 +64,6 @@ eqkey : OrderLineKey -> OrderLineKey -> Bool
 eqkey k1 k2 = (eqstr r1 r2) where 
             r1 = linekey2string k1
             r2 = linekey2string k2
-
-Eq OrderLineKey where
-       (==) k1 k2 = True
-
-
-Ord OrderLineKey where
-  compare k1 k2 = compare (linekey2string k1) (linekey2string k2)
-
 
 {-
 Eq OrderLineKey where
@@ -96,6 +84,12 @@ Ord OrderLineKey where
                   diff_line => diff_line
            diff_p1 => diff_p1
 -}
+
+Eq OrderLineKey where
+       (==) k1 k2 = eqkey k1 k2
+
+Ord OrderLineKey where
+  compare k1 k2 = compare (linekey2string k1) (linekey2string k2)
 
 record OrderLine where
      constructor MkOrderLine     
