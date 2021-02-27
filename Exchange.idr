@@ -39,6 +39,9 @@ trep xt@(Tt dr cr) = (Tt dr1 cr1 ) where
      dr1 = subs dr (tmin xt)
      cr1 = subs cr (tmin xt)
 
+t2int : Tterm -> Integer
+t2int (Tt dr cr) = subs dr cr
+
 i2s : Integer -> String
 i2s x = the String (cast x)
      
@@ -61,6 +64,10 @@ record OrderLineKey where
 --   product_uom : UOM
 --   tax_id : Integer
 --   discount : Integer
+record OrderLine where
+     constructor MkOrderLine     
+     key : OrderLineKey
+     qty : Tterm
 
 
 linekey2string : OrderLineKey -> String
@@ -103,10 +110,6 @@ Eq OrderLineKey where
 Ord OrderLineKey where
   compare k1 k2 = compare (linekey2string k1) (linekey2string k2)
 
-record OrderLine where
-     constructor MkOrderLine     
-     key : OrderLineKey
-     qty : Tterm
 
 Show OrderLine where
      show (MkOrderLine key qty) = show(key)++"->"++show(qty)

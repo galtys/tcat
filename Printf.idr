@@ -27,7 +27,8 @@ formatString s = format ( unpack s )
 -- Convert a format AST into a type.
 -- Example: FInt (FOther ',' (FString FEnd))   →   Int -> String -> String
 interpFormat : Format -> Type
-interpFormat (FInt f)     = Int -> interpFormat f
+--interpFormat (FInt f)     = Int -> interpFormat f
+interpFormat (FInt f)     = Integer -> interpFormat f
 interpFormat (FString f)  = String -> interpFormat f
 interpFormat (FOther _ f) = interpFormat f
 interpFormat FEnd         = String

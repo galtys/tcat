@@ -47,16 +47,17 @@ table_card = """
 format_row : String
 format_row = """<tr >  <td scope="row">%s</td>   <td></td> <td id="so4_qty" >%d</td>  <td>Unit</td> <td>STE20</td> <td>%d</td> <td>0</td>     </tr>"""
 
-new_row : String -> Int -> Int -> String
+new_row : String -> Integer -> Integer -> String
 new_row sku qty price = printf format_row sku qty price
 
-
-
+line2html : OrderLine -> String
+line2html (MkOrderLine (MkOrderLineKey p1 p2 line sku1 sku2 price_unit) qty) = new_row sku q price where
+      sku = i2s sku1
+      q = t2int qty
+      price = 54
 
 example_row : String
 example_row = """<tr >  <td scope="row">AB</td>   <td></td> <td id="so4_qty" >1</td>  <td>Unit</td> <td>STE20</td> <td>188</td> <td>0</td>     </tr>"""
-
-
 
 nav_bar : String
 nav_bar = """
