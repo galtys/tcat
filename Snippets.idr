@@ -1,6 +1,7 @@
 module Snippets
 
 import Printf
+import Exchange
 
 %access public export
 
@@ -48,6 +49,9 @@ format_row = """<tr >  <td scope="row">%s</td>   <td></td> <td id="so4_qty" >%d<
 
 new_row : String -> Int -> Int -> String
 new_row sku qty price = printf format_row sku qty price
+
+
+
 
 example_row : String
 example_row = """<tr >  <td scope="row">AB</td>   <td></td> <td id="so4_qty" >1</td>  <td>Unit</td> <td>STE20</td> <td>188</td> <td>0</td>     </tr>"""

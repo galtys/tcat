@@ -2,7 +2,7 @@ module Exchange
 
 import Control.Monad.State
 import Data.SortedMap
-import Prelude.Algebra
+--import Prelude.Algebra
 
 %access public export
 
@@ -28,6 +28,20 @@ tadd (Tt dr1 cr1) (Tt dr2 cr2) = (Tt dr cr) where
      dr = dr1+dr2
      cr = cr1+cr2
 
+subs : Integer -> Integer -> Integer
+subs x y = (x-y)
+
+tmin : Tterm -> Integer
+tmin (Tt dr cr) = (min dr cr)
+
+trep : Tterm -> Tterm
+trep xt@(Tt dr cr) = (Tt dr1 cr1 ) where
+     dr1 = subs dr (tmin xt)
+     cr1 = subs cr (tmin xt)
+
+i2s : Integer -> String
+i2s x = the String (cast x)
+     
 Semigroup Tterm where
      (<+>) a b = tadd a b
      
@@ -48,8 +62,6 @@ record OrderLineKey where
 --   tax_id : Integer
 --   discount : Integer
 
-i2s : Integer -> String
-i2s x = the String (cast x)
 
 linekey2string : OrderLineKey -> String
 linekey2string (MkOrderLineKey p1 p2 line sku1 sku2 price_unit) = i2s(p1)++i2s(p2)++i2s(line)++i2s(sku1)++i2s(sku2)++i2s(price_unit)
