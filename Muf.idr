@@ -37,18 +37,30 @@ calc_sha1 = foreign FFI_JS "calc_sha1(%0)" (String -> JS_IO String)
 calc_sha256 : String -> JS_IO String
 calc_sha256 = foreign FFI_JS "calc_sha256(%0)" (String -> JS_IO String)
 
-aline : OrderLine
-aline = MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 11 0)
+aline1 : OrderLine
+aline1 = MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 15 0)
+
+aline2 : OrderLine
+aline2 = MkOrderLine (MkOrderLineKey 1 7 2 2 100 73) (Tt 5 0)
 
 test_list : List OrderLine
-test_list = [aline,
-             MkOrderLine (MkOrderLineKey 1 7 2 2 100 73) (Tt 5 0),
+test_list = [aline1,
+             aline2,
              MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 0 3),
              MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 0 2),
              MkOrderLine (MkOrderLineKey 1 7 2 2 100 73) (Tt 1 0),
              MkOrderLine (MkOrderLineKey 1 7 2 2 100 73) (Tt 1 0),
              MkOrderLine (MkOrderLineKey 1 7 2 2 100 73) (Tt 0 7),
              MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 0 1)]
+
+line2io : OrderLine -> JS_IO ()
+line2io x = insert_beforeend "so_table1" $ line2row x
+
+line_list2io : List OrderLine -> JS_IO ()
+line_list2io [] = pure ()
+line_list2io (x :: xs) = do
+          line2io x
+          line_list2io xs
 
 partial main : JS_IO ()
 main = do
@@ -58,7 +70,9 @@ main = do
    new_row_sha256 <- calc_sha256 example_row
 --   insert_beforeend "so_table1" example_row
    
-   insert_beforeend "so_table1" $ line2row aline
+   --line2io aline1
+   --line2io aline2
+   line_list2io test_list
    
    console_log new_row_sha1
    console_log new_row_sha256
@@ -70,3 +84,7 @@ main = do
 
    console_log $ PF.printf "%d%s" 5 "hello!"
    console_log $ show $test2 test_list
+
+-- Local Variables:
+-- idris-load-packages: ("contrib")
+-- End:
