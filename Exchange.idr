@@ -34,26 +34,6 @@ Semigroup Tterm where
 Show Tterm where
      show (Tt x y) = show(x) ++ "//" ++ show(y)
 
-{-
-record Album where
-     constructor MkAlbum
-     artist : String
-     title : String
-     year : Integer
-     
-Eq Album where
-  (==) (MkAlbum artist title year) (MkAlbum artist' title' year')
-        = artist==artist' && title==title' && year==year'
-
-Ord Album where
-  compare (MkAlbum artist title year) (MkAlbum artist' title' year')
-      = case compare artist artist' of
-           EQ => case compare year year' of
-                  EQ => compare title title' 
-                  diff_year => diff_year
-           diff_artist => diff_artist
--}
-
 record OrderLineKey where
      constructor MkOrderLineKey
      p1  : Integer  --partner 1
@@ -61,16 +41,43 @@ record OrderLineKey where
      line : Integer -- line number
      sku1 : Integer  -- sku1
      sku2 : Integer  -- sku2
+     price_unit : Integer
 --     product_sku1 : Integer
 --     product_sku2 : Integer
 --   product_uom : UOM
 --   tax_id : Integer
 --   discount : Integer
-     price_unit : Integer
+
+i2s : Integer -> String
+i2s x = the String (cast x)
+
+linekey2string : OrderLineKey -> String
+linekey2string (MkOrderLineKey p1 p2 line sku1 sku2 price_unit) = i2s(p1)++i2s(p2)++i2s(line)++i2s(sku1)++i2s(sku2)++i2s(price_unit)
+
+linekey2int : OrderLineKey -> Integer
+linekey2int (MkOrderLineKey p1 p2 line sku1 sku2 price_unit) = p1*p2*line*sku1*sku2*price_unit
 
 Show OrderLineKey where
      show (MkOrderLineKey p1 p2 line sku1 sku2 price_unit) = "(p1:"++show(p1)++"p2:"++show(p2)++"line:"++show(line)++"sku1:"++show(sku1)++"sku2:"++show(sku2)++"price_unit:"++show(price_unit)
 
+
+eqstr : String -> String -> Bool
+eqstr x y = (==) x y
+
+eqkey : OrderLineKey -> OrderLineKey -> Bool
+eqkey k1 k2 = (eqstr r1 r2) where 
+            r1 = linekey2string k1
+            r2 = linekey2string k2
+
+Eq OrderLineKey where
+       (==) k1 k2 = True
+
+
+Ord OrderLineKey where
+  compare k1 k2 = compare (linekey2string k1) (linekey2string k2)
+
+
+{-
 Eq OrderLineKey where
      (==) (MkOrderLineKey p1 p2 line sku1 sku2 price_unit) (MkOrderLineKey p1' p2' line' sku1' sku2' price_unit')  
          =  p1==p1' && p2==p2' && line==line' && sku1 == sku1' && sku2==sku2' && price_unit==price_unit'
@@ -88,6 +95,7 @@ Ord OrderLineKey where
                       diff_p2 => diff_p2
                   diff_line => diff_line
            diff_p1 => diff_p1
+-}
 
 record OrderLine where
      constructor MkOrderLine     
