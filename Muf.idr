@@ -2,6 +2,7 @@ module Main
 
 import Printf as PF
 import Snippets
+import Exchange
 
 {--
 function update_qty(key, value) {
@@ -36,6 +37,16 @@ calc_sha1 = foreign FFI_JS "calc_sha1(%0)" (String -> JS_IO String)
 calc_sha256 : String -> JS_IO String
 calc_sha256 = foreign FFI_JS "calc_sha256(%0)" (String -> JS_IO String)
 
+test_list : List OrderLine
+test_list = [MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 11 0),
+             MkOrderLine (MkOrderLineKey 1 7 2 2 100 73) (Tt 5 0),
+             MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 0 3),
+             MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 0 2),
+             MkOrderLine (MkOrderLineKey 1 7 2 2 100 73) (Tt 1 0),
+             MkOrderLine (MkOrderLineKey 1 7 2 2 100 73) (Tt 1 0),
+             MkOrderLine (MkOrderLineKey 1 7 2 2 100 73) (Tt 0 7),
+             MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 0 1)]
+
 partial main : JS_IO ()
 main = do
    insert_beforeend "so_composite" table_card
@@ -55,3 +66,4 @@ main = do
    update_qty k so1_qty
 
    console_log $ PF.printf "%d%s" 5 "hello!"
+   console_log $ show $test2 test_list

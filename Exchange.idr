@@ -1,0 +1,235 @@
+module Exchange
+
+import Control.Monad.State
+import Data.SortedMap
+import Prelude.Algebra
+
+%access public export
+
+{-
+data Asset = AA String
+data Partner = PP Integer
+data Location = LL String
+data Order = O String
+data Line = Ln String
+data Qty = Q Integer
+data UOM = Uom
+
+data CarrierM = MA Asset | MP Partner | MO Order | MQty Qty
+
+data CarrierA = CA Asset | CL Location | CO Order | CQty Qty
+
+data Carrier = V String | N Integer | A String | L String | P String | ZERO
+-}
+data Tterm = Tt Integer Integer
+
+tadd : Tterm -> Tterm -> Tterm
+tadd (Tt dr1 cr1) (Tt dr2 cr2) = (Tt dr cr) where
+     dr = dr1+dr2
+     cr = cr1+cr2
+
+Semigroup Tterm where
+     (<+>) a b = tadd a b
+     
+Show Tterm where
+     show (Tt x y) = show(x) ++ "//" ++ show(y)
+
+{-
+record Album where
+     constructor MkAlbum
+     artist : String
+     title : String
+     year : Integer
+     
+Eq Album where
+  (==) (MkAlbum artist title year) (MkAlbum artist' title' year')
+        = artist==artist' && title==title' && year==year'
+
+Ord Album where
+  compare (MkAlbum artist title year) (MkAlbum artist' title' year')
+      = case compare artist artist' of
+           EQ => case compare year year' of
+                  EQ => compare title title' 
+                  diff_year => diff_year
+           diff_artist => diff_artist
+-}
+
+record OrderLineKey where
+     constructor MkOrderLineKey
+     p1  : Integer  --partner 1
+     p2  : Integer  --partner 2
+     line : Integer -- line number
+     sku1 : Integer  -- sku1
+     sku2 : Integer  -- sku2
+--     product_sku1 : Integer
+--     product_sku2 : Integer
+--   product_uom : UOM
+--   tax_id : Integer
+--   discount : Integer
+     price_unit : Integer
+
+Show OrderLineKey where
+     show (MkOrderLineKey p1 p2 line sku1 sku2 price_unit) = "(p1:"++show(p1)++"p2:"++show(p2)++"line:"++show(line)++"sku1:"++show(sku1)++"sku2:"++show(sku2)++"price_unit:"++show(price_unit)
+
+Eq OrderLineKey where
+     (==) (MkOrderLineKey p1 p2 line sku1 sku2 price_unit) (MkOrderLineKey p1' p2' line' sku1' sku2' price_unit')  
+         =  p1==p1' && p2==p2' && line==line' && sku1 == sku1' && sku2==sku2' && price_unit==price_unit'
+
+Ord OrderLineKey where
+  compare (MkOrderLineKey p1 p2 line sku1 sku2 price_unit) (MkOrderLineKey p1' p2' line' sku1' sku2' price_unit')
+      = case compare p1 p1' of   --artist
+           EQ => case compare line line' of    --year
+                  EQ => case compare p2 p2' of  --title
+                      EQ => case compare sku1 sku1' of
+                           EQ => case compare sku2 sku2' of
+                                EQ => compare price_unit price_unit'
+                                diff_sku2 => diff_sku2
+                           diff_sku1 => diff_sku1
+                      diff_p2 => diff_p2
+                  diff_line => diff_line
+           diff_p1 => diff_p1
+
+record OrderLine where
+     constructor MkOrderLine     
+     key : OrderLineKey
+     qty : Tterm
+
+Show OrderLine where
+     show (MkOrderLine key qty) = show(key)++"->"++show(qty)
+
+
+key_empty : SortedMap OrderLineKey Tterm
+key_empty = empty
+
+map_to_kv : SortedMap OrderLineKey Tterm -> List (OrderLineKey,Tterm)
+map_to_kv sm = (toList sm)
+
+map_to_lines : List (OrderLineKey,Tterm) -> List OrderLine
+map_to_lines [] = []
+map_to_lines ( (k,v) :: xs) = [MkOrderLine k v]++map_to_lines xs
+
+
+interpret1 : List OrderLine -> State (SortedMap OrderLineKey Tterm) (List OrderLine)
+interpret1 [] = do
+           --put key_empty
+           pure []
+interpret1 (x :: xs) = do
+           i11 <- interpret1 xs
+           st <- get
+           let k = key x
+           let v = qty x
+           let sm = insert k v key_empty
+           put (merge st sm)
+           pure i11
+
+lines_to_map : List OrderLine -> SortedMap OrderLineKey Tterm
+lines_to_map xs = execState (interpret1 xs) key_empty
+
+
+test2 : List OrderLine -> List (OrderLineKey,Tterm)
+test2 x =map_to_kv (lines_to_map x)
+
+
+--interpretEntries : 
+{-
+record Term where
+     constructor MkTerm
+     dr : Qty
+     cr : Qty
+     price : Qty
+     p  : Partner
+     asset : Asset
+     order : Order  
+-}
+
+{-
+Eq Carrier where
+  (==) (V x) (V y) = (x==y)
+  (==) (N x) (N y) = (x==y)
+  (==) (A x) (A y) = (x==y)
+  (==) (L x) (L y) = (x==y)
+  (==) (P x) (P y) = (x==y)
+  (==) _ _ = False
+-}
+
+{-
+
+record AssetChange where
+       constructor MkChange
+       owner : Carrier
+       asset : Carrier
+       qty : Carrier
+
+
+
+
+record Exchange where
+       constructor MkEx
+       p1 : Carrier
+       p2 : Carrier
+       q1 : Carrier
+       a1 : Carrier  -- from
+       q2 : Carrier
+       a2 : Carrier  -- to
+-}
+
+
+--Eq Exchange where   
+--  (==) (MkEx p1 p2 q1 a1 q2 a2) (MkEx x y z w s t) = (p1==x) && (p2==y) ...
+
+
+-- discount %
+       -- tax (inc vat, or ex vat)
+
+{-       
+record ChangeItem where
+       constructor MkChangeItem
+       change : AssetChange
+       qty : Carrier
+                     
+record AssetMoveLine where
+       constructor MkMoveLine
+       location : Carrier
+       asset :    Carrier
+       qty   : Carrier
+
+record AssetMove where
+       constructor MkMove
+       from : AssetMoveLine
+       to   : AssetMoveLine
+-}
+
+{-
+
+
+
+ex2 : Exchange
+ex2 = MkEx (P "PJB") (P "Cust") (N 1) (A "$") (N 3) (A "SKU2") 
+
+ex3 : Exchange
+ex3 = MkEx (P "PJB") (P "Cust") (N 1) (A "$") (N 7) (A "SKU3") 
+
+ex4 : Exchange
+ex4 = MkEx (P "PJB") (P "Cust") (N 1) (A "$") (N 2) (A "SKU3") 
+
+ex5 : Exchange
+ex5 = MkEx (P "PJB") (P "Cust") (N 1) (A "SKU3") (N 1) (A "$") 
+-}
+
+
+{-
+
+ex2 : Exchange
+ex2 = MkExchange (MkChange (P "PJB") (A "$") (N 1) ) (MkChange (P "Cust") (A "sku1") (N 4))
+ex3 : Exchange
+ex3 = MkExchange (MkChange (P "PJB") (A "$") (N 1) ) (MkChange (P "Cust") (A "sku2") (N 3))
+ex4 : Exchange
+ex4 = MkExchange (MkChange (P "PJB") (A "$") (N 1) ) (MkChange (P "Cust") (A "sku3") (N 7))
+
+ex41 : Exchange 
+ex41 = MkExchange (MkChange (P "PJB") (A "$") (N 1) ) (MkChange (P "Cust") (A "sku4") (N 1))
+-}
+
+-- Local Variables:
+-- idris-load-packages: ("contrib" "rationals" "idris_free" "containers")
+-- End:

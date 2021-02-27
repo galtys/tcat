@@ -1,0 +1,9 @@
+package hs
+
+modules = SVariant, SHA256
+
+main = Main
+
+makefile = Makefile
+
+pkgs = containers,idris_free,rationals,lightyear,contrib,xml,commons
