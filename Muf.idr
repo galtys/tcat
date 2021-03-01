@@ -20,12 +20,18 @@ update_qty = foreign FFI_JS "update_qty(%0,%1)" (String -> Int -> JS_IO ())
 _get_qty : String -> JS_IO String
 _get_qty = foreign FFI_JS "get_qty(%0)" (String -> JS_IO String)
 
+get_qty_int : String -> JS_IO Int
+get_qty_int = foreign FFI_JS "get_qty_int(%0)" (String -> JS_IO Int)
+
+get_qty_int_flag : String -> JS_IO Int
+get_qty_int_flag = foreign FFI_JS "get_qty_int_flag(%0)" (String -> JS_IO Int)
+
+
 _parse_int_pair_int : String -> JS_IO Ptr
 _parse_int_pair_int = foreign FFI_JS "_parse_int_pair_int(%0,10)" (String -> JS_IO Ptr)
 
 _get_fst_pair_int : Ptr -> JS_IO Int
 _get_fst_pair_int x = foreign FFI_JS "_get_fst_pair_int" (JS_IO Int)
-
 
 _get_snd_pair_int : Ptr -> JS_IO Int
 _get_snd_pair_int x = foreign FFI_JS "_get_snd_pair_int" (JS_IO Int)
@@ -52,6 +58,7 @@ _get_qty_m' key = do
                True => Nothing
                False => Just q'
        pure q
+
 
 
 get_qty : String -> JS_IO (Maybe Int)
@@ -89,7 +96,8 @@ test_list = [aline1,
              MkOrderLine (MkOrderLineKey 1 7 2 2 100 73) (Tt 1 0),
              MkOrderLine (MkOrderLineKey 1 7 2 2 100 73) (Tt 1 0),
              MkOrderLine (MkOrderLineKey 1 7 2 2 100 73) (Tt 0 7),
-             MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 0 1)]
+             MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 0 1)
+             ]
 
 line2io : OrderLine -> JS_IO ()
 line2io x = insert_beforeend "so_table1" $ line2row x
@@ -97,13 +105,13 @@ line2io x = insert_beforeend "so_table1" $ line2row x
 line_list2io : List OrderLine -> JS_IO ()
 line_list2io [] = pure ()
 line_list2io ( x@(MkOrderLine k v) :: xs) = do
-          q <- get_qty (linekey2string k)
-          case q of
-              Nothing => line2io x
-              (Just qq) => do 
-                       update_qty (linekey2string k) ( (t2int v) + 0 )
-                       console_log $ show $ qq
-              
+          let key_s = (linekey2string k)
+          q <- get_qty_int key_s
+          q_flag <- get_qty_int_flag key_s
+          case (q_flag==0) of
+              True => line2io x
+              False => update_qty key_s ( (t2int v) + q )
+
           line_list2io xs
 
 partial main : JS_IO ()

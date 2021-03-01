@@ -45,6 +45,34 @@ function get_qty(key) {
     }
 }
 
+function get_qty_int(key) {
+    var e = document.getElementById(key);
+    if (e==null) {
+	return 0;
+    } else {
+	var a = parseInt(e.innerText,10);
+	if (isNaN(a)) {
+            return 0;
+	} else {
+	    return a;
+	}
+    }
+}
+function get_qty_int_flag(key) {
+    var e = document.getElementById(key);
+    if (e==null) {
+	return 0;
+    } else {
+	var a = parseInt(e.innerText,10);
+	if (isNaN(a)) {
+            return 0;
+	} else {
+	    return 1;
+	}
+    }
+}
+
+
 function console_log(msg) {
     console.log(msg);
 }
