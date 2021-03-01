@@ -16,18 +16,18 @@ function _parse_int_pair_int(x) {
     var integer = parseInt(x,10);
     
     if (isNaN(integer)) {
-	return [0,0]
+	return [0,0];
     } else {
-        return [1,o]
+        return [1,o];
     }
 }
 
 function _get_fst_pair_int(x) {
-    return x[0]
+    return x[0];
 }
 
 function _get_snd_pair_int(x) {
-    return x[1]
+    return x[1];
 }
 
 
@@ -37,11 +37,11 @@ function update_qty(key, value) {
   document.getElementById(key).innerText=value;
 }
 function get_qty(key) {
-    var e = document.getElementById(key).innerText;
+    var e = document.getElementById(key);
     if (e==null) {
-      return ""
+	return "";
     } else {
-      e
+      e.innerText
     }
 }
 

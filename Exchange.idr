@@ -39,11 +39,17 @@ trep xt@(Tt dr cr) = (Tt dr1 cr1 ) where
      dr1 = subs dr (tmin xt)
      cr1 = subs cr (tmin xt)
 
-t2int : Tterm -> Integer
-t2int (Tt dr cr) = subs dr cr
+integer_to_int : Integer -> Int
+integer_to_int x = the Int (cast (the Nat (cast x)))
 
-int2t : Integer -> Tterm
-int2t x = case x == 0 of
+t2integer : Tterm -> Integer
+t2integer (Tt dr cr) = subs dr cr
+
+t2int : Tterm -> Int
+t2int x = integer_to_int (t2integer x)
+
+integer2t : Integer -> Tterm
+integer2t x = case x == 0 of
           True => (Tt 0 0)
           False => case (x > 0) of
                   True => (Tt x 0)

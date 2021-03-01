@@ -63,7 +63,7 @@ line2row : OrderLine -> String
 line2row (MkOrderLine lk@(MkOrderLineKey p1 p2 line sku1 sku2 price_unit) qty) = new_row sku key q price where
       sku = i2s sku1
       key = linekey2string lk
-      q = t2int qty
+      q = t2integer qty
       price = price_unit
 
 example_row : String

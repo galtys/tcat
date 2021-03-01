@@ -13,8 +13,6 @@ function get_qty(key) {
 
 --}
 
-integer_to_int : Integer -> Int
-integer_to_int x = the Int (cast (the Nat (cast x)))
 
 update_qty : String -> Int -> JS_IO ()
 update_qty = foreign FFI_JS "update_qty(%0,%1)" (String -> Int -> JS_IO ())
@@ -23,16 +21,14 @@ _get_qty : String -> JS_IO String
 _get_qty = foreign FFI_JS "get_qty(%0)" (String -> JS_IO String)
 
 _parse_int_pair_int : String -> JS_IO Ptr
-_parse_int_pair_int = foreign FFI_JS "parse_int_pair_int(%0,10)" (String -> JS_IO Ptr)
+_parse_int_pair_int = foreign FFI_JS "_parse_int_pair_int(%0,10)" (String -> JS_IO Ptr)
 
 _get_fst_pair_int : Ptr -> JS_IO Int
-_get_fst_pair_int x = foreign FFI_JS "_get_fst_pair_int(%0)" (JS_IO Int)
-
+_get_fst_pair_int x = foreign FFI_JS "_get_fst_pair_int" (JS_IO Int)
 
 
 _get_snd_pair_int : Ptr -> JS_IO Int
-_get_snd_pair_int x = foreign FFI_JS "_get_snd_pair_int(%0)" (JS_IO Int)
-
+_get_snd_pair_int x = foreign FFI_JS "_get_snd_pair_int" (JS_IO Int)
 
 
 parse_int : String -> JS_IO (Maybe Int)
@@ -101,8 +97,13 @@ line2io x = insert_beforeend "so_table1" $ line2row x
 line_list2io : List OrderLine -> JS_IO ()
 line_list2io [] = pure ()
 line_list2io ( x@(MkOrderLine k v) :: xs) = do
-          
-          line2io x
+          q <- get_qty (linekey2string k)
+          case q of
+              Nothing => line2io x
+              (Just qq) => do 
+                       update_qty (linekey2string k) ( (t2int v) + 0 )
+                       console_log $ show $ qq
+              
           line_list2io xs
 
 partial main : JS_IO ()
