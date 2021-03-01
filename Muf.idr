@@ -26,6 +26,8 @@ get_qty_int = foreign FFI_JS "get_qty_int(%0)" (String -> JS_IO Int)
 get_qty_int_flag : String -> JS_IO Int
 get_qty_int_flag = foreign FFI_JS "get_qty_int_flag(%0)" (String -> JS_IO Int)
 
+remove_row : String -> JS_IO ()
+remove_row = foreign FFI_JS "remove_row(%0)" (String -> JS_IO () )
 
 _parse_int_pair_int : String -> JS_IO Ptr
 _parse_int_pair_int = foreign FFI_JS "_parse_int_pair_int(%0,10)" (String -> JS_IO Ptr)
@@ -99,6 +101,12 @@ test_list3 = [MkOrderLine (MkOrderLineKey 1 7 1 2 100 73) (Tt 0 1),
              MkOrderLine (MkOrderLineKey 1 7 1 3 100 93) (Tt 0 2)
              ]
 
+test_list4 : List OrderLine
+test_list4 = [MkOrderLine (MkOrderLineKey 1 7 1 2 100 73) (Tt 0 1),
+             MkOrderLine (MkOrderLineKey 1 7 1 4 100 93) (Tt 1 0)
+             ]
+
+
 table_composite_id : TableID
 table_composite_id = "so_table1"
 
@@ -119,7 +127,11 @@ line_list2io tableid ( x@(MkOrderLine k v) :: xs) = do
               True => line2io tableid (Just key_s) x
               False => do
                       q <- get_qty_int key_s
-                      update_qty key_s ( (t2int v) + q )
+                      let new_qty = (t2int v) + q
+                      case (new_qty==0) of 
+                         True => remove_row key_s
+                         False => update_qty key_s new_qty
+                      
           line_list2io tableid xs
 
 --line2io_amend : OrderLine -> JS_IO ()
@@ -153,7 +165,12 @@ main = do
    insert_beforeend "so_amendments" (table_card (table_amendments_id 3) )
    line_list2io_amend (table_amendments_id 3) test_list3
    line_list2io table_composite_id test_list3   
+
+   insert_beforeend "so_amendments" (table_card (table_amendments_id 4) )
+   line_list2io_amend (table_amendments_id 4) test_list4
+   line_list2io table_composite_id test_list4
          
+                           
          
    console_log new_row_sha1
    console_log new_row_sha256

@@ -58,6 +58,18 @@ function get_qty_int(key) {
 	}
     }
 }
+
+function remove_row(key) {
+    var e = document.getElementById(key);
+    if (e==null) {
+	return 0;
+    } else {
+	p = e.parentNode
+	p.parentNode.removeChild(p)
+	return 1;
+    }
+}
+
 function get_qty_int_flag(key) {
     var e = document.getElementById(key);
     if (e==null) {
