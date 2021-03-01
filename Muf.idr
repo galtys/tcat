@@ -13,11 +13,19 @@ function get_qty(key) {
 
 --}
 
-update_qty : String -> String -> JS_IO ()
-update_qty = foreign FFI_JS "update_qty(%0,%1)" (String -> String -> JS_IO ())
+integer_to_int : Integer -> Int
+integer_to_int x = the Int (cast (the Nat (cast x)))
+
+update_qty : String -> Int -> JS_IO ()
+update_qty = foreign FFI_JS "update_qty(%0,%1)" (String -> Int -> JS_IO ())
 
 get_qty : String -> JS_IO String
 get_qty = foreign FFI_JS "get_qty(%0)" (String -> JS_IO String)
+
+parse_int : String -> JS_IO Int
+parse_int = foreign FFI_JS "parseInt(%0,10)" (String -> JS_IO Int)
+
+
 
 console_log : String -> JS_IO ()
 console_log = foreign FFI_JS "console_log(%0)" (String -> JS_IO () )
@@ -36,10 +44,6 @@ calc_sha1 = foreign FFI_JS "calc_sha1(%0)" (String -> JS_IO String)
 
 calc_sha256 : String -> JS_IO String
 calc_sha256 = foreign FFI_JS "calc_sha256(%0)" (String -> JS_IO String)
-
-
-
-
 
 aline1 : OrderLine
 aline1 = MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 15 0)
@@ -63,10 +67,9 @@ line2io x = insert_beforeend "so_table1" $ line2row x
 line_list2io : List OrderLine -> JS_IO ()
 line_list2io [] = pure ()
 line_list2io (x :: xs) = do
+
           line2io x
           line_list2io xs
-
-
 
 partial main : JS_IO ()
 main = do

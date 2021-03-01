@@ -18,7 +18,7 @@ function update_qty(key, value) {
   document.getElementById(key).innerText=value;
 }
 function get_qty(key) {
-    return document.getElementById(key).innerText;
+    return parseInt(document.getElementById(key).innerText,10);
 }
 
 function console_log(msg) {
