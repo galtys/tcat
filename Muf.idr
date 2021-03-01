@@ -19,11 +19,11 @@ integer_to_int x = the Int (cast (the Nat (cast x)))
 update_qty : String -> Int -> JS_IO ()
 update_qty = foreign FFI_JS "update_qty(%0,%1)" (String -> Int -> JS_IO ())
 
-get_qty : String -> JS_IO String
-get_qty = foreign FFI_JS "get_qty(%0)" (String -> JS_IO String)
+_get_qty : String -> JS_IO String
+_get_qty = foreign FFI_JS "get_qty(%0)" (String -> JS_IO String)
 
-parse_int : String -> JS_IO Int
-parse_int = foreign FFI_JS "parseInt(%0,10)" (String -> JS_IO Int)
+_parse_int : String -> JS_IO Int
+_parse_int = foreign FFI_JS "parseInt(%0,10)" (String -> JS_IO Int)
 
 
 
@@ -66,8 +66,8 @@ line2io x = insert_beforeend "so_table1" $ line2row x
 
 line_list2io : List OrderLine -> JS_IO ()
 line_list2io [] = pure ()
-line_list2io (x :: xs) = do
-
+line_list2io ( x@(MkOrderLine k v) :: xs) = do
+          
           line2io x
           line_list2io xs
 

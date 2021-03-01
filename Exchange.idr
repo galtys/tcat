@@ -42,6 +42,13 @@ trep xt@(Tt dr cr) = (Tt dr1 cr1 ) where
 t2int : Tterm -> Integer
 t2int (Tt dr cr) = subs dr cr
 
+int2t : Integer -> Tterm
+int2t x = case x == 0 of
+          True => (Tt 0 0)
+          False => case (x > 0) of
+                  True => (Tt x 0)
+                  False => (Tt 0 (abs(x)))
+
 i2s : Integer -> String
 i2s x = the String (cast x)
      
