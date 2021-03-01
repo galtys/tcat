@@ -60,7 +60,6 @@ _get_qty_m' key = do
        pure q
 
 
-
 get_qty : String -> JS_IO (Maybe Int)
 get_qty x = (_get_qty_m' x) >>= parse_int_m
 
@@ -82,53 +81,80 @@ calc_sha1 = foreign FFI_JS "calc_sha1(%0)" (String -> JS_IO String)
 calc_sha256 : String -> JS_IO String
 calc_sha256 = foreign FFI_JS "calc_sha256(%0)" (String -> JS_IO String)
 
-aline1 : OrderLine
-aline1 = MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 15 0)
-
-aline2 : OrderLine
-aline2 = MkOrderLine (MkOrderLineKey 1 7 2 2 100 73) (Tt 5 0)
-
 test_list : List OrderLine
-test_list = [aline1,
-             aline2,
-             MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 0 3),
+test_list = [MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 15 0),
+             MkOrderLine (MkOrderLineKey 1 7 1 2 100 73) (Tt 5 0),
              MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 0 2),
-             MkOrderLine (MkOrderLineKey 1 7 2 2 100 73) (Tt 1 0),
-             MkOrderLine (MkOrderLineKey 1 7 2 2 100 73) (Tt 1 0),
-             MkOrderLine (MkOrderLineKey 1 7 2 2 100 73) (Tt 0 7),
              MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 0 1),
              MkOrderLine (MkOrderLineKey 1 7 1 3 100 93) (Tt 3 0)
              ]
+test_list2 : List OrderLine
+test_list2 = [MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 0 3),
+              MkOrderLine (MkOrderLineKey 1 7 1 2 100 73) (Tt 3 0),
+             MkOrderLine (MkOrderLineKey 1 7 1 3 100 93) (Tt 0 1)
+             ]
 
-line2io : OrderLine -> JS_IO ()
-line2io x = insert_beforeend "so_table1" $ line2row x
+test_list3 : List OrderLine
+test_list3 = [MkOrderLine (MkOrderLineKey 1 7 1 2 100 73) (Tt 0 1),
+             MkOrderLine (MkOrderLineKey 1 7 1 3 100 93) (Tt 0 2)
+             ]
 
-line_list2io : List OrderLine -> JS_IO ()
-line_list2io [] = pure ()
-line_list2io ( x@(MkOrderLine k v) :: xs) = do
+table_composite_id : TableID
+table_composite_id = "so_table1"
+
+table_amendments_id : Integer -> TableID
+table_amendments_id x = printf "so_table_amendments%d" x
+
+
+line2io : TableID -> RowID -> OrderLine -> JS_IO ()
+line2io tableid rowid x = insert_beforeend tableid $ line2row rowid x
+
+line_list2io : TableID -> List OrderLine -> JS_IO ()
+line_list2io tableid [] = pure ()
+line_list2io tableid ( x@(MkOrderLine k v) :: xs) = do
           let key_s = (linekey2string k)
 
           q_flag <- get_qty_int_flag key_s
           case (q_flag==0) of
-              True => line2io x
+              True => line2io tableid (Just key_s) x
               False => do
                       q <- get_qty_int key_s
                       update_qty key_s ( (t2int v) + q )
+          line_list2io tableid xs
 
-          line_list2io xs
+--line2io_amend : OrderLine -> JS_IO ()
+--line2io_amend x = insert_beforeend table_amendments_id $ line2row Nothing x
+
+line_list2io_amend : TableID -> List OrderLine -> JS_IO ()
+line_list2io_amend tableid [] = pure ()
+line_list2io_amend tableid ( x :: xs) = do
+          line2io tableid Nothing x
+          line_list2io_amend tableid xs
 
 partial main : JS_IO ()
 main = do
-   insert_beforeend "so_composite" table_card
-
+   insert_beforeend "so_composite" (table_card table_composite_id)
+   line_list2io table_composite_id test_list
+   
    new_row_sha1 <- calc_sha1 example_row
    new_row_sha256 <- calc_sha256 example_row
 --   insert_beforeend "so_table1" example_row
    
    --line2io aline1
    --line2io aline2
-   line_list2io test_list
    
+   insert_beforeend "so_amendments" (table_card (table_amendments_id 1) )
+   line_list2io_amend (table_amendments_id 1) test_list
+
+   insert_beforeend "so_amendments" (table_card (table_amendments_id 2) )
+   line_list2io_amend (table_amendments_id 2) test_list2      
+   line_list2io table_composite_id test_list2
+
+   insert_beforeend "so_amendments" (table_card (table_amendments_id 3) )
+   line_list2io_amend (table_amendments_id 3) test_list3
+   line_list2io table_composite_id test_list3   
+         
+         
    console_log new_row_sha1
    console_log new_row_sha256
 

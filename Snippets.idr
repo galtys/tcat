@@ -23,8 +23,8 @@ import Exchange
 
 -}
 
-table_card : String
-table_card = """
+_table_card : String
+_table_card = """
           <!-- Content Edit Table -->
           <div class="card mt-3">
             <div class="card-body">
@@ -42,7 +42,7 @@ table_card = """
 
                   </tr>
                 </thead>
-                <tbody id="so_table1">
+                <tbody %s >
                 
    
 		  
@@ -52,17 +52,39 @@ table_card = """
             </div>
           </div>  <!-- /.card -->
 """
+TableID : Type
+TableID = String
+
+RowID : Type
+RowID = Maybe String
+
+id_att_format : String
+id_att_format = """ id="%s" """
+
+id_att : String -> String
+id_att x = printf id_att_format x
+
+table_card : TableID -> String
+table_card key = printf _table_card (id_att key)
+
+
+old_format_row : String
+old_format_row = """<tr >  <td scope="row">%s</td>   <td></td> <td id="%s" >%d</td>  <td>Unit</td> <td>STE20</td> <td>%d</td> <td>0</td>     </tr>"""
 
 format_row : String
-format_row = """<tr >  <td scope="row">%s</td>   <td></td> <td id="%s" >%d</td>  <td>Unit</td> <td>STE20</td> <td>%d</td> <td>0</td>     </tr>"""
+format_row = """<tr >  <td scope="row">%s</td>   <td></td> <td %s>%d</td>  <td>Unit</td> <td>STE20</td> <td>%d</td> <td>0</td>     </tr>"""
 
-new_row : String -> String -> Integer -> Integer -> String
-new_row sku key qty price = printf format_row sku key qty price
 
-line2row : OrderLine -> String
-line2row (MkOrderLine lk@(MkOrderLineKey p1 p2 line sku1 sku2 price_unit) qty) = new_row sku key q price where
+
+new_row : String -> RowID -> Integer -> Integer -> String --sku key qty price
+new_row sku key qty price = case key of
+          Nothing => printf format_row sku "" qty price
+          (Just _id) => printf format_row sku (id_att _id) qty price
+
+line2row : RowID -> OrderLine -> String
+line2row rowid (MkOrderLine lk@(MkOrderLineKey p1 p2 line sku1 sku2 price_unit) qty) = new_row sku key q price where
       sku = i2s sku1
-      key = linekey2string lk
+      key = rowid --Just (linekey2string lk)
       q = t2integer qty
       price = price_unit
 
