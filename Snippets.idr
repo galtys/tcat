@@ -8,7 +8,19 @@ import Exchange
 {-
 		    <!--
                     <td class="no-wrap"><a href=""><i class="fa fa-pencil pr-1"></i>Edit</a> | <a href=""><i class="fa fa-trash pr-1"></i>Delete</a></td>-->
+
+                  <tr >
+                    <td scope="row">YWORMME</td>
+		    <td></td>
+                    <td id="so1_qty" >3</td>
+                    <td>Unit</td>
+                    <td>STE20</td>
+                    <td>118</td>
+		    <td>0</td>
                   </tr>
+
+
+
 -}
 
 table_card : String
@@ -31,17 +43,11 @@ table_card = """
                   </tr>
                 </thead>
                 <tbody id="so_table1">
-                  <tr >
-                    <td scope="row">YWORMME</td>
-		    <td></td>
-                    <td id="so1_qty" >3</td>
-                    <td>Unit</td>
-                    <td>STE20</td>
-                    <td>118</td>
-		    <td>0</td>
-	    
+                
+   
 		  
                 </tbody>
+                
               </table>
             </div>
           </div>  <!-- /.card -->

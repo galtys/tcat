@@ -37,6 +37,10 @@ calc_sha1 = foreign FFI_JS "calc_sha1(%0)" (String -> JS_IO String)
 calc_sha256 : String -> JS_IO String
 calc_sha256 = foreign FFI_JS "calc_sha256(%0)" (String -> JS_IO String)
 
+
+
+
+
 aline1 : OrderLine
 aline1 = MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 15 0)
 
@@ -78,12 +82,13 @@ main = do
    
    console_log new_row_sha1
    console_log new_row_sha256
-      
+
+{-            
    so1_qty <- get_qty "so1_qty"
    let k="so1_qty"
    let v="34.98"
    update_qty k so1_qty
-
+-}
    console_log $ PF.printf "%d%s" 5 "hello!"
    console_log $ show $test2 test_list
 

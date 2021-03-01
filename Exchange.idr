@@ -103,7 +103,6 @@ Ord OrderLineKey where
                   diff_line => diff_line
            diff_p1 => diff_p1
 -}
-
 Eq OrderLineKey where
        (==) k1 k2 = eqkey k1 k2
 
