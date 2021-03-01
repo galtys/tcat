@@ -22,10 +22,44 @@ update_qty = foreign FFI_JS "update_qty(%0,%1)" (String -> Int -> JS_IO ())
 _get_qty : String -> JS_IO String
 _get_qty = foreign FFI_JS "get_qty(%0)" (String -> JS_IO String)
 
-_parse_int : String -> JS_IO Int
-_parse_int = foreign FFI_JS "parseInt(%0,10)" (String -> JS_IO Int)
+_parse_int_pair_int : String -> JS_IO Ptr
+_parse_int_pair_int = foreign FFI_JS "parse_int_pair_int(%0,10)" (String -> JS_IO Ptr)
+
+_get_fst_pair_int : Ptr -> JS_IO Int
+_get_fst_pair_int x = foreign FFI_JS "_get_fst_pair_int(%0)" (JS_IO Int)
 
 
+
+_get_snd_pair_int : Ptr -> JS_IO Int
+_get_snd_pair_int x = foreign FFI_JS "_get_snd_pair_int(%0)" (JS_IO Int)
+
+
+
+parse_int : String -> JS_IO (Maybe Int)
+parse_int x = do
+        x_pair <- _parse_int_pair_int x
+        x_err <- _get_fst_pair_int x_pair
+        x_val <- _get_snd_pair_int x_pair
+        let   ret =case (x_err==0) of
+               True => Nothing
+               False => Just x_val
+        pure ret
+        
+parse_int_m : Maybe String -> JS_IO (Maybe Int)
+parse_int_m Nothing = pure Nothing
+parse_int_m (Just x) = parse_int x
+
+_get_qty_m' : String -> JS_IO (Maybe String)
+_get_qty_m' key = do
+       q' <- _get_qty key
+       let q = case (q'=="") of 
+               True => Nothing
+               False => Just q'
+       pure q
+
+
+get_qty : String -> JS_IO (Maybe Int)
+get_qty x = (_get_qty_m' x) >>= parse_int_m
 
 console_log : String -> JS_IO ()
 console_log = foreign FFI_JS "console_log(%0)" (String -> JS_IO () )

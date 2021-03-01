@@ -12,6 +12,25 @@ function insert_adjancent_html(key,position,row) {
 }
 
 
+function _parse_int_pair_int(x) {
+    var integer = parseInt(x,10);
+    
+    if (isNaN(integer)) {
+	return [0,0]
+    } else {
+        return [1,o]
+    }
+}
+
+function _get_fst_pair_int(x) {
+    return x[0]
+}
+
+function _get_snd_pair_int(x) {
+    return x[1]
+}
+
+
 function update_qty(key, value) {
   //document.getElementById("so2_qty").innerText=77;
 
@@ -42,6 +61,7 @@ function calc_sha256(msg) {
    return md1.digest().toHex();
 }
 
+/*
 function httpGet(theUrl)
 {
     var xmlHttp = new XMLHttpRequest();
@@ -49,6 +69,7 @@ function httpGet(theUrl)
  //0   xmlHttp.send( null );
     return xmlHttp.responseText;
 }
+*/
 
 //var md = forge.md.sha1.create();
 //md.update('The quick brown fox jumps over the lazy dog');
