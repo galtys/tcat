@@ -107,11 +107,13 @@ line_list2io : List OrderLine -> JS_IO ()
 line_list2io [] = pure ()
 line_list2io ( x@(MkOrderLine k v) :: xs) = do
           let key_s = (linekey2string k)
-          q <- get_qty_int key_s
+
           q_flag <- get_qty_int_flag key_s
           case (q_flag==0) of
               True => line2io x
-              False => update_qty key_s ( (t2int v) + q )
+              False => do
+                      q <- get_qty_int key_s
+                      update_qty key_s ( (t2int v) + q )
 
           line_list2io xs
 
