@@ -96,7 +96,8 @@ test_list = [aline1,
              MkOrderLine (MkOrderLineKey 1 7 2 2 100 73) (Tt 1 0),
              MkOrderLine (MkOrderLineKey 1 7 2 2 100 73) (Tt 1 0),
              MkOrderLine (MkOrderLineKey 1 7 2 2 100 73) (Tt 0 7),
-             MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 0 1)
+             MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 0 1),
+             MkOrderLine (MkOrderLineKey 1 7 1 3 100 93) (Tt 3 0)
              ]
 
 line2io : OrderLine -> JS_IO ()
