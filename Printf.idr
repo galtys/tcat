@@ -13,6 +13,7 @@ data Format
 
 -- Parse the format string (list of characters) into an AST.
 -- Example: "%d,%s"  →   (FInt (FOther ',' (FString FEnd)))
+
 format : List Char -> Format
 format ('%' :: 'd' :: cs ) = FInt ( format cs )
 format ('%' :: 's' :: cs ) = FString ( format cs )
@@ -39,6 +40,8 @@ interpFormat FEnd         = String
 --      toFunction (FInt (FString FEnd))
 --    →
 --      \a i s => a ++ (show i) ++ s
+
+
 toFunction : (fmt : Format) -> String -> interpFormat fmt
 toFunction ( FInt f ) a     = \i => toFunction f ( a ++ show i )
 toFunction ( FString f ) a  = \s => toFunction f ( a ++ s )
