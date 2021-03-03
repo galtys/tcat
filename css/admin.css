@@ -1,0 +1,243 @@
+/*
+BootstrapCreative
+Created by: Jacob Lett
+Licensed MIT 
+2019
+
+1 rem    = 16px
+.75 rem  = 12px
+.5 rem   = 8px
+.25 rem  = 4px
+
+Bootstrap 4 breakpoints
+@media (min-width: 576px) { }
+@media (min-width: 768px) { }
+@media (min-width: 992px) { }
+@media (min-width: 1200px) { }
+
+Colors
+#0275d8 - primary blue
+#636c72 - light gray
+#292b2c - black
+*/
+
+
+/*
+####################################################
+G R I D  &  T Y P E
+####################################################
+*/
+
+body {
+  background: #e2e2e2;
+}
+
+/* makes the sidebar 100% height */
+html,
+body,
+.container-fluid {height: 100%;}
+.main {min-height: 100vh;}
+
+
+/*
+####################################################
+C O M P O N E N T S
+####################################################
+*/
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+navbar
+*/
+.navbar-brand {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+.navbar-brand span {
+  color: #89969e;
+}
+.navbar {
+  border-bottom:2px solid #0275d8;
+}
+
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+Sidebar Dropdown
+*/
+
+/* add some space so it does not touch the navbar */
+.sidebar, .main {padding-top:2em;}
+
+.sidebar { 
+  background-color: #373a3c;
+  border-right: 1px solid #eee;
+  padding:0;
+}
+
+.sidebar .nav a {
+  padding:.5rem 1rem;
+  color:#e2e2e2;
+}
+
+.dropdown-tree .dropdown-toggle::after {
+  position: absolute;
+  right:20px;
+  top:10px;
+}
+
+.sidebar .nav-item, .navbar {
+  border-bottom:1px solid #555;
+}
+
+.sidebar .dropdown-menu a:hover {
+  color: #373a3c;
+}
+
+/* Customize the sidebar dropdown to be a navigation tree */
+.dropdown-tree {flex-direction:column;}
+.dropdown-tree .dropdown-item {
+  white-space: normal;
+  padding:3px 0;
+}
+
+.dropdown-tree .dropdown-menu {
+  /* important is needed to override inline styles applied by Bootstrap JS */
+  position: relative!important;
+  transform:none!important;
+  top: 100%;
+  left: 0;
+  float: none;
+  min-width: 0;
+  padding: 0px;
+  margin: 0px;
+  font-size: 1rem;
+  color: #373a3c;
+  text-align: left;
+  list-style: none;
+  background-color: #555;
+  border: none;
+}
+
+.dropdown-tree .dropdown-toggle::after {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: .3em;
+  vertical-align: middle;
+  content: "";
+  border:none;
+  border-top: .4em solid transparent;
+  border-right: .4em solid;
+  border-bottom: .4em solid  transparent;
+  border-left: .4em solid  transparent;
+}
+
+.dropdown-tree.show .dropdown-toggle::after {
+  margin-top:3px;
+  display: inline-block;
+  margin-left: 10px;
+  border-top: .4em solid ;
+  border-right: .4em solid transparent;
+}
+
+
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+Card deck
+*/
+
+.card-deck .card {
+  margin-bottom: 1rem;
+}
+
+
+/* Set width to make card deck cards 100% width */
+@media (max-width: 768px) { 
+
+  .card-deck .card {
+    flex-direction: column;
+    -webkit-box-flex: 1 1 auto; 
+    -webkit-flex: 1 1 auto; 
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    margin-bottom: 1rem;
+  }
+
+}
+
+.admin .card-deck .card:last-child {
+  margin-bottom: 0rem;
+}
+
+@media (min-width: 769px) { 
+
+  .card-deck .card {
+  margin-bottom: 0rem;
+  }
+
+  /* Make the space between cards less wide */
+  .admin .card-deck .card {
+  margin-left:15px;
+  margin-right:0px;
+  }
+  .admin .card-deck .card:last-child {
+  margin-right:15px;
+  }
+
+}
+
+
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+Table
+*/
+
+/* prevents the action links from wrapping to a new line */
+.table td:last-child {white-space: nowrap;}
+
+
+
+
+/*
+::::::::::::::::::::::::::::::::::::::::::::::::::::
+Charts
+*/
+
+/* makes chart responsive */
+canvas { 
+  padding: 15px;
+  width: 100%!important;
+  height: auto!important;
+}
+
+/* legend styles */
+.chart-legend {
+  margin:0;
+  width:100%;
+  text-align: center;
+}
+.chart-legend ul {width:100%;margin:0;padding:0;}
+.chart-legend li {
+  list-style-type: none;  
+  padding:0;
+  font-size:14px;
+  display: inline-block;
+  margin:0 1rem 0 0;
+}
+.chart-legend li span{
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 5px;
+}
+
+
+
+
+
+
+
+

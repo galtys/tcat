@@ -34,9 +34,13 @@ _unit_dropdown = """
 _table_card : String
 _table_card = """
           <!-- Content Edit Table -->
-          <div class="card mt-12">
-            <div class="card-body">
+          <div class="card border-dark bg-light mt-3">
+              <div class="card-header">
               <h4>%s</h4>
+              </div>
+            <div class="card-body">
+              
+              <form>
               <table class="table table-responsive d-md-table">
                 <thead>
                   <tr>
@@ -53,6 +57,10 @@ _table_card = """
                 </tbody>
                 
               </table>
+              <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <div/>
+              </form>
             </div>
           </div>  <!-- /.card -->
 """
@@ -73,16 +81,23 @@ table_card : TableID -> String
 table_card key = printf _table_card "SO440" (id_att key)
 
 
+email_td : String
+email_td = """
+     <div class="form-group">
+         <input type="number" class="form-control" placeholder="enter ">
+     </div>
+"""
+
 format_row : String
-format_row = """<tr >  <td scope="row"> %s </td>   <td></td> <td %s> %d </td>  <td>%s </td> <td>STE20</td> <td>%d</td> <td>0</td>     </tr>"""
+format_row = """<tr >  <td scope="row"> %s </td>   <td>%s</td> <td %s> %d </td>  <td>%s </td> <td>STE20</td> <td>%d</td> <td>0</td>     </tr>"""
 
 
 --_unit_dropdown
 
 new_row : String -> RowID -> Integer -> Integer -> String --sku key qty price
 new_row sku key qty price = case key of
-          Nothing => printf format_row sku "" qty _unit_dropdown price
-          (Just _id) => printf format_row sku (id_att _id) qty _unit_dropdown price
+          Nothing => printf format_row sku email_td "" qty _unit_dropdown price
+          (Just _id) => printf format_row sku email_td (id_att _id) qty _unit_dropdown price
 
 line2row : RowID -> OrderLine -> String
 line2row rowid (MkOrderLine lk@(MkOrderLineKey p1 p2 line sku1 sku2 price_unit) qty) = new_row sku key q price where
