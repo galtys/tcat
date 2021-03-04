@@ -2,6 +2,8 @@ module Main
 
 import Data.Vect
 
+%access public export
+
 infixr 5 .+.
 
 
@@ -9,12 +11,19 @@ data Schema : Type where
      SString : (name : String) -> Schema
      SInt :    (name : String) -> Schema
      (.+.) : (s1 : Schema) -> (s2 : Schema) -> Schema 
+         
 --data Schema = SString | SInt | (.+.) Schema Schema
 
 SchemaType : Schema -> Type
 SchemaType (SString name)= String
-SchemaType (SInt name )= Int
+SchemaType (SInt name )= Integer
 SchemaType (x .+. y) = (SchemaType x, SchemaType y)
+
+SchemaLabels : Schema -> List String
+SchemaLabels (SString name) = [name]
+SchemaLabels (SInt name) = [name]
+SchemaLabels (s1 .+. s2) = (SchemaLabels s1) ++ (SchemaLabels s2)
+
 
 record DataStore where
   constructor MkData
@@ -110,13 +119,20 @@ display {schema = (SInt s2)} item = s2++":"++(show item)
 display {schema = (y .+. z)} (iteml, itemr) = display iteml ++ ", " ++
                                               display itemr
 
+
+display_as_key : SchemaType schema -> String
+display_as_key {schema = (SString s1)} item = s1++":"++(show item)
+display_as_key {schema = (SInt s2)} item = s2++":"++(show item)
+display_as_key {schema = (y .+. z)} (iteml, itemr) = display_as_key iteml ++ "_" ++
+                                              display_as_key itemr
+-- display (index id (items store) )
 getEntry : (pos : Integer) -> (store : DataStore) ->
            Maybe (String, DataStore)
 getEntry pos store
     = let store_items = items store in
           case integerToFin pos (size store) of
                Nothing => Just ("Out of range\n", store)
-               Just id => Just (display (index id (items store)) ++ "\n", store)
+               Just id => Just (display (index id (items store) ) ++ "\n", store)
 
 processInput : DataStore -> String -> Maybe (String, DataStore)
 processInput store input

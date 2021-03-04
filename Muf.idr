@@ -5,6 +5,7 @@ import Snippets
 import Exchange
 import Language.JSON
 import Language.JSON.Data
+import DataStore
 {--
 function update_qty(key, value) {
   document.getElementById(key).innerText=value;

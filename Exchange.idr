@@ -3,6 +3,7 @@ module Exchange
 import Control.Monad.State
 import Data.SortedMap
 --import Prelude.Algebra
+import DataStore
 
 %access public export
 
@@ -21,45 +22,6 @@ data CarrierA = CA Asset | CL Location | CO Order | CQty Qty
 
 data Carrier = V String | N Integer | A String | L String | P String | ZERO
 -}
-
-Name : Type
-Name = String
-
-SPairs : Type
-SPairs = (Name,Name)
-
-data FieldTypes = FInt | FString | FSelection | FDate 
-
-test_selection : List SPairs
-test_selection = [("sku1","SKU1"),("sku2","SKU2")]
-
-
-data FieldDef : FieldTypes -> Type where
-     IntsD :       (name : Name) ->  FieldDef FInt
-     StrsD :       (name : Name) ->  FieldDef FString
-     SelD :        (name : Name) ->  FieldDef FSelection
-     DatesD :      (name : Name) ->  FieldDef FDate
-
-test_model : (FieldDef FInt, FieldDef FInt, FieldDef FString)
-test_model = ((IntsD "p1"), (IntsD "p2"), (StrsD "line"))
---ModelDef : Type
---ModelDef = List FieldDef FieldTypes
-
-
---so_line_def : List (FieldDef FieldTypes)
---so_line_def = [(IntsD "p1") (IntsD "p2") (StrsD "line")]
-
-
-data FieldVal : FieldTypes -> Type where
-     Ints :       (val : Int) ->  FieldVal FInt
-     Strs :       (val : String) ->  FieldVal FString
-     Selections : (val : SPairs)-> FieldVal FSelection
-     Dates :      (val : Int) ->  FieldVal FDate
-
-
---ModelVal : Type
---ModelVal = List FieldVal FieldTypes
-
 
 data Tterm = Tt Integer Integer
 
@@ -105,6 +67,15 @@ Show Tterm where
      show (Tt x y) = show(x) ++ "//" ++ show(y)
 
 -- String -> index
+OrderLineKey1 : Schema
+OrderLineKey1 = ((SInt "p1")  .+.(SInt "p2").+.(SInt "line").+.
+                 (SInt "sku1").+.(SInt "sku1").+.(SInt "price_unit") )
+
+test_val : (SchemaType OrderLineKey1)
+test_val = (1,7,1,1,100,188)
+
+test_key : String
+test_key = display_as_key  test_val
 
 record OrderLineKey where
      constructor MkOrderLineKey
@@ -124,9 +95,13 @@ record OrderLine where
      key : OrderLineKey
      qty : Tterm
 
+--linekey2string1 : Schema -> String
+--linekey2string1 sch = display_ask_key (sch)
 
 linekey2string : OrderLineKey -> String
 linekey2string (MkOrderLineKey p1 p2 line sku1 sku2 price_unit) = i2s(p1)++i2s(p2)++i2s(line)++i2s(sku1)++i2s(sku2)++i2s(price_unit)
+
+--linekey2string1 : (  ) -> String
 
 Show OrderLineKey where
      show (MkOrderLineKey p1 p2 line sku1 sku2 price_unit) = "(p1:"++show(p1)++"p2:"++show(p2)++"line:"++show(line)++"sku1:"++show(sku1)++"sku2:"++show(sku2)++"price_unit:"++show(price_unit)
