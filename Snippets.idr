@@ -2,6 +2,7 @@ module Snippets
 
 import Printf
 import Exchange
+import DataStore
 
 %access public export
 
@@ -100,7 +101,7 @@ new_row sku key qty price = case key of
           (Just _id) => printf format_row sku email_td (id_att _id) qty _unit_dropdown price
 
 line2row : RowID -> OrderLine -> String
-line2row rowid (MkOrderLine lk@(MkOrderLineKey p1 p2 line sku1 sku2 price_unit) qty) = new_row sku key q price where
+line2row rowid (MkOrderLine (p1, p2, line, sku1, sku2, price_unit) qty) = new_row sku key q price where
       sku = i2s sku1
       key = rowid --Just (linekey2string lk)
       q = t2integer qty

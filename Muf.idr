@@ -98,6 +98,7 @@ calc_sha1 = foreign FFI_JS "calc_sha1(%0)" (String -> JS_IO String)
 calc_sha256 : String -> JS_IO String
 calc_sha256 = foreign FFI_JS "calc_sha256(%0)" (String -> JS_IO String)
 
+{-
 test_list : List OrderLine
 test_list = [MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 15 0),
              MkOrderLine (MkOrderLineKey 1 7 1 2 100 73) (Tt 5 0),
@@ -120,6 +121,29 @@ test_list4 : List OrderLine
 test_list4 = [MkOrderLine (MkOrderLineKey 1 7 1 2 100 73) (Tt 0 1),
              MkOrderLine (MkOrderLineKey 1 7 1 4 100 93) (Tt 1 0)
              ]
+-}
+test_list : List OrderLine
+test_list = [MkOrderLine (1, 7, 1, 1, 100, 188) (Tt 15 0),
+             MkOrderLine (1, 7, 1, 2, 100, 73) (Tt 5 0),
+             MkOrderLine (1, 7, 1, 1, 100, 188) (Tt 0 2),
+             MkOrderLine (1, 7, 1, 1, 100, 188) (Tt 0 1),
+             MkOrderLine (1, 7, 1, 3, 100, 93) (Tt 3 0)
+             ]
+test_list2 : List OrderLine
+test_list2 = [MkOrderLine (1, 7, 1, 1, 100, 188) (Tt 0 3),
+              MkOrderLine (1, 7, 1, 2, 100, 73) (Tt 3 0),
+             MkOrderLine (1, 7, 1, 3, 100, 93) (Tt 0 1)
+             ]
+
+test_list3 : List OrderLine
+test_list3 = [MkOrderLine (1, 7, 1, 2, 100, 73) (Tt 0 1),
+             MkOrderLine (1, 7, 1, 3, 100, 93) (Tt 0 2)
+             ]
+
+test_list4 : List OrderLine
+test_list4 = [MkOrderLine (1, 7, 1, 2, 100, 73) (Tt 0 1),
+             MkOrderLine (1, 7, 1, 4, 100, 93) (Tt 1 0)
+             ]
 
 
 table_composite_id : TableID
@@ -135,7 +159,7 @@ line2io tableid rowid x = insert_beforeend tableid $ line2row rowid x
 line_list2io : TableID -> List OrderLine -> JS_IO ()
 line_list2io tableid [] = pure ()
 line_list2io tableid ( x@(MkOrderLine k v) :: xs) = do
-          let key_s = (linekey2string k)
+          let key_s = (display_as_key k)
 
           q_flag <- get_qty_int_flag key_s
           case (q_flag==0) of
@@ -201,7 +225,7 @@ main = do
    update_qty k so1_qty
 -}
    console_log $ PF.printf "%d%s" 5 "hello!"
-   console_log $ show $test2 test_list
+--   console_log $ show $test2 test_list
 
 -- Local Variables:
 -- idris-load-packages: ("contrib")

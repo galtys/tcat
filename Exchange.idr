@@ -92,27 +92,33 @@ record OrderLineKey where
 --   discount : Integer
 record OrderLine where
      constructor MkOrderLine     
-     key : OrderLineKey
+     --key : OrderLineKey
+     key : (SchemaType OrderLineKey1)
      qty : Tterm
 
---linekey2string1 : Schema -> String
---linekey2string1 sch = display_ask_key (sch)
-
-linekey2string : OrderLineKey -> String
-linekey2string (MkOrderLineKey p1 p2 line sku1 sku2 price_unit) = i2s(p1)++i2s(p2)++i2s(line)++i2s(sku1)++i2s(sku2)++i2s(price_unit)
+--display_as_key
+--linekey2string : OrderLineKey -> String
+--linekey2string (MkOrderLineKey p1 p2 line sku1 sku2 price_unit) = i2s(p1)++i2s(p2)++i2s(line)++i2s(sku1)++i2s(sku2)++i2s(price_unit)
 
 --linekey2string1 : (  ) -> String
 
-Show OrderLineKey where
-     show (MkOrderLineKey p1 p2 line sku1 sku2 price_unit) = "(p1:"++show(p1)++"p2:"++show(p2)++"line:"++show(line)++"sku1:"++show(sku1)++"sku2:"++show(sku2)++"price_unit:"++show(price_unit)
+--Show OrderLineKey where
+--     show (MkOrderLineKey p1 p2 line sku1 sku2 price_unit) = "(p1:"++show(p1)++"p2:"++show(p2)++"line:"++show(line)++"sku1:"++show(sku1)++"sku2:"++show(sku2)++"price_unit:"++show(price_unit)
 
-eqstr : String -> String -> Bool
-eqstr x y = (==) x y
+--eqstr : String -> String -> Bool
+--eqstr x y = (==) x y
 
-eqkey : OrderLineKey -> OrderLineKey -> Bool
-eqkey k1 k2 = (eqstr r1 r2) where 
-            r1 = linekey2string k1
-            r2 = linekey2string k2
+--eqkey : (SchemaType schema) -> OrderLineKey -> Bool
+--eqkey k1 k2 = (k1 == k2) where 
+            --r1 = linekey2string k1
+            --r2 = linekey2string k2
+            --r1 = linekey2string k1
+            --r2 = linekey2string k2
+
+
+
+
+
 
 {-
 Eq OrderLineKey where
@@ -133,17 +139,17 @@ Ord OrderLineKey where
                   diff_line => diff_line
            diff_p1 => diff_p1
 -}
-Eq OrderLineKey where
-       (==) k1 k2 = eqkey k1 k2
+--Eq OrderLineKey where
+--       (==) k1 k2 = eqkey k1 k2
 
-Ord OrderLineKey where
-  compare k1 k2 = compare (linekey2string k1) (linekey2string k2)
+--Ord OrderLineKey where
+--  compare k1 k2 = compare (linekey2string k1) (linekey2string k2)
 
 
 Show OrderLine where
      show (MkOrderLine key qty) = show(key)++"->"++show(qty)
 
-
+{-
 key_empty : SortedMap OrderLineKey Tterm
 key_empty = empty
 
@@ -174,7 +180,7 @@ lines_to_map xs = execState (interpret1 xs) key_empty
 
 test2 : List OrderLine -> List (OrderLineKey,Tterm)
 test2 x =map_to_kv (lines_to_map x)
-
+-}
 
 --interpretEntries : 
 {-

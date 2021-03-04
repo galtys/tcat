@@ -1473,9 +1473,15 @@ function $partial_0_2$Text__Parser__Core___123__60__42__95_2_125_(){
     });
 }
 
-function $partial_1_2$Language__JSON__Parser___123_array_95_9_125_(x1){
+function $partial_1_2$Language__JSON__Parser___123_array_95_8_125_(x1){
     return (function(x2){
-        return Language__JSON__Parser___123_array_95_9_125_(x1, x2);
+        return Language__JSON__Parser___123_array_95_8_125_(x1, x2);
+    });
+}
+
+function $partial_0_1$Language__JSON__Parser___123_array_95_10_125_(){
+    return (function(x1){
+        return Language__JSON__Parser___123_array_95_10_125_(x1);
     });
 }
 
@@ -1491,479 +1497,339 @@ function $partial_0_1$Language__JSON__Parser___123_array_95_12_125_(){
     });
 }
 
-function $partial_0_1$Language__JSON__Parser___123_array_95_13_125_(){
-    return (function(x1){
-        return Language__JSON__Parser___123_array_95_13_125_(x1);
-    });
-}
-
-function $partial_0_2$Prelude__Bits___123_b16ToHexString_95_15_125_(){
+function $partial_0_2$Prelude__Bits___123_b16ToHexString_95_14_125_(){
     return (function(x1){
         return (function(x2){
-            return Prelude__Bits___123_b16ToHexString_95_15_125_(x1, x2);
+            return Prelude__Bits___123_b16ToHexString_95_14_125_(x1, x2);
         });
     });
 }
 
-function $partial_0_1$Language__JSON__Parser___123_boolean_95_16_125_(){
+function $partial_0_1$Language__JSON__Parser___123_boolean_95_15_125_(){
     return (function(x1){
-        return Language__JSON__Parser___123_boolean_95_16_125_(x1);
+        return Language__JSON__Parser___123_boolean_95_15_125_(x1);
     });
 }
 
-function $partial_1_2$Text__Lexer___123_exact_95_22_125_(x1){
+function $partial_1_2$Text__Lexer___123_exact_95_21_125_(x1){
     return (function(x2){
-        return Text__Lexer___123_exact_95_22_125_(x1, x2);
+        return Text__Lexer___123_exact_95_21_125_(x1, x2);
     });
 }
 
-function $partial_0_1$Text__Lexer___123_exact_95_23_125_(){
+function $partial_0_1$Text__Lexer___123_exact_95_22_125_(){
     return (function(x1){
-        return Text__Lexer___123_exact_95_23_125_(x1);
+        return Text__Lexer___123_exact_95_22_125_(x1);
     });
 }
 
-function $partial_0_4$Exchange___123_interpret1_95_24_125_(){
+function $partial_0_1$Language__JSON__Parser___123_json_95_24_125_(){
     return (function(x1){
-        return (function(x2){
-            return (function(x3){
-                return (function(x4){
-                    return Exchange___123_interpret1_95_24_125_(x1, x2, x3, x4);
-                });
-            });
-        });
+        return Language__JSON__Parser___123_json_95_24_125_(x1);
     });
 }
 
-function $partial_0_1$Exchange___123_interpret1_95_26_125_(){
+function $partial_0_1$Language__JSON__Parser___123_json_95_26_125_(){
     return (function(x1){
-        return Exchange___123_interpret1_95_26_125_(x1);
+        return Language__JSON__Parser___123_json_95_26_125_(x1);
     });
 }
 
-function $partial_0_2$Exchange___123_interpret1_95_28_125_(){
+function $partial_0_1$Language__JSON__Parser___123_json_95_27_125_(){
     return (function(x1){
-        return (function(x2){
-            return Exchange___123_interpret1_95_28_125_(x1, x2);
-        });
+        return Language__JSON__Parser___123_json_95_27_125_(x1);
     });
 }
 
-function $partial_2_3$Exchange___123_interpret1_95_29_125_(x1, x2){
+function $partial_0_1$Language__JSON__String__Lexer___123_jsonStringTokenMap_95_28_125_(){
+    return (function(x1){
+        return Language__JSON__String__Lexer___123_jsonStringTokenMap_95_28_125_(x1);
+    });
+}
+
+function $partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_30_125_(){
+    return (function(x1){
+        return Language__JSON__Lexer___123_jsonTokenMap_95_30_125_(x1);
+    });
+}
+
+function $partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_31_125_(){
+    return (function(x1){
+        return Language__JSON__Lexer___123_jsonTokenMap_95_31_125_(x1);
+    });
+}
+
+function $partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_32_125_(){
+    return (function(x1){
+        return Language__JSON__Lexer___123_jsonTokenMap_95_32_125_(x1);
+    });
+}
+
+function $partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_33_125_(){
+    return (function(x1){
+        return Language__JSON__Lexer___123_jsonTokenMap_95_33_125_(x1);
+    });
+}
+
+function $partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_34_125_(){
+    return (function(x1){
+        return Language__JSON__Lexer___123_jsonTokenMap_95_34_125_(x1);
+    });
+}
+
+function $partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_35_125_(){
+    return (function(x1){
+        return Language__JSON__Lexer___123_jsonTokenMap_95_35_125_(x1);
+    });
+}
+
+function $partial_0_1$Language__JSON__String__Lexer___123_legalChar_95_37_125_(){
+    return (function(x1){
+        return Language__JSON__String__Lexer___123_legalChar_95_37_125_(x1);
+    });
+}
+
+function $partial_0_1$Language__JSON__String__Lexer___123_legalChar_95_38_125_(){
+    return (function(x1){
+        return Language__JSON__String__Lexer___123_legalChar_95_38_125_(x1);
+    });
+}
+
+function $partial_0_1$Language__JSON__Lexer___123_lexJSON_95_39_125_(){
+    return (function(x1){
+        return Language__JSON__Lexer___123_lexJSON_95_39_125_(x1);
+    });
+}
+
+function $partial_1_2$Text__Lexer___123_like_95_41_125_(x1){
+    return (function(x2){
+        return Text__Lexer___123_like_95_41_125_(x1, x2);
+    });
+}
+
+function $partial_2_3$Main___123_line_95_list2io_95_42_125_(x1, x2){
     return (function(x3){
-        return Exchange___123_interpret1_95_29_125_(x1, x2, x3);
+        return Main___123_line_95_list2io_95_42_125_(x1, x2, x3);
     });
 }
 
-function $partial_1_3$Exchange___123_interpret1_95_30_125_(x1){
+function $partial_0_1$Language__JSON__Lexer___123_numberLit_95_47_125_(){
+    return (function(x1){
+        return Language__JSON__Lexer___123_numberLit_95_47_125_(x1);
+    });
+}
+
+function $partial_0_1$Language__JSON__Lexer___123_numberLit_95_48_125_(){
+    return (function(x1){
+        return Language__JSON__Lexer___123_numberLit_95_48_125_(x1);
+    });
+}
+
+function $partial_0_1$Language__JSON__Lexer___123_numberLit_95_50_125_(){
+    return (function(x1){
+        return Language__JSON__Lexer___123_numberLit_95_50_125_(x1);
+    });
+}
+
+function $partial_0_1$Language__JSON__Lexer___123_numberLit_95_54_125_(){
+    return (function(x1){
+        return Language__JSON__Lexer___123_numberLit_95_54_125_(x1);
+    });
+}
+
+function $partial_1_2$Language__JSON__Parser___123_object_95_59_125_(x1){
     return (function(x2){
-        return (function(x3){
-            return Exchange___123_interpret1_95_30_125_(x1, x2, x3);
-        });
+        return Language__JSON__Parser___123_object_95_59_125_(x1, x2);
     });
 }
 
-function $partial_2_3$Exchange___123_interpret1_95_31_125_(x1, x2){
+function $partial_0_1$Language__JSON__Parser___123_object_95_61_125_(){
+    return (function(x1){
+        return Language__JSON__Parser___123_object_95_61_125_(x1);
+    });
+}
+
+function $partial_0_1$Language__JSON__Parser___123_object_95_62_125_(){
+    return (function(x1){
+        return Language__JSON__Parser___123_object_95_62_125_(x1);
+    });
+}
+
+function $partial_0_1$Language__JSON__Parser___123_object_95_63_125_(){
+    return (function(x1){
+        return Language__JSON__Parser___123_object_95_63_125_(x1);
+    });
+}
+
+function $partial_0_1$Language__JSON__Parser___123_parseJSON_95_65_125_(){
+    return (function(x1){
+        return Language__JSON__Parser___123_parseJSON_95_65_125_(x1);
+    });
+}
+
+function $partial_1_2$Language__JSON__String__Parser___123_quotedString_95_75_125_(x1){
+    return (function(x2){
+        return Language__JSON__String__Parser___123_quotedString_95_75_125_(x1, x2);
+    });
+}
+
+function $partial_0_1$Language__JSON__String__Parser___123_quotedString_95_76_125_(){
+    return (function(x1){
+        return Language__JSON__String__Parser___123_quotedString_95_76_125_(x1);
+    });
+}
+
+function $partial_2_3$Text__Lexer___123_range_95_78_125_(x1, x2){
     return (function(x3){
-        return Exchange___123_interpret1_95_31_125_(x1, x2, x3);
+        return Text__Lexer___123_range_95_78_125_(x1, x2, x3);
     });
 }
 
-function $partial_1_2$Exchange___123_interpret1_95_32_125_(x1){
-    return (function(x2){
-        return Exchange___123_interpret1_95_32_125_(x1, x2);
-    });
-}
-
-function $partial_0_1$Exchange___123_interpret1_95_33_125_(){
+function $partial_0_1$Language__JSON__Parser___123_rawString_95_79_125_(){
     return (function(x1){
-        return Exchange___123_interpret1_95_33_125_(x1);
+        return Language__JSON__Parser___123_rawString_95_79_125_(x1);
     });
 }
 
-function $partial_0_1$Language__JSON__Parser___123_json_95_35_125_(){
-    return (function(x1){
-        return Language__JSON__Parser___123_json_95_35_125_(x1);
-    });
-}
-
-function $partial_0_1$Language__JSON__Parser___123_json_95_37_125_(){
-    return (function(x1){
-        return Language__JSON__Parser___123_json_95_37_125_(x1);
-    });
-}
-
-function $partial_0_1$Language__JSON__Parser___123_json_95_38_125_(){
-    return (function(x1){
-        return Language__JSON__Parser___123_json_95_38_125_(x1);
-    });
-}
-
-function $partial_0_1$Language__JSON__String__Lexer___123_jsonStringTokenMap_95_39_125_(){
-    return (function(x1){
-        return Language__JSON__String__Lexer___123_jsonStringTokenMap_95_39_125_(x1);
-    });
-}
-
-function $partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_41_125_(){
-    return (function(x1){
-        return Language__JSON__Lexer___123_jsonTokenMap_95_41_125_(x1);
-    });
-}
-
-function $partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_42_125_(){
-    return (function(x1){
-        return Language__JSON__Lexer___123_jsonTokenMap_95_42_125_(x1);
-    });
-}
-
-function $partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_43_125_(){
-    return (function(x1){
-        return Language__JSON__Lexer___123_jsonTokenMap_95_43_125_(x1);
-    });
-}
-
-function $partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_44_125_(){
-    return (function(x1){
-        return Language__JSON__Lexer___123_jsonTokenMap_95_44_125_(x1);
-    });
-}
-
-function $partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_45_125_(){
-    return (function(x1){
-        return Language__JSON__Lexer___123_jsonTokenMap_95_45_125_(x1);
-    });
-}
-
-function $partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_46_125_(){
-    return (function(x1){
-        return Language__JSON__Lexer___123_jsonTokenMap_95_46_125_(x1);
-    });
-}
-
-function $partial_0_2$Exchange___123_key_95_empty_95_47_125_(){
+function $partial_0_2$Text__Parser___123_sepBy1_95_81_125_(){
     return (function(x1){
         return (function(x2){
-            return Exchange___123_key_95_empty_95_47_125_(x1, x2);
+            return Text__Parser___123_sepBy1_95_81_125_(x1, x2);
         });
     });
 }
 
-function $partial_0_2$Exchange___123_key_95_empty_95_48_125_(){
-    return (function(x1){
-        return (function(x2){
-            return Exchange___123_key_95_empty_95_48_125_(x1, x2);
-        });
-    });
-}
-
-function $partial_0_2$Exchange___123_key_95_empty_95_49_125_(){
-    return (function(x1){
-        return (function(x2){
-            return Exchange___123_key_95_empty_95_49_125_(x1, x2);
-        });
-    });
-}
-
-function $partial_0_1$Language__JSON__String__Lexer___123_legalChar_95_51_125_(){
-    return (function(x1){
-        return Language__JSON__String__Lexer___123_legalChar_95_51_125_(x1);
-    });
-}
-
-function $partial_0_1$Language__JSON__String__Lexer___123_legalChar_95_52_125_(){
-    return (function(x1){
-        return Language__JSON__String__Lexer___123_legalChar_95_52_125_(x1);
-    });
-}
-
-function $partial_0_1$Language__JSON__Lexer___123_lexJSON_95_53_125_(){
-    return (function(x1){
-        return Language__JSON__Lexer___123_lexJSON_95_53_125_(x1);
-    });
-}
-
-function $partial_1_2$Text__Lexer___123_like_95_55_125_(x1){
-    return (function(x2){
-        return Text__Lexer___123_like_95_55_125_(x1, x2);
-    });
-}
-
-function $partial_2_3$Main___123_line_95_list2io_95_56_125_(x1, x2){
-    return (function(x3){
-        return Main___123_line_95_list2io_95_56_125_(x1, x2, x3);
-    });
-}
-
-function $partial_0_1$Main___123_main_95_57_125_(){
-    return (function(x1){
-        return Main___123_main_95_57_125_(x1);
-    });
-}
-
-function $partial_0_1$Language__JSON__Lexer___123_numberLit_95_62_125_(){
-    return (function(x1){
-        return Language__JSON__Lexer___123_numberLit_95_62_125_(x1);
-    });
-}
-
-function $partial_0_1$Language__JSON__Lexer___123_numberLit_95_63_125_(){
-    return (function(x1){
-        return Language__JSON__Lexer___123_numberLit_95_63_125_(x1);
-    });
-}
-
-function $partial_0_1$Language__JSON__Lexer___123_numberLit_95_65_125_(){
-    return (function(x1){
-        return Language__JSON__Lexer___123_numberLit_95_65_125_(x1);
-    });
-}
-
-function $partial_0_1$Language__JSON__Lexer___123_numberLit_95_69_125_(){
-    return (function(x1){
-        return Language__JSON__Lexer___123_numberLit_95_69_125_(x1);
-    });
-}
-
-function $partial_1_2$Language__JSON__Parser___123_object_95_74_125_(x1){
-    return (function(x2){
-        return Language__JSON__Parser___123_object_95_74_125_(x1, x2);
-    });
-}
-
-function $partial_0_1$Language__JSON__Parser___123_object_95_76_125_(){
-    return (function(x1){
-        return Language__JSON__Parser___123_object_95_76_125_(x1);
-    });
-}
-
-function $partial_0_1$Language__JSON__Parser___123_object_95_77_125_(){
-    return (function(x1){
-        return Language__JSON__Parser___123_object_95_77_125_(x1);
-    });
-}
-
-function $partial_0_1$Language__JSON__Parser___123_object_95_78_125_(){
-    return (function(x1){
-        return Language__JSON__Parser___123_object_95_78_125_(x1);
-    });
-}
-
-function $partial_0_1$Language__JSON__Parser___123_parseJSON_95_80_125_(){
-    return (function(x1){
-        return Language__JSON__Parser___123_parseJSON_95_80_125_(x1);
-    });
-}
-
-function $partial_1_2$Language__JSON__String__Parser___123_quotedString_95_90_125_(x1){
-    return (function(x2){
-        return Language__JSON__String__Parser___123_quotedString_95_90_125_(x1, x2);
-    });
-}
-
-function $partial_0_1$Language__JSON__String__Parser___123_quotedString_95_91_125_(){
-    return (function(x1){
-        return Language__JSON__String__Parser___123_quotedString_95_91_125_(x1);
-    });
-}
-
-function $partial_2_3$Text__Lexer___123_range_95_93_125_(x1, x2){
-    return (function(x3){
-        return Text__Lexer___123_range_95_93_125_(x1, x2, x3);
-    });
-}
-
-function $partial_0_1$Language__JSON__Parser___123_rawString_95_94_125_(){
-    return (function(x1){
-        return Language__JSON__Parser___123_rawString_95_94_125_(x1);
-    });
-}
-
-function $partial_0_2$Text__Parser___123_sepBy1_95_96_125_(){
-    return (function(x1){
-        return (function(x2){
-            return Text__Parser___123_sepBy1_95_96_125_(x1, x2);
-        });
-    });
-}
-
-function $partial_3_4$Text__Parser___123_sepBy1_95_98_125_(x1, x2, x3){
+function $partial_3_4$Text__Parser___123_sepBy1_95_83_125_(x1, x2, x3){
     return (function(x4){
-        return Text__Parser___123_sepBy1_95_98_125_(x1, x2, x3, x4);
+        return Text__Parser___123_sepBy1_95_83_125_(x1, x2, x3, x4);
     });
 }
 
-function $partial_0_2$Language__JSON__Data___123_showString_95_99_125_(){
+function $partial_0_2$Language__JSON__Data___123_showString_95_96_125_(){
     return (function(x1){
         return (function(x2){
-            return Language__JSON__Data___123_showString_95_99_125_(x1, x2);
+            return Language__JSON__Data___123_showString_95_96_125_(x1, x2);
         });
     });
 }
 
-function $partial_0_1$Language__JSON__String__Lexer___123_simpleEscape_95_101_125_(){
+function $partial_0_1$Language__JSON__String__Lexer___123_simpleEscape_95_98_125_(){
     return (function(x1){
-        return Language__JSON__String__Lexer___123_simpleEscape_95_101_125_(x1);
+        return Language__JSON__String__Lexer___123_simpleEscape_95_98_125_(x1);
     });
 }
 
-function $partial_1_2$Text__Parser___123_some_95_103_125_(x1){
+function $partial_1_2$Text__Parser___123_some_95_100_125_(x1){
     return (function(x2){
-        return Text__Parser___123_some_95_103_125_(x1, x2);
+        return Text__Parser___123_some_95_100_125_(x1, x2);
     });
 }
 
-function $partial_1_2$Text__Parser___123_some_95_104_125_(x1){
+function $partial_1_2$Text__Parser___123_some_95_101_125_(x1){
     return (function(x2){
-        return Text__Parser___123_some_95_104_125_(x1, x2);
+        return Text__Parser___123_some_95_101_125_(x1, x2);
     });
 }
 
-function $partial_2_3$Printf___123_toFunction_95_107_125_(x1, x2){
+function $partial_2_3$Printf___123_toFunction_95_104_125_(x1, x2){
     return (function(x3){
-        return Printf___123_toFunction_95_107_125_(x1, x2, x3);
+        return Printf___123_toFunction_95_104_125_(x1, x2, x3);
     });
 }
 
-function $partial_2_3$Printf___123_toFunction_95_108_125_(x1, x2){
+function $partial_2_3$Printf___123_toFunction_95_105_125_(x1, x2){
     return (function(x3){
-        return Printf___123_toFunction_95_108_125_(x1, x2, x3);
+        return Printf___123_toFunction_95_105_125_(x1, x2, x3);
     });
 }
 
-function $partial_0_1$Data__SortedMap___123_toList_95_109_125_(){
-    return (function(x1){
-        return Data__SortedMap___123_toList_95_109_125_(x1);
-    });
-}
-
-function $partial_1_2$Text__Lexer___123_toTokenMap_95_110_125_(x1){
+function $partial_1_2$Text__Lexer___123_toTokenMap_95_106_125_(x1){
     return (function(x2){
-        return Text__Lexer___123_toTokenMap_95_110_125_(x1, x2);
+        return Text__Lexer___123_toTokenMap_95_106_125_(x1, x2);
     });
 }
 
-function $partial_0_1$Text__Lexer___123_toTokenMap_95_111_125_(){
+function $partial_0_1$Text__Lexer___123_toTokenMap_95_107_125_(){
     return (function(x1){
-        return Text__Lexer___123_toTokenMap_95_111_125_(x1);
+        return Text__Lexer___123_toTokenMap_95_107_125_(x1);
     });
 }
 
-function $partial_0_1$Language__JSON__String__Lexer___123_unicodeEscape_95_113_125_(){
+function $partial_0_1$Language__JSON__String__Lexer___123_unicodeEscape_95_109_125_(){
     return (function(x1){
-        return Language__JSON__String__Lexer___123_unicodeEscape_95_113_125_(x1);
+        return Language__JSON__String__Lexer___123_unicodeEscape_95_109_125_(x1);
     });
 }
 
-function $partial_0_1$Language__JSON__String__Lexer___123_unicodeEscape_95_114_125_(){
+function $partial_0_1$Language__JSON__String__Lexer___123_unicodeEscape_95_110_125_(){
     return (function(x1){
-        return Language__JSON__String__Lexer___123_unicodeEscape_95_114_125_(x1);
+        return Language__JSON__String__Lexer___123_unicodeEscape_95_110_125_(x1);
     });
 }
 
-function $partial_1_2$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_129_125_(x1){
+function $partial_1_2$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_121_125_(x1){
     return (function(x2){
-        return Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_129_125_(x1, x2);
+        return Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_121_125_(x1, x2);
     });
 }
 
-function $partial_9_10$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_131_125_(x1, x2, x3, x4, x5, x6, x7, x8, x9){
+function $partial_9_10$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_123_125_(x1, x2, x3, x4, x5, x6, x7, x8, x9){
     return (function(x10){
-        return Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_131_125_(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10);
+        return Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_123_125_(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10);
     });
 }
 
-function $partial_3_4$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_134_125_(x1, x2, x3){
+function $partial_3_4$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_126_125_(x1, x2, x3){
     return (function(x4){
-        return Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_134_125_(x1, x2, x3, x4);
+        return Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_126_125_(x1, x2, x3, x4);
     });
 }
 
-function $partial_2_3$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_135_125_(x1, x2){
+function $partial_2_3$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_127_125_(x1, x2){
     return (function(x3){
-        return Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_135_125_(x1, x2, x3);
+        return Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_127_125_(x1, x2, x3);
     });
 }
 
-function $partial_1_2$Prelude__Monad___123_Control__Monad__State___64_Prelude__Monad__Monad_36_StateT_32_stateType_32_m_58__33__62__62__61__58_0_95_lam_95_138_125_(x1){
+function $partial_1_2$$_6_PE_95_match_95_3b7ca742(x1){
     return (function(x2){
-        return Prelude__Monad___123_Control__Monad__State___64_Prelude__Monad__Monad_36_StateT_32_stateType_32_m_58__33__62__62__61__58_0_95_lam_95_138_125_(x1, x2);
+        return $_6_PE_95_match_95_3b7ca742(x1, x2);
     });
 }
 
-function $partial_7_8$Prelude__Monad__Control__Monad__State___64_Prelude__Monad__Monad_36_StateT_32_stateType_32_m_58__33__62__62__61__58_0(x1, x2, x3, x4, x5, x6, x7){
-    return (function(x8){
-        return Prelude__Monad__Control__Monad__State___64_Prelude__Monad__Monad_36_StateT_32_stateType_32_m_58__33__62__62__61__58_0(x1, x2, x3, x4, x5, x6, x7, x8);
+function $partial_1_2$$_7_PE_95_match_95_44e5df34(x1){
+    return (function(x2){
+        return $_7_PE_95_match_95_44e5df34(x1, x2);
     });
 }
 
-function $partial_0_2$$_6_PE_95_insertFrom_95_2a38cce8(){
+function $partial_1_2$$_113_Language__JSON__Parser__object_58_properties_58_0_95_lam(x1){
+    return (function(x2){
+        return $_113_Language__JSON__Parser__object_58_properties_58_0_95_lam(x1, x2);
+    });
+}
+
+function $partial_1_2$$_115_Language__JSON__Parser__object_58_properties_58_0_95_lam(x1){
+    return (function(x2){
+        return $_115_Language__JSON__Parser__object_58_properties_58_0_95_lam(x1, x2);
+    });
+}
+
+function $partial_0_1$$_117_Language__JSON__Parser__object_58_properties_58_0_95_lam(){
     return (function(x1){
-        return (function(x2){
-            return $_6_PE_95_insertFrom_95_2a38cce8(x1, x2);
-        });
+        return $_117_Language__JSON__Parser__object_58_properties_58_0_95_lam(x1);
     });
 }
 
-function $partial_1_2$$_7_PE_95_match_95_3b7ca742(x1){
-    return (function(x2){
-        return $_7_PE_95_match_95_3b7ca742(x1, x2);
-    });
-}
-
-function $partial_1_2$$_8_PE_95_match_95_44e5df34(x1){
-    return (function(x2){
-        return $_8_PE_95_match_95_44e5df34(x1, x2);
-    });
-}
-
-function $partial_2_4$$_117_Data__SortedMap__mergeWith_58_inserted_58_0_95_lam(x1, x2){
-    return (function(x3){
-        return (function(x4){
-            return $_117_Data__SortedMap__mergeWith_58_inserted_58_0_95_lam(x1, x2, x3, x4);
-        });
-    });
-}
-
-function $partial_1_2$$_118_Language__JSON__Parser__object_58_properties_58_0_95_lam(x1){
-    return (function(x2){
-        return $_118_Language__JSON__Parser__object_58_properties_58_0_95_lam(x1, x2);
-    });
-}
-
-function $partial_1_2$$_120_Language__JSON__Parser__object_58_properties_58_0_95_lam(x1){
-    return (function(x2){
-        return $_120_Language__JSON__Parser__object_58_properties_58_0_95_lam(x1, x2);
-    });
-}
-
-function $partial_0_1$$_122_Language__JSON__Parser__object_58_properties_58_0_95_lam(){
+function $partial_0_1$$_119_Text__Lexer__Core__tokenise_58_getCols_58_0_95_lam(){
     return (function(x1){
-        return $_122_Language__JSON__Parser__object_58_properties_58_0_95_lam(x1);
+        return $_119_Text__Lexer__Core__tokenise_58_getCols_58_0_95_lam(x1);
     });
 }
 
-function $partial_0_1$$_124_Text__Lexer__Core__tokenise_58_getCols_58_0_95_lam(){
+function $partial_0_1$$_120_Text__Lexer__Core__tokenise_58_getFirstToken_58_0_95_lam(){
     return (function(x1){
-        return $_124_Text__Lexer__Core__tokenise_58_getCols_58_0_95_lam(x1);
-    });
-}
-
-function $partial_0_1$$_125_Text__Lexer__Core__tokenise_58_getFirstToken_58_0_95_lam(){
-    return (function(x1){
-        return $_125_Text__Lexer__Core__tokenise_58_getFirstToken_58_0_95_lam(x1);
-    });
-}
-
-function $partial_2_3$$_126_Data__SortedMap__treeToList_58_treeToList_39__58_0_95_lam(x1, x2){
-    return (function(x3){
-        return $_126_Data__SortedMap__treeToList_58_treeToList_39__58_0_95_lam(x1, x2, x3);
-    });
-}
-
-function $partial_3_4$$_128_Data__SortedMap__treeToList_58_treeToList_39__58_0_95_lam(x1, x2, x3){
-    return (function(x4){
-        return $_128_Data__SortedMap__treeToList_58_treeToList_39__58_0_95_lam(x1, x2, x3, x4);
+        return $_120_Text__Lexer__Core__tokenise_58_getFirstToken_58_0_95_lam(x1);
     });
 }
 
@@ -1989,6 +1855,12 @@ function $partial_6_8$Prelude__WellFounded__sizeAccessible_58_acc_58_0(x1, x2, x
 
 const $HC_0_0$MkUnit = ({type: 0});
 const $HC_0_0$TheWorld = ({type: 0});
+function $HC_2_2$Main_____43___($1, $2){
+    this.type = 2;
+    this.$1 = $1;
+    this.$2 = $2;
+}
+
 function $HC_2_1$Prelude__List___58__58_($1, $2){
     this.type = 1;
     this.$1 = $1;
@@ -2009,22 +1881,6 @@ function $HC_4_8$Text__Parser__Core__Alt($1, $2, $3, $4){
     this.$4 = $4;
 }
 
-function $HC_3_1$Data__SortedMap__Branch2($1, $2, $3){
-    this.type = 1;
-    this.$1 = $1;
-    this.$2 = $2;
-    this.$3 = $3;
-}
-
-function $HC_5_2$Data__SortedMap__Branch3($1, $2, $3, $4, $5){
-    this.type = 2;
-    this.$1 = $1;
-    this.$2 = $2;
-    this.$3 = $3;
-    this.$4 = $4;
-    this.$5 = $5;
-}
-
 const $HC_0_1$Language__JSON__Tokens__Close = ({type: 1});
 const $HC_0_1$Language__JSON__Tokens__Colon = ({type: 1});
 const $HC_0_0$Language__JSON__Tokens__Comma = ({type: 0});
@@ -2037,11 +1893,6 @@ function $HC_1_3$Language__JSON__Tokens__Curly($1){
 const $HC_0_3$Text__Parser__Core__EOF = ({type: 3});
 const $HC_0_0$Text__Lexer__Core__Empty = ({type: 0});
 function $HC_1_0$Text__Parser__Core__Empty($1){
-    this.type = 0;
-    this.$1 = $1;
-}
-
-function $HC_1_0$Data__SortedMap__Empty($1){
     this.type = 0;
     this.$1 = $1;
 }
@@ -2124,12 +1975,6 @@ function $HC_1_1$Prelude__Maybe__Just($1){
 
 const $HC_0_1$Prelude__Nat__LTESucc = ({type: 1});
 const $HC_0_0$Prelude__Nat__LTEZero = ({type: 0});
-function $HC_2_0$Data__SortedMap__Leaf($1, $2){
-    this.type = 0;
-    this.$1 = $1;
-    this.$2 = $2;
-}
-
 function $HC_1_0$Prelude__Either__Left($1){
     this.type = 0;
     this.$1 = $1;
@@ -2141,26 +1986,10 @@ function $HC_2_2$Text__Lexer__Core__Lookahead($1, $2){
     this.$2 = $2;
 }
 
-function $HC_2_1$Data__SortedMap__M($1, $2){
-    this.type = 1;
-    this.$1 = $1;
-    this.$2 = $2;
-}
-
 function $HC_2_0$Exchange__MkOrderLine($1, $2){
     this.type = 0;
     this.$1 = $1;
     this.$2 = $2;
-}
-
-function $HC_6_0$Exchange__MkOrderLineKey($1, $2, $3, $4, $5, $6){
-    this.type = 0;
-    this.$1 = $1;
-    this.$2 = $2;
-    this.$3 = $3;
-    this.$4 = $4;
-    this.$5 = $5;
-    this.$6 = $6;
 }
 
 function $HC_2_0$Builtins__MkPair($1, $2){
@@ -2200,6 +2029,11 @@ function $HC_2_0$Text__Quantity__Qty($1, $2){
 }
 
 function $HC_1_1$Prelude__Either__Right($1){
+    this.type = 1;
+    this.$1 = $1;
+}
+
+function $HC_1_1$Main__SInt($1){
     this.type = 1;
     this.$1 = $1;
 }
@@ -2261,13 +2095,6 @@ function $HC_2_0$Exchange__Tt($1, $2){
 }
 
 const $HC_0_0$Prelude__Basics__Yes = ({type: 0});
-function $HC_3_0$Prelude__Interfaces__Ord_95_ictor($1, $2, $3){
-    this.type = 0;
-    this.$1 = $1;
-    this.$2 = $2;
-    this.$3 = $3;
-}
-
 // PE_elemBy_3a7ca737
 
 function PE_95_elemBy_95_3a7ca737($_0_arg, $_1_arg){
@@ -2287,22 +2114,16 @@ function PE_95_elemBy_95_3a7ca737($_0_arg, $_1_arg){
     }
 }
 
-// PE_insertFrom_2a38cce8
-
-function PE_95_insertFrom_95_2a38cce8($_0_arg, $_1_arg, $_2_arg, $_3_arg){
-    return Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldl_58_0(null, null, $partial_0_2$$_6_PE_95_insertFrom_95_2a38cce8(), $_3_arg, $_2_arg);
-}
-
 // PE_match_3b7ca742
 
 function PE_95_match_95_3b7ca742($_0_arg){
-    return new $HC_1_1$Text__Parser__Core__Terminal($partial_1_2$$_7_PE_95_match_95_3b7ca742($_0_arg));
+    return new $HC_1_1$Text__Parser__Core__Terminal($partial_1_2$$_6_PE_95_match_95_3b7ca742($_0_arg));
 }
 
 // PE_match_44e5df34
 
 function PE_95_match_95_44e5df34($_0_arg){
-    return new $HC_1_1$Text__Parser__Core__Terminal($partial_1_2$$_8_PE_95_match_95_44e5df34($_0_arg));
+    return new $HC_1_1$Text__Parser__Core__Terminal($partial_1_2$$_7_PE_95_match_95_44e5df34($_0_arg));
 }
 
 // io_bind
@@ -2357,7 +2178,7 @@ function Text__Parser__Core___60__42_($_0_arg, $_1_arg, $_2_arg, $_3_arg, $_4_ar
 function Language__JSON__Parser__array(){
     return new $HC_3_6$Text__Parser__Core__SeqEat(true, PE_95_match_95_44e5df34(new $HC_1_4$Language__JSON__Tokens__JTPunct(new $HC_1_2$Language__JSON__Tokens__Square($HC_0_0$Language__JSON__Tokens__Open))), new $JSRTS.Lazy((function(){
         return (function(){
-            return Language__JSON__Parser___123_array_95_14_125_();
+            return Language__JSON__Parser___123_array_95_13_125_();
         })();
     })));
 }
@@ -2365,7 +2186,7 @@ function Language__JSON__Parser__array(){
 // Prelude.Bits.b16ToHexString
 
 function Prelude__Bits__b16ToHexString($_0_arg){
-    return Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Prelude__Bits___123_b16ToHexString_95_15_125_(), "", new $HC_2_1$Prelude__List___58__58_((((($_0_arg) >>> ((8 & 0xFFFF)))) & 0xFF), new $HC_2_1$Prelude__List___58__58_((($_0_arg) & 0xFF), $HC_0_0$Prelude__List__Nil)));
+    return Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Prelude__Bits___123_b16ToHexString_95_14_125_(), "", new $HC_2_1$Prelude__List___58__58_((((($_0_arg) >>> ((8 & 0xFFFF)))) & 0xFF), new $HC_2_1$Prelude__List___58__58_((($_0_arg) & 0xFF), $HC_0_0$Prelude__List__Nil)));
 }
 
 // Prelude.Bits.b8ToHexString
@@ -2454,7 +2275,7 @@ function Text__Lexer__count($_0_arg, $_1_arg){
                 const $_5_in = $cg$4.$1.subtract((new $JSRTS.jsbn.BigInteger(("1"))));
                 return new $HC_2_6$Text__Lexer__Core__Alt(new $HC_2_4$Text__Lexer__Core__SeqEat($_1_arg, new $JSRTS.Lazy((function(){
                     return (function(){
-                        return Text__Lexer___123_count_95_17_125_($_5_in, $_1_arg);
+                        return Text__Lexer___123_count_95_16_125_($_5_in, $_1_arg);
                     })();
                 }))), $HC_0_0$Text__Lexer__Core__Empty);
             }
@@ -2472,17 +2293,29 @@ function Text__Lexer__count($_0_arg, $_1_arg){
                 const $_8_in = $cg$7.$1.subtract((new $JSRTS.jsbn.BigInteger(("1"))));
                 return new $HC_2_4$Text__Lexer__Core__SeqEat($_1_arg, new $JSRTS.Lazy((function(){
                     return (function(){
-                        return Text__Lexer___123_count_95_18_125_($_6_in, $_8_in, $_1_arg);
+                        return Text__Lexer___123_count_95_17_125_($_6_in, $_8_in, $_1_arg);
                     })();
                 })));
             }
         } else {
             return new $HC_2_4$Text__Lexer__Core__SeqEat($_1_arg, new $JSRTS.Lazy((function(){
                 return (function(){
-                    return Text__Lexer___123_count_95_19_125_($_6_in, $_1_arg);
+                    return Text__Lexer___123_count_95_18_125_($_6_in, $_1_arg);
                 })();
             })));
         }
+    }
+}
+
+// Main.display_as_key
+
+function Main__display_95_as_95_key($_0_arg, $_1_arg){
+    
+    if(($_0_arg.type === 2)) {
+        
+        return (Main__display_95_as_95_key($_0_arg.$1, $_1_arg.$1) + ("_" + Main__display_95_as_95_key($_0_arg.$2, $_1_arg.$2)));
+    } else {
+        return ($_0_arg.$1 + (":" + Prelude__Show__primNumShow(null, $partial_0_1$prim_95__95_toStrBigInt(), $HC_0_0$Prelude__Show__Open, $_1_arg)));
     }
 }
 
@@ -2548,7 +2381,7 @@ function Text__Parser__Core__doParse($_0_arg, $_1_arg, $_2_arg, $_3_arg, $_4_arg
             if(($cg$16.type === 0)) {
                 return new $HC_1_0$Text__Parser__Core__Failure($cg$16.$1);
             } else {
-                const $cg$18 = _95_Text__Parser__Core__doParse_95_with_95_52($cg$16.$2, null, null, $cg$16.$4, $partial_6_8$Prelude__WellFounded__sizeAccessible_58_acc_58_0(null, null, null, null, $cg$16.$4, Text__Parser__Core__shorter(null, $cg$16.$4, $cg$16.$1)), $_5_arg.$1, Text__Parser__Core___123_doParse_95_21_125_($_0_arg, $_1_arg, $_2_arg, $_3_arg, $_4_arg, $_5_arg, $_5_arg.$1, $_5_arg.$2, $_5_arg.$3, $cg$16.$1, $cg$16.$2, $cg$16.$3, $cg$16.$4)($cg$16.$3));
+                const $cg$18 = _95_Text__Parser__Core__doParse_95_with_95_52($cg$16.$2, null, null, $cg$16.$4, $partial_6_8$Prelude__WellFounded__sizeAccessible_58_acc_58_0(null, null, null, null, $cg$16.$4, Text__Parser__Core__shorter(null, $cg$16.$4, $cg$16.$1)), $_5_arg.$1, Text__Parser__Core___123_doParse_95_20_125_($_0_arg, $_1_arg, $_2_arg, $_3_arg, $_4_arg, $_5_arg, $_5_arg.$1, $_5_arg.$2, $_5_arg.$3, $cg$16.$1, $cg$16.$2, $cg$16.$3, $cg$16.$4)($cg$16.$3));
                 if(($cg$18.type === 1)) {
                     return new $HC_4_2$Text__Parser__Core__NonEmptyRes($cg$16.$1, $cg$18.$1, $cg$18.$2, $cg$16.$4);
                 } else if(($cg$18.type === 0)) {
@@ -2651,15 +2484,8 @@ function Text__Lexer__exact($_0_arg){
             $cg$4 = new $HC_2_1$Prelude__List___58__58_($_0_arg.slice(1)[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$6));
         }
         
-        return Text__Lexer__Core__concatMap(null, null, $partial_0_1$Text__Lexer___123_exact_95_23_125_(), new $HC_2_1$Prelude__List___58__58_($_0_arg[0], $cg$4));
+        return Text__Lexer__Core__concatMap(null, null, $partial_0_1$Text__Lexer___123_exact_95_22_125_(), new $HC_2_1$Prelude__List___58__58_($_0_arg[0], $cg$4));
     }
-}
-
-// Control.Monad.State.execState
-
-function Control__Monad__State__execState($_0_arg, $_1_arg, $_2_arg, $_8_in){
-    const $cg$2 = $_2_arg($_8_in);
-    return $cg$2.$2;
 }
 
 // Prelude.List.filter
@@ -2749,37 +2575,10 @@ function Main__get_95_qty_95_int_95_flag($_0_x, $_1_w){
     return (get_qty_int_flag(($_0_x)));
 }
 
-// Data.SortedMap.insert
-
-function Data__SortedMap__insert($_0_arg, $_1_arg, $_2_arg, $_3_arg, $_4_arg){
-    
-    if(($_4_arg.type === 0)) {
-        return new $HC_2_1$Data__SortedMap__M($_4_arg.$1, new $HC_2_0$Data__SortedMap__Leaf($_2_arg, $_3_arg));
-    } else {
-        const $cg$3 = Data__SortedMap__treeInsert(null, null, $_4_arg.$1, null, $_2_arg, $_3_arg, $_4_arg.$2);
-        if(($cg$3.type === 0)) {
-            return new $HC_2_1$Data__SortedMap__M($_4_arg.$1, $cg$3.$1);
-        } else {
-            return new $HC_2_1$Data__SortedMap__M($_4_arg.$1, $cg$3.$1);
-        }
-    }
-}
-
 // Main.insert_adjancent_html
 
 function Main__insert_95_adjancent_95_html($_0_x, $_1_x1, $_2_x2, $_3_w){
     return (insert_adjancent_html(($_0_x),($_1_x1),($_2_x2)));
-}
-
-// Exchange.interpret1
-
-function Exchange__interpret1($_0_arg){
-    
-    if(($_0_arg.type === 1)) {
-        return $partial_7_8$Prelude__Monad__Control__Monad__State___64_Prelude__Monad__Monad_36_StateT_32_stateType_32_m_58__33__62__62__61__58_0(null, null, null, null, $partial_0_4$Exchange___123_interpret1_95_24_125_(), Exchange__interpret1($_0_arg.$2), $partial_1_2$Exchange___123_interpret1_95_32_125_($_0_arg.$1));
-    } else {
-        return $partial_0_1$Exchange___123_interpret1_95_33_125_();
-    }
 }
 
 // Prelude.Chars.isControl
@@ -2914,13 +2713,13 @@ function Prelude__Chars__isSpace($_0_arg){
 // Language.JSON.Parser.json
 
 function Language__JSON__Parser__json(){
-    return new $HC_4_8$Text__Parser__Core__Alt(true, true, Language__JSON__Parser__object(), new $HC_4_8$Text__Parser__Core__Alt(true, true, Language__JSON__Parser__array(), new $HC_4_8$Text__Parser__Core__Alt(true, true, Prelude__Functor__Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0(null, true, null, null, $partial_0_1$Language__JSON__Parser___123_json_95_35_125_(), Language__JSON__Parser__rawString()), new $HC_4_8$Text__Parser__Core__Alt(true, true, Prelude__Functor__Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0(null, true, null, null, $partial_0_1$Language__JSON__Parser___123_boolean_95_16_125_(), PE_95_match_95_44e5df34($HC_0_0$Language__JSON__Tokens__JTBoolean)), new $HC_4_8$Text__Parser__Core__Alt(true, true, Prelude__Functor__Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0(null, true, null, null, $partial_0_1$Language__JSON__Parser___123_json_95_37_125_(), PE_95_match_95_44e5df34($HC_0_1$Language__JSON__Tokens__JTNumber)), Prelude__Functor__Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0(null, true, null, null, $partial_0_1$Language__JSON__Parser___123_json_95_38_125_(), PE_95_match_95_44e5df34($HC_0_3$Language__JSON__Tokens__JTNull)))))));
+    return new $HC_4_8$Text__Parser__Core__Alt(true, true, Language__JSON__Parser__object(), new $HC_4_8$Text__Parser__Core__Alt(true, true, Language__JSON__Parser__array(), new $HC_4_8$Text__Parser__Core__Alt(true, true, Prelude__Functor__Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0(null, true, null, null, $partial_0_1$Language__JSON__Parser___123_json_95_24_125_(), Language__JSON__Parser__rawString()), new $HC_4_8$Text__Parser__Core__Alt(true, true, Prelude__Functor__Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0(null, true, null, null, $partial_0_1$Language__JSON__Parser___123_boolean_95_15_125_(), PE_95_match_95_44e5df34($HC_0_0$Language__JSON__Tokens__JTBoolean)), new $HC_4_8$Text__Parser__Core__Alt(true, true, Prelude__Functor__Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0(null, true, null, null, $partial_0_1$Language__JSON__Parser___123_json_95_26_125_(), PE_95_match_95_44e5df34($HC_0_1$Language__JSON__Tokens__JTNumber)), Prelude__Functor__Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0(null, true, null, null, $partial_0_1$Language__JSON__Parser___123_json_95_27_125_(), PE_95_match_95_44e5df34($HC_0_3$Language__JSON__Tokens__JTNull)))))));
 }
 
 // Language.JSON.String.Lexer.jsonStringTokenMap
 
 function Language__JSON__String__Lexer__jsonStringTokenMap(){
-    return Text__Lexer__toTokenMap(null, new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_jsonStringTokenMap_95_39_125_()), $HC_0_0$Language__JSON__String__Tokens__JSTQuote), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(Language__JSON__String__Lexer__unicodeEscape(), $HC_0_3$Language__JSON__String__Tokens__JSTUnicodeEscape), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(Language__JSON__String__Lexer__simpleEscape(), $HC_0_2$Language__JSON__String__Tokens__JSTSimpleEscape), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(Language__JSON__String__Lexer__legalChar(), $HC_0_1$Language__JSON__String__Tokens__JSTChar), $HC_0_0$Prelude__List__Nil)))));
+    return Text__Lexer__toTokenMap(null, new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_jsonStringTokenMap_95_28_125_()), $HC_0_0$Language__JSON__String__Tokens__JSTQuote), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(Language__JSON__String__Lexer__unicodeEscape(), $HC_0_3$Language__JSON__String__Tokens__JSTUnicodeEscape), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(Language__JSON__String__Lexer__simpleEscape(), $HC_0_2$Language__JSON__String__Tokens__JSTSimpleEscape), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(Language__JSON__String__Lexer__legalChar(), $HC_0_1$Language__JSON__String__Tokens__JSTChar), $HC_0_0$Prelude__List__Nil)))));
 }
 
 // Language.JSON.Lexer.jsonTokenMap
@@ -2928,21 +2727,15 @@ function Language__JSON__String__Lexer__jsonStringTokenMap(){
 function Language__JSON__Lexer__jsonTokenMap(){
     return Text__Lexer__toTokenMap(null, new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(new $HC_2_4$Text__Lexer__Core__SeqEat(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Prelude__Chars__isSpace()), new $JSRTS.Lazy((function(){
         return (function(){
-            return Language__JSON__Lexer___123_jsonTokenMap_95_40_125_();
+            return Language__JSON__Lexer___123_jsonTokenMap_95_29_125_();
         })();
-    }))), $HC_0_5$Language__JSON__Tokens__JTIgnore), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_41_125_()), new $HC_1_4$Language__JSON__Tokens__JTPunct($HC_0_0$Language__JSON__Tokens__Comma)), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_42_125_()), new $HC_1_4$Language__JSON__Tokens__JTPunct($HC_0_1$Language__JSON__Tokens__Colon)), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_43_125_()), new $HC_1_4$Language__JSON__Tokens__JTPunct(new $HC_1_2$Language__JSON__Tokens__Square($HC_0_0$Language__JSON__Tokens__Open))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_44_125_()), new $HC_1_4$Language__JSON__Tokens__JTPunct(new $HC_1_2$Language__JSON__Tokens__Square($HC_0_1$Language__JSON__Tokens__Close))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_45_125_()), new $HC_1_4$Language__JSON__Tokens__JTPunct(new $HC_1_3$Language__JSON__Tokens__Curly($HC_0_0$Language__JSON__Tokens__Open))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_46_125_()), new $HC_1_4$Language__JSON__Tokens__JTPunct(new $HC_1_3$Language__JSON__Tokens__Curly($HC_0_1$Language__JSON__Tokens__Close))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(Text__Lexer__exact("null"), $HC_0_3$Language__JSON__Tokens__JTNull), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(new $HC_2_6$Text__Lexer__Core__Alt(Text__Lexer__exact("true"), Text__Lexer__exact("false")), $HC_0_0$Language__JSON__Tokens__JTBoolean), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(Language__JSON__Lexer__numberLit(), $HC_0_1$Language__JSON__Tokens__JTNumber), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(Language__JSON__String__permissiveStringLit(), $HC_0_2$Language__JSON__Tokens__JTString), $HC_0_0$Prelude__List__Nil))))))))))));
-}
-
-// Exchange.key_empty
-
-function Exchange__key_95_empty(){
-    return new $HC_1_0$Data__SortedMap__Empty(new $HC_3_0$Prelude__Interfaces__Ord_95_ictor($partial_0_2$Exchange___123_key_95_empty_95_47_125_(), $partial_0_2$Exchange___123_key_95_empty_95_48_125_(), $partial_0_2$Exchange___123_key_95_empty_95_49_125_()));
+    }))), $HC_0_5$Language__JSON__Tokens__JTIgnore), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_30_125_()), new $HC_1_4$Language__JSON__Tokens__JTPunct($HC_0_0$Language__JSON__Tokens__Comma)), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_31_125_()), new $HC_1_4$Language__JSON__Tokens__JTPunct($HC_0_1$Language__JSON__Tokens__Colon)), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_32_125_()), new $HC_1_4$Language__JSON__Tokens__JTPunct(new $HC_1_2$Language__JSON__Tokens__Square($HC_0_0$Language__JSON__Tokens__Open))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_33_125_()), new $HC_1_4$Language__JSON__Tokens__JTPunct(new $HC_1_2$Language__JSON__Tokens__Square($HC_0_1$Language__JSON__Tokens__Close))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_34_125_()), new $HC_1_4$Language__JSON__Tokens__JTPunct(new $HC_1_3$Language__JSON__Tokens__Curly($HC_0_0$Language__JSON__Tokens__Open))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__Lexer___123_jsonTokenMap_95_35_125_()), new $HC_1_4$Language__JSON__Tokens__JTPunct(new $HC_1_3$Language__JSON__Tokens__Curly($HC_0_1$Language__JSON__Tokens__Close))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(Text__Lexer__exact("null"), $HC_0_3$Language__JSON__Tokens__JTNull), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(new $HC_2_6$Text__Lexer__Core__Alt(Text__Lexer__exact("true"), Text__Lexer__exact("false")), $HC_0_0$Language__JSON__Tokens__JTBoolean), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(Language__JSON__Lexer__numberLit(), $HC_0_1$Language__JSON__Tokens__JTNumber), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(Language__JSON__String__permissiveStringLit(), $HC_0_2$Language__JSON__Tokens__JTString), $HC_0_0$Prelude__List__Nil))))))))))));
 }
 
 // Language.JSON.String.Lexer.legalChar
 
 function Language__JSON__String__Lexer__legalChar(){
-    return new $HC_2_5$Text__Lexer__Core__SeqEmpty(new $HC_2_2$Text__Lexer__Core__Lookahead(false, new $HC_2_6$Text__Lexer__Core__Alt(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_jsonStringTokenMap_95_39_125_()), new $HC_2_6$Text__Lexer__Core__Alt(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_legalChar_95_51_125_()), new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Prelude__Chars__isControl())))), new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_legalChar_95_52_125_()));
+    return new $HC_2_5$Text__Lexer__Core__SeqEmpty(new $HC_2_2$Text__Lexer__Core__Lookahead(false, new $HC_2_6$Text__Lexer__Core__Alt(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_jsonStringTokenMap_95_28_125_()), new $HC_2_6$Text__Lexer__Core__Alt(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_legalChar_95_37_125_()), new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Prelude__Chars__isControl())))), new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_legalChar_95_38_125_()));
 }
 
 // Prelude.List.length
@@ -2976,7 +2769,7 @@ function Language__JSON__Lexer__lexJSON($_0_arg){
     const $cg$6 = $cg$4.$2;
     
     if(($cg$6.$2 === "")) {
-        return new $HC_1_1$Prelude__Maybe__Just(Prelude__Functor__Prelude__List___64_Prelude__Functor__Functor_36_List_58__33_map_58_0(null, null, $partial_0_1$Language__JSON__Lexer___123_lexJSON_95_53_125_(), $cg$2.$1));
+        return new $HC_1_1$Prelude__Maybe__Just(Prelude__Functor__Prelude__List___64_Prelude__Functor__Functor_36_List_58__33_map_58_0(null, null, $partial_0_1$Language__JSON__Lexer___123_lexJSON_95_39_125_(), $cg$2.$1));
     } else {
         return $HC_0_0$Prelude__Maybe__Nothing;
     }
@@ -2990,7 +2783,7 @@ function Language__JSON__String__Lexer__lexString($_0_arg){
     const $cg$6 = $cg$4.$2;
     
     if(($cg$6.$2 === "")) {
-        return new $HC_1_1$Prelude__Maybe__Just(Prelude__Functor__Prelude__List___64_Prelude__Functor__Functor_36_List_58__33_map_58_0(null, null, $partial_0_1$Language__JSON__Lexer___123_lexJSON_95_53_125_(), $cg$2.$1));
+        return new $HC_1_1$Prelude__Maybe__Just(Prelude__Functor__Prelude__List___64_Prelude__Functor__Functor_36_List_58__33_map_58_0(null, null, $partial_0_1$Language__JSON__Lexer___123_lexJSON_95_39_125_(), $cg$2.$1));
     } else {
         return $HC_0_0$Prelude__Maybe__Nothing;
     }
@@ -2999,36 +2792,38 @@ function Language__JSON__String__Lexer__lexString($_0_arg){
 // Text.Lexer.like
 
 function Text__Lexer__like($_0_arg){
-    return new $HC_1_3$Text__Lexer__Core__Pred($partial_1_2$Text__Lexer___123_like_95_55_125_($_0_arg));
+    return new $HC_1_3$Text__Lexer__Core__Pred($partial_1_2$Text__Lexer___123_like_95_41_125_($_0_arg));
 }
 
 // Main.line_list2io
 
-function Main__line_95_list2io($_0_arg, $_1_arg, $_13_in){
+function Main__line_95_list2io($_0_arg, $_1_arg, $_7_in){
     for(;;) {
         
         if(($_1_arg.type === 1)) {
             const $cg$3 = $_1_arg.$1;
-            const $cg$5 = $cg$3.$1;
-            let $_57_in = null;
-            $_57_in = ((($cg$5.$1).toString()) + ((($cg$5.$2).toString()) + ((($cg$5.$3).toString()) + ((($cg$5.$4).toString()) + ((($cg$5.$5).toString()) + (($cg$5.$6).toString()))))));
-            const $_64_in = Main__get_95_qty_95_int_95_flag($_57_in, $_13_in);
-            let $_65_in = null;
-            if((((($_64_in === 0)) ? 1|0 : 0|0) === 0)) {
-                $_65_in = io_95_bind(null, null, null, $partial_1_2$Main__get_95_qty_95_int($_57_in), $partial_2_3$Main___123_line_95_list2io_95_56_125_($cg$3.$2, $_57_in), $_13_in);
+            const $_59_in = Main__display_95_as_95_key(new $HC_2_2$Main_____43___(new $HC_1_1$Main__SInt("p1"), new $HC_2_2$Main_____43___(new $HC_1_1$Main__SInt("p2"), new $HC_2_2$Main_____43___(new $HC_1_1$Main__SInt("line"), new $HC_2_2$Main_____43___(new $HC_1_1$Main__SInt("sku1"), new $HC_2_2$Main_____43___(new $HC_1_1$Main__SInt("sku1"), new $HC_1_1$Main__SInt("price_unit")))))), $cg$3.$1);
+            const $_60_in = Main__get_95_qty_95_int_95_flag($_59_in, $_7_in);
+            let $_61_in = null;
+            if((((($_60_in === 0)) ? 1|0 : 0|0) === 0)) {
+                $_61_in = io_95_bind(null, null, null, $partial_1_2$Main__get_95_qty_95_int($_59_in), $partial_2_3$Main___123_line_95_list2io_95_42_125_($cg$3.$2, $_59_in), $_7_in);
             } else {
-                const $cg$8 = $cg$3.$1;
-                let $cg$7 = null;
-                const $cg$10 = $cg$3.$2;
-                let $cg$9 = null;
-                $cg$9 = $cg$10.$1.subtract($cg$10.$2);
-                $cg$7 = Snippets__new_95_row((($cg$8.$4).toString()), new $HC_1_1$Prelude__Maybe__Just($_57_in), $cg$9, $cg$8.$6);
-                $_65_in = Main__insert_95_adjancent_95_html($_0_arg, "beforeend", $cg$7, $_13_in);
+                const $cg$6 = $cg$3.$1;
+                let $cg$5 = null;
+                const $cg$8 = $cg$6.$2;
+                const $cg$10 = $cg$8.$2;
+                const $cg$12 = $cg$10.$2;
+                const $cg$14 = $cg$12.$2;
+                const $cg$16 = $cg$3.$2;
+                let $cg$15 = null;
+                $cg$15 = $cg$16.$1.subtract($cg$16.$2);
+                $cg$5 = Snippets__new_95_row((($cg$12.$1).toString()), new $HC_1_1$Prelude__Maybe__Just($_59_in), $cg$15, $cg$14.$2);
+                $_61_in = Main__insert_95_adjancent_95_html($_0_arg, "beforeend", $cg$5, $_7_in);
             }
             
             $_0_arg = $_0_arg;
             $_1_arg = $_1_arg.$2;
-            $_13_in = $_13_in;
+            $_7_in = $_7_in;
         } else {
             return $HC_0_0$MkUnit;
         }
@@ -3044,11 +2839,15 @@ function Main__line_95_list2io_95_amend($_0_arg, $_1_arg, $_4_in){
             const $cg$3 = $_1_arg.$1;
             let $cg$2 = null;
             const $cg$5 = $cg$3.$1;
-            const $cg$7 = $cg$3.$2;
-            let $cg$6 = null;
-            $cg$6 = $cg$7.$1.subtract($cg$7.$2);
-            $cg$2 = Snippets__new_95_row((($cg$5.$4).toString()), $HC_0_0$Prelude__Maybe__Nothing, $cg$6, $cg$5.$6);
-            const $_17_in = Main__insert_95_adjancent_95_html($_0_arg, "beforeend", $cg$2, $_4_in);
+            const $cg$7 = $cg$5.$2;
+            const $cg$9 = $cg$7.$2;
+            const $cg$11 = $cg$9.$2;
+            const $cg$13 = $cg$11.$2;
+            const $cg$15 = $cg$3.$2;
+            let $cg$14 = null;
+            $cg$14 = $cg$15.$1.subtract($cg$15.$2);
+            $cg$2 = Snippets__new_95_row((($cg$11.$1).toString()), $HC_0_0$Prelude__Maybe__Nothing, $cg$14, $cg$13.$2);
+            const $_21_in = Main__insert_95_adjancent_95_html($_0_arg, "beforeend", $cg$2, $_4_in);
             $_0_arg = $_0_arg;
             $_1_arg = $_1_arg.$2;
             $_4_in = $_4_in;
@@ -3294,8 +3093,7 @@ function Main__main($_0_in){
         $cg$28 = new $HC_2_1$Prelude__List___58__58_("%d%s"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$30));
     }
     
-    const $_41_in = Main__console_95_log(Printf__toFunction(Printf__format($cg$28), "")((new $JSRTS.jsbn.BigInteger(("5"))))("hello!"), $_0_in);
-    return Main__console_95_log(("[" + (Prelude__Show__Prelude__Show___64_Prelude__Show__Show_36_List_32_a_58__33_show_58_0_58_show_39__58_0(null, null, $partial_0_1$Main___123_main_95_57_125_(), "", Data__SortedMap__toList(null, null, Control__Monad__State__execState(null, null, Exchange__interpret1(Main__test_95_list()), Exchange__key_95_empty()))) + "]")), $_0_in);
+    return Main__console_95_log(Printf__toFunction(Printf__format($cg$28), "")((new $JSRTS.jsbn.BigInteger(("5"))))("hello!"), $_0_in);
 }
 
 // Text.Lexer.many
@@ -3303,7 +3101,7 @@ function Main__main($_0_in){
 function Text__Lexer__many($_0_arg){
     return new $HC_2_6$Text__Lexer__Core__Alt(new $HC_2_4$Text__Lexer__Core__SeqEat($_0_arg, new $JSRTS.Lazy((function(){
         return (function(){
-            return Text__Lexer___123_many_95_58_125_($_0_arg);
+            return Text__Lexer___123_many_95_43_125_($_0_arg);
         })();
     }))), $HC_0_0$Text__Lexer__Core__Empty);
 }
@@ -3416,17 +3214,17 @@ function Prelude__List__nonEmpty($_0_arg, $_1_arg){
 // Language.JSON.Lexer.numberLit
 
 function Language__JSON__Lexer__numberLit(){
-    return new $HC_2_4$Text__Lexer__Core__SeqEat(new $HC_2_4$Text__Lexer__Core__SeqEat(new $HC_2_5$Text__Lexer__Core__SeqEmpty(new $HC_2_6$Text__Lexer__Core__Alt(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__Lexer___123_numberLit_95_62_125_()), $HC_0_0$Text__Lexer__Core__Empty), new $HC_2_6$Text__Lexer__Core__Alt(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__Lexer___123_numberLit_95_63_125_()), new $HC_2_4$Text__Lexer__Core__SeqEat(Text__Lexer__range("1", "9"), new $JSRTS.Lazy((function(){
+    return new $HC_2_4$Text__Lexer__Core__SeqEat(new $HC_2_4$Text__Lexer__Core__SeqEat(new $HC_2_5$Text__Lexer__Core__SeqEmpty(new $HC_2_6$Text__Lexer__Core__Alt(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__Lexer___123_numberLit_95_47_125_()), $HC_0_0$Text__Lexer__Core__Empty), new $HC_2_6$Text__Lexer__Core__Alt(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__Lexer___123_numberLit_95_48_125_()), new $HC_2_4$Text__Lexer__Core__SeqEat(Text__Lexer__range("1", "9"), new $JSRTS.Lazy((function(){
         return (function(){
-            return Text__Lexer___123_digits_95_20_125_();
+            return Text__Lexer___123_digits_95_19_125_();
         })();
     }))))), new $JSRTS.Lazy((function(){
         return (function(){
-            return Language__JSON__Lexer___123_numberLit_95_68_125_();
+            return Language__JSON__Lexer___123_numberLit_95_53_125_();
         })();
     }))), new $JSRTS.Lazy((function(){
         return (function(){
-            return Language__JSON__Lexer___123_numberLit_95_73_125_();
+            return Language__JSON__Lexer___123_numberLit_95_58_125_();
         })();
     })));
 }
@@ -3436,7 +3234,7 @@ function Language__JSON__Lexer__numberLit(){
 function Language__JSON__Parser__object(){
     return new $HC_3_6$Text__Parser__Core__SeqEat(true, PE_95_match_95_44e5df34(new $HC_1_4$Language__JSON__Tokens__JTPunct(new $HC_1_3$Language__JSON__Tokens__Curly($HC_0_0$Language__JSON__Tokens__Open))), new $JSRTS.Lazy((function(){
         return (function(){
-            return Language__JSON__Parser___123_object_95_79_125_();
+            return Language__JSON__Parser___123_object_95_64_125_();
         })();
     })));
 }
@@ -3468,7 +3266,7 @@ function Text__Parser__Core__parse($_0_arg, $_1_arg, $_2_arg, $_3_arg, $_4_arg){
 // Language.JSON.Parser.parseJSON
 
 function Language__JSON__Parser__parseJSON($_0_arg){
-    const $cg$2 = Text__Parser__Core__parse(null, null, true, Language__JSON__Parser__json(), Prelude__List__filter(null, $partial_0_1$Language__JSON__Parser___123_parseJSON_95_80_125_(), $_0_arg));
+    const $cg$2 = Text__Parser__Core__parse(null, null, true, Language__JSON__Parser__json(), Prelude__List__filter(null, $partial_0_1$Language__JSON__Parser___123_parseJSON_95_65_125_(), $_0_arg));
     if(($cg$2.type === 1)) {
         const $cg$4 = $cg$2.$1;
         
@@ -3502,13 +3300,13 @@ function Language__JSON__String__Parser__parseString($_0_arg){
 // Language.JSON.String.permissiveStringLit
 
 function Language__JSON__String__permissiveStringLit(){
-    return new $HC_2_4$Text__Lexer__Core__SeqEat(new $HC_2_4$Text__Lexer__Core__SeqEat(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_jsonStringTokenMap_95_39_125_()), new $JSRTS.Lazy((function(){
+    return new $HC_2_4$Text__Lexer__Core__SeqEat(new $HC_2_4$Text__Lexer__Core__SeqEat(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_jsonStringTokenMap_95_28_125_()), new $JSRTS.Lazy((function(){
         return (function(){
-            return Language__JSON__String___123_permissiveStringLit_95_87_125_();
+            return Language__JSON__String___123_permissiveStringLit_95_72_125_();
         })();
     }))), new $JSRTS.Lazy((function(){
         return (function(){
-            return Language__JSON__String___123_permissiveStringLit_95_89_125_();
+            return Language__JSON__String___123_permissiveStringLit_95_74_125_();
         })();
     })));
 }
@@ -3561,7 +3359,7 @@ function Language__JSON__String__Parser__quotedString(){
     const $_0_in = PE_95_match_95_3b7ca742($HC_0_0$Language__JSON__String__Tokens__JSTQuote);
     return new $HC_3_6$Text__Parser__Core__SeqEat(false, Text__Parser__Core___60__42_(null, true, true, null, null, Text__Parser__Core___42__62_(null, false, true, null, null, $_0_in, Text__Parser__option(null, null, true, $HC_0_0$Prelude__List__Nil, Text__Parser__some(null, null, new $HC_4_8$Text__Parser__Core__Alt(true, true, PE_95_match_95_3b7ca742($HC_0_1$Language__JSON__String__Tokens__JSTChar), new $HC_4_8$Text__Parser__Core__Alt(true, true, PE_95_match_95_3b7ca742($HC_0_2$Language__JSON__String__Tokens__JSTSimpleEscape), PE_95_match_95_3b7ca742($HC_0_3$Language__JSON__String__Tokens__JSTUnicodeEscape)))))), $_0_in), new $JSRTS.Lazy((function(){
         return (function(){
-            return Language__JSON__String__Parser___123_quotedString_95_92_125_();
+            return Language__JSON__String__Parser___123_quotedString_95_77_125_();
         })();
     })));
 }
@@ -3569,7 +3367,7 @@ function Language__JSON__String__Parser__quotedString(){
 // Text.Lexer.range
 
 function Text__Lexer__range($_0_arg, $_1_arg){
-    return new $HC_1_3$Text__Lexer__Core__Pred($partial_2_3$Text__Lexer___123_range_95_93_125_($_0_arg, $_1_arg));
+    return new $HC_1_3$Text__Lexer__Core__Pred($partial_2_3$Text__Lexer___123_range_95_78_125_($_0_arg, $_1_arg));
 }
 
 // Language.JSON.Parser.rawString
@@ -3577,7 +3375,7 @@ function Text__Lexer__range($_0_arg, $_1_arg){
 function Language__JSON__Parser__rawString(){
     return new $HC_3_6$Text__Parser__Core__SeqEat(false, PE_95_match_95_44e5df34($HC_0_2$Language__JSON__Tokens__JTString), new $JSRTS.Lazy((function(){
         return (function(){
-            return Language__JSON__Parser___123_rawString_95_95_125_();
+            return Language__JSON__Parser___123_rawString_95_80_125_();
         })();
     })));
 }
@@ -3680,7 +3478,7 @@ function Text__Lexer__Core__scan($_0_arg, $_1_arg, $_2_arg, $_3_arg){
 // Text.Parser.sepBy1
 
 function Text__Parser__sepBy1($_0_arg, $_1_arg, $_2_arg, $_3_arg, $_4_arg, $_5_arg){
-    return new $HC_4_7$Text__Parser__Core__SeqEmpty($_3_arg, false, new $HC_4_7$Text__Parser__Core__SeqEmpty(false, $_3_arg, new $HC_1_0$Text__Parser__Core__Empty($partial_0_2$Text__Parser___123_sepBy1_95_96_125_()), $partial_2_3$Text__Parser__Core___123__42__62__95_1_125_($_3_arg, $_5_arg)), $partial_3_4$Text__Parser___123_sepBy1_95_98_125_($_3_arg, $_4_arg, $_5_arg));
+    return new $HC_4_7$Text__Parser__Core__SeqEmpty($_3_arg, false, new $HC_4_7$Text__Parser__Core__SeqEmpty(false, $_3_arg, new $HC_1_0$Text__Parser__Core__Empty($partial_0_2$Text__Parser___123_sepBy1_95_81_125_()), $partial_2_3$Text__Parser__Core___123__42__62__95_1_125_($_3_arg, $_5_arg)), $partial_3_4$Text__Parser___123_sepBy1_95_83_125_($_3_arg, $_4_arg, $_5_arg));
 }
 
 // Text.Parser.Core.shorter
@@ -3765,15 +3563,15 @@ function Language__JSON__Data__showString($_0_arg){
         $cg$2 = new $HC_2_1$Prelude__List___58__58_($_0_arg[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$4));
     }
     
-    return ("\"" + (Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Language__JSON__Data___123_showString_95_99_125_(), "", $cg$2) + "\""));
+    return ("\"" + (Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Language__JSON__Data___123_showString_95_96_125_(), "", $cg$2) + "\""));
 }
 
 // Language.JSON.String.Lexer.simpleEscape
 
 function Language__JSON__String__Lexer__simpleEscape(){
-    return new $HC_2_4$Text__Lexer__Core__SeqEat(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_legalChar_95_51_125_()), new $JSRTS.Lazy((function(){
+    return new $HC_2_4$Text__Lexer__Core__SeqEat(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_legalChar_95_37_125_()), new $JSRTS.Lazy((function(){
         return (function(){
-            return Language__JSON__String__Lexer___123_simpleEscape_95_102_125_();
+            return Language__JSON__String__Lexer___123_simpleEscape_95_99_125_();
         })();
     })));
 }
@@ -3874,7 +3672,7 @@ function Language__JSON__String__Tokens__simpleEscapeValue($_0_arg){
 function Text__Parser__some($_0_arg, $_1_arg, $_2_arg){
     return new $HC_3_6$Text__Parser__Core__SeqEat(false, $_2_arg, new $JSRTS.Lazy((function(){
         return (function(){
-            return Text__Parser___123_some_95_105_125_($_2_arg);
+            return Text__Parser___123_some_95_102_125_($_2_arg);
         })();
     })));
 }
@@ -3981,25 +3779,25 @@ function Text__Lexer__Core__takeToken($_0_arg, $_1_arg){
 // Main.test_list
 
 function Main__test_95_list(){
-    return new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_6_0$Exchange__MkOrderLineKey((new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("7"))), (new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("188")))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("15"))), (new $JSRTS.jsbn.BigInteger(("0"))))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_6_0$Exchange__MkOrderLineKey((new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("7"))), (new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("2"))), (new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("73")))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("5"))), (new $JSRTS.jsbn.BigInteger(("0"))))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_6_0$Exchange__MkOrderLineKey((new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("7"))), (new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("188")))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("0"))), (new $JSRTS.jsbn.BigInteger(("2"))))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_6_0$Exchange__MkOrderLineKey((new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("7"))), (new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("188")))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("0"))), (new $JSRTS.jsbn.BigInteger(("1"))))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_6_0$Exchange__MkOrderLineKey((new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("7"))), (new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("3"))), (new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("93")))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("3"))), (new $JSRTS.jsbn.BigInteger(("0"))))), $HC_0_0$Prelude__List__Nil)))));
+    return new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("7"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("188")))))))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("15"))), (new $JSRTS.jsbn.BigInteger(("0"))))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("7"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("2"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("73")))))))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("5"))), (new $JSRTS.jsbn.BigInteger(("0"))))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("7"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("188")))))))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("0"))), (new $JSRTS.jsbn.BigInteger(("2"))))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("7"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("188")))))))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("0"))), (new $JSRTS.jsbn.BigInteger(("1"))))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("7"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("3"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("93")))))))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("3"))), (new $JSRTS.jsbn.BigInteger(("0"))))), $HC_0_0$Prelude__List__Nil)))));
 }
 
 // Main.test_list2
 
 function Main__test_95_list2(){
-    return new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_6_0$Exchange__MkOrderLineKey((new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("7"))), (new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("188")))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("0"))), (new $JSRTS.jsbn.BigInteger(("3"))))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_6_0$Exchange__MkOrderLineKey((new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("7"))), (new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("2"))), (new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("73")))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("3"))), (new $JSRTS.jsbn.BigInteger(("0"))))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_6_0$Exchange__MkOrderLineKey((new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("7"))), (new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("3"))), (new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("93")))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("0"))), (new $JSRTS.jsbn.BigInteger(("1"))))), $HC_0_0$Prelude__List__Nil)));
+    return new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("7"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("188")))))))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("0"))), (new $JSRTS.jsbn.BigInteger(("3"))))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("7"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("2"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("73")))))))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("3"))), (new $JSRTS.jsbn.BigInteger(("0"))))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("7"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("3"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("93")))))))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("0"))), (new $JSRTS.jsbn.BigInteger(("1"))))), $HC_0_0$Prelude__List__Nil)));
 }
 
 // Main.test_list3
 
 function Main__test_95_list3(){
-    return new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_6_0$Exchange__MkOrderLineKey((new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("7"))), (new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("2"))), (new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("73")))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("0"))), (new $JSRTS.jsbn.BigInteger(("1"))))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_6_0$Exchange__MkOrderLineKey((new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("7"))), (new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("3"))), (new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("93")))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("0"))), (new $JSRTS.jsbn.BigInteger(("2"))))), $HC_0_0$Prelude__List__Nil));
+    return new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("7"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("2"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("73")))))))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("0"))), (new $JSRTS.jsbn.BigInteger(("1"))))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("7"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("3"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("93")))))))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("0"))), (new $JSRTS.jsbn.BigInteger(("2"))))), $HC_0_0$Prelude__List__Nil));
 }
 
 // Main.test_list4
 
 function Main__test_95_list4(){
-    return new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_6_0$Exchange__MkOrderLineKey((new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("7"))), (new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("2"))), (new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("73")))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("0"))), (new $JSRTS.jsbn.BigInteger(("1"))))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_6_0$Exchange__MkOrderLineKey((new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("7"))), (new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("4"))), (new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("93")))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("0"))))), $HC_0_0$Prelude__List__Nil));
+    return new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("7"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("2"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("73")))))))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("0"))), (new $JSRTS.jsbn.BigInteger(("1"))))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Exchange__MkOrderLine(new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("7"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("4"))), new $HC_2_0$Builtins__MkPair((new $JSRTS.jsbn.BigInteger(("100"))), (new $JSRTS.jsbn.BigInteger(("93")))))))), new $HC_2_0$Exchange__Tt((new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("0"))))), $HC_0_0$Prelude__List__Nil));
 }
 
 // Printf.toFunction
@@ -4011,32 +3809,21 @@ function Printf__toFunction($_0_arg, $_1_arg){
         if(($_0_arg.type === 3)) {
             return $_1_arg;
         } else if(($_0_arg.type === 0)) {
-            return $partial_2_3$Printf___123_toFunction_95_107_125_($_0_arg.$1, $_1_arg);
+            return $partial_2_3$Printf___123_toFunction_95_104_125_($_0_arg.$1, $_1_arg);
         } else if(($_0_arg.type === 2)) {
             $tco$$_1_arg = ($_1_arg + (($_0_arg.$1)+("")));
             $_0_arg = $_0_arg.$2;
             $_1_arg = $tco$$_1_arg;
         } else {
-            return $partial_2_3$Printf___123_toFunction_95_108_125_($_0_arg.$1, $_1_arg);
+            return $partial_2_3$Printf___123_toFunction_95_105_125_($_0_arg.$1, $_1_arg);
         }
-    }
-}
-
-// Data.SortedMap.toList
-
-function Data__SortedMap__toList($_0_arg, $_1_arg, $_2_arg){
-    
-    if(($_2_arg.type === 0)) {
-        return $HC_0_0$Prelude__List__Nil;
-    } else {
-        return Data__SortedMap__treeToList_58_treeToList_39__58_0(null, null, null, null, null, $partial_0_1$Data__SortedMap___123_toList_95_109_125_(), $_2_arg.$2);
     }
 }
 
 // Text.Lexer.toTokenMap
 
 function Text__Lexer__toTokenMap($_0_arg, $_1_arg){
-    return Prelude__Functor__Prelude__List___64_Prelude__Functor__Functor_36_List_58__33_map_58_0(null, null, $partial_0_1$Text__Lexer___123_toTokenMap_95_111_125_(), $_1_arg);
+    return Prelude__Functor__Prelude__List___64_Prelude__Functor__Functor_36_List_58__33_map_58_0(null, null, $partial_0_1$Text__Lexer___123_toTokenMap_95_107_125_(), $_1_arg);
 }
 
 // Text.Lexer.Core.tokenise
@@ -4060,163 +3847,12 @@ function Text__Lexer__Core__tokenise($_0_arg, $_1_arg, $_2_arg, $_3_arg, $_4_arg
     }
 }
 
-// Data.SortedMap.treeInsert
-
-function Data__SortedMap__treeInsert($_0_arg, $_1_arg, $_2_arg, $_3_arg, $_4_arg, $_5_arg, $_6_arg){
-    const $cg$2 = Data__SortedMap__treeInsert_39_(null, null, $_2_arg, null, $_4_arg, $_5_arg, $_6_arg);
-    if(($cg$2.type === 0)) {
-        return new $HC_1_0$Prelude__Either__Left($cg$2.$1);
-    } else {
-        const $cg$4 = $cg$2.$1;
-        const $cg$6 = $cg$4.$2;
-        return new $HC_1_1$Prelude__Either__Right(new $HC_3_1$Data__SortedMap__Branch2($cg$4.$1, $cg$6.$1, $cg$6.$2));
-    }
-}
-
-// Data.SortedMap.treeInsert'
-
-function Data__SortedMap__treeInsert_39_($_0_arg, $_1_arg, $_2_arg, $_3_arg, $_4_arg, $_5_arg, $_6_arg){
-    
-    if(($_6_arg.type === 1)) {
-        
-        
-        if($_2_arg.$3($_4_arg)($_6_arg.$2)) {
-            const $cg$36 = Data__SortedMap__treeInsert_39_(null, null, $_2_arg, null, $_4_arg, $_5_arg, $_6_arg.$1);
-            if(($cg$36.type === 0)) {
-                return new $HC_1_0$Prelude__Either__Left(new $HC_3_1$Data__SortedMap__Branch2($cg$36.$1, $_6_arg.$2, $_6_arg.$3));
-            } else {
-                const $cg$38 = $cg$36.$1;
-                const $cg$40 = $cg$38.$2;
-                return new $HC_1_0$Prelude__Either__Left(new $HC_5_2$Data__SortedMap__Branch3($cg$38.$1, $cg$40.$1, $cg$40.$2, $_6_arg.$2, $_6_arg.$3));
-            }
-        } else {
-            const $cg$30 = Data__SortedMap__treeInsert_39_(null, null, $_2_arg, null, $_4_arg, $_5_arg, $_6_arg.$3);
-            if(($cg$30.type === 0)) {
-                return new $HC_1_0$Prelude__Either__Left(new $HC_3_1$Data__SortedMap__Branch2($_6_arg.$1, $_6_arg.$2, $cg$30.$1));
-            } else {
-                const $cg$32 = $cg$30.$1;
-                const $cg$34 = $cg$32.$2;
-                return new $HC_1_0$Prelude__Either__Left(new $HC_5_2$Data__SortedMap__Branch3($_6_arg.$1, $_6_arg.$2, $cg$32.$1, $cg$34.$1, $cg$34.$2));
-            }
-        }
-    } else if(($_6_arg.type === 2)) {
-        
-        
-        if($_2_arg.$3($_4_arg)($_6_arg.$2)) {
-            const $cg$22 = Data__SortedMap__treeInsert_39_(null, null, $_2_arg, null, $_4_arg, $_5_arg, $_6_arg.$1);
-            if(($cg$22.type === 0)) {
-                return new $HC_1_0$Prelude__Either__Left(new $HC_5_2$Data__SortedMap__Branch3($cg$22.$1, $_6_arg.$2, $_6_arg.$3, $_6_arg.$4, $_6_arg.$5));
-            } else {
-                const $cg$24 = $cg$22.$1;
-                const $cg$26 = $cg$24.$2;
-                return new $HC_1_1$Prelude__Either__Right(new $HC_2_0$Builtins__MkPair(new $HC_3_1$Data__SortedMap__Branch2($cg$24.$1, $cg$26.$1, $cg$26.$2), new $HC_2_0$Builtins__MkPair($_6_arg.$2, new $HC_3_1$Data__SortedMap__Branch2($_6_arg.$3, $_6_arg.$4, $_6_arg.$5))));
-            }
-        } else {
-            
-            
-            if($_2_arg.$3($_4_arg)($_6_arg.$4)) {
-                const $cg$16 = Data__SortedMap__treeInsert_39_(null, null, $_2_arg, null, $_4_arg, $_5_arg, $_6_arg.$3);
-                if(($cg$16.type === 0)) {
-                    return new $HC_1_0$Prelude__Either__Left(new $HC_5_2$Data__SortedMap__Branch3($_6_arg.$1, $_6_arg.$2, $cg$16.$1, $_6_arg.$4, $_6_arg.$5));
-                } else {
-                    const $cg$18 = $cg$16.$1;
-                    const $cg$20 = $cg$18.$2;
-                    return new $HC_1_1$Prelude__Either__Right(new $HC_2_0$Builtins__MkPair(new $HC_3_1$Data__SortedMap__Branch2($_6_arg.$1, $_6_arg.$2, $cg$18.$1), new $HC_2_0$Builtins__MkPair($cg$20.$1, new $HC_3_1$Data__SortedMap__Branch2($cg$20.$2, $_6_arg.$4, $_6_arg.$5))));
-                }
-            } else {
-                const $cg$10 = Data__SortedMap__treeInsert_39_(null, null, $_2_arg, null, $_4_arg, $_5_arg, $_6_arg.$5);
-                if(($cg$10.type === 0)) {
-                    return new $HC_1_0$Prelude__Either__Left(new $HC_5_2$Data__SortedMap__Branch3($_6_arg.$1, $_6_arg.$2, $_6_arg.$3, $_6_arg.$4, $cg$10.$1));
-                } else {
-                    const $cg$12 = $cg$10.$1;
-                    const $cg$14 = $cg$12.$2;
-                    return new $HC_1_1$Prelude__Either__Right(new $HC_2_0$Builtins__MkPair(new $HC_3_1$Data__SortedMap__Branch2($_6_arg.$1, $_6_arg.$2, $_6_arg.$3), new $HC_2_0$Builtins__MkPair($_6_arg.$4, new $HC_3_1$Data__SortedMap__Branch2($cg$12.$1, $cg$14.$1, $cg$14.$2))));
-                }
-            }
-        }
-    } else {
-        
-        const $cg$4 = $_2_arg.$2($_4_arg)($_6_arg.$1);
-        if(($cg$4 === 0)) {
-            return new $HC_1_0$Prelude__Either__Left(new $HC_2_0$Data__SortedMap__Leaf($_4_arg, $_5_arg));
-        } else if(($cg$4 > 0)) {
-            return new $HC_1_1$Prelude__Either__Right(new $HC_2_0$Builtins__MkPair(new $HC_2_0$Data__SortedMap__Leaf($_6_arg.$1, $_6_arg.$2), new $HC_2_0$Builtins__MkPair($_6_arg.$1, new $HC_2_0$Data__SortedMap__Leaf($_4_arg, $_5_arg))));
-        } else {
-            return new $HC_1_1$Prelude__Either__Right(new $HC_2_0$Builtins__MkPair(new $HC_2_0$Data__SortedMap__Leaf($_4_arg, $_5_arg), new $HC_2_0$Builtins__MkPair($_4_arg, new $HC_2_0$Data__SortedMap__Leaf($_6_arg.$1, $_6_arg.$2))));
-        }
-    }
-}
-
-// Data.SortedMap.treeLookup
-
-function Data__SortedMap__treeLookup($_0_arg, $_1_arg, $_2_arg, $_3_arg, $_4_arg, $_5_arg){
-    for(;;) {
-        
-        if(($_5_arg.type === 1)) {
-            
-            
-            if($_2_arg.$3($_4_arg)($_5_arg.$2)) {
-                $_0_arg = null;
-                $_1_arg = null;
-                $_2_arg = $_2_arg;
-                $_3_arg = null;
-                $_4_arg = $_4_arg;
-                $_5_arg = $_5_arg.$1;
-            } else {
-                $_0_arg = null;
-                $_1_arg = null;
-                $_2_arg = $_2_arg;
-                $_3_arg = null;
-                $_4_arg = $_4_arg;
-                $_5_arg = $_5_arg.$3;
-            }
-        } else if(($_5_arg.type === 2)) {
-            
-            
-            if($_2_arg.$3($_4_arg)($_5_arg.$2)) {
-                $_0_arg = null;
-                $_1_arg = null;
-                $_2_arg = $_2_arg;
-                $_3_arg = null;
-                $_4_arg = $_4_arg;
-                $_5_arg = $_5_arg.$1;
-            } else {
-                
-                
-                if($_2_arg.$3($_4_arg)($_5_arg.$4)) {
-                    $_0_arg = null;
-                    $_1_arg = null;
-                    $_2_arg = $_2_arg;
-                    $_3_arg = null;
-                    $_4_arg = $_4_arg;
-                    $_5_arg = $_5_arg.$3;
-                } else {
-                    $_0_arg = null;
-                    $_1_arg = null;
-                    $_2_arg = $_2_arg;
-                    $_3_arg = null;
-                    $_4_arg = $_4_arg;
-                    $_5_arg = $_5_arg.$5;
-                }
-            }
-        } else {
-            
-            
-            if($_2_arg.$1($_4_arg)($_5_arg.$1)) {
-                return new $HC_1_1$Prelude__Maybe__Just($_5_arg.$2);
-            } else {
-                return $HC_0_0$Prelude__Maybe__Nothing;
-            }
-        }
-    }
-}
-
 // Language.JSON.String.Lexer.unicodeEscape
 
 function Language__JSON__String__Lexer__unicodeEscape(){
-    return new $HC_2_4$Text__Lexer__Core__SeqEat(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_legalChar_95_51_125_()), new $JSRTS.Lazy((function(){
+    return new $HC_2_4$Text__Lexer__Core__SeqEat(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_legalChar_95_37_125_()), new $JSRTS.Lazy((function(){
         return (function(){
-            return Language__JSON__String__Lexer___123_unicodeEscape_95_116_125_();
+            return Language__JSON__String__Lexer___123_unicodeEscape_95_112_125_();
         })();
     })));
 }
@@ -4263,280 +3899,187 @@ function Text__Parser__Core___123__60__42__95_2_125_($_0_lift, $_1_lift){
     return $_0_lift;
 }
 
+// Language.JSON.Parser.{array_8}
+
+function Language__JSON__Parser___123_array_95_8_125_($_0_lift, $_1_lift){
+    return new $HC_1_0$Text__Parser__Core__Empty(new $HC_1_4$Language__JSON__Data__JArray($_0_lift));
+}
+
 // Language.JSON.Parser.{array_9}
 
-function Language__JSON__Parser___123_array_95_9_125_($_0_lift, $_1_lift){
-    return new $HC_1_0$Text__Parser__Core__Empty(new $HC_1_4$Language__JSON__Data__JArray($_0_lift));
+function Language__JSON__Parser___123_array_95_9_125_($_0_lift){
+    return $partial_1_2$Language__JSON__Parser___123_array_95_8_125_($_0_lift);
 }
 
 // Language.JSON.Parser.{array_10}
 
 function Language__JSON__Parser___123_array_95_10_125_($_0_lift){
-    return $partial_1_2$Language__JSON__Parser___123_array_95_9_125_($_0_lift);
+    return new $HC_3_6$Text__Parser__Core__SeqEat(false, PE_95_match_95_44e5df34(new $HC_1_4$Language__JSON__Tokens__JTPunct(new $HC_1_2$Language__JSON__Tokens__Square($HC_0_1$Language__JSON__Tokens__Close))), new $JSRTS.Lazy((function(){
+        return (function(){
+            return Language__JSON__Parser___123_array_95_9_125_($_0_lift);
+        })();
+    })));
 }
 
 // Language.JSON.Parser.{array_11}
 
 function Language__JSON__Parser___123_array_95_11_125_($_0_lift){
-    return new $HC_3_6$Text__Parser__Core__SeqEat(false, PE_95_match_95_44e5df34(new $HC_1_4$Language__JSON__Tokens__JTPunct(new $HC_1_2$Language__JSON__Tokens__Square($HC_0_1$Language__JSON__Tokens__Close))), new $JSRTS.Lazy((function(){
-        return (function(){
-            return Language__JSON__Parser___123_array_95_10_125_($_0_lift);
-        })();
-    })));
+    return new $HC_4_7$Text__Parser__Core__SeqEmpty(false, true, Text__Parser__option(null, null, true, $HC_0_0$Prelude__List__Nil, Text__Parser__sepBy1(null, null, null, true, PE_95_match_95_44e5df34(new $HC_1_4$Language__JSON__Tokens__JTPunct($HC_0_0$Language__JSON__Tokens__Comma)), Language__JSON__Parser__json())), $partial_0_1$Language__JSON__Parser___123_array_95_10_125_());
 }
 
 // Language.JSON.Parser.{array_12}
 
 function Language__JSON__Parser___123_array_95_12_125_($_0_lift){
-    return new $HC_4_7$Text__Parser__Core__SeqEmpty(false, true, Text__Parser__option(null, null, true, $HC_0_0$Prelude__List__Nil, Text__Parser__sepBy1(null, null, null, true, PE_95_match_95_44e5df34(new $HC_1_4$Language__JSON__Tokens__JTPunct($HC_0_0$Language__JSON__Tokens__Comma)), Language__JSON__Parser__json())), $partial_0_1$Language__JSON__Parser___123_array_95_11_125_());
+    return new $HC_4_7$Text__Parser__Core__SeqEmpty(false, true, $HC_0_5$Text__Parser__Core__Commit, $partial_0_1$Language__JSON__Parser___123_array_95_11_125_());
 }
 
 // Language.JSON.Parser.{array_13}
 
-function Language__JSON__Parser___123_array_95_13_125_($_0_lift){
-    return new $HC_4_7$Text__Parser__Core__SeqEmpty(false, true, $HC_0_5$Text__Parser__Core__Commit, $partial_0_1$Language__JSON__Parser___123_array_95_12_125_());
+function Language__JSON__Parser___123_array_95_13_125_(){
+    return $partial_0_1$Language__JSON__Parser___123_array_95_12_125_();
 }
 
-// Language.JSON.Parser.{array_14}
+// Prelude.Bits.{b16ToHexString_14}
 
-function Language__JSON__Parser___123_array_95_14_125_(){
-    return $partial_0_1$Language__JSON__Parser___123_array_95_13_125_();
-}
-
-// Prelude.Bits.{b16ToHexString_15}
-
-function Prelude__Bits___123_b16ToHexString_95_15_125_($_0_lift, $_1_lift){
+function Prelude__Bits___123_b16ToHexString_95_14_125_($_0_lift, $_1_lift){
     return (Prelude__Bits__b8ToHexString($_0_lift) + $_1_lift);
 }
 
-// Language.JSON.Parser.{boolean_16}
+// Language.JSON.Parser.{boolean_15}
 
-function Language__JSON__Parser___123_boolean_95_16_125_($_0_lift){
+function Language__JSON__Parser___123_boolean_95_15_125_($_0_lift){
     return new $HC_1_1$Language__JSON__Data__JBoolean($_0_lift);
+}
+
+// Text.Lexer.{count_16}
+
+function Text__Lexer___123_count_95_16_125_($_0_lift, $_1_lift){
+    return Text__Lexer__count(new $HC_2_0$Text__Quantity__Qty((new $JSRTS.jsbn.BigInteger(("0"))), new $HC_1_1$Prelude__Maybe__Just($_0_lift)), $_1_lift);
 }
 
 // Text.Lexer.{count_17}
 
-function Text__Lexer___123_count_95_17_125_($_0_lift, $_1_lift){
-    return Text__Lexer__count(new $HC_2_0$Text__Quantity__Qty((new $JSRTS.jsbn.BigInteger(("0"))), new $HC_1_1$Prelude__Maybe__Just($_0_lift)), $_1_lift);
+function Text__Lexer___123_count_95_17_125_($_0_lift, $_1_lift, $_2_lift){
+    return Text__Lexer__count(new $HC_2_0$Text__Quantity__Qty($_0_lift, new $HC_1_1$Prelude__Maybe__Just($_1_lift)), $_2_lift);
 }
 
 // Text.Lexer.{count_18}
 
-function Text__Lexer___123_count_95_18_125_($_0_lift, $_1_lift, $_2_lift){
-    return Text__Lexer__count(new $HC_2_0$Text__Quantity__Qty($_0_lift, new $HC_1_1$Prelude__Maybe__Just($_1_lift)), $_2_lift);
-}
-
-// Text.Lexer.{count_19}
-
-function Text__Lexer___123_count_95_19_125_($_0_lift, $_1_lift){
+function Text__Lexer___123_count_95_18_125_($_0_lift, $_1_lift){
     return Text__Lexer__count(new $HC_2_0$Text__Quantity__Qty($_0_lift, $HC_0_0$Prelude__Maybe__Nothing), $_1_lift);
 }
 
-// Text.Lexer.{digits_20}
+// Text.Lexer.{digits_19}
 
-function Text__Lexer___123_digits_95_20_125_(){
+function Text__Lexer___123_digits_95_19_125_(){
     return Text__Lexer__many(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Prelude__Chars__isDigit()));
 }
 
-// Text.Parser.Core.{doParse_21}
+// Text.Parser.Core.{doParse_20}
 
-function Text__Parser__Core___123_doParse_95_21_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift, $_4_lift, $_5_lift, $_6_lift, $_7_lift, $_8_lift, $_9_lift, $_10_lift, $_11_lift, $_12_lift){
+function Text__Parser__Core___123_doParse_95_20_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift, $_4_lift, $_5_lift, $_6_lift, $_7_lift, $_8_lift, $_9_lift, $_10_lift, $_11_lift, $_12_lift){
     return $JSRTS.force($_8_lift);
+}
+
+// Text.Lexer.{exact_21}
+
+function Text__Lexer___123_exact_95_21_125_($_0_lift, $_1_lift){
+    return ($_1_lift === $_0_lift);
 }
 
 // Text.Lexer.{exact_22}
 
-function Text__Lexer___123_exact_95_22_125_($_0_lift, $_1_lift){
-    return ($_1_lift === $_0_lift);
+function Text__Lexer___123_exact_95_22_125_($_0_lift){
+    return new $HC_1_3$Text__Lexer__Core__Pred($partial_1_2$Text__Lexer___123_exact_95_21_125_($_0_lift));
 }
 
-// Text.Lexer.{exact_23}
+// Language.JSON.Parser.{json_24}
 
-function Text__Lexer___123_exact_95_23_125_($_0_lift){
-    return new $HC_1_3$Text__Lexer__Core__Pred($partial_1_2$Text__Lexer___123_exact_95_22_125_($_0_lift));
-}
-
-// Exchange.{interpret1_24}
-
-function Exchange___123_interpret1_95_24_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift){
-    return $_3_lift($_2_lift);
-}
-
-// Exchange.{interpret1_26}
-
-function Exchange___123_interpret1_95_26_125_($_0_lift){
-    return new $HC_2_0$Builtins__MkPair($_0_lift, $_0_lift);
-}
-
-// Exchange.{interpret1_28}
-
-function Exchange___123_interpret1_95_28_125_($_0_lift, $_1_lift){
-    
-    
-    return new $HC_2_0$Exchange__Tt($_0_lift.$1.add($_1_lift.$1), $_0_lift.$2.add($_1_lift.$2));
-}
-
-// Exchange.{interpret1_29}
-
-function Exchange___123_interpret1_95_29_125_($_0_lift, $_1_lift, $_2_lift){
-    let $cg$1 = null;
-    $cg$1 = $_1_lift.$1;
-    let $cg$2 = null;
-    $cg$2 = $_1_lift.$2;
-    return new $HC_2_0$Builtins__MkPair($HC_0_0$MkUnit, PE_95_insertFrom_95_2a38cce8(null, null, Data__SortedMap__mergeWith_58_inserted_58_0(null, null, $partial_0_2$Exchange___123_interpret1_95_28_125_(), $_0_lift, Data__SortedMap__insert(null, null, $cg$1, $cg$2, Exchange__key_95_empty())), $_0_lift));
-}
-
-// Exchange.{interpret1_30}
-
-function Exchange___123_interpret1_95_30_125_($_0_lift, $_1_lift, $_2_lift){
-    return new $HC_2_0$Builtins__MkPair($_0_lift, $_2_lift);
-}
-
-// Exchange.{interpret1_31}
-
-function Exchange___123_interpret1_95_31_125_($_0_lift, $_1_lift, $_2_lift){
-    return $partial_7_8$Prelude__Monad__Control__Monad__State___64_Prelude__Monad__Monad_36_StateT_32_stateType_32_m_58__33__62__62__61__58_0(null, null, null, null, $partial_0_4$Exchange___123_interpret1_95_24_125_(), $partial_2_3$Exchange___123_interpret1_95_29_125_($_2_lift, $_0_lift), $partial_1_3$Exchange___123_interpret1_95_30_125_($_1_lift));
-}
-
-// Exchange.{interpret1_32}
-
-function Exchange___123_interpret1_95_32_125_($_0_lift, $_1_lift){
-    return $partial_7_8$Prelude__Monad__Control__Monad__State___64_Prelude__Monad__Monad_36_StateT_32_stateType_32_m_58__33__62__62__61__58_0(null, null, null, null, $partial_0_4$Exchange___123_interpret1_95_24_125_(), $partial_0_1$Exchange___123_interpret1_95_26_125_(), $partial_2_3$Exchange___123_interpret1_95_31_125_($_0_lift, $_1_lift));
-}
-
-// Exchange.{interpret1_33}
-
-function Exchange___123_interpret1_95_33_125_($_0_lift){
-    return new $HC_2_0$Builtins__MkPair($HC_0_0$Prelude__List__Nil, $_0_lift);
-}
-
-// Language.JSON.Parser.{json_35}
-
-function Language__JSON__Parser___123_json_95_35_125_($_0_lift){
+function Language__JSON__Parser___123_json_95_24_125_($_0_lift){
     return new $HC_1_3$Language__JSON__Data__JString($_0_lift);
 }
 
-// Language.JSON.Parser.{json_37}
+// Language.JSON.Parser.{json_26}
 
-function Language__JSON__Parser___123_json_95_37_125_($_0_lift){
+function Language__JSON__Parser___123_json_95_26_125_($_0_lift){
     return new $HC_1_2$Language__JSON__Data__JNumber($_0_lift);
 }
 
-// Language.JSON.Parser.{json_38}
+// Language.JSON.Parser.{json_27}
 
-function Language__JSON__Parser___123_json_95_38_125_($_0_lift){
+function Language__JSON__Parser___123_json_95_27_125_($_0_lift){
     return $HC_0_0$Language__JSON__Data__JNull;
 }
 
-// Language.JSON.String.Lexer.{jsonStringTokenMap_39}
+// Language.JSON.String.Lexer.{jsonStringTokenMap_28}
 
-function Language__JSON__String__Lexer___123_jsonStringTokenMap_95_39_125_($_0_lift){
+function Language__JSON__String__Lexer___123_jsonStringTokenMap_95_28_125_($_0_lift){
     return ($_0_lift === "\"");
 }
 
-// Language.JSON.Lexer.{jsonTokenMap_40}
+// Language.JSON.Lexer.{jsonTokenMap_29}
 
-function Language__JSON__Lexer___123_jsonTokenMap_95_40_125_(){
+function Language__JSON__Lexer___123_jsonTokenMap_95_29_125_(){
     return Text__Lexer__many(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Prelude__Chars__isSpace()));
 }
 
-// Language.JSON.Lexer.{jsonTokenMap_41}
+// Language.JSON.Lexer.{jsonTokenMap_30}
 
-function Language__JSON__Lexer___123_jsonTokenMap_95_41_125_($_0_lift){
+function Language__JSON__Lexer___123_jsonTokenMap_95_30_125_($_0_lift){
     return ($_0_lift === ",");
 }
 
-// Language.JSON.Lexer.{jsonTokenMap_42}
+// Language.JSON.Lexer.{jsonTokenMap_31}
 
-function Language__JSON__Lexer___123_jsonTokenMap_95_42_125_($_0_lift){
+function Language__JSON__Lexer___123_jsonTokenMap_95_31_125_($_0_lift){
     return ($_0_lift === ":");
 }
 
-// Language.JSON.Lexer.{jsonTokenMap_43}
+// Language.JSON.Lexer.{jsonTokenMap_32}
 
-function Language__JSON__Lexer___123_jsonTokenMap_95_43_125_($_0_lift){
+function Language__JSON__Lexer___123_jsonTokenMap_95_32_125_($_0_lift){
     return ($_0_lift === "[");
 }
 
-// Language.JSON.Lexer.{jsonTokenMap_44}
+// Language.JSON.Lexer.{jsonTokenMap_33}
 
-function Language__JSON__Lexer___123_jsonTokenMap_95_44_125_($_0_lift){
+function Language__JSON__Lexer___123_jsonTokenMap_95_33_125_($_0_lift){
     return ($_0_lift === "]");
 }
 
-// Language.JSON.Lexer.{jsonTokenMap_45}
+// Language.JSON.Lexer.{jsonTokenMap_34}
 
-function Language__JSON__Lexer___123_jsonTokenMap_95_45_125_($_0_lift){
+function Language__JSON__Lexer___123_jsonTokenMap_95_34_125_($_0_lift){
     return ($_0_lift === "{");
 }
 
-// Language.JSON.Lexer.{jsonTokenMap_46}
+// Language.JSON.Lexer.{jsonTokenMap_35}
 
-function Language__JSON__Lexer___123_jsonTokenMap_95_46_125_($_0_lift){
+function Language__JSON__Lexer___123_jsonTokenMap_95_35_125_($_0_lift){
     return ($_0_lift === "}");
 }
 
-// Exchange.{key_empty_47}
+// Language.JSON.String.Lexer.{legalChar_37}
 
-function Exchange___123_key_95_empty_95_47_125_($_0_lift, $_1_lift){
-    let $cg$1 = null;
-    $cg$1 = ((($_0_lift.$1).toString()) + ((($_0_lift.$2).toString()) + ((($_0_lift.$3).toString()) + ((($_0_lift.$4).toString()) + ((($_0_lift.$5).toString()) + (($_0_lift.$6).toString()))))));
-    let $cg$2 = null;
-    $cg$2 = ((($_1_lift.$1).toString()) + ((($_1_lift.$2).toString()) + ((($_1_lift.$3).toString()) + ((($_1_lift.$4).toString()) + ((($_1_lift.$5).toString()) + (($_1_lift.$6).toString()))))));
-    return ($cg$1 == $cg$2);
-}
-
-// Exchange.{key_empty_48}
-
-function Exchange___123_key_95_empty_95_48_125_($_0_lift, $_1_lift){
-    let $cg$1 = null;
-    $cg$1 = ((($_0_lift.$1).toString()) + ((($_0_lift.$2).toString()) + ((($_0_lift.$3).toString()) + ((($_0_lift.$4).toString()) + ((($_0_lift.$5).toString()) + (($_0_lift.$6).toString()))))));
-    let $cg$2 = null;
-    $cg$2 = ((($_1_lift.$1).toString()) + ((($_1_lift.$2).toString()) + ((($_1_lift.$3).toString()) + ((($_1_lift.$4).toString()) + ((($_1_lift.$5).toString()) + (($_1_lift.$6).toString()))))));
-    return Prelude__Interfaces__Prelude__Interfaces___64_Prelude__Interfaces__Ord_36_String_58__33_compare_58_0($cg$1, $cg$2);
-}
-
-// Exchange.{key_empty_49}
-
-function Exchange___123_key_95_empty_95_49_125_($_0_lift, $_1_lift){
-    let $cg$1 = null;
-    $cg$1 = ((($_0_lift.$1).toString()) + ((($_0_lift.$2).toString()) + ((($_0_lift.$3).toString()) + ((($_0_lift.$4).toString()) + ((($_0_lift.$5).toString()) + (($_0_lift.$6).toString()))))));
-    let $cg$2 = null;
-    $cg$2 = ((($_1_lift.$1).toString()) + ((($_1_lift.$2).toString()) + ((($_1_lift.$3).toString()) + ((($_1_lift.$4).toString()) + ((($_1_lift.$5).toString()) + (($_1_lift.$6).toString()))))));
-    
-    if((Prelude__Interfaces__Prelude__Interfaces___64_Prelude__Interfaces__Ord_36_String_58__33_compare_58_0($cg$1, $cg$2) < 0)) {
-        return true;
-    } else {
-        let $cg$4 = null;
-        $cg$4 = ((($_0_lift.$1).toString()) + ((($_0_lift.$2).toString()) + ((($_0_lift.$3).toString()) + ((($_0_lift.$4).toString()) + ((($_0_lift.$5).toString()) + (($_0_lift.$6).toString()))))));
-        let $cg$5 = null;
-        $cg$5 = ((($_1_lift.$1).toString()) + ((($_1_lift.$2).toString()) + ((($_1_lift.$3).toString()) + ((($_1_lift.$4).toString()) + ((($_1_lift.$5).toString()) + (($_1_lift.$6).toString()))))));
-        return ($cg$4 == $cg$5);
-    }
-}
-
-// Language.JSON.String.Lexer.{legalChar_51}
-
-function Language__JSON__String__Lexer___123_legalChar_95_51_125_($_0_lift){
+function Language__JSON__String__Lexer___123_legalChar_95_37_125_($_0_lift){
     return ($_0_lift === "\\");
 }
 
-// Language.JSON.String.Lexer.{legalChar_52}
+// Language.JSON.String.Lexer.{legalChar_38}
 
-function Language__JSON__String__Lexer___123_legalChar_95_52_125_($_0_lift){
+function Language__JSON__String__Lexer___123_legalChar_95_38_125_($_0_lift){
     return true;
 }
 
-// Language.JSON.Lexer.{lexJSON_53}
+// Language.JSON.Lexer.{lexJSON_39}
 
-function Language__JSON__Lexer___123_lexJSON_95_53_125_($_0_lift){
+function Language__JSON__Lexer___123_lexJSON_95_39_125_($_0_lift){
     return $_0_lift;
 }
 
-// Text.Lexer.{like_55}
+// Text.Lexer.{like_41}
 
-function Text__Lexer___123_like_95_55_125_($_0_lift, $_1_lift){
+function Text__Lexer___123_like_95_41_125_($_0_lift, $_1_lift){
     let $cg$1 = null;
     if(Prelude__Chars__isLower($_0_lift)) {
         $cg$1 = String.fromCharCode(((($_0_lift).charCodeAt(0)|0) - 32));
@@ -4554,77 +4097,67 @@ function Text__Lexer___123_like_95_55_125_($_0_lift, $_1_lift){
     return ($cg$1 === $cg$2);
 }
 
-// Main.{line_list2io_56}
+// Main.{line_list2io_42}
 
-function Main___123_line_95_list2io_95_56_125_($_0_lift, $_1_lift, $_2_lift){
+function Main___123_line_95_list2io_95_42_125_($_0_lift, $_1_lift, $_2_lift){
     let $cg$1 = null;
     $cg$1 = $_0_lift.$1.subtract($_0_lift.$2);
-    const $_67_in = ((($cg$1).intValue()|0) + $_2_lift);
+    const $_63_in = ((($cg$1).intValue()|0) + $_2_lift);
     
-    if((((($_67_in === 0)) ? 1|0 : 0|0) === 0)) {
-        return $partial_2_3$Main__update_95_qty($_1_lift, $_67_in);
+    if((((($_63_in === 0)) ? 1|0 : 0|0) === 0)) {
+        return $partial_2_3$Main__update_95_qty($_1_lift, $_63_in);
     } else {
         return $partial_1_2$Main__remove_95_row($_1_lift);
     }
 }
 
-// Main.{main_57}
+// Text.Lexer.{many_43}
 
-function Main___123_main_95_57_125_($_0_lift){
-    
-    const $cg$3 = $_0_lift.$2;
-    let $cg$2 = null;
-    $cg$2 = (Prelude__Show__primNumShow(null, $partial_0_1$prim_95__95_toStrBigInt(), $HC_0_0$Prelude__Show__Open, $cg$3.$1) + ("//" + Prelude__Show__primNumShow(null, $partial_0_1$prim_95__95_toStrBigInt(), $HC_0_0$Prelude__Show__Open, $cg$3.$2)));
-    return ("(" + (Prelude__Show__Exchange___64_Prelude__Show__Show_36_OrderLineKey_58__33_show_58_0($_0_lift.$1) + (", " + ($cg$2 + ")"))));
-}
-
-// Text.Lexer.{many_58}
-
-function Text__Lexer___123_many_95_58_125_($_0_lift){
+function Text__Lexer___123_many_95_43_125_($_0_lift){
     return Text__Lexer__many($_0_lift);
 }
 
-// Language.JSON.Lexer.{numberLit_62}
+// Language.JSON.Lexer.{numberLit_47}
 
-function Language__JSON__Lexer___123_numberLit_95_62_125_($_0_lift){
+function Language__JSON__Lexer___123_numberLit_95_47_125_($_0_lift){
     return ($_0_lift === "-");
 }
 
-// Language.JSON.Lexer.{numberLit_63}
+// Language.JSON.Lexer.{numberLit_48}
 
-function Language__JSON__Lexer___123_numberLit_95_63_125_($_0_lift){
+function Language__JSON__Lexer___123_numberLit_95_48_125_($_0_lift){
     return ($_0_lift === "0");
 }
 
-// Language.JSON.Lexer.{numberLit_65}
+// Language.JSON.Lexer.{numberLit_50}
 
-function Language__JSON__Lexer___123_numberLit_95_65_125_($_0_lift){
+function Language__JSON__Lexer___123_numberLit_95_50_125_($_0_lift){
     return ($_0_lift === ".");
 }
 
-// Language.JSON.Lexer.{numberLit_67}
+// Language.JSON.Lexer.{numberLit_52}
 
-function Language__JSON__Lexer___123_numberLit_95_67_125_(){
+function Language__JSON__Lexer___123_numberLit_95_52_125_(){
     return new $HC_2_4$Text__Lexer__Core__SeqEat(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Prelude__Chars__isDigit()), new $JSRTS.Lazy((function(){
         return (function(){
-            return Text__Lexer___123_digits_95_20_125_();
+            return Text__Lexer___123_digits_95_19_125_();
         })();
     })));
 }
 
-// Language.JSON.Lexer.{numberLit_68}
+// Language.JSON.Lexer.{numberLit_53}
 
-function Language__JSON__Lexer___123_numberLit_95_68_125_(){
-    return new $HC_2_6$Text__Lexer__Core__Alt(new $HC_2_4$Text__Lexer__Core__SeqEat(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__Lexer___123_numberLit_95_65_125_()), new $JSRTS.Lazy((function(){
+function Language__JSON__Lexer___123_numberLit_95_53_125_(){
+    return new $HC_2_6$Text__Lexer__Core__Alt(new $HC_2_4$Text__Lexer__Core__SeqEat(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__Lexer___123_numberLit_95_50_125_()), new $JSRTS.Lazy((function(){
         return (function(){
-            return Language__JSON__Lexer___123_numberLit_95_67_125_();
+            return Language__JSON__Lexer___123_numberLit_95_52_125_();
         })();
     }))), $HC_0_0$Text__Lexer__Core__Empty);
 }
 
-// Language.JSON.Lexer.{numberLit_69}
+// Language.JSON.Lexer.{numberLit_54}
 
-function Language__JSON__Lexer___123_numberLit_95_69_125_($_0_lift){
+function Language__JSON__Lexer___123_numberLit_95_54_125_($_0_lift){
     let $cg$1 = null;
     if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
         $cg$1 = $HC_0_0$Prelude__List__Nil;
@@ -4691,116 +4224,116 @@ function Language__JSON__Lexer___123_numberLit_95_69_125_($_0_lift){
     return PE_95_elemBy_95_3a7ca737($_0_lift, $cg$1);
 }
 
-// Language.JSON.Lexer.{numberLit_70}
+// Language.JSON.Lexer.{numberLit_55}
 
-function Language__JSON__Lexer___123_numberLit_95_70_125_(){
-    return new $HC_2_6$Text__Lexer__Core__Alt(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__Lexer___123_numberLit_95_69_125_()), $HC_0_0$Text__Lexer__Core__Empty);
+function Language__JSON__Lexer___123_numberLit_95_55_125_(){
+    return new $HC_2_6$Text__Lexer__Core__Alt(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__Lexer___123_numberLit_95_54_125_()), $HC_0_0$Text__Lexer__Core__Empty);
 }
 
-// Language.JSON.Lexer.{numberLit_73}
+// Language.JSON.Lexer.{numberLit_58}
 
-function Language__JSON__Lexer___123_numberLit_95_73_125_(){
+function Language__JSON__Lexer___123_numberLit_95_58_125_(){
     return new $HC_2_6$Text__Lexer__Core__Alt(new $HC_2_4$Text__Lexer__Core__SeqEat(new $HC_2_4$Text__Lexer__Core__SeqEat(Text__Lexer__like("e"), new $JSRTS.Lazy((function(){
         return (function(){
-            return Language__JSON__Lexer___123_numberLit_95_70_125_();
+            return Language__JSON__Lexer___123_numberLit_95_55_125_();
         })();
     }))), new $JSRTS.Lazy((function(){
         return (function(){
-            return Language__JSON__Lexer___123_numberLit_95_67_125_();
+            return Language__JSON__Lexer___123_numberLit_95_52_125_();
         })();
     }))), $HC_0_0$Text__Lexer__Core__Empty);
 }
 
-// Language.JSON.Parser.{object_74}
+// Language.JSON.Parser.{object_59}
 
-function Language__JSON__Parser___123_object_95_74_125_($_0_lift, $_1_lift){
+function Language__JSON__Parser___123_object_95_59_125_($_0_lift, $_1_lift){
     return new $HC_1_0$Text__Parser__Core__Empty(new $HC_1_5$Language__JSON__Data__JObject($_0_lift));
 }
 
-// Language.JSON.Parser.{object_75}
+// Language.JSON.Parser.{object_60}
 
-function Language__JSON__Parser___123_object_95_75_125_($_0_lift){
-    return $partial_1_2$Language__JSON__Parser___123_object_95_74_125_($_0_lift);
+function Language__JSON__Parser___123_object_95_60_125_($_0_lift){
+    return $partial_1_2$Language__JSON__Parser___123_object_95_59_125_($_0_lift);
 }
 
-// Language.JSON.Parser.{object_76}
+// Language.JSON.Parser.{object_61}
 
-function Language__JSON__Parser___123_object_95_76_125_($_0_lift){
+function Language__JSON__Parser___123_object_95_61_125_($_0_lift){
     return new $HC_3_6$Text__Parser__Core__SeqEat(false, PE_95_match_95_44e5df34(new $HC_1_4$Language__JSON__Tokens__JTPunct(new $HC_1_3$Language__JSON__Tokens__Curly($HC_0_1$Language__JSON__Tokens__Close))), new $JSRTS.Lazy((function(){
         return (function(){
-            return Language__JSON__Parser___123_object_95_75_125_($_0_lift);
+            return Language__JSON__Parser___123_object_95_60_125_($_0_lift);
         })();
     })));
 }
 
-// Language.JSON.Parser.{object_77}
+// Language.JSON.Parser.{object_62}
 
-function Language__JSON__Parser___123_object_95_77_125_($_0_lift){
-    return new $HC_4_7$Text__Parser__Core__SeqEmpty(false, true, Language__JSON__Parser__object_58_properties_58_0(), $partial_0_1$Language__JSON__Parser___123_object_95_76_125_());
+function Language__JSON__Parser___123_object_95_62_125_($_0_lift){
+    return new $HC_4_7$Text__Parser__Core__SeqEmpty(false, true, Language__JSON__Parser__object_58_properties_58_0(), $partial_0_1$Language__JSON__Parser___123_object_95_61_125_());
 }
 
-// Language.JSON.Parser.{object_78}
+// Language.JSON.Parser.{object_63}
 
-function Language__JSON__Parser___123_object_95_78_125_($_0_lift){
-    return new $HC_4_7$Text__Parser__Core__SeqEmpty(false, true, $HC_0_5$Text__Parser__Core__Commit, $partial_0_1$Language__JSON__Parser___123_object_95_77_125_());
+function Language__JSON__Parser___123_object_95_63_125_($_0_lift){
+    return new $HC_4_7$Text__Parser__Core__SeqEmpty(false, true, $HC_0_5$Text__Parser__Core__Commit, $partial_0_1$Language__JSON__Parser___123_object_95_62_125_());
 }
 
-// Language.JSON.Parser.{object_79}
+// Language.JSON.Parser.{object_64}
 
-function Language__JSON__Parser___123_object_95_79_125_(){
-    return $partial_0_1$Language__JSON__Parser___123_object_95_78_125_();
+function Language__JSON__Parser___123_object_95_64_125_(){
+    return $partial_0_1$Language__JSON__Parser___123_object_95_63_125_();
 }
 
-// Language.JSON.Parser.{parseJSON_80}
+// Language.JSON.Parser.{parseJSON_65}
 
-function Language__JSON__Parser___123_parseJSON_95_80_125_($_0_lift){
+function Language__JSON__Parser___123_parseJSON_95_65_125_($_0_lift){
     
     return (!($_0_lift.$1.type === 5));
 }
 
-// Language.JSON.String.{permissiveStringLit_85}
+// Language.JSON.String.{permissiveStringLit_70}
 
-function Language__JSON__String___123_permissiveStringLit_95_85_125_(){
-    return new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_legalChar_95_52_125_());
+function Language__JSON__String___123_permissiveStringLit_95_70_125_(){
+    return new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_legalChar_95_38_125_());
 }
 
-// Language.JSON.String.{permissiveStringLit_87}
+// Language.JSON.String.{permissiveStringLit_72}
 
-function Language__JSON__String___123_permissiveStringLit_95_87_125_(){
-    return Text__Lexer__many(new $HC_2_5$Text__Lexer__Core__SeqEmpty(new $HC_2_2$Text__Lexer__Core__Lookahead(false, new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_jsonStringTokenMap_95_39_125_())), new $HC_2_6$Text__Lexer__Core__Alt(new $HC_2_4$Text__Lexer__Core__SeqEat(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_legalChar_95_51_125_()), new $JSRTS.Lazy((function(){
+function Language__JSON__String___123_permissiveStringLit_95_72_125_(){
+    return Text__Lexer__many(new $HC_2_5$Text__Lexer__Core__SeqEmpty(new $HC_2_2$Text__Lexer__Core__Lookahead(false, new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_jsonStringTokenMap_95_28_125_())), new $HC_2_6$Text__Lexer__Core__Alt(new $HC_2_4$Text__Lexer__Core__SeqEat(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_legalChar_95_37_125_()), new $JSRTS.Lazy((function(){
         return (function(){
-            return Language__JSON__String___123_permissiveStringLit_95_85_125_();
+            return Language__JSON__String___123_permissiveStringLit_95_70_125_();
         })();
-    }))), new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_legalChar_95_52_125_()))));
+    }))), new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_legalChar_95_38_125_()))));
 }
 
-// Language.JSON.String.{permissiveStringLit_89}
+// Language.JSON.String.{permissiveStringLit_74}
 
-function Language__JSON__String___123_permissiveStringLit_95_89_125_(){
-    return new $HC_2_6$Text__Lexer__Core__Alt(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_jsonStringTokenMap_95_39_125_()), $HC_0_0$Text__Lexer__Core__Empty);
+function Language__JSON__String___123_permissiveStringLit_95_74_125_(){
+    return new $HC_2_6$Text__Lexer__Core__Alt(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_jsonStringTokenMap_95_28_125_()), $HC_0_0$Text__Lexer__Core__Empty);
 }
 
-// Language.JSON.String.Parser.{quotedString_90}
+// Language.JSON.String.Parser.{quotedString_75}
 
-function Language__JSON__String__Parser___123_quotedString_95_90_125_($_0_lift, $_1_lift){
+function Language__JSON__String__Parser___123_quotedString_95_75_125_($_0_lift, $_1_lift){
     return new $HC_1_0$Text__Parser__Core__Empty(Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$prim_95__95_strCons(), "", $_0_lift));
 }
 
-// Language.JSON.String.Parser.{quotedString_91}
+// Language.JSON.String.Parser.{quotedString_76}
 
-function Language__JSON__String__Parser___123_quotedString_95_91_125_($_0_lift){
-    return new $HC_4_7$Text__Parser__Core__SeqEmpty(false, false, $HC_0_3$Text__Parser__Core__EOF, $partial_1_2$Language__JSON__String__Parser___123_quotedString_95_90_125_($_0_lift));
+function Language__JSON__String__Parser___123_quotedString_95_76_125_($_0_lift){
+    return new $HC_4_7$Text__Parser__Core__SeqEmpty(false, false, $HC_0_3$Text__Parser__Core__EOF, $partial_1_2$Language__JSON__String__Parser___123_quotedString_95_75_125_($_0_lift));
 }
 
-// Language.JSON.String.Parser.{quotedString_92}
+// Language.JSON.String.Parser.{quotedString_77}
 
-function Language__JSON__String__Parser___123_quotedString_95_92_125_(){
-    return $partial_0_1$Language__JSON__String__Parser___123_quotedString_95_91_125_();
+function Language__JSON__String__Parser___123_quotedString_95_77_125_(){
+    return $partial_0_1$Language__JSON__String__Parser___123_quotedString_95_76_125_();
 }
 
-// Text.Lexer.{range_93}
+// Text.Lexer.{range_78}
 
-function Text__Lexer___123_range_95_93_125_($_0_lift, $_1_lift, $_2_lift){
+function Text__Lexer___123_range_95_78_125_($_0_lift, $_1_lift, $_2_lift){
     let $cg$1 = null;
     if((Prelude__Interfaces__Prelude__Interfaces___64_Prelude__Interfaces__Ord_36_Char_58__33_compare_58_0($_0_lift, $_1_lift) < 0)) {
         $cg$1 = $_0_lift;
@@ -4849,9 +4382,9 @@ function Text__Lexer___123_range_95_93_125_($_0_lift, $_1_lift, $_2_lift){
     }
 }
 
-// Language.JSON.Parser.{rawString_94}
+// Language.JSON.Parser.{rawString_79}
 
-function Language__JSON__Parser___123_rawString_95_94_125_($_0_lift){
+function Language__JSON__Parser___123_rawString_95_79_125_($_0_lift){
     
     if(($_0_lift.type === 1)) {
         return new $HC_1_0$Text__Parser__Core__Empty($_0_lift.$1);
@@ -4860,33 +4393,33 @@ function Language__JSON__Parser___123_rawString_95_94_125_($_0_lift){
     }
 }
 
-// Language.JSON.Parser.{rawString_95}
+// Language.JSON.Parser.{rawString_80}
 
-function Language__JSON__Parser___123_rawString_95_95_125_(){
-    return $partial_0_1$Language__JSON__Parser___123_rawString_95_94_125_();
+function Language__JSON__Parser___123_rawString_95_80_125_(){
+    return $partial_0_1$Language__JSON__Parser___123_rawString_95_79_125_();
 }
 
-// Text.Parser.{sepBy1_96}
+// Text.Parser.{sepBy1_81}
 
-function Text__Parser___123_sepBy1_95_96_125_($_0_lift, $_1_lift){
+function Text__Parser___123_sepBy1_95_81_125_($_0_lift, $_1_lift){
     return new $HC_2_1$Prelude__List___58__58_($_0_lift, $_1_lift);
 }
 
-// Text.Parser.{sepBy1_98}
+// Text.Parser.{sepBy1_83}
 
-function Text__Parser___123_sepBy1_95_98_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift){
+function Text__Parser___123_sepBy1_95_83_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift){
     return Prelude__Functor__Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0(null, false, null, null, $_3_lift, Text__Parser__option(null, null, true, $HC_0_0$Prelude__List__Nil, Text__Parser__some(null, null, Text__Parser__Core___42__62_(null, $_0_lift, true, null, null, $_1_lift, $_2_lift))));
 }
 
-// Language.JSON.Data.{showString_99}
+// Language.JSON.Data.{showString_96}
 
-function Language__JSON__Data___123_showString_95_99_125_($_0_lift, $_1_lift){
+function Language__JSON__Data___123_showString_95_96_125_($_0_lift, $_1_lift){
     return (Language__JSON__Data__showChar($_0_lift) + $_1_lift);
 }
 
-// Language.JSON.String.Lexer.{simpleEscape_101}
+// Language.JSON.String.Lexer.{simpleEscape_98}
 
-function Language__JSON__String__Lexer___123_simpleEscape_95_101_125_($_0_lift){
+function Language__JSON__String__Lexer___123_simpleEscape_95_98_125_($_0_lift){
     let $cg$1 = null;
     if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
         $cg$1 = $HC_0_0$Prelude__List__Nil;
@@ -4911,70 +4444,64 @@ function Language__JSON__String__Lexer___123_simpleEscape_95_101_125_($_0_lift){
     return PE_95_elemBy_95_3a7ca737($_0_lift, $cg$1);
 }
 
-// Language.JSON.String.Lexer.{simpleEscape_102}
+// Language.JSON.String.Lexer.{simpleEscape_99}
 
-function Language__JSON__String__Lexer___123_simpleEscape_95_102_125_(){
-    return new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_simpleEscape_95_101_125_());
+function Language__JSON__String__Lexer___123_simpleEscape_95_99_125_(){
+    return new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_simpleEscape_95_98_125_());
 }
 
-// Text.Parser.{some_103}
+// Text.Parser.{some_100}
 
-function Text__Parser___123_some_95_103_125_($_0_lift, $_1_lift){
+function Text__Parser___123_some_95_100_125_($_0_lift, $_1_lift){
     return new $HC_1_0$Text__Parser__Core__Empty(new $HC_2_1$Prelude__List___58__58_($_0_lift, $_1_lift));
 }
 
-// Text.Parser.{some_104}
+// Text.Parser.{some_101}
 
-function Text__Parser___123_some_95_104_125_($_0_lift, $_1_lift){
-    return new $HC_4_7$Text__Parser__Core__SeqEmpty(false, false, Text__Parser__option(null, null, true, $HC_0_0$Prelude__List__Nil, Text__Parser__some(null, null, $_0_lift)), $partial_1_2$Text__Parser___123_some_95_103_125_($_1_lift));
+function Text__Parser___123_some_95_101_125_($_0_lift, $_1_lift){
+    return new $HC_4_7$Text__Parser__Core__SeqEmpty(false, false, Text__Parser__option(null, null, true, $HC_0_0$Prelude__List__Nil, Text__Parser__some(null, null, $_0_lift)), $partial_1_2$Text__Parser___123_some_95_100_125_($_1_lift));
 }
 
-// Text.Parser.{some_105}
+// Text.Parser.{some_102}
 
-function Text__Parser___123_some_95_105_125_($_0_lift){
-    return $partial_1_2$Text__Parser___123_some_95_104_125_($_0_lift);
+function Text__Parser___123_some_95_102_125_($_0_lift){
+    return $partial_1_2$Text__Parser___123_some_95_101_125_($_0_lift);
 }
 
-// Printf.{toFunction_107}
+// Printf.{toFunction_104}
 
-function Printf___123_toFunction_95_107_125_($_0_lift, $_1_lift, $_2_lift){
+function Printf___123_toFunction_95_104_125_($_0_lift, $_1_lift, $_2_lift){
     return Printf__toFunction($_0_lift, ($_1_lift + Prelude__Show__primNumShow(null, $partial_0_1$prim_95__95_toStrBigInt(), $HC_0_0$Prelude__Show__Open, $_2_lift)));
 }
 
-// Printf.{toFunction_108}
+// Printf.{toFunction_105}
 
-function Printf___123_toFunction_95_108_125_($_0_lift, $_1_lift, $_2_lift){
+function Printf___123_toFunction_95_105_125_($_0_lift, $_1_lift, $_2_lift){
     return Printf__toFunction($_0_lift, ($_1_lift + $_2_lift));
 }
 
-// Data.SortedMap.{toList_109}
+// Text.Lexer.{toTokenMap_106}
 
-function Data__SortedMap___123_toList_95_109_125_($_0_lift){
-    return new $HC_2_1$Prelude__List___58__58_($_0_lift, $HC_0_0$Prelude__List__Nil);
-}
-
-// Text.Lexer.{toTokenMap_110}
-
-function Text__Lexer___123_toTokenMap_95_110_125_($_0_lift, $_1_lift){
+function Text__Lexer___123_toTokenMap_95_106_125_($_0_lift, $_1_lift){
     return new $HC_2_0$Text__Token__Tok($_0_lift, $_1_lift);
 }
 
-// Text.Lexer.{toTokenMap_111}
+// Text.Lexer.{toTokenMap_107}
 
-function Text__Lexer___123_toTokenMap_95_111_125_($_0_lift){
+function Text__Lexer___123_toTokenMap_95_107_125_($_0_lift){
     
-    return new $HC_2_0$Builtins__MkPair($_0_lift.$1, $partial_1_2$Text__Lexer___123_toTokenMap_95_110_125_($_0_lift.$2));
+    return new $HC_2_0$Builtins__MkPair($_0_lift.$1, $partial_1_2$Text__Lexer___123_toTokenMap_95_106_125_($_0_lift.$2));
 }
 
-// Language.JSON.String.Lexer.{unicodeEscape_113}
+// Language.JSON.String.Lexer.{unicodeEscape_109}
 
-function Language__JSON__String__Lexer___123_unicodeEscape_95_113_125_($_0_lift){
+function Language__JSON__String__Lexer___123_unicodeEscape_95_109_125_($_0_lift){
     return ($_0_lift === "u");
 }
 
-// Language.JSON.String.Lexer.{unicodeEscape_114}
+// Language.JSON.String.Lexer.{unicodeEscape_110}
 
-function Language__JSON__String__Lexer___123_unicodeEscape_95_114_125_($_0_lift){
+function Language__JSON__String__Lexer___123_unicodeEscape_95_110_125_($_0_lift){
     let $cg$1 = null;
     if(Prelude__Chars__isLower($_0_lift)) {
         $cg$1 = String.fromCharCode(((($_0_lift).charCodeAt(0)|0) - 32));
@@ -4985,63 +4512,56 @@ function Language__JSON__String__Lexer___123_unicodeEscape_95_114_125_($_0_lift)
     return PE_95_elemBy_95_3a7ca737($cg$1, Prelude__Chars__isHexDigit_58_hexChars_58_0(null));
 }
 
-// Language.JSON.String.Lexer.{unicodeEscape_115}
+// Language.JSON.String.Lexer.{unicodeEscape_111}
 
-function Language__JSON__String__Lexer___123_unicodeEscape_95_115_125_(){
-    return Text__Lexer__count(new $HC_2_0$Text__Quantity__Qty((new $JSRTS.jsbn.BigInteger(("4"))), new $HC_1_1$Prelude__Maybe__Just((new $JSRTS.jsbn.BigInteger(("4"))))), new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_unicodeEscape_95_114_125_()));
+function Language__JSON__String__Lexer___123_unicodeEscape_95_111_125_(){
+    return Text__Lexer__count(new $HC_2_0$Text__Quantity__Qty((new $JSRTS.jsbn.BigInteger(("4"))), new $HC_1_1$Prelude__Maybe__Just((new $JSRTS.jsbn.BigInteger(("4"))))), new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_unicodeEscape_95_110_125_()));
 }
 
-// Language.JSON.String.Lexer.{unicodeEscape_116}
+// Language.JSON.String.Lexer.{unicodeEscape_112}
 
-function Language__JSON__String__Lexer___123_unicodeEscape_95_116_125_(){
-    return new $HC_2_4$Text__Lexer__Core__SeqEat(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_unicodeEscape_95_113_125_()), new $JSRTS.Lazy((function(){
+function Language__JSON__String__Lexer___123_unicodeEscape_95_112_125_(){
+    return new $HC_2_4$Text__Lexer__Core__SeqEat(new $HC_1_3$Text__Lexer__Core__Pred($partial_0_1$Language__JSON__String__Lexer___123_unicodeEscape_95_109_125_()), new $JSRTS.Lazy((function(){
         return (function(){
-            return Language__JSON__String__Lexer___123_unicodeEscape_95_115_125_();
+            return Language__JSON__String__Lexer___123_unicodeEscape_95_111_125_();
         })();
     })));
 }
 
-// Prelude.Functor.{Text.Parser.Core.@Prelude.Functor.Functor$Grammar tok c:!map:0_lam_129}
+// Prelude.Functor.{Text.Parser.Core.@Prelude.Functor.Functor$Grammar tok c:!map:0_lam_121}
 
-function Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_129_125_($_0_lift, $_1_lift){
+function Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_121_125_($_0_lift, $_1_lift){
     return new $HC_1_0$Text__Parser__Core__Empty($_0_lift($_1_lift));
 }
 
-// Prelude.Functor.{Text.Parser.Core.@Prelude.Functor.Functor$Grammar tok c:!map:0_lam_130}
+// Prelude.Functor.{Text.Parser.Core.@Prelude.Functor.Functor$Grammar tok c:!map:0_lam_122}
 
-function Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_130_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift, $_4_lift, $_5_lift, $_6_lift, $_7_lift, $_8_lift, $_9_lift){
+function Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_122_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift, $_4_lift, $_5_lift, $_6_lift, $_7_lift, $_8_lift, $_9_lift){
     return $JSRTS.force($_8_lift);
 }
 
-// Prelude.Functor.{Text.Parser.Core.@Prelude.Functor.Functor$Grammar tok c:!map:0_lam_131}
+// Prelude.Functor.{Text.Parser.Core.@Prelude.Functor.Functor$Grammar tok c:!map:0_lam_123}
 
-function Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_131_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift, $_4_lift, $_5_lift, $_6_lift, $_7_lift, $_8_lift, $_9_lift){
-    return Prelude__Functor__Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0(null, $_0_lift, null, null, $_1_lift, Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_130_125_($_2_lift, $_3_lift, $_4_lift, $_5_lift, $_1_lift, $_6_lift, $_0_lift, $_7_lift, $_8_lift, $_9_lift)($_9_lift));
+function Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_123_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift, $_4_lift, $_5_lift, $_6_lift, $_7_lift, $_8_lift, $_9_lift){
+    return Prelude__Functor__Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0(null, $_0_lift, null, null, $_1_lift, Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_122_125_($_2_lift, $_3_lift, $_4_lift, $_5_lift, $_1_lift, $_6_lift, $_0_lift, $_7_lift, $_8_lift, $_9_lift)($_9_lift));
 }
 
-// Prelude.Functor.{Text.Parser.Core.@Prelude.Functor.Functor$Grammar tok c:!map:0_lam_132}
+// Prelude.Functor.{Text.Parser.Core.@Prelude.Functor.Functor$Grammar tok c:!map:0_lam_124}
 
-function Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_132_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift, $_4_lift, $_5_lift, $_6_lift, $_7_lift, $_8_lift){
-    return $partial_9_10$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_131_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift, $_4_lift, $_5_lift, $_6_lift, $_7_lift, $_8_lift);
+function Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_124_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift, $_4_lift, $_5_lift, $_6_lift, $_7_lift, $_8_lift){
+    return $partial_9_10$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_123_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift, $_4_lift, $_5_lift, $_6_lift, $_7_lift, $_8_lift);
 }
 
-// Prelude.Functor.{Text.Parser.Core.@Prelude.Functor.Functor$Grammar tok c:!map:0_lam_134}
+// Prelude.Functor.{Text.Parser.Core.@Prelude.Functor.Functor$Grammar tok c:!map:0_lam_126}
 
-function Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_134_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift){
+function Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_126_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift){
     return Prelude__Functor__Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0(null, $_0_lift, null, null, $_1_lift, $_2_lift($_3_lift));
 }
 
-// Prelude.Functor.{Text.Parser.Core.@Prelude.Functor.Functor$Grammar tok c:!map:0_lam_135}
+// Prelude.Functor.{Text.Parser.Core.@Prelude.Functor.Functor$Grammar tok c:!map:0_lam_127}
 
-function Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_135_125_($_0_lift, $_1_lift, $_2_lift){
+function Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_127_125_($_0_lift, $_1_lift, $_2_lift){
     return Prelude__Functor__Prelude___64_Prelude__Functor__Functor_36_Maybe_58__33_map_58_0(null, null, $_0_lift, $_1_lift($_2_lift));
-}
-
-// Prelude.Monad.{Control.Monad.State.@Prelude.Monad.Monad$StateT stateType m:!>>=:0_lam_138}
-
-function Prelude__Monad___123_Control__Monad__State___64_Prelude__Monad__Monad_36_StateT_32_stateType_32_m_58__33__62__62__61__58_0_95_lam_95_138_125_($_0_lift, $_1_lift){
-    
-    return $_0_lift($_1_lift.$1)($_1_lift.$2);
 }
 
 // Decidable.Equality.Decidable.Equality.Bool implementation of Decidable.Equality.DecEq, method decEq
@@ -5162,25 +4682,6 @@ function Prelude__Interfaces__Language__JSON__Tokens___64_Prelude__Interfaces__E
     }
 }
 
-// Prelude.Foldable.Prelude.List.List implementation of Prelude.Foldable.Foldable, method foldl
-
-function Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldl_58_0($_0_arg, $_1_arg, $_2_arg, $_3_arg, $_4_arg){
-    let $tco$$_3_arg = $_3_arg;
-    for(;;) {
-        
-        if(($_4_arg.type === 1)) {
-            $tco$$_3_arg = $_2_arg($_3_arg)($_4_arg.$1);
-            $_0_arg = null;
-            $_1_arg = null;
-            $_2_arg = $_2_arg;
-            $_3_arg = $tco$$_3_arg;
-            $_4_arg = $_4_arg.$2;
-        } else {
-            return $_3_arg;
-        }
-    }
-}
-
 // Prelude.Foldable.Prelude.List.List implementation of Prelude.Foldable.Foldable, method foldr
 
 function Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0($_0_arg, $_1_arg, $_2_arg, $_3_arg, $_4_arg){
@@ -5203,7 +4704,7 @@ function Prelude__Functor__Text__Parser__Core___64_Prelude__Functor__Functor_36_
         if((!$_1_arg)) {
             return new $HC_1_0$Text__Parser__Core__Empty($_4_arg($_5_arg.$1));
         } else {
-            return new $HC_4_7$Text__Parser__Core__SeqEmpty(false, false, $_5_arg, $partial_1_2$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_129_125_($_4_arg));
+            return new $HC_4_7$Text__Parser__Core__SeqEmpty(false, false, $_5_arg, $partial_1_2$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_121_125_($_4_arg));
         }
     } else if(($_5_arg.type === 4)) {
         return $_5_arg;
@@ -5212,23 +4713,23 @@ function Prelude__Functor__Text__Parser__Core___64_Prelude__Functor__Functor_36_
         if($_1_arg) {
             return new $HC_3_6$Text__Parser__Core__SeqEat($_5_arg.$1, $_5_arg.$2, new $JSRTS.Lazy((function(){
                 return (function(){
-                    return Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_132_125_($_5_arg.$1, $_4_arg, $_0_arg, $_1_arg, $_2_arg, $_3_arg, $_5_arg, $_5_arg.$2, $_5_arg.$3);
+                    return Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_124_125_($_5_arg.$1, $_4_arg, $_0_arg, $_1_arg, $_2_arg, $_3_arg, $_5_arg, $_5_arg.$2, $_5_arg.$3);
                 })();
             })));
         } else {
-            return new $HC_4_7$Text__Parser__Core__SeqEmpty(false, false, $_5_arg, $partial_1_2$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_129_125_($_4_arg));
+            return new $HC_4_7$Text__Parser__Core__SeqEmpty(false, false, $_5_arg, $partial_1_2$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_121_125_($_4_arg));
         }
     } else if(($_5_arg.type === 7)) {
-        return new $HC_4_7$Text__Parser__Core__SeqEmpty($_5_arg.$1, $_5_arg.$2, $_5_arg.$3, $partial_3_4$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_134_125_($_5_arg.$2, $_4_arg, $_5_arg.$4));
+        return new $HC_4_7$Text__Parser__Core__SeqEmpty($_5_arg.$1, $_5_arg.$2, $_5_arg.$3, $partial_3_4$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_126_125_($_5_arg.$2, $_4_arg, $_5_arg.$4));
     } else if(($_5_arg.type === 1)) {
         
         if($_1_arg) {
-            return new $HC_1_1$Text__Parser__Core__Terminal($partial_2_3$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_135_125_($_4_arg, $_5_arg.$1));
+            return new $HC_1_1$Text__Parser__Core__Terminal($partial_2_3$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_127_125_($_4_arg, $_5_arg.$1));
         } else {
-            return new $HC_4_7$Text__Parser__Core__SeqEmpty(false, false, $_5_arg, $partial_1_2$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_129_125_($_4_arg));
+            return new $HC_4_7$Text__Parser__Core__SeqEmpty(false, false, $_5_arg, $partial_1_2$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_121_125_($_4_arg));
         }
     } else {
-        return new $HC_4_7$Text__Parser__Core__SeqEmpty(false, false, $_5_arg, $partial_1_2$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_129_125_($_4_arg));
+        return new $HC_4_7$Text__Parser__Core__SeqEmpty(false, false, $_5_arg, $partial_1_2$Prelude__Functor___123_Text__Parser__Core___64_Prelude__Functor__Functor_36_Grammar_32_tok_32_c_58__33_map_58_0_95_lam_95_121_125_($_4_arg));
     }
 }
 
@@ -5252,12 +4753,6 @@ function Prelude__Functor__Prelude___64_Prelude__Functor__Functor_36_Maybe_58__3
     } else {
         return $_3_arg;
     }
-}
-
-// Prelude.Monad.Control.Monad.State.StateT stateType m implementation of Prelude.Monad.Monad, method >>=
-
-function Prelude__Monad__Control__Monad__State___64_Prelude__Monad__Monad_36_StateT_32_stateType_32_m_58__33__62__62__61__58_0($_0_arg, $_1_arg, $_2_arg, $_3_arg, $_4_arg, $_5_arg, $_6_arg, $_7_st){
-    return $_4_arg(null)(null)($_5_arg($_7_st))($partial_1_2$Prelude__Monad___123_Control__Monad__State___64_Prelude__Monad__Monad_36_StateT_32_stateType_32_m_58__33__62__62__61__58_0_95_lam_95_138_125_($_6_arg));
 }
 
 // Prelude.Interfaces.Prelude.Interfaces.Char implementation of Prelude.Interfaces.Ord, method compare
@@ -5292,45 +4787,15 @@ function Prelude__Interfaces__Prelude__Interfaces___64_Prelude__Interfaces__Ord_
     }
 }
 
-// Prelude.Interfaces.Prelude.Interfaces.String implementation of Prelude.Interfaces.Ord, method compare
-
-function Prelude__Interfaces__Prelude__Interfaces___64_Prelude__Interfaces__Ord_36_String_58__33_compare_58_0($_0_arg, $_1_arg){
-    
-    if((((($_0_arg == $_1_arg)) ? 1|0 : 0|0) === 0)) {
-        
-        if((((($_0_arg < $_1_arg)) ? 1|0 : 0|0) === 0)) {
-            return 1;
-        } else {
-            return -1;
-        }
-    } else {
-        return 0;
-    }
-}
-
-// Prelude.Show.Exchange.OrderLineKey implementation of Prelude.Show.Show, method show
-
-function Prelude__Show__Exchange___64_Prelude__Show__Show_36_OrderLineKey_58__33_show_58_0($_0_arg){
-    
-    return ("(p1:" + (Prelude__Show__primNumShow(null, $partial_0_1$prim_95__95_toStrBigInt(), $HC_0_0$Prelude__Show__Open, $_0_arg.$1) + ("p2:" + (Prelude__Show__primNumShow(null, $partial_0_1$prim_95__95_toStrBigInt(), $HC_0_0$Prelude__Show__Open, $_0_arg.$2) + ("line:" + (Prelude__Show__primNumShow(null, $partial_0_1$prim_95__95_toStrBigInt(), $HC_0_0$Prelude__Show__Open, $_0_arg.$3) + ("sku1:" + (Prelude__Show__primNumShow(null, $partial_0_1$prim_95__95_toStrBigInt(), $HC_0_0$Prelude__Show__Open, $_0_arg.$4) + ("sku2:" + (Prelude__Show__primNumShow(null, $partial_0_1$prim_95__95_toStrBigInt(), $HC_0_0$Prelude__Show__Open, $_0_arg.$5) + ("price_unit:" + Prelude__Show__primNumShow(null, $partial_0_1$prim_95__95_toStrBigInt(), $HC_0_0$Prelude__Show__Open, $_0_arg.$6))))))))))));
-}
-
 // {runMain_0}
 
 function $_0_runMain(){
     return $JSRTS.force(Main__main($HC_0_0$TheWorld));
 }
 
-// {PE_insertFrom_2a38cce8_6}
+// {PE_match_3b7ca742_6}
 
-function $_6_PE_95_insertFrom_95_2a38cce8($_0_lift, $_1_lift){
-    
-    return Data__SortedMap__insert(null, null, $_1_lift.$1, $_1_lift.$2, $_0_lift);
-}
-
-// {PE_match_3b7ca742_7}
-
-function $_7_PE_95_match_95_3b7ca742($_0_lift, $_1_lift){
+function $_6_PE_95_match_95_3b7ca742($_0_lift, $_1_lift){
     
     
     if(Prelude__Interfaces__Language__JSON__String__Tokens___64_Prelude__Interfaces__Eq_36_JSONStringTokenKind_58__33__61__61__58_0($_1_lift.$1, $_0_lift)) {
@@ -5351,9 +4816,9 @@ function $_7_PE_95_match_95_3b7ca742($_0_lift, $_1_lift){
     }
 }
 
-// {PE_match_44e5df34_8}
+// {PE_match_44e5df34_7}
 
-function $_8_PE_95_match_95_44e5df34($_0_lift, $_1_lift){
+function $_7_PE_95_match_95_44e5df34($_0_lift, $_1_lift){
     
     
     if(Prelude__Interfaces__Language__JSON__Tokens___64_Prelude__Interfaces__Eq_36_JSONTokenKind_58__33__61__61__58_0($_1_lift.$1, $_0_lift)) {
@@ -5383,75 +4848,53 @@ function $_8_PE_95_match_95_44e5df34($_0_lift, $_1_lift){
     }
 }
 
-// {Data.SortedMap.mergeWith:inserted:0_lam_117}
+// {Language.JSON.Parser.object:properties:0_lam_113}
 
-function $_117_Data__SortedMap__mergeWith_58_inserted_58_0_95_lam($_0_lift, $_1_lift, $_2_lift, $_3_lift){
-    let $cg$1 = null;
-    let $cg$2 = null;
-    if(($_0_lift.type === 0)) {
-        $cg$2 = $HC_0_0$Prelude__Maybe__Nothing;
-    } else {
-        $cg$2 = Data__SortedMap__treeLookup(null, null, $_0_lift.$1, null, $_2_lift.$1, $_0_lift.$2);
-    }
-    
-    let $cg$3 = null;
-    if(($cg$2.type === 1)) {
-        $cg$3 = $_1_lift($cg$2.$1)($_2_lift.$2);
-    } else {
-        $cg$3 = $_2_lift.$2;
-    }
-    
-    $cg$1 = new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair($_2_lift.$1, $cg$3), $HC_0_0$Prelude__List__Nil);
-    return Prelude__List___43__43_(null, $cg$1, $_3_lift);
+function $_113_Language__JSON__Parser__object_58_properties_58_0_95_lam($_0_lift, $_1_lift){
+    return new $HC_1_0$Text__Parser__Core__Empty(new $HC_2_0$Builtins__MkPair($_0_lift, $_1_lift));
+}
+
+// {Language.JSON.Parser.object:properties:0_lam_114}
+
+function $_114_Language__JSON__Parser__object_58_properties_58_0_95_lam($_0_lift){
+    return $partial_1_2$$_113_Language__JSON__Parser__object_58_properties_58_0_95_lam($_0_lift);
+}
+
+// {Language.JSON.Parser.object:properties:0_lam_115}
+
+function $_115_Language__JSON__Parser__object_58_properties_58_0_95_lam($_0_lift, $_1_lift){
+    return new $HC_3_6$Text__Parser__Core__SeqEat(false, Language__JSON__Parser__json(), new $JSRTS.Lazy((function(){
+        return (function(){
+            return $_114_Language__JSON__Parser__object_58_properties_58_0_95_lam($_0_lift);
+        })();
+    })));
+}
+
+// {Language.JSON.Parser.object:properties:0_lam_116}
+
+function $_116_Language__JSON__Parser__object_58_properties_58_0_95_lam($_0_lift){
+    return $partial_1_2$$_115_Language__JSON__Parser__object_58_properties_58_0_95_lam($_0_lift);
+}
+
+// {Language.JSON.Parser.object:properties:0_lam_117}
+
+function $_117_Language__JSON__Parser__object_58_properties_58_0_95_lam($_0_lift){
+    return new $HC_3_6$Text__Parser__Core__SeqEat(true, PE_95_match_95_44e5df34(new $HC_1_4$Language__JSON__Tokens__JTPunct($HC_0_1$Language__JSON__Tokens__Colon)), new $JSRTS.Lazy((function(){
+        return (function(){
+            return $_116_Language__JSON__Parser__object_58_properties_58_0_95_lam($_0_lift);
+        })();
+    })));
 }
 
 // {Language.JSON.Parser.object:properties:0_lam_118}
 
-function $_118_Language__JSON__Parser__object_58_properties_58_0_95_lam($_0_lift, $_1_lift){
-    return new $HC_1_0$Text__Parser__Core__Empty(new $HC_2_0$Builtins__MkPair($_0_lift, $_1_lift));
+function $_118_Language__JSON__Parser__object_58_properties_58_0_95_lam(){
+    return $partial_0_1$$_117_Language__JSON__Parser__object_58_properties_58_0_95_lam();
 }
 
-// {Language.JSON.Parser.object:properties:0_lam_119}
+// {Text.Lexer.Core.tokenise:getCols:0_lam_119}
 
-function $_119_Language__JSON__Parser__object_58_properties_58_0_95_lam($_0_lift){
-    return $partial_1_2$$_118_Language__JSON__Parser__object_58_properties_58_0_95_lam($_0_lift);
-}
-
-// {Language.JSON.Parser.object:properties:0_lam_120}
-
-function $_120_Language__JSON__Parser__object_58_properties_58_0_95_lam($_0_lift, $_1_lift){
-    return new $HC_3_6$Text__Parser__Core__SeqEat(false, Language__JSON__Parser__json(), new $JSRTS.Lazy((function(){
-        return (function(){
-            return $_119_Language__JSON__Parser__object_58_properties_58_0_95_lam($_0_lift);
-        })();
-    })));
-}
-
-// {Language.JSON.Parser.object:properties:0_lam_121}
-
-function $_121_Language__JSON__Parser__object_58_properties_58_0_95_lam($_0_lift){
-    return $partial_1_2$$_120_Language__JSON__Parser__object_58_properties_58_0_95_lam($_0_lift);
-}
-
-// {Language.JSON.Parser.object:properties:0_lam_122}
-
-function $_122_Language__JSON__Parser__object_58_properties_58_0_95_lam($_0_lift){
-    return new $HC_3_6$Text__Parser__Core__SeqEat(true, PE_95_match_95_44e5df34(new $HC_1_4$Language__JSON__Tokens__JTPunct($HC_0_1$Language__JSON__Tokens__Colon)), new $JSRTS.Lazy((function(){
-        return (function(){
-            return $_121_Language__JSON__Parser__object_58_properties_58_0_95_lam($_0_lift);
-        })();
-    })));
-}
-
-// {Language.JSON.Parser.object:properties:0_lam_123}
-
-function $_123_Language__JSON__Parser__object_58_properties_58_0_95_lam(){
-    return $partial_0_1$$_122_Language__JSON__Parser__object_58_properties_58_0_95_lam();
-}
-
-// {Text.Lexer.Core.tokenise:getCols:0_lam_124}
-
-function $_124_Text__Lexer__Core__tokenise_58_getCols_58_0_95_lam($_0_lift){
+function $_119_Text__Lexer__Core__tokenise_58_getCols_58_0_95_lam($_0_lift){
     
     if((((($_0_lift === "\n")) ? 1|0 : 0|0) === 0)) {
         return true;
@@ -5460,27 +4903,15 @@ function $_124_Text__Lexer__Core__tokenise_58_getCols_58_0_95_lam($_0_lift){
     }
 }
 
-// {Text.Lexer.Core.tokenise:getFirstToken:0_lam_125}
+// {Text.Lexer.Core.tokenise:getFirstToken:0_lam_120}
 
-function $_125_Text__Lexer__Core__tokenise_58_getFirstToken_58_0_95_lam($_0_lift){
+function $_120_Text__Lexer__Core__tokenise_58_getFirstToken_58_0_95_lam($_0_lift){
     return ($_0_lift === "\n");
 }
 
-// {Data.SortedMap.treeToList:treeToList':0_lam_126}
+// {_Text.Parser.Core.doParse_with_52_lam_132}
 
-function $_126_Data__SortedMap__treeToList_58_treeToList_39__58_0_95_lam($_0_lift, $_1_lift, $_2_lift){
-    return new $HC_2_1$Prelude__List___58__58_($_2_lift, Data__SortedMap__treeToList_58_treeToList_39__58_0(null, null, null, null, null, $_0_lift, $_1_lift));
-}
-
-// {Data.SortedMap.treeToList:treeToList':0_lam_128}
-
-function $_128_Data__SortedMap__treeToList_58_treeToList_39__58_0_95_lam($_0_lift, $_1_lift, $_2_lift, $_3_lift){
-    return new $HC_2_1$Prelude__List___58__58_($_3_lift, Data__SortedMap__treeToList_58_treeToList_39__58_0(null, null, null, null, null, $partial_2_3$$_126_Data__SortedMap__treeToList_58_treeToList_39__58_0_95_lam($_0_lift, $_1_lift), $_2_lift));
-}
-
-// {_Text.Parser.Core.doParse_with_52_lam_141}
-
-function $_141__95_Text__Parser__Core__doParse_95_with_95_52_95_lam($_0_lift, $_1_lift, $_2_lift, $_3_lift, $_4_lift, $_5_lift, $_6_lift, $_7_lift, $_8_lift, $_9_lift, $_10_lift, $_11_lift, $_12_lift, $_13_lift){
+function $_132__95_Text__Parser__Core__doParse_95_with_95_52_95_lam($_0_lift, $_1_lift, $_2_lift, $_3_lift, $_4_lift, $_5_lift, $_6_lift, $_7_lift, $_8_lift, $_9_lift, $_10_lift, $_11_lift, $_12_lift, $_13_lift){
     return $JSRTS.force($_9_lift);
 }
 
@@ -5548,18 +4979,12 @@ function Prelude__Chars__isHexDigit_58_hexChars_58_0($_0_arg){
     return new $HC_2_1$Prelude__List___58__58_("0", new $HC_2_1$Prelude__List___58__58_("1", new $HC_2_1$Prelude__List___58__58_("2", new $HC_2_1$Prelude__List___58__58_("3", new $HC_2_1$Prelude__List___58__58_("4", new $HC_2_1$Prelude__List___58__58_("5", new $HC_2_1$Prelude__List___58__58_("6", new $HC_2_1$Prelude__List___58__58_("7", new $HC_2_1$Prelude__List___58__58_("8", new $HC_2_1$Prelude__List___58__58_("9", new $HC_2_1$Prelude__List___58__58_("A", new $HC_2_1$Prelude__List___58__58_("B", new $HC_2_1$Prelude__List___58__58_("C", new $HC_2_1$Prelude__List___58__58_("D", new $HC_2_1$Prelude__List___58__58_("E", new $HC_2_1$Prelude__List___58__58_("F", $HC_0_0$Prelude__List__Nil))))))))))))))));
 }
 
-// Data.SortedMap.mergeWith, inserted
-
-function Data__SortedMap__mergeWith_58_inserted_58_0($_0_arg, $_1_arg, $_2_arg, $_3_arg, $_4_arg){
-    return Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_2_4$$_117_Data__SortedMap__mergeWith_58_inserted_58_0_95_lam($_3_arg, $_2_arg), $HC_0_0$Prelude__List__Nil, Data__SortedMap__toList(null, null, $_4_arg));
-}
-
 // Language.JSON.Parser.object, properties
 
 function Language__JSON__Parser__object_58_properties_58_0(){
     return Text__Parser__option(null, null, true, $HC_0_0$Prelude__List__Nil, Text__Parser__sepBy1(null, null, null, true, PE_95_match_95_44e5df34(new $HC_1_4$Language__JSON__Tokens__JTPunct($HC_0_0$Language__JSON__Tokens__Comma)), new $HC_3_6$Text__Parser__Core__SeqEat(true, Language__JSON__Parser__rawString(), new $JSRTS.Lazy((function(){
         return (function(){
-            return $_123_Language__JSON__Parser__object_58_properties_58_0_95_lam();
+            return $_118_Language__JSON__Parser__object_58_properties_58_0_95_lam();
         })();
     })))));
 }
@@ -5573,7 +4998,7 @@ function Prelude__WellFounded__sizeAccessible_58_acc_58_0($_0_arg, $_1_arg, $_2_
 // Text.Lexer.Core.tokenise, getCols
 
 function Text__Lexer__Core__tokenise_58_getCols_58_0($_0_arg, $_1_arg, $_2_arg, $_3_arg, $_4_arg, $_5_arg, $_6_arg, $_7_arg){
-    const $cg$2 = Text__Lexer__Core__fspan($partial_0_1$$_124_Text__Lexer__Core__tokenise_58_getCols_58_0_95_lam(), (($_6_arg).split('').reverse().join('')));
+    const $cg$2 = Text__Lexer__Core__fspan($partial_0_1$$_119_Text__Lexer__Core__tokenise_58_getCols_58_0_95_lam(), (($_6_arg).split('').reverse().join('')));
     
     if(($cg$2.$2 === "")) {
         return ($_7_arg + (((new $JSRTS.jsbn.BigInteger(''+((($cg$2.$1).length))))).intValue()|0));
@@ -5620,7 +5045,7 @@ function Text__Lexer__Core__tokenise_58_getFirstToken_58_0($_0_arg, $_1_arg, $_2
                     $cg$9 = new $HC_2_1$Prelude__List___58__58_($cg$7.$1[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$11));
                 }
                 
-                return new $HC_1_1$Prelude__Maybe__Just(new $HC_2_0$Builtins__MkPair($cg$3.$2($cg$7.$1), new $HC_2_0$Builtins__MkPair(($_1_arg + ((Prelude__List__length(null, Prelude__List__filter(null, $partial_0_1$$_125_Text__Lexer__Core__tokenise_58_getFirstToken_58_0_95_lam(), $cg$9))).intValue()|0)), new $HC_2_0$Builtins__MkPair(Text__Lexer__Core__tokenise_58_getCols_58_0(null, null, null, null, null, null, $cg$7.$1, $_2_arg), $cg$7.$2))));
+                return new $HC_1_1$Prelude__Maybe__Just(new $HC_2_0$Builtins__MkPair($cg$3.$2($cg$7.$1), new $HC_2_0$Builtins__MkPair(($_1_arg + ((Prelude__List__length(null, Prelude__List__filter(null, $partial_0_1$$_120_Text__Lexer__Core__tokenise_58_getFirstToken_58_0_95_lam(), $cg$9))).intValue()|0)), new $HC_2_0$Builtins__MkPair(Text__Lexer__Core__tokenise_58_getCols_58_0(null, null, null, null, null, null, $cg$7.$1, $_2_arg), $cg$7.$2))));
             } else {
                 $_0_arg = null;
                 $_1_arg = $_1_arg;
@@ -5633,57 +5058,6 @@ function Text__Lexer__Core__tokenise_58_getFirstToken_58_0($_0_arg, $_1_arg, $_2
             }
         } else {
             return $HC_0_0$Prelude__Maybe__Nothing;
-        }
-    }
-}
-
-// Data.SortedMap.treeToList, treeToList'
-
-function Data__SortedMap__treeToList_58_treeToList_39__58_0($_0_arg, $_1_arg, $_2_arg, $_3_arg, $_4_arg, $_5_arg, $_6_arg){
-    for(;;) {
-        
-        if(($_6_arg.type === 1)) {
-            $_0_arg = null;
-            $_1_arg = null;
-            $_2_arg = null;
-            $_3_arg = null;
-            $_4_arg = null;
-            $_5_arg = $partial_2_3$$_126_Data__SortedMap__treeToList_58_treeToList_39__58_0_95_lam($_5_arg, $_6_arg.$3);
-            $_6_arg = $_6_arg.$1;
-        } else if(($_6_arg.type === 2)) {
-            $_0_arg = null;
-            $_1_arg = null;
-            $_2_arg = null;
-            $_3_arg = null;
-            $_4_arg = null;
-            $_5_arg = $partial_3_4$$_128_Data__SortedMap__treeToList_58_treeToList_39__58_0_95_lam($_5_arg, $_6_arg.$5, $_6_arg.$3);
-            $_6_arg = $_6_arg.$1;
-        } else {
-            return $_5_arg(new $HC_2_0$Builtins__MkPair($_6_arg.$1, $_6_arg.$2));
-        }
-    }
-}
-
-// Prelude.Show.Prelude.Show.List a implementation of Prelude.Show.Show, method show, show'
-
-function Prelude__Show__Prelude__Show___64_Prelude__Show__Show_36_List_32_a_58__33_show_58_0_58_show_39__58_0($_0_arg, $_1_arg, $_2_arg, $_3_arg, $_4_arg){
-    let $tco$$_3_arg = $_3_arg;
-    for(;;) {
-        
-        if(($_4_arg.type === 1)) {
-            
-            if(($_4_arg.$2.type === 0)) {
-                return ($_3_arg + $_2_arg($_4_arg.$1));
-            } else {
-                $tco$$_3_arg = ($_3_arg + ($_2_arg($_4_arg.$1) + ", "));
-                $_0_arg = null;
-                $_1_arg = null;
-                $_2_arg = $_2_arg;
-                $_3_arg = $tco$$_3_arg;
-                $_4_arg = $_4_arg.$2;
-            }
-        } else {
-            return $_3_arg;
         }
     }
 }
@@ -5872,7 +5246,7 @@ function _95_Text__Parser__Core__doParse_95_with_95_52($_0_arg, $_1_arg, $_2_arg
             if(($cg$16.type === 0)) {
                 return new $HC_1_0$Text__Parser__Core__Failure($cg$16.$1);
             } else {
-                const $cg$18 = _95_Text__Parser__Core__doParse_95_with_95_52($cg$16.$2, null, null, $cg$16.$4, $_4_arg($cg$16.$4)(Text__Parser__Core__shorter(null, $cg$16.$4, $cg$16.$1)), $_6_arg.$1, $_141__95_Text__Parser__Core__doParse_95_with_95_52_95_lam($_0_arg, $_1_arg, $_2_arg, $_3_arg, $_4_arg, $_5_arg, $_6_arg, $_6_arg.$1, $_6_arg.$2, $_6_arg.$3, $cg$16.$1, $cg$16.$2, $cg$16.$3, $cg$16.$4)($cg$16.$3));
+                const $cg$18 = _95_Text__Parser__Core__doParse_95_with_95_52($cg$16.$2, null, null, $cg$16.$4, $_4_arg($cg$16.$4)(Text__Parser__Core__shorter(null, $cg$16.$4, $cg$16.$1)), $_6_arg.$1, $_132__95_Text__Parser__Core__doParse_95_with_95_52_95_lam($_0_arg, $_1_arg, $_2_arg, $_3_arg, $_4_arg, $_5_arg, $_6_arg, $_6_arg.$1, $_6_arg.$2, $_6_arg.$3, $cg$16.$1, $cg$16.$2, $cg$16.$3, $cg$16.$4)($cg$16.$3));
                 if(($cg$18.type === 1)) {
                     return new $HC_4_2$Text__Parser__Core__NonEmptyRes($cg$16.$1, $cg$18.$1, $cg$18.$2, $cg$16.$4);
                 } else if(($cg$18.type === 0)) {
