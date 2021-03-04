@@ -64,6 +64,8 @@ Semigroup Tterm where
 Show Tterm where
      show (Tt x y) = show(x) ++ "//" ++ show(y)
 
+-- String -> index
+
 record OrderLineKey where
      constructor MkOrderLineKey
      p1  : Integer  --partner 1

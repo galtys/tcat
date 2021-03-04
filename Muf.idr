@@ -3,7 +3,8 @@ module Main
 import Printf as PF
 import Snippets
 import Exchange
-
+import Language.JSON
+import Language.JSON.Data
 {--
 function update_qty(key, value) {
   document.getElementById(key).innerText=value;
@@ -12,6 +13,19 @@ function get_qty(key) {
   return document.getElementById(key).innerText
 
 --}
+
+js1 : String
+js1 =  """{
+  "key1": [11,89],
+  "key2": {
+      "key2.1": true,
+      "key2.2": {
+        "key2.2.1": "bar",
+        "key2.2.2": 200
+      }
+    }
+  }"""
+
 
 
 update_qty : String -> Int -> JS_IO ()
@@ -174,6 +188,10 @@ main = do
          
    console_log new_row_sha1
    console_log new_row_sha256
+   case (parse js1) of
+     Nothing => console_log "na"
+     (Just j) => console_log (Language.JSON.Data.format 2 j)
+--   console_log js1
 
 {-            
    so1_qty <- get_qty "so1_qty"
