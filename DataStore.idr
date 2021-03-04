@@ -120,7 +120,7 @@ display {schema = (y .+. z)} (iteml, itemr) = display iteml ++ ", " ++
                                               display itemr
 
 
-display_as_key : SchemaType schema -> String
+display_as_key : (SchemaType schema) -> String
 display_as_key {schema = (SString s1)} item = s1++":"++(show item)
 display_as_key {schema = (SInt s2)} item = s2++":"++(show item)
 display_as_key {schema = (y .+. z)} (iteml, itemr) = display_as_key iteml ++ "_" ++
