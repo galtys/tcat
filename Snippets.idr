@@ -42,7 +42,7 @@ _table_card = """
             <div class="card-body">
               
               <form>
-              <table class="table table-responsive d-md-table">
+              <table class="table table-sm table-info">
                 <thead>
                   <tr>
                     <th>SKU</th>
@@ -94,6 +94,8 @@ format_row = """<tr >  <td scope="row"> %s </td>   <td>%s</td> <td %s> %d </td> 
 
 
 --_unit_dropdown
+_unit_dropdown2 : String
+_unit_dropdown2 = ""
 
 new_row : String -> RowID -> Integer -> Integer -> String --sku key qty price
 new_row sku key qty price = case key of
