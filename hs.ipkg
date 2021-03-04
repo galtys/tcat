@@ -1,9 +1,9 @@
 package hs
 
-modules = SVariant, SHA256
+modules = Exchange,Printf,Snippets,Muf
 
-main = Main
+main = Muf
 
-makefile = Makefile
+--makefile = Makefile
 
 pkgs = containers,idris_free,rationals,lightyear,contrib,xml,commons

@@ -21,6 +21,46 @@ data CarrierA = CA Asset | CL Location | CO Order | CQty Qty
 
 data Carrier = V String | N Integer | A String | L String | P String | ZERO
 -}
+
+Name : Type
+Name = String
+
+SPairs : Type
+SPairs = (Name,Name)
+
+data FieldTypes = FInt | FString | FSelection | FDate 
+
+test_selection : List SPairs
+test_selection = [("sku1","SKU1"),("sku2","SKU2")]
+
+
+data FieldDef : FieldTypes -> Type where
+     IntsD :       (name : Name) ->  FieldDef FInt
+     StrsD :       (name : Name) ->  FieldDef FString
+     SelD :        (name : Name) ->  FieldDef FSelection
+     DatesD :      (name : Name) ->  FieldDef FDate
+
+test_model : (FieldDef FInt, FieldDef FInt, FieldDef FString)
+test_model = ((IntsD "p1"), (IntsD "p2"), (StrsD "line"))
+--ModelDef : Type
+--ModelDef = List FieldDef FieldTypes
+
+
+--so_line_def : List (FieldDef FieldTypes)
+--so_line_def = [(IntsD "p1") (IntsD "p2") (StrsD "line")]
+
+
+data FieldVal : FieldTypes -> Type where
+     Ints :       (val : Int) ->  FieldVal FInt
+     Strs :       (val : String) ->  FieldVal FString
+     Selections : (val : SPairs)-> FieldVal FSelection
+     Dates :      (val : Int) ->  FieldVal FDate
+
+
+--ModelVal : Type
+--ModelVal = List FieldVal FieldTypes
+
+
 data Tterm = Tt Integer Integer
 
 tadd : Tterm -> Tterm -> Tterm
