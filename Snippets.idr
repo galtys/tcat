@@ -113,12 +113,13 @@ display_as_key {schema = (SInt (FA s2 rw)  )} item = s2++":"++(show item)
 display_as_key {schema = (y .+. z)} (iteml, itemr) = display_as_key iteml ++ "_" ++
                                               display_as_key itemr
 
+{-
 test_val : (SchemaType OrderLineKey1)
 test_val = (1,7,1,"1",100,188)
 
 test_key : String
 test_key = display_as_key  test_val
-
+-}
 
 TagID : Type
 TagID = String

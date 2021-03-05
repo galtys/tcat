@@ -52,9 +52,9 @@ Show Tterm where
 
 -- String -> index
 OrderLineKey1 : Schema
-OrderLineKey1 = ((SInt (FA "p1" False) )  .+.(SInt (FA "p2" False)  ).+.(SInt (FA "line" False) ).+.
-                 (SString (FA "sku1" False) ).+.(SInt (FA "sku2" False)  ).+.(SInt (FA "price_unit" False) ) )
+OrderLineKey1 = (SString (FA "sku1" False) ).+.(SInt (FA "price_unit" False) )
 
+--(SInt (FA "p1" False) )  .+.(SInt (FA "p2" False)  ).+.(SInt (FA "line" False) ).+.
 
 record OrderLineKey where
      constructor MkOrderLineKey
