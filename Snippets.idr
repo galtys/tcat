@@ -161,7 +161,7 @@ line2row (Just _rowid) x@(MkOrderLine k v)
            _qty = (t2integer v)
            _qty_item = render_number_input_tag (concat [_rowid, "|Qty"]) _qty
            _line = concat [printf "%s" x | x <- _items ++ [_qty_item] ] in
-           printf "<tr>%s</td>" _line
+           printf "<tr>%s</tr>" _line
 
 
 {-
