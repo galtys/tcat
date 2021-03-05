@@ -15,17 +15,6 @@ function get_qty(key) {
 
 --}
 
-js1 : String
-js1 =  """{
-  "key1": [11,89],
-  "key2": {
-      "key2.1": true,
-      "key2.2": {
-        "key2.2.1": "bar",
-        "key2.2.2": 200
-      }
-    }
-  }"""
 
 update_qty : String -> Int -> JS_IO ()
 update_qty = foreign FFI_JS "update_qty(%0,%1)" (String -> Int -> JS_IO ())
@@ -96,8 +85,12 @@ calc_sha1 = foreign FFI_JS "calc_sha1(%0)" (String -> JS_IO String)
 calc_sha256 : String -> JS_IO String
 calc_sha256 = foreign FFI_JS "calc_sha256(%0)" (String -> JS_IO String)
 
+
+test_line : OrderLine
+test_line = MkOrderLine (1, 7, 1, 1, 100, 188) (Tt 15 0)
+
 test_list : List OrderLine
-test_list = [MkOrderLine (1, 7, 1, 1, 100, 188) (Tt 15 0),
+test_list = [test_line,
              MkOrderLine (1, 7, 1, 2, 100, 73) (Tt 5 0),
              MkOrderLine (1, 7, 1, 1, 100, 188) (Tt 0 2),
              MkOrderLine (1, 7, 1, 1, 100, 188) (Tt 0 1),
@@ -133,8 +126,10 @@ line2io tableid rowid x = insert_beforeend tableid $ line2row rowid x
 line_list2io : TableID -> List OrderLine -> JS_IO ()
 line_list2io tableid [] = pure ()
 line_list2io tableid ( x@(MkOrderLine k v) :: xs) = do
+          --console_log (show k)
           let key_s = (display_as_key k)
-
+          -- console_log key_s
+          console_log $ show $ renderDataWithSchema k
           q_flag <- get_qty_int_flag key_s
           case (q_flag==0) of
               True => line2io tableid (Just key_s) x
@@ -157,16 +152,20 @@ line_list2io_amend tableid ( x :: xs) = do
           line_list2io_amend tableid xs
 
 partial main : JS_IO ()
-main = do
-   insert_beforeend "so_composite" (table_card table_composite_id)
-   line_list2io table_composite_id test_list
-   
-   new_row_sha1 <- calc_sha1 example_row
-   new_row_sha256 <- calc_sha256 example_row
+main = do      
+   new_row_sha1 <- calc_sha1 "abc"
+   new_row_sha256 <- calc_sha256 "abc"
+   console_log new_row_sha1
+   console_log new_row_sha256
+
 --   insert_beforeend "so_table1" example_row
    
    --line2io aline1
    --line2io aline2
+   
+   insert_beforeend "so_composite" (table_card table_composite_id)
+
+   line_list2io table_composite_id test_list
    
    insert_beforeend "so_amendments" (table_card (table_amendments_id 1) )
    line_list2io_amend (table_amendments_id 1) test_list
@@ -185,20 +184,14 @@ main = do
          
                            
          
-   console_log new_row_sha1
-   console_log new_row_sha256
    case (parse js1) of
      Nothing => console_log "na"
      (Just j) => console_log (Language.JSON.Data.format 2 j)
---   console_log js1
-
-{-            
-   so1_qty <- get_qty "so1_qty"
-   let k="so1_qty"
-   let v="34.98"
-   update_qty k so1_qty
--}
-   console_log $ PF.printf "%d%s" 5 "hello!"
+   console_log $ schema2thead (OrderLineKey1 .+. (SInt "Qty"))                   
+--   console_log $ show  $ display_as_key   (1, 7, 1, 2, 100, 73)
+  
+   
+     
 --   console_log $ show $test2 test_list
 
 -- Local Variables:

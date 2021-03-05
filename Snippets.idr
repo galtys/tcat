@@ -20,6 +20,17 @@ import DataStore
 		    <td>0</td>
                   </tr>
 -}
+js1 : String
+js1 =  """{
+  "key1": [11,89],
+  "key2": {
+      "key2.1": true,
+      "key2.2": {
+        "key2.2.1": "bar",
+        "key2.2.2": 200
+      }
+    }
+  }"""
 
 _unit_dropdown : String
 _unit_dropdown = """
@@ -35,14 +46,14 @@ _unit_dropdown = """
 _table_card : String
 _table_card = """
           <!-- Content Edit Table -->
-          <div class="card border-dark bg-light mt-3">
+          <div class="card border-dark  mt-3">
               <div class="card-header">
               <h4>%s</h4>
               </div>
             <div class="card-body">
               
               <form>
-              <table class="table table-sm table-info">
+              <table class="table table-sm table-hover table-info">
                 <thead>
                   <tr>
                     <th>SKU</th>
@@ -58,8 +69,9 @@ _table_card = """
                 </tbody>
                 
               </table>
-              <div class="card-footer">
               <button type="submit" class="btn btn-primary">Submit</button>
+              
+              <div class="card-footer">
               <div/>
               </form>
             </div>
@@ -88,6 +100,12 @@ email_td = """
          <input type="number" class="form-control" placeholder="enter ">
      </div>
 """
+
+renderDataWithSchema : (SchemaType schema) -> List (String,String)
+renderDataWithSchema {schema = (SString name)} item = [ (name,printf "%s" item)]
+renderDataWithSchema {schema = (SInt name)} item = [ (name,printf "%d" item)]
+renderDataWithSchema {schema = (y .+. z)} (iteml, itemr) = renderDataWithSchema iteml ++                                            renderDataWithSchema itemr
+
 
 format_row : String
 format_row = """<tr >  <td scope="row"> %s </td>   <td>%s</td> <td %s> %d </td>  <td>%s </td> <td>STE20</td> <td>%d</td> <td>0</td>     </tr>"""

@@ -1,7 +1,7 @@
 module Main
 
 import Data.Vect
-
+import Printf
 %access public export
 
 infixr 5 .+.
@@ -19,10 +19,17 @@ SchemaType (SString name)= String
 SchemaType (SInt name )= Integer
 SchemaType (x .+. y) = (SchemaType x, SchemaType y)
 
-SchemaLabels : Schema -> List String
-SchemaLabels (SString name) = [name]
-SchemaLabels (SInt name) = [name]
-SchemaLabels (s1 .+. s2) = (SchemaLabels s1) ++ (SchemaLabels s2)
+
+schema2thead : Schema -> String
+schema2thead sch = ret where
+  schema2th : Schema -> List String
+  schema2th (SString name) = [ printf "<th>%s</th>" name ]
+  schema2th (SInt name) = [printf "<th>%s</th>" name ]
+  schema2th (s1 .+. s2) = (schema2th s1) ++ (schema2th s2)
+  ths : String
+  ths = concat $ schema2th sch
+  ret = printf "<thead> <tr>%s</tr> </thead>" ths
+
 
 
 record DataStore where
@@ -125,6 +132,8 @@ display_as_key {schema = (SString s1)} item = s1++":"++(show item)
 display_as_key {schema = (SInt s2)} item = s2++":"++(show item)
 display_as_key {schema = (y .+. z)} (iteml, itemr) = display_as_key iteml ++ "_" ++
                                               display_as_key itemr
+
+
 -- display (index id (items store) )
 getEntry : (pos : Integer) -> (store : DataStore) ->
            Maybe (String, DataStore)
