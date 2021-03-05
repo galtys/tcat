@@ -74,12 +74,11 @@ record OrderLine where
      constructor MkOrderLine     
      --key : OrderLineKey
      key : (SchemaType OrderLineKey1)
-     qty : Tterm
+     qty : Tterm --(SchemaType )
 
 
-
-Show OrderLine where
-     show (MkOrderLine key qty) = show(key)++"->"++show(qty)
+--Show OrderLine where
+--     show (MkOrderLine key qty) = show(key)++"->"++show(qty)
 
 
 -- Local Variables:

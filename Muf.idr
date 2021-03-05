@@ -156,9 +156,8 @@ line_list2io tableid ( x@(MkOrderLine k v) :: xs) = do
 --line2io_amend : OrderLine -> JS_IO ()
 --line2io_amend x = insert_beforeend table_amendments_id $ line2row Nothing x
 
-
 THeader : Schema
-THeader = OrderLineKey1 .+. (SInt (FA "Qty" True) )
+THeader = OrderLineKey1 .+. (SInt (FA "Qty" True) ) 
 
 partial main : JS_IO ()
 main = do      
