@@ -6,10 +6,14 @@ import Printf
 
 infixr 5 .+.
 
+record FieldArgs where
+  constructor FA
+  name : String
+  readonly : Bool
 
 data Schema : Type where
-     SString : (name : String) -> Schema
-     SInt :    (name : String) -> Schema
+     SString : (fargs : FieldArgs) -> Schema
+     SInt :    (fargs : FieldArgs) -> Schema
      (.+.) : (s1 : Schema) -> (s2 : Schema) -> Schema 
          
 --data Schema = SString | SInt | (.+.) Schema Schema
@@ -19,10 +23,15 @@ SchemaType (SString name)= String
 SchemaType (SInt name )= Integer
 SchemaType (x .+. y) = (SchemaType x, SchemaType y)
 
+display_as_key : (SchemaType schema) -> String
+display_as_key {schema = (SString (FA s1 False))} item = s1++":"++(show item)
+display_as_key {schema = (SInt (FA s2 False)  )} item = s2++":"++(show item)
+display_as_key {schema = (y .+. z)} (iteml, itemr) = display_as_key iteml ++ "_" ++
+                                              display_as_key itemr
 
 
 
-
+{-
 record DataStore where
   constructor MkData
   schema : Schema
@@ -76,10 +85,12 @@ parseBySchema schema x = case parsePrefix schema x of
                               Just (res, "") => Just res
                               Just _ => Nothing
 
+
+
 parseSchema : List String -> Maybe Schema
 parseSchema ("String" :: xs)
     = case xs of
-           [] => Just (SString "s1")
+           [] => Just (SString ("s1"))
            _ => case parseSchema xs of
                      Nothing => Nothing
                      Just xs_sch => Just ((SString "sn") .+. xs_sch)
@@ -118,14 +129,9 @@ display {schema = (y .+. z)} (iteml, itemr) = display iteml ++ ", " ++
                                               display itemr
 
 
-display_as_key : (SchemaType schema) -> String
-display_as_key {schema = (SString s1)} item = s1++":"++(show item)
-display_as_key {schema = (SInt s2)} item = s2++":"++(show item)
-display_as_key {schema = (y .+. z)} (iteml, itemr) = display_as_key iteml ++ "_" ++
-                                              display_as_key itemr
 
 
--- display (index id (items store) )
+
 getEntry : (pos : Integer) -> (store : DataStore) ->
            Maybe (String, DataStore)
 getEntry pos store
@@ -146,6 +152,7 @@ processInput store input
                    Just store' => Just ("OK\n", store')
            Just (Get pos) => getEntry pos store
            Just Quit => Nothing
+-}
 
 --main : IO ()
 --main = replWith (MkData ((SString "f1") .+. (SString "f2").+. (SInt "f3")) _ []) "Command: " processInput

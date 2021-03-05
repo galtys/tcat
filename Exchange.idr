@@ -52,8 +52,8 @@ Show Tterm where
 
 -- String -> index
 OrderLineKey1 : Schema
-OrderLineKey1 = ((SInt "p1")  .+.(SInt "p2").+.(SInt "line").+.
-                 (SInt "sku1").+.(SInt "sku1").+.(SInt "price_unit") )
+OrderLineKey1 = ((SInt (FA "p1" False) )  .+.(SInt (FA "p2" False)  ).+.(SInt (FA "line" False) ).+.
+                 (SInt (FA "sku1" False) ).+.(SInt (FA "sku1" False)  ).+.(SInt (FA "price_unit" False) ) )
 
 test_val : (SchemaType OrderLineKey1)
 test_val = (1,7,1,1,100,188)

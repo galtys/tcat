@@ -158,7 +158,7 @@ line_list2io tableid ( x@(MkOrderLine k v) :: xs) = do
 
 
 THeader : Schema
-THeader = OrderLineKey1 .+. (SInt "Qty")
+THeader = OrderLineKey1 .+. (SInt (FA "Qty" True) )
 
 partial main : JS_IO ()
 main = do      
@@ -198,7 +198,7 @@ main = do
    case (parse js1) of
      Nothing => console_log "na"
      (Just j) => console_log (Language.JSON.Data.format 2 j)
-   console_log $ schema2thead (OrderLineKey1 .+. (SInt "Qty"))                   
+   console_log $ schema2thead (OrderLineKey1 .+. (SInt (FA "Qty" False) ))                   
 
 -- Local Variables:
 -- idris-load-packages: ("contrib")

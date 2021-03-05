@@ -60,8 +60,8 @@ id_att x = printf id_att_format x
 schema2thead : Schema -> String
 schema2thead sch = ret where
   schema2th : Schema -> List String
-  schema2th (SString name) = [ printf "<th>%s</th>" name ]
-  schema2th (SInt name) = [printf "<th>%s</th>" name ]
+  schema2th (SString (FA name rw) ) = [ printf "<th>%s</th>" name ]
+  schema2th (SInt (FA name rw) ) = [printf "<th>%s</th>" name ]
   schema2th (s1 .+. s2) = (schema2th s1) ++ (schema2th s2)
   ths : String
   ths = concat $ schema2th sch
@@ -119,15 +119,15 @@ render_text_input_tag tagid = printf """<input type="text" class="form-control" 
 
 
 renderDataWithSchema : (SchemaType schema) -> List (String,String)
-renderDataWithSchema {schema = (SString name)} item = [ (name,printf "%s" item)]
-renderDataWithSchema {schema = (SInt name)} item = [ (name,printf "%d" item)]
+renderDataWithSchema {schema = (SString (FA name rw) )} item = [ (name,printf "%s" item)]
+renderDataWithSchema {schema = (SInt (FA name rw) )} item = [ (name,printf "%d" item)]
 renderDataWithSchema {schema = (y .+. z)} (iteml, itemr) = renderDataWithSchema iteml ++  renderDataWithSchema itemr
 
 
 
 renderDataWithSchema2 : String -> (SchemaType schema) -> List String
-renderDataWithSchema2 p_id  {schema = (SString name)} item = [ render_text_input_tag $ concat [p_id,"|",name] ]
-renderDataWithSchema2 p_id  {schema = (SInt name)} item = [ render_number_input_tag $ concat [p_id, "|",name] ]
+renderDataWithSchema2 p_id  {schema = (SString (FA name rw)  )} item = [ render_text_input_tag $ concat [p_id,"|",name] ]
+renderDataWithSchema2 p_id  {schema = (SInt (FA name rw) )} item = [ render_number_input_tag $ concat [p_id, "|",name] ]
 renderDataWithSchema2 p_id {schema = (y .+. z)} (iteml, itemr) = (renderDataWithSchema2 p_id iteml) ++ (renderDataWithSchema2 p_id itemr)
 
 
