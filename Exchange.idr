@@ -52,7 +52,7 @@ Show Tterm where
 
 -- String -> index
 OrderLineKey1 : Schema
-OrderLineKey1 = (SString (FA "sku1" False) ).+.(SInt (FA "price_unit" False) )
+OrderLineKey1 = (SString (FA "sku1" False) ).+.(SInt (FA "price_unit" False) ) .+. (SString (FA "sku2" False) )
 
 --(SInt (FA "p1" False) )  .+.(SInt (FA "p2" False)  ).+.(SInt (FA "line" False) ).+.
 

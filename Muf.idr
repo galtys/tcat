@@ -87,28 +87,28 @@ calc_sha256 = foreign FFI_JS "calc_sha256(%0)" (String -> JS_IO String)
 
 
 test_line : OrderLine
-test_line = MkOrderLine ("1", 188) (Tt 15 0)
+test_line = MkOrderLine ("p1", 188, "$") (Tt 15 0)
 
 test_list : List OrderLine
 test_list = [test_line,
-             MkOrderLine ("2", 73) (Tt 5 0),
-             MkOrderLine ("1", 188) (Tt 0 2),
-             MkOrderLine ("3", 93) (Tt 3 0)
+             MkOrderLine ("p2", 73, "$") (Tt 5 0),
+             MkOrderLine ("p1", 188, "$") (Tt 0 2),
+             MkOrderLine ("p3", 93, "$") (Tt 3 0)
              ]
 test_list2 : List OrderLine
-test_list2 = [MkOrderLine ("1", 188) (Tt 0 3),
-              MkOrderLine ("2", 73) (Tt 3 0),
-             MkOrderLine  ("3", 93) (Tt 0 1)
+test_list2 = [MkOrderLine ("p1", 188, "$") (Tt 0 3),
+              MkOrderLine ("p2", 73, "$") (Tt 3 0),
+             MkOrderLine  ("p3", 93, "$") (Tt 0 1)
              ]
 
 test_list3 : List OrderLine
-test_list3 = [MkOrderLine ("2", 73) (Tt 0 1),
-             MkOrderLine ("3", 93) (Tt 0 2)
+test_list3 = [MkOrderLine ("p2", 73, "$") (Tt 0 1),
+             MkOrderLine ("p3", 93, "$") (Tt 0 2)
              ]
 
 test_list4 : List OrderLine
-test_list4 = [MkOrderLine ("2", 73) (Tt 0 1),
-             MkOrderLine ("4",  93) (Tt 1 0)
+test_list4 = [MkOrderLine ("p2", 73, "$") (Tt 0 1),
+             MkOrderLine ("p4",  93, "$") (Tt 1 0)
              ]
 
 
