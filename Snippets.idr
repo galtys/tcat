@@ -41,8 +41,6 @@ id_att_format = """ id="%s" """
 id_att : String -> String
 id_att x = printf id_att_format x
 
---table_card : TableID -> String
---table_card key = printf _table_card "SO440" (id_att key)
 schema2thead : Schema -> String
 schema2thead sch = ret where
   schema2th : Schema -> List String
@@ -52,7 +50,6 @@ schema2thead sch = ret where
   ths : String
   ths = concat $ schema2th sch
   ret = printf "<tr>%s</tr>" ths
-
 
 table_card : TableID -> Schema -> String
 table_card key schema = ret where
