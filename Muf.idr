@@ -122,6 +122,18 @@ table_amendments_id x = printf "so_table_amendments%d" x
 line2io : TableID -> RowID -> OrderLine -> JS_IO ()
 line2io tableid rowid x = insert_beforeend tableid $ line2row rowid x
 
+
+line_list2io_amend : TableID -> List OrderLine -> JS_IO ()
+line_list2io_amend tableid [] = pure ()
+line_list2io_amend tableid ( x@(MkOrderLine k v) :: xs) = do
+          let key_s = (display_as_key k)
+          -- console_log key_s
+          let new_qty = printf "%d" (t2integer v)
+          --console_log $ show $ ((renderDataWithSchema "" k) ++ [("Qty",new_qty )] )
+
+          line2io tableid (Just key_s) x
+          line_list2io_amend tableid xs
+          
 line_list2io : TableID -> List OrderLine -> JS_IO ()
 line_list2io tableid [] = pure ()
 line_list2io tableid ( x@(MkOrderLine k v) :: xs) = do
@@ -144,11 +156,9 @@ line_list2io tableid ( x@(MkOrderLine k v) :: xs) = do
 --line2io_amend : OrderLine -> JS_IO ()
 --line2io_amend x = insert_beforeend table_amendments_id $ line2row Nothing x
 
-line_list2io_amend : TableID -> List OrderLine -> JS_IO ()
-line_list2io_amend tableid [] = pure ()
-line_list2io_amend tableid ( x :: xs) = do
-          line2io tableid Nothing x
-          line_list2io_amend tableid xs
+
+THeader : Schema
+THeader = OrderLineKey1 .+. (SInt "Qty")
 
 partial main : JS_IO ()
 main = do      
@@ -163,9 +173,11 @@ main = do
    --line2io aline2
 
       
-   insert_beforeend "so_composite" (table_card table_composite_id)
+   insert_beforeend "so_composite" (table_card table_composite_id THeader)
+   line_list2io_amend table_composite_id test_list
 
-   line_list2io table_composite_id test_list
+   -- line_list2io table_composite_id test_list
+   
    {-
    insert_beforeend "so_amendments" (table_card (table_amendments_id 1) )
    line_list2io_amend (table_amendments_id 1) test_list
