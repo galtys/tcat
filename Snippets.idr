@@ -61,8 +61,10 @@ table_card key schema = ret where
               <h4>%s</h4>
               </div>
             <div class="card-body">
-              
+              <!--
               <form>
+              </form>
+              -->
               <table class="table table-sm table-hover table-info">
                 <thead>
                     %s
@@ -75,7 +77,7 @@ table_card key schema = ret where
               
               <div class="card-footer">
               <div/>
-              </form>
+              
             </div>
           </div>  <!-- /.card -->
             """
