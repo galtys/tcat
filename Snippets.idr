@@ -6,20 +6,6 @@ import DataStore
 
 %access public export
 
-{-
-		    <!--
-                    <td class="no-wrap"><a href=""><i class="fa fa-pencil pr-1"></i>Edit</a> | <a href=""><i class="fa fa-trash pr-1"></i>Delete</a></td>-->
-
-                  <tr >
-                    <td scope="row">YWORMME</td>
-		    <td></td>
-                    <td id="so1_qty" >3</td>
-                    <td>Unit</td>
-                    <td>STE20</td>
-                    <td>118</td>
-		    <td>0</td>
-                  </tr>
--}
 js1 : String
 js1 =  """{
   "key1": [11,89],
@@ -98,15 +84,6 @@ table_card key schema = ret where
             """
      ret = printf _tf "SO440" (schema2thead schema) (id_att key)
 
-
-
-email_td : String
-email_td = """
-         <input type="number" class="form-control" placeholder="enter" value="43" >
-"""
-
---     <div class="form-group">
---     </div>
 display_as_key : (SchemaType schema) -> String
 display_as_key {schema = (SString (FA s1 rw) ) } item = s1++":"++item
 display_as_key {schema = (SInt    (FA s2 rw) ) } item = s2++":"++(show item)
@@ -124,8 +101,6 @@ test_key = display_as_key  test_val
 TagID : Type
 TagID = String
 
-
---InputTagType = TagInputNumber | TagInputText 
 render_number_input_tag : TagID -> Integer ->  String
 render_number_input_tag tagid val= printf """<td> <input type="number" class="form-control" id="%s" value="%d"> </td>""" tagid val
 
@@ -137,13 +112,6 @@ render_number_in_td_tag v = printf "<td>%d</td>" v
 
 render_text_in_td_tag : String -> String
 render_text_in_td_tag v = printf "<td>%s</td>" v
-
---renderDataWithSchema : (SchemaType schema) -> List (String,String)
---renderDataWithSchema {schema = (SString (FA name rw) )} item = [ (name,printf "%s" item)]
---renderDataWithSchema {schema = (SInt (FA name rw) )} item = [ (name,printf "%d" item)]
---renderDataWithSchema {schema = (y .+. z)} (iteml, itemr) = renderDataWithSchema iteml ++  renderDataWithSchema itemr
-
-
 
 renderDataWithSchema2 : String -> (SchemaType schema) -> List String
 renderDataWithSchema2 p_id  {schema = (SString (FA name True)  )} item = [ render_text_input_tag (concat [p_id,"|",name]) item ]
@@ -164,32 +132,3 @@ line2row (Just _rowid) x@(MkOrderLine k v)
            printf "<tr>%s</tr>" _line
 
 
-{-
-format_row : String
-format_row = """<tr >  <td scope="row"> %s </td>   <td>%s</td> <td %s> %d </td>  <td>%s </td> <td>STE20</td> <td>%d</td> <td>0</td>     </tr>"""
-
-
-new_row : String -> RowID -> Integer -> Integer -> String --sku key qty price
-new_row sku key qty price = case key of
-          Nothing => printf format_row sku email_td "" qty _unit_dropdown price
-          (Just _id) => printf format_row sku (render_number_input_tag "testKey") (id_att _id) qty "" price
--}
-
-{-
-line2row : RowID -> OrderLine -> String
-line2row rowid (MkOrderLine (p1, p2, line, sku1, sku2, price_unit) qty) = new_row sku key q price where
-      sku = i2s sku1
-      key = rowid --Just (linekey2string lk)
-      q = t2integer qty
-      price = price_unit
--}
-
-         
-         --let new_qty = printf "%d" (t2integer v)
-         --_items : List String
-
-         
-         --ret = 
-         --items_with_parent_ids : List (String,String)
-         --items_with_parent_ids = [ (]
-         
