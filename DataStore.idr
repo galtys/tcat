@@ -9,7 +9,7 @@ infixr 5 .+.
 record FieldArgs where
   constructor FA
   name : String
-  readonly : Bool
+  rw : Bool
 
 data Schema : Type where
      SString : (fargs : FieldArgs) -> Schema

@@ -140,7 +140,7 @@ line_list2io tableid ( x@(MkOrderLine k v) :: xs) = do
           --console_log (show k)
           let key_s = (display_as_key k)
           -- console_log key_s
-          console_log $ show $ renderDataWithSchema k
+--          console_log $ show $ renderDataWithSchema k
           q_flag <- get_qty_int_flag key_s
           case (q_flag==0) of
               True => line2io tableid (Just key_s) x

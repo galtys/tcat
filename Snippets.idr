@@ -112,27 +112,31 @@ TagID = String
 
 --InputTagType = TagInputNumber | TagInputText 
 render_number_input_tag : TagID ->  String
-render_number_input_tag tagid = printf """<input type="number" class="form-control" placeholder="" id="%s" >""" tagid
+render_number_input_tag tagid = printf """ <input type="number" class="form-control" placeholder="" id="%s" >""" tagid
 
 render_text_input_tag : TagID ->  String
 render_text_input_tag tagid = printf """<input type="text" class="form-control" placeholder="" id="%s" >""" tagid
 
 
-renderDataWithSchema : (SchemaType schema) -> List (String,String)
-renderDataWithSchema {schema = (SString (FA name rw) )} item = [ (name,printf "%s" item)]
-renderDataWithSchema {schema = (SInt (FA name rw) )} item = [ (name,printf "%d" item)]
-renderDataWithSchema {schema = (y .+. z)} (iteml, itemr) = renderDataWithSchema iteml ++  renderDataWithSchema itemr
+--renderDataWithSchema : (SchemaType schema) -> List (String,String)
+--renderDataWithSchema {schema = (SString (FA name rw) )} item = [ (name,printf "%s" item)]
+--renderDataWithSchema {schema = (SInt (FA name rw) )} item = [ (name,printf "%d" item)]
+--renderDataWithSchema {schema = (y .+. z)} (iteml, itemr) = renderDataWithSchema iteml ++  renderDataWithSchema itemr
 
 
 
 renderDataWithSchema2 : String -> (SchemaType schema) -> List String
-renderDataWithSchema2 p_id  {schema = (SString (FA name rw)  )} item = [ render_text_input_tag $ concat [p_id,"|",name] ]
-renderDataWithSchema2 p_id  {schema = (SInt (FA name rw) )} item = [ render_number_input_tag $ concat [p_id, "|",name] ]
+renderDataWithSchema2 p_id  {schema = (SString (FA name True)  )} item = [ render_text_input_tag $ concat [p_id,"|",name] ]
+renderDataWithSchema2 p_id  {schema = (SString (FA name False)  )} item = [ render_text_input_tag $ concat [p_id,"|",name] ]
+
+renderDataWithSchema2 p_id  {schema = (SInt (FA name True) )} item = [ render_number_input_tag $ concat [p_id, "|",name] ]
+renderDataWithSchema2 p_id  {schema = (SInt (FA name False) )} item = [ render_number_input_tag $ concat [p_id, "|",name] ]
+
 renderDataWithSchema2 p_id {schema = (y .+. z)} (iteml, itemr) = (renderDataWithSchema2 p_id iteml) ++ (renderDataWithSchema2 p_id itemr)
 
 
 
-
+{-
 format_row : String
 format_row = """<tr >  <td scope="row"> %s </td>   <td>%s</td> <td %s> %d </td>  <td>%s </td> <td>STE20</td> <td>%d</td> <td>0</td>     </tr>"""
 
@@ -141,6 +145,7 @@ new_row : String -> RowID -> Integer -> Integer -> String --sku key qty price
 new_row sku key qty price = case key of
           Nothing => printf format_row sku email_td "" qty _unit_dropdown price
           (Just _id) => printf format_row sku (render_number_input_tag "testKey") (id_att _id) qty "" price
+-}
 
 {-
 line2row : RowID -> OrderLine -> String
