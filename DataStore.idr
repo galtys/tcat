@@ -23,12 +23,6 @@ SchemaType (SString name)= String
 SchemaType (SInt name )= Integer
 SchemaType (x .+. y) = (SchemaType x, SchemaType y)
 
-display_as_key : (SchemaType schema) -> String
-display_as_key {schema = (SString (FA s1 rw))} item = s1++":"++(show item)
-display_as_key {schema = (SInt (FA s2 rw)  )} item = s2++":"++(show item)
-display_as_key {schema = (y .+. z)} (iteml, itemr) = display_as_key iteml ++ "_" ++
-                                              display_as_key itemr
-
 
 
 {-

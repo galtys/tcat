@@ -107,15 +107,29 @@ email_td = """
 
 --     <div class="form-group">
 --     </div>
+display_as_key : (SchemaType schema) -> String
+display_as_key {schema = (SString (FA s1 rw))} item = s1++":"++(show item)
+display_as_key {schema = (SInt (FA s2 rw)  )} item = s2++":"++(show item)
+display_as_key {schema = (y .+. z)} (iteml, itemr) = display_as_key iteml ++ "_" ++
+                                              display_as_key itemr
+
+test_val : (SchemaType OrderLineKey1)
+test_val = (1,7,1,"1",100,188)
+
+test_key : String
+test_key = display_as_key  test_val
+
+
 TagID : Type
 TagID = String
 
+
 --InputTagType = TagInputNumber | TagInputText 
 render_number_input_tag : TagID -> Integer ->  String
-render_number_input_tag tagid val= printf """<td> <input type="number" class="form-control" placeholder="" id="%s" value="%d"> </td>""" tagid val
+render_number_input_tag tagid val= printf """<td> <input type="number" class="form-control" id="%s" value="%d"> </td>""" tagid val
 
 render_text_input_tag : TagID -> String ->  String
-render_text_input_tag tagid val= printf """<td> <input type="text" class="form-control" placeholder="" id="%s" value="%s" > </td>""" tagid val
+render_text_input_tag tagid val= printf """<td> <input type="text" class="form-control" id="%s" value="%s" > </td>""" tagid val
 
 render_number_in_td_tag : Integer -> String
 render_number_in_td_tag v = printf "<td>%d</td>" v

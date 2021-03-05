@@ -55,11 +55,6 @@ OrderLineKey1 : Schema
 OrderLineKey1 = ((SInt (FA "p1" False) )  .+.(SInt (FA "p2" False)  ).+.(SInt (FA "line" False) ).+.
                  (SString (FA "sku1" True) ).+.(SInt (FA "sku2" False)  ).+.(SInt (FA "price_unit" False) ) )
 
-test_val : (SchemaType OrderLineKey1)
-test_val = (1,7,1,"1",100,188)
-
-test_key : String
-test_key = display_as_key  test_val
 
 record OrderLineKey where
      constructor MkOrderLineKey
