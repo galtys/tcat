@@ -111,12 +111,17 @@ TagID : Type
 TagID = String
 
 --InputTagType = TagInputNumber | TagInputText 
-render_number_input_tag : TagID ->  String
-render_number_input_tag tagid = printf """ <input type="number" class="form-control" placeholder="" id="%s" >""" tagid
+render_number_input_tag : TagID -> Integer ->  String
+render_number_input_tag tagid val= printf """<td> <input type="number" class="form-control" placeholder="" id="%s" value="%d"> </td>""" tagid val
 
-render_text_input_tag : TagID ->  String
-render_text_input_tag tagid = printf """<input type="text" class="form-control" placeholder="" id="%s" >""" tagid
+render_text_input_tag : TagID -> String ->  String
+render_text_input_tag tagid val= printf """<td> <input type="text" class="form-control" placeholder="" id="%s" value="%s" > </td>""" tagid val
 
+render_number_in_td_tag : Integer -> String
+render_number_in_td_tag v = printf "<td>%d</td>" v
+
+render_text_in_td_tag : String -> String
+render_text_in_td_tag v = printf "<td>%s</td>" v
 
 --renderDataWithSchema : (SchemaType schema) -> List (String,String)
 --renderDataWithSchema {schema = (SString (FA name rw) )} item = [ (name,printf "%s" item)]
@@ -126,14 +131,20 @@ render_text_input_tag tagid = printf """<input type="text" class="form-control" 
 
 
 renderDataWithSchema2 : String -> (SchemaType schema) -> List String
-renderDataWithSchema2 p_id  {schema = (SString (FA name True)  )} item = [ render_text_input_tag $ concat [p_id,"|",name] ]
-renderDataWithSchema2 p_id  {schema = (SString (FA name False)  )} item = [ render_text_input_tag $ concat [p_id,"|",name] ]
+renderDataWithSchema2 p_id  {schema = (SString (FA name True)  )} item = [ render_text_input_tag (concat [p_id,"|",name]) item ]
+renderDataWithSchema2 p_id  {schema = (SString (FA name False)  )} item = [ render_text_in_td_tag item ]
 
-renderDataWithSchema2 p_id  {schema = (SInt (FA name True) )} item = [ render_number_input_tag $ concat [p_id, "|",name] ]
-renderDataWithSchema2 p_id  {schema = (SInt (FA name False) )} item = [ render_number_input_tag $ concat [p_id, "|",name] ]
+renderDataWithSchema2 p_id  {schema = (SInt (FA name True) )} item = [ render_number_input_tag (concat [p_id, "|",name]) item ]
+renderDataWithSchema2 p_id  {schema = (SInt (FA name False) )} item = [ render_number_in_td_tag item]
 
 renderDataWithSchema2 p_id {schema = (y .+. z)} (iteml, itemr) = (renderDataWithSchema2 p_id iteml) ++ (renderDataWithSchema2 p_id itemr)
 
+line2row : RowID -> OrderLine -> String
+line2row Nothing key = ""
+line2row (Just _rowid) x@(MkOrderLine k v)
+     = let _items = renderDataWithSchema2 _rowid k 
+           _line = concat [printf "%s" x | x <- _items] in
+           printf "<tr>%s</td>" _line
 
 
 {-
@@ -156,12 +167,6 @@ line2row rowid (MkOrderLine (p1, p2, line, sku1, sku2, price_unit) qty) = new_ro
       price = price_unit
 -}
 
-line2row : RowID -> OrderLine -> String
-line2row Nothing key = ""
-line2row (Just _rowid) x@(MkOrderLine k v)
-     = let _items = renderDataWithSchema2 _rowid k 
-           _line = concat [printf "<td>%s</td>" x | x <- _items] in
-           printf "<tr>%s</td>" _line
          
          --let new_qty = printf "%d" (t2integer v)
          --_items : List String
