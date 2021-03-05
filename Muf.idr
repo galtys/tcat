@@ -93,7 +93,6 @@ test_list : List OrderLine
 test_list = [test_line,
              MkOrderLine (1, 7, 1, 2, 100, 73) (Tt 5 0),
              MkOrderLine (1, 7, 1, 1, 100, 188) (Tt 0 2),
-             MkOrderLine (1, 7, 1, 1, 100, 188) (Tt 0 1),
              MkOrderLine (1, 7, 1, 3, 100, 93) (Tt 3 0)
              ]
 test_list2 : List OrderLine
@@ -162,11 +161,12 @@ main = do
    
    --line2io aline1
    --line2io aline2
-   
+
+      
    insert_beforeend "so_composite" (table_card table_composite_id)
 
    line_list2io table_composite_id test_list
-   
+   {-
    insert_beforeend "so_amendments" (table_card (table_amendments_id 1) )
    line_list2io_amend (table_amendments_id 1) test_list
 
@@ -181,18 +181,12 @@ main = do
    insert_beforeend "so_amendments" (table_card (table_amendments_id 4) )
    line_list2io_amend (table_amendments_id 4) test_list4
    line_list2io table_composite_id test_list4
-         
-                           
-         
+   -}
+   
    case (parse js1) of
      Nothing => console_log "na"
      (Just j) => console_log (Language.JSON.Data.format 2 j)
    console_log $ schema2thead (OrderLineKey1 .+. (SInt "Qty"))                   
---   console_log $ show  $ display_as_key   (1, 7, 1, 2, 100, 73)
-  
-   
-     
---   console_log $ show $test2 test_list
 
 -- Local Variables:
 -- idris-load-packages: ("contrib")
