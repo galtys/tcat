@@ -234,10 +234,16 @@ canvas {
   margin-right: 5px;
 }
 
+.form-group {
+    margin-bottom: 0rem;
+}
 
+.table {
+    margin-bottom: 0rem;
+}
 
-
-
-
-
-
+/*
+.table-info, .table-info>td, .table-info>th {
+    background-color: #f2fdff;
+}
+*

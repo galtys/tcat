@@ -15,19 +15,6 @@ function get_qty(key) {
 
 --}
 
-js1 : String
-js1 =  """{
-  "key1": [11,89],
-  "key2": {
-      "key2.1": true,
-      "key2.2": {
-        "key2.2.1": "bar",
-        "key2.2.2": 200
-      }
-    }
-  }"""
-
-
 
 update_qty : String -> Int -> JS_IO ()
 update_qty = foreign FFI_JS "update_qty(%0,%1)" (String -> Int -> JS_IO ())
@@ -98,51 +85,30 @@ calc_sha1 = foreign FFI_JS "calc_sha1(%0)" (String -> JS_IO String)
 calc_sha256 : String -> JS_IO String
 calc_sha256 = foreign FFI_JS "calc_sha256(%0)" (String -> JS_IO String)
 
-{-
+
+test_line : OrderLine
+test_line = MkOrderLine ("p1", 188, "$") (Tt 15 0)
+
 test_list : List OrderLine
-test_list = [MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 15 0),
-             MkOrderLine (MkOrderLineKey 1 7 1 2 100 73) (Tt 5 0),
-             MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 0 2),
-             MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 0 1),
-             MkOrderLine (MkOrderLineKey 1 7 1 3 100 93) (Tt 3 0)
+test_list = [test_line,
+             MkOrderLine ("p2", 73, "$") (Tt 5 0),
+             MkOrderLine ("p1", 188, "$") (Tt 0 2),
+             MkOrderLine ("p3", 93, "$") (Tt 3 0)
              ]
 test_list2 : List OrderLine
-test_list2 = [MkOrderLine (MkOrderLineKey 1 7 1 1 100 188) (Tt 0 3),
-              MkOrderLine (MkOrderLineKey 1 7 1 2 100 73) (Tt 3 0),
-             MkOrderLine (MkOrderLineKey 1 7 1 3 100 93) (Tt 0 1)
+test_list2 = [MkOrderLine ("p1", 188, "$") (Tt 0 3),
+              MkOrderLine ("p2", 73, "$") (Tt 3 0),
+             MkOrderLine  ("p3", 93, "$") (Tt 0 1)
              ]
 
 test_list3 : List OrderLine
-test_list3 = [MkOrderLine (MkOrderLineKey 1 7 1 2 100 73) (Tt 0 1),
-             MkOrderLine (MkOrderLineKey 1 7 1 3 100 93) (Tt 0 2)
+test_list3 = [MkOrderLine ("p2", 73, "$") (Tt 0 1),
+             MkOrderLine ("p3", 93, "$") (Tt 0 2)
              ]
 
 test_list4 : List OrderLine
-test_list4 = [MkOrderLine (MkOrderLineKey 1 7 1 2 100 73) (Tt 0 1),
-             MkOrderLine (MkOrderLineKey 1 7 1 4 100 93) (Tt 1 0)
-             ]
--}
-test_list : List OrderLine
-test_list = [MkOrderLine (1, 7, 1, 1, 100, 188) (Tt 15 0),
-             MkOrderLine (1, 7, 1, 2, 100, 73) (Tt 5 0),
-             MkOrderLine (1, 7, 1, 1, 100, 188) (Tt 0 2),
-             MkOrderLine (1, 7, 1, 1, 100, 188) (Tt 0 1),
-             MkOrderLine (1, 7, 1, 3, 100, 93) (Tt 3 0)
-             ]
-test_list2 : List OrderLine
-test_list2 = [MkOrderLine (1, 7, 1, 1, 100, 188) (Tt 0 3),
-              MkOrderLine (1, 7, 1, 2, 100, 73) (Tt 3 0),
-             MkOrderLine (1, 7, 1, 3, 100, 93) (Tt 0 1)
-             ]
-
-test_list3 : List OrderLine
-test_list3 = [MkOrderLine (1, 7, 1, 2, 100, 73) (Tt 0 1),
-             MkOrderLine (1, 7, 1, 3, 100, 93) (Tt 0 2)
-             ]
-
-test_list4 : List OrderLine
-test_list4 = [MkOrderLine (1, 7, 1, 2, 100, 73) (Tt 0 1),
-             MkOrderLine (1, 7, 1, 4, 100, 93) (Tt 1 0)
+test_list4 = [MkOrderLine ("p2", 73, "$") (Tt 0 1),
+             MkOrderLine ("p4",  93, "$") (Tt 1 0)
              ]
 
 
@@ -156,11 +122,25 @@ table_amendments_id x = printf "so_table_amendments%d" x
 line2io : TableID -> RowID -> OrderLine -> JS_IO ()
 line2io tableid rowid x = insert_beforeend tableid $ line2row rowid x
 
+
+line_list2io_amend : TableID -> List OrderLine -> JS_IO ()
+line_list2io_amend tableid [] = pure ()
+line_list2io_amend tableid ( x@(MkOrderLine k v) :: xs) = do
+          let key_s = (display_as_key k)
+          -- console_log key_s
+          let new_qty = printf "%d" (t2integer v)
+          --console_log $ show $ ((renderDataWithSchema "" k) ++ [("Qty",new_qty )] )
+
+          line2io tableid (Just key_s) x
+          line_list2io_amend tableid xs
+          
 line_list2io : TableID -> List OrderLine -> JS_IO ()
 line_list2io tableid [] = pure ()
 line_list2io tableid ( x@(MkOrderLine k v) :: xs) = do
+          --console_log (show k)
           let key_s = (display_as_key k)
-
+          -- console_log key_s
+--          console_log $ show $ renderDataWithSchema k
           q_flag <- get_qty_int_flag key_s
           case (q_flag==0) of
               True => line2io tableid (Just key_s) x
@@ -176,24 +156,28 @@ line_list2io tableid ( x@(MkOrderLine k v) :: xs) = do
 --line2io_amend : OrderLine -> JS_IO ()
 --line2io_amend x = insert_beforeend table_amendments_id $ line2row Nothing x
 
-line_list2io_amend : TableID -> List OrderLine -> JS_IO ()
-line_list2io_amend tableid [] = pure ()
-line_list2io_amend tableid ( x :: xs) = do
-          line2io tableid Nothing x
-          line_list2io_amend tableid xs
+THeader : Schema
+THeader = OrderLineKey1 .+. (SInt (FA "Qty" True) ) 
 
 partial main : JS_IO ()
-main = do
-   insert_beforeend "so_composite" (table_card table_composite_id)
-   line_list2io table_composite_id test_list
-   
-   new_row_sha1 <- calc_sha1 example_row
-   new_row_sha256 <- calc_sha256 example_row
+main = do      
+   new_row_sha1 <- calc_sha1 "abc"
+   new_row_sha256 <- calc_sha256 "abc"
+   console_log new_row_sha1
+   console_log new_row_sha256
+
 --   insert_beforeend "so_table1" example_row
    
    --line2io aline1
    --line2io aline2
+
+      
+   insert_beforeend "so_composite" (table_card table_composite_id THeader)
+   line_list2io_amend table_composite_id test_list
+
+   -- line_list2io table_composite_id test_list
    
+   {-
    insert_beforeend "so_amendments" (table_card (table_amendments_id 1) )
    line_list2io_amend (table_amendments_id 1) test_list
 
@@ -208,24 +192,12 @@ main = do
    insert_beforeend "so_amendments" (table_card (table_amendments_id 4) )
    line_list2io_amend (table_amendments_id 4) test_list4
    line_list2io table_composite_id test_list4
-         
-                           
-         
-   console_log new_row_sha1
-   console_log new_row_sha256
+   -}
+   
    case (parse js1) of
      Nothing => console_log "na"
      (Just j) => console_log (Language.JSON.Data.format 2 j)
---   console_log js1
-
-{-            
-   so1_qty <- get_qty "so1_qty"
-   let k="so1_qty"
-   let v="34.98"
-   update_qty k so1_qty
--}
-   console_log $ PF.printf "%d%s" 5 "hello!"
---   console_log $ show $test2 test_list
+   console_log $ schema2thead (OrderLineKey1 .+. (SInt (FA "Qty" False) ))                   
 
 -- Local Variables:
 -- idris-load-packages: ("contrib")
