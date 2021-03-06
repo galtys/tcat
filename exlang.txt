@@ -1,0 +1,50 @@
+root:contact -> create
+    :taxcode -> create
+    :asset -> create
+    :channel -> create
+    :order -> create
+    :invoice -> create
+    
+contact: 1 -> create
+       : 2 -> create
+       : 3 -> create
+       : 4 -> create
+       : 3 -> delete
+
+taxcode: EXVAT -> create
+       : INCVAT -> create
+
+asset: a1 -> create
+       a2 -> create
+       a3 -> create
+       a4 -> create
+       $ -> create
+
+order: 1 -> create
+       2 -> create
+       3 -> create
+       2 -> delete
+
+channel: Retail -> create
+         Contract -> create
+	 Trade -> create
+
+
+items: asset -> qty
+
+-- lines: items(asset),taxcode,channel -> pricelist( items(asseet),taxcode,channel )  
+
+pricelist: asset,taxcode,channel -> asset,price
+
+so: order -> contact,contact
+inv: invoice -> contact, contact
+
+
+tax: contact -> taxcode
+ch:  contact -> channel
+
+line: asset, items asset ->  pricelist asset tax ch, items asset
+
+line: asset, qty -> asset' ,price, qty
+
+fx: so -> line
