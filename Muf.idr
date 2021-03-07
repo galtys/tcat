@@ -14,12 +14,6 @@ function get_qty(key) {
   return document.getElementById(key).innerText
 
 --}
-data Event : Type where
-  MkEvent : Ptr -> Event
-
-data Element : Type where
-  MkElem : Ptr -> Element
-
 data EventType : Type where
   Click : EventType
   DoubleClick : EventType
@@ -240,8 +234,8 @@ onInput selector callback =
     "onInput(%0, %1)"
     (String -> JsFn (() -> JS_IO ()) -> JS_IO ())
     selector (MkJsFn (\_ => callback))
-    
-            
+
+
 partial onInit : JS_IO () -> JS_IO ()
 onInit callback =
   foreign FFI_JS
@@ -251,7 +245,6 @@ onInit callback =
 
 partial setUp : JS_IO ()
 setUp = do 
-           
            onClick "#table_card_button" (console_log "button table card")
            onClick "#big_one" (console_log "button bigone")
 --           onClick "#punch" (doAction PUNCH) 
