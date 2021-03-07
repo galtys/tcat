@@ -65,13 +65,14 @@ implementation Show EventType where
   show Submit = "submit"
 
 
-onEvent : String -> String -> (Ptr -> JS_IO () ) -> JS_IO ()
-onEvent selector evType callback =
-        foreign FFI_JS
-            "document.querySelector(%0).addEventListener(%1, %2)"   --selector, "click", callback
-            (String -> String -> JsFn ( Ptr -> JS_IO () ) -> JS_IO ())
-            selector evType (MkJsFn callback)
-            
+onEvent : String -> EventType -> (Ptr -> JS_IO () ) -> JS_IO ()
+onEvent selector evType callback 
+  = let ev_str= show evType in
+    foreign FFI_JS
+      "document.querySelector(%0).addEventListener(%1, %2)" --selector, event (eg click), callback
+      (String -> String -> JsFn ( Ptr -> JS_IO () ) -> JS_IO ())  -- args type
+      selector ev_str (MkJsFn callback)  -- args
+
 update_qty : String -> Int -> JS_IO ()
 update_qty = foreign FFI_JS "update_qty(%0,%1)" (String -> Int -> JS_IO ())
 
@@ -299,7 +300,7 @@ main = do
      (Just j) => console_log (Language.JSON.Data.format 2 j)
    
    setUp
-   onEvent "#p2__Qty" "input" testingEvent1
+   onEvent "#p2__Qty" Input testingEvent1
    console_log $ schema2thead (OrderLineKey1 .+. (SInt (FA "Qty" False) ))                   
    --onInit setUp
    
