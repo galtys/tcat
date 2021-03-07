@@ -89,6 +89,15 @@ function console_log(msg) {
     console.log(msg);
 }
 
+//call_js_ptr = foreign FFI_JS "call_js_ptr(%0)" (Ptr -> JS_IO () )
+
+function call_js_ptr(pev) {
+    //console.log(pev)
+    var a = parseInt(pev.target.value,10);
+    return a
+}
+
+
 function calc_sha1(msg) {
    var md1 = forge.md.sha1.create();
    md1.update(msg);

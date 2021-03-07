@@ -72,11 +72,11 @@ implementation Show EventType where
 
 
 onEvent : String -> String -> (Ptr -> JS_IO () ) -> JS_IO ()
-onEvent selector event callback =
+onEvent selector evType callback =
         foreign FFI_JS
             "document.querySelector(%0).addEventListener(%1, %2)"   --selector, "click", callback
-            (String -> String -> JsFn (Ptr -> JS_IO () ) -> JS_IO ())
-            selector event (MkJsFn callback)
+            (String -> String -> JsFn ( Ptr -> JS_IO () ) -> JS_IO ())
+            selector evType (MkJsFn callback)
             
 update_qty : String -> Int -> JS_IO ()
 update_qty = foreign FFI_JS "update_qty(%0,%1)" (String -> Int -> JS_IO ())
@@ -131,6 +131,9 @@ get_qty x = (_get_qty_m' x) >>= parse_int_m
 
 console_log : String -> JS_IO ()
 console_log = foreign FFI_JS "console_log(%0)" (String -> JS_IO () )
+
+call_js_ptr : Ptr -> JS_IO Int
+call_js_ptr = foreign FFI_JS "call_js_ptr(%0)" (Ptr -> JS_IO Int )
 
 add_row : String -> String -> JS_IO ()
 add_row = foreign FFI_JS "add_row(%0,%1)" (String -> String -> JS_IO ())
@@ -187,15 +190,16 @@ line2io tableid rowid x = insert_beforeend tableid $ line2row rowid x
 
 line_list2io_amend : TableID -> List OrderLine -> JS_IO ()
 line_list2io_amend tableid [] = pure ()
-line_list2io_amend tableid ( x@(MkOrderLine k v) :: xs) = do
-          let key_s = (display_as_key k)
+line_list2io_amend tableid ( x@(MkOrderLine k@(sku1, price, sku2) v) :: xs) = do
+          -- let key_s = (display_as_key k)
           -- console_log key_s
           let new_qty = printf "%d" (t2integer v)
           --console_log $ show $ ((renderDataWithSchema "" k) ++ [("Qty",new_qty )] )
 
-          line2io tableid (Just key_s) x
+          line2io tableid (Just sku1) x
           line_list2io_amend tableid xs
           
+{-          
 line_list2io : TableID -> List OrderLine -> JS_IO ()
 line_list2io tableid [] = pure ()
 line_list2io tableid ( x@(MkOrderLine k v) :: xs) = do
@@ -214,6 +218,7 @@ line_list2io tableid ( x@(MkOrderLine k v) :: xs) = do
                          False => update_qty key_s new_qty
                       
           line_list2io tableid xs
+-}
 
 --line2io_amend : OrderLine -> JS_IO ()
 --line2io_amend x = insert_beforeend table_amendments_id $ line2row Nothing x
@@ -252,9 +257,13 @@ setUp = do
 --           onClick "#punch" (doAction PUNCH) 
 --           onClick "#magic" (doAction MAGIC) 
 
+
+
 testingEvent1 : Ptr -> JS_IO ()
-testingEvent1 ptr = do
-        console_log "input evetn received"
+testingEvent1 ev = do
+        new_val <- call_js_ptr ev
+        console_log "input event received "
+        console_log (the String (cast new_val))
         console_log "hmm done"
 
 partial main : JS_IO ()
@@ -297,7 +306,7 @@ main = do
      (Just j) => console_log (Language.JSON.Data.format 2 j)
    
    setUp
-   onEvent "#sku1:p1_price_unit:188_sku2:$|Qty" "input" testingEvent1
+   onEvent "#p2__Qty" "input" testingEvent1
    console_log $ schema2thead (OrderLineKey1 .+. (SInt (FA "Qty" False) ))                   
    --onInit setUp
    
