@@ -85,6 +85,19 @@ SchemaType (SSymbolOP name) = SymbolOP
 SchemaType (x .+. y) = (SchemaType x, SchemaType y)
 SchemaType (x .->. y) = ( (SchemaType x) -> (SchemaType y))
 
+
+data KVType : Type -> Type -> Type where
+     MkKVType : (kt : Type) -> (kv : Type) -> KVType kt kv
+
+SchemaType2 : Schema -> Type
+SchemaType2 (SString name)= String
+SchemaType2 (SInt name )= Integer
+SchemaType2 (STterm name ) = Tterm
+SchemaType2 (SSymbolOP name) = SymbolOP
+SchemaType2 (x .+. y) = (SchemaType x, SchemaType y)
+SchemaType2 (x .->. y) = KVType (SchemaType x) (SchemaType y)
+
+
 -- String -> index
 OrderLineKey1 : Schema
 OrderLineKey1 = (SString (FA "sku1" False) ) .+. 
