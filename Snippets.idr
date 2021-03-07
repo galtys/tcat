@@ -1,7 +1,7 @@
 module Snippets
 
 import Printf
-import Exchange
+--import Exchange
 import DataStore
 
 %access public export

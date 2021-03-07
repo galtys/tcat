@@ -1,6 +1,6 @@
 package hs
 
-modules = Exchange,Printf,Snippets,Muf
+modules = DataStore,Printf,Snippets,Muf
 
 main = Muf
 

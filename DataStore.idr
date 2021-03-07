@@ -4,7 +4,6 @@ import Data.Vect
 import Printf
 %access public export
 
-infixr 5 .+.
        
 --data Schema = SString | SInt | (.+.) Schema Schema
 
@@ -51,24 +50,53 @@ Semigroup Tterm where
 Show Tterm where
      show (Tt x y) = show(x) ++ "//" ++ show(y)
 
+data SymbolOP = Create | Delete
+
+Semigroup SymbolOP where
+     (<+>) Create Create = Create
+     (<+>) Create Delete = Delete
+     (<+>) Delete Create = Create
+     (<+>) Delete Delete = Delete
+
 record FieldArgs where
   constructor FA
   name : String
   rw : Bool
 
+infixr 6 .+.
+infixr 5 .->.
+
 data Schema : Type where
      SString : (fargs : FieldArgs) -> Schema
      SInt :    (fargs : FieldArgs) -> Schema
+     STterm :  (fargs : FieldArgs) -> Schema
+     SSymbolOP : (fargs : FieldArgs) -> Schema
      (.+.) : (s1 : Schema) -> (s2 : Schema) -> Schema 
-
+     (.->.) : (s1 : Schema) -> (s2 : Schema) -> Schema 
+     
 SchemaType : Schema -> Type
 SchemaType (SString name)= String
 SchemaType (SInt name )= Integer
+SchemaType (STterm name ) = Tterm
+SchemaType (SSymbolOP name) = SymbolOP
 SchemaType (x .+. y) = (SchemaType x, SchemaType y)
+SchemaType (x .->. y) = ( (SchemaType x) -> (SchemaType y))
 
 -- String -> index
 OrderLineKey1 : Schema
-OrderLineKey1 = (SString (FA "sku1" False) ).+.(SInt (FA "price_unit" False) ) .+. (SString (FA "sku2" False) )
+OrderLineKey1 = (SString (FA "sku1" False) ) .+. 
+                (SInt (FA "price_unit" False) ) .+. 
+                (SString (FA "sku2" False) )
+
+OrderLineKey2 : Schema
+OrderLineKey2 = (SString (FA "sku1" False) ) .->. 
+                (SInt (FA "price_unit" False) ) .+. 
+                (SString (FA "sku2" False) )
+
+Items2 : Schema
+Items2 =  (SString (FA "sku1" False) ) .->. 
+          (STterm  (FA "qty" True) )
+
 
 --(SInt (FA "p1" False) )  .+.(SInt (FA "p2" False)  ).+.(SInt (FA "line" False) ).+.
 
