@@ -2,7 +2,7 @@ module Main
 
 import Printf as PF
 import Snippets
-import Exchange
+--import Exchange
 import Language.JSON
 import Language.JSON.Data
 import DataStore
@@ -107,6 +107,7 @@ parse_int x = do
                True => Nothing
                False => Just x_val
         pure ret
+
         
 parse_int_m : Maybe String -> JS_IO (Maybe Int)
 parse_int_m Nothing = pure Nothing
