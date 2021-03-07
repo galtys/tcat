@@ -116,26 +116,26 @@ _test_state k = do
      pure val
 -}
 
-test_string_tterm : List (String,Tterm)
-test_string_tterm = [("p1",Tt 4 0), ("p2", Tt 1 0), ("p3",Tt 7 0)]
+test_kv : List (String,Tterm)
+test_kv = [("p1",Tt 4 0), ("p2", Tt 1 0), ("p3",Tt 7 0)]
 
-
-
-interpret : List (String,Tterm) -> String -> State (SortedMap String Tterm) Tterm
-interpret [] key = pure (Tt 0 0)
-interpret (x@(k,v) :: xs) key = do
-      _xs <- interpret xs key
+interpret : List (String,Tterm) -> State (SortedMap String Tterm) ()
+interpret [] = pure ()
+interpret (x@(k,v) :: xs)= do
+      _xs <- interpret xs
       st <- get
       let sm = insert k v empty
-      let new_m = merge st sm
-      put (new_m)
-      case (lookup key new_m) of
-         Nothing => pure (Tt 0 0)
-         (Just x) => pure x
+      put (merge st sm)
+      pure ()
 
-_f_val1 : SortedMap String Tterm -> (String -> Tterm)
-_f_val1 kvm = _f_val
+_map_to_lambda : SortedMap String Tterm -> (String -> Tterm)
+_map_to_lambda kvm 
+      = (\k => case (Data.SortedMap.lookup k kvm) of
+                  Nothing => (Tt 0 0) 
+                  (Just x) => x)
 
+muf37 : String -> Tterm 
+muf37 = _map_to_lambda (execState (interpret test_kv) empty)
 
 record TestItems2 where
      constructor MkTestItems2
