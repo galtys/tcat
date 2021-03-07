@@ -6,6 +6,9 @@ import Snippets
 import Language.JSON
 import Language.JSON.Data
 import DataStore
+import Data.SortedMap
+import Control.Monad.State
+
 {--
 function update_qty(key, value) {
   document.getElementById(key).innerText=value;

@@ -2,6 +2,9 @@ module Main
 
 import Data.Vect
 import Printf
+import Data.SortedMap
+import Control.Monad.State
+
 %access public export
 
        
@@ -97,7 +100,54 @@ Items2 : Schema
 Items2 =  (SString (FA "sku1" False) ) .->. 
           (STterm  (FA "qty" True) )
 
+_f_val : String -> Tterm 
+_f_val "p1" = Tt 4 0
+_f_val "p2" = Tt 1 0
+_f_val "p3" = Tt 7 0
+_f_val _    = Tt 0 0
 
+--    let uux = State kvm Tterm in
+
+{-
+_test_state : String -> State (SortedMap String Tterm) Tterm
+_test_state k = do
+     sm <- get
+     let val = (lookup k sm)
+     pure val
+-}
+
+test_string_tterm : List (String,Tterm)
+test_string_tterm = [("p1",Tt 4 0), ("p2", Tt 1 0), ("p3",Tt 7 0)]
+
+
+
+interpret : List (String,Tterm) -> String -> State (SortedMap String Tterm) Tterm
+interpret [] key = pure (Tt 0 0)
+interpret (x@(k,v) :: xs) key = do
+      _xs <- interpret xs key
+      st <- get
+      let sm = insert k v empty
+      let new_m = merge st sm
+      put (new_m)
+      case (lookup key new_m) of
+         Nothing => pure (Tt 0 0)
+         (Just x) => pure x
+
+_f_val1 : SortedMap String Tterm -> (String -> Tterm)
+_f_val1 kvm = _f_val
+
+
+record TestItems2 where
+     constructor MkTestItems2
+     muf : (SchemaType Items2)
+     
+record DataStore where
+  constructor MkData
+  schema : Schema
+  size : Nat
+  items : Vect size (SchemaType schema)
+
+     
 --(SInt (FA "p1" False) )  .+.(SInt (FA "p2" False)  ).+.(SInt (FA "line" False) ).+.
 
 {-
