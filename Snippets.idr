@@ -73,7 +73,7 @@ table_card key schema = ret where
                 </tbody>
                 
               </table>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button class="btn btn-primary" id="table_card_button">ClickMe</button>
               
               <div class="card-footer">
               <div/>

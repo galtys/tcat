@@ -101,6 +101,23 @@ function calc_sha256(msg) {
    return md1.digest().toHex();
 }
 
+/* Adds a click event listener */
+function onClick(selector, callback) {
+    document.querySelector(selector).addEventListener('click', callback);
+}
+
+function onInput(selector, callback) {
+    document.querySelector(selector).addEventListener('input', callback);
+}
+
+
+/* Does something on init event */
+function onInit(callback) {
+    document.addEventListener('init', callback);
+}
+
+
+
 /*
 function httpGet(theUrl)
 {

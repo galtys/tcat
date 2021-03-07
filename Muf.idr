@@ -14,7 +14,69 @@ function get_qty(key) {
   return document.getElementById(key).innerText
 
 --}
+data Event : Type where
+  MkEvent : Ptr -> Event
 
+data Element : Type where
+  MkElem : Ptr -> Element
+
+data EventType : Type where
+  Click : EventType
+  DoubleClick : EventType
+  MouseDown : EventType
+  MouseMove : EventType
+  MouseOver : EventType
+  MouseOut : EventType
+  MouseUp : EventType
+  KeyDown : EventType
+  KeyUp : EventType
+  KeyPress : EventType
+  Abort : EventType
+  Error : EventType
+  Load : EventType
+  Resize : EventType
+  Scroll : EventType
+  Unload : EventType
+  Blur : EventType
+  Change : EventType
+  Input : EventType
+  Focus : EventType
+  Reset : EventType
+  Select : EventType
+  Submit : EventType
+
+implementation Show EventType where
+  show Click = "click"
+  show DoubleClick = "dblclick"
+  show MouseDown = "mousedown"
+  show MouseMove = "mousemove"
+  show MouseOver = "mouseover"
+  show MouseOut = "mouseout"
+  show MouseUp = "mouseup"
+  show KeyDown = "keydown"
+  show KeyUp = "keyup"
+  show KeyPress = "keypress"
+  show Abort = "abort"
+  show Error = "error"
+  show Load = "load"
+  show Resize = "resize"
+  show Scroll = "scroll"
+  show Unload = "unload"
+  show Blur = "blur"
+  show Change = "change"
+  show Input = "input"
+  show Focus = "focus"
+  show Reset = "reset"
+  show Select = "select"
+  show Submit = "submit"
+
+
+onEvent : String -> String -> (Ptr -> JS_IO Int) -> JS_IO ()
+onEvent selector event callback =
+        foreign FFI_JS
+            "document.querySelector(%0).addEventListener(%1, %2)"   --selector, "click", callback
+            (String -> String -> JsFn (Ptr -> JS_IO Int ) -> JS_IO ())
+            selector event (MkJsFn callback)
 
 update_qty : String -> Int -> JS_IO ()
 update_qty = foreign FFI_JS "update_qty(%0,%1)" (String -> Int -> JS_IO ())
@@ -159,6 +221,38 @@ line_list2io tableid ( x@(MkOrderLine k v) :: xs) = do
 THeader : Schema
 THeader = OrderLineKey1 .+. (SInt (FA "Qty" True) ) 
 
+
+partial onClick : String -> JS_IO () -> JS_IO ()
+onClick selector callback =
+  foreign FFI_JS 
+    "onClick(%0, %1)"
+    (String -> JsFn (() -> JS_IO ()) -> JS_IO ())
+    selector (MkJsFn (\_ => callback))
+
+partial onInput : String -> JS_IO () -> JS_IO ()
+onInput selector callback =
+  foreign FFI_JS 
+    "onInput(%0, %1)"
+    (String -> JsFn (() -> JS_IO ()) -> JS_IO ())
+    selector (MkJsFn (\_ => callback))
+    
+            
+partial onInit : JS_IO () -> JS_IO ()
+onInit callback =
+  foreign FFI_JS
+    "onInit(%0)"
+    ((JsFn (() -> JS_IO ())) -> JS_IO ())
+    (MkJsFn (\_ => callback))
+
+partial setUp : JS_IO ()
+setUp = do 
+           
+           onClick "#table_card_button" (console_log "button table card")
+           onClick "#big_one" (console_log "button bigone")
+--           onClick "#punch" (doAction PUNCH) 
+--           onClick "#magic" (doAction MAGIC) 
+
+
 partial main : JS_IO ()
 main = do      
    new_row_sha1 <- calc_sha1 "abc"
@@ -197,8 +291,11 @@ main = do
    case (parse js1) of
      Nothing => console_log "na"
      (Just j) => console_log (Language.JSON.Data.format 2 j)
+   
+   setUp
    console_log $ schema2thead (OrderLineKey1 .+. (SInt (FA "Qty" False) ))                   
-
+   --onInit setUp
+   
 -- Local Variables:
 -- idris-load-packages: ("contrib")
 -- End:
