@@ -71,13 +71,13 @@ implementation Show EventType where
   show Submit = "submit"
 
 
-onEvent : String -> String -> (Ptr -> JS_IO Int) -> JS_IO ()
+onEvent : String -> String -> (Ptr -> JS_IO () ) -> JS_IO ()
 onEvent selector event callback =
         foreign FFI_JS
             "document.querySelector(%0).addEventListener(%1, %2)"   --selector, "click", callback
-            (String -> String -> JsFn (Ptr -> JS_IO Int ) -> JS_IO ())
+            (String -> String -> JsFn (Ptr -> JS_IO () ) -> JS_IO ())
             selector event (MkJsFn callback)
-
+            
 update_qty : String -> Int -> JS_IO ()
 update_qty = foreign FFI_JS "update_qty(%0,%1)" (String -> Int -> JS_IO ())
 
@@ -252,6 +252,10 @@ setUp = do
 --           onClick "#punch" (doAction PUNCH) 
 --           onClick "#magic" (doAction MAGIC) 
 
+testingEvent1 : Ptr -> JS_IO ()
+testingEvent1 ptr = do
+        console_log "input evetn received"
+        console_log "hmm done"
 
 partial main : JS_IO ()
 main = do      
@@ -293,6 +297,7 @@ main = do
      (Just j) => console_log (Language.JSON.Data.format 2 j)
    
    setUp
+   onEvent "#sku1:p1_price_unit:188_sku2:$|Qty" "input" testingEvent1
    console_log $ schema2thead (OrderLineKey1 .+. (SInt (FA "Qty" False) ))                   
    --onInit setUp
    
