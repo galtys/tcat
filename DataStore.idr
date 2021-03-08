@@ -79,7 +79,7 @@ data FieldDef : Type where
 
 data Schema2 : Type where
      IField : (name:String) -> (ft:FieldDef) -> Schema2
-     EField : (name:String) -> (e:String)-> Schema2
+     EField : (name:String) -> (ns : String)-> Schema2  --col name, type name, ?add type of index?
      (.|.) : (s1 : Schema2) -> (s2 : Schema2) -> Schema2 
 --     ESymbol : (e:String) -> Schema2 
 --     FSymbolOP : FieldDef
@@ -100,15 +100,21 @@ SchemaType (SSymbolOP name) = SymbolOP
 SchemaType (x .+. y) = (SchemaType x, SchemaType y)
 SchemaType (x .->. y) = ( (SchemaType x) -> (SchemaType y))
 
-{-
-SchemaType2 : Schema -> Type
-SchemaType2 (SString name)= String
-SchemaType2 (SInt name )= Integer
-SchemaType2 (STterm name ) = Tterm
-SchemaType2 (SSymbolOP name) = SymbolOP
-SchemaType2 (x .+. y) = (SchemaType2 x, SchemaType2 y)
-SchemaType2 (x .->. y) = Pair (SchemaType2 x) (SchemaType2 y)
--}
+
+SchemaType2 : Schema2 -> Type
+SchemaType2 (IField name FBool)= Bool
+SchemaType2 (IField name FString )= String
+SchemaType2 (IField name FTterm ) = Tterm
+SchemaType2 (x .|. y) = (SchemaType2 x, SchemaType2 y)
+
+
+record Model where
+     constructor MkModel
+     ns : String
+     key : Schema2
+     val : Schema2
+     data_key : (SchemaType2 key)
+     data_val : (SchemaType2 val)
 
 -- String -> index
 OrderLineKey1 : Schema
@@ -166,12 +172,13 @@ _map_to_lambda kvm
 muf37 : String -> Tterm 
 muf37 = _map_to_lambda (execState (interpret test_kv) empty)
 
+{-
 record TestItems2 where
      constructor MkTestItems2
      muf : (SchemaType Items2)
 
 
-{-
+
 v2test1 : (SchemaType2 schema) -> (SchemaType2 schema) -> List (SchemaType2 schema)
 v2test1 {schema=( SString (FA s1 rw)) } item1  item2= ?ret
 
@@ -206,6 +213,8 @@ record OrderLineKey where
 --   product_uom : UOM
 --   tax_id : Integer
 --   discount : Integer
+
+
 
 record OrderLine where
      constructor MkOrderLine     
