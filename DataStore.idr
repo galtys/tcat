@@ -105,16 +105,34 @@ SchemaType2 : Schema2 -> Type
 SchemaType2 (IField name FBool)= Bool
 SchemaType2 (IField name FString )= String
 SchemaType2 (IField name FTterm ) = Tterm
+SchemaType2 (EField name ns ) = (Nat,SymbolOP)
 SchemaType2 (x .|. y) = (SchemaType2 x, SchemaType2 y)
 
-
-record Model where
-     constructor MkModel
-     ns : String
+record ModelSchema where
+     constructor MkModelSchema
      key : Schema2
      val : Schema2
-     data_key : (SchemaType2 key)
-     data_val : (SchemaType2 val)
+
+record ModelData (m:ModelSchema) where
+     constructor MkMD
+     size : Nat
+     data_key : Vect size (SchemaType2 (key m))
+     data_val : Vect size (SchemaType2 (val m))
+     
+record ModelDataStore (m:ModelSchema) where
+   constructor MkDS
+   ns : String
+   totals : ModelData m
+   amendments : List (ModelData m)     
+
+Test_ModelSchema : ModelSchema
+Test_ModelSchema = MkModelSchema (EField "sku1" "asset") (IField "qty1" FTterm)
+     
+test_ModelData : ModelData Test_ModelSchema
+test_ModelData = MkMD 0 [] []
+
+test_ModelStore : ModelDataStore Test_ModelSchema
+test_ModelStore = MkDS "items" test_ModelData [test_ModelData]
 
 -- String -> index
 OrderLineKey1 : Schema
