@@ -61,6 +61,8 @@ Semigroup SymbolOP where
      (<+>) Delete Create = Create
      (<+>) Delete Delete = Delete
 
+
+
 record FieldArgs where
   constructor FA
   name : String
@@ -68,6 +70,19 @@ record FieldArgs where
 
 infixr 6 .+.
 infixr 5 .->.
+infixr 5 .|.
+
+data FieldDef : Type where
+     FBool :  FieldDef
+     FString : FieldDef
+     FTterm :  FieldDef
+
+data Schema2 : Type where
+     IField : (name:String) -> (ft:FieldDef) -> Schema2
+     EField : (name:String) -> (e:String)-> Schema2
+     (.|.) : (s1 : Schema2) -> (s2 : Schema2) -> Schema2 
+--     ESymbol : (e:String) -> Schema2 
+--     FSymbolOP : FieldDef
 
 data Schema : Type where
      SString : (fargs : FieldArgs) -> Schema
@@ -85,18 +100,15 @@ SchemaType (SSymbolOP name) = SymbolOP
 SchemaType (x .+. y) = (SchemaType x, SchemaType y)
 SchemaType (x .->. y) = ( (SchemaType x) -> (SchemaType y))
 
-
-data KVType : Type -> Type -> Type where
-     MkKVType : (kt : Type) -> (kv : Type) -> KVType kt kv
-
+{-
 SchemaType2 : Schema -> Type
 SchemaType2 (SString name)= String
 SchemaType2 (SInt name )= Integer
 SchemaType2 (STterm name ) = Tterm
 SchemaType2 (SSymbolOP name) = SymbolOP
-SchemaType2 (x .+. y) = (SchemaType x, SchemaType y)
-SchemaType2 (x .->. y) = KVType (SchemaType x) (SchemaType y)
-
+SchemaType2 (x .+. y) = (SchemaType2 x, SchemaType2 y)
+SchemaType2 (x .->. y) = Pair (SchemaType2 x) (SchemaType2 y)
+-}
 
 -- String -> index
 OrderLineKey1 : Schema
@@ -110,8 +122,12 @@ OrderLineKey2 = (SString (FA "sku1" False) ) .->.
                 (SString (FA "sku2" False) )
 
 Items2 : Schema
-Items2 =  (SString (FA "sku1" False) ) .->. 
-          (STterm  (FA "qty" True) )
+Items2 =  ( (SString (FA "sku1" False)) .->. SSymbolOP (FA "assets" False) ) .->. 
+            (STterm  (FA "qty" True) )
+
+Items1 : Schema
+Items1 =  SString (FA "sku1" False) .->. SSymbolOP (FA "assets" False) 
+
 
 _f_val : String -> Tterm 
 _f_val "p1" = Tt 4 0
@@ -153,14 +169,26 @@ muf37 = _map_to_lambda (execState (interpret test_kv) empty)
 record TestItems2 where
      constructor MkTestItems2
      muf : (SchemaType Items2)
-     
-record DataStore where
-  constructor MkData
-  schema : Schema
-  size : Nat
-  items : Vect size (SchemaType schema)
 
-     
+
+{-
+v2test1 : (SchemaType2 schema) -> (SchemaType2 schema) -> List (SchemaType2 schema)
+v2test1 {schema=( SString (FA s1 rw)) } item1  item2= ?ret
+
+v2test2 : (SchemaType2 schema) -> (SchemaType2 schema) -> List (SchemaType2 schema)
+v2test2 {schema=( SString f1 .->. SSymbolOP f2) } item1@(k1,v1) item2@(k2,v2) 
+       = if k1 == k2 then [ (k1, v1 <+> v2  ) ] else [item1,item2]
+       
+v2test2 {schema=( (SString f1 .->. SSymbolOP f2) .->. STterm f3) } item1@(k1,v1) item2@(k2,v2)
+       = if (fst k1)==(fst k2) then [ (k1, v1<+>v2 ) ] else [item1,item2]
+v2test2 x y =[]
+-}
+              
+--v2test2 {schema=( SString (FA s1 rw1) .->. ( STterm (FA s2 rw2)) ) } item1@(k1,v1) item2@(k2,v2) 
+--       = if k1 == k2 then [ (k1, v1 <+> v2  ) ] else [item1,item2]
+
+
+
 --(SInt (FA "p1" False) )  .+.(SInt (FA "p2" False)  ).+.(SInt (FA "line" False) ).+.
 
 {-
@@ -311,6 +339,9 @@ processInput store input
 -}
 
 --main : IO ()
---main = replWith (MkData ((SString "f1") .+. (SString "f2").+. (SInt "f3")) _ []) "Command: " processInput
-{-
--}
+--main = replWith (MkData ((SString "f1") .+. (SString "f2").+. (SInt "f3")) _ []) "Command: " processIn
+
+-- Local Variables:
+-- idris-load-packages: ("contrib")
+-- End:
+
