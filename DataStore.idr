@@ -127,9 +127,9 @@ record ModelDataStore (m:ModelSchema) where
 
 Test_ModelSchema : ModelSchema
 Test_ModelSchema = MkModelSchema (EField "sku1" "asset") (IField "qty1" FTterm)
-     
+
 test_ModelData : ModelData Test_ModelSchema
-test_ModelData = MkMD 0 [] []
+test_ModelData = MkMD 1 [(1,Create)] [(Tt 2 0)]
 
 test_ModelStore : ModelDataStore Test_ModelSchema
 test_ModelStore = MkDS "items" test_ModelData [test_ModelData]
