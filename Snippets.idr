@@ -8,20 +8,6 @@ import Data.Vect as DV
 
 %access public export
 
-js1 : String
-js1 =  """{
-  "key1": [11,89],
-  "key2": {
-      "key2.1": true,
-      "key2.2": {
-        "key2.2.1": "bar",
-        "key2.2.2": 200
-      }
-    }
-  }"""
-
-
-
 {-
 test_val : (SchemaType OrderLineKey1)
 test_val = (1,7,1,"1",100,188)
