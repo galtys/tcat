@@ -4,6 +4,8 @@ import Data.Vect
 import Printf
 import Data.SortedMap
 import Control.Monad.State
+import Language.JSON
+import Language.JSON.Data
 
 %access public export
 
@@ -112,6 +114,14 @@ SchemaType2 (IField name FTterm ) = Tterm
 SchemaType2 (EField name ns ) = Integer
 SchemaType2 (x .|. y) = (SchemaType2 x, SchemaType2 y)
 
+{-
+SchemaType3 : Schema2 -> Type
+SchemaType3 (IField name FBool)= (Bool -> JSON)
+SchemaType3 (IField name FString )= (String -> JSON)
+SchemaType3 (IField name FTterm ) = ((Double -> JSON), (Double -> JSON))
+SchemaType3 (EField name ns ) = (Double -> JSON)
+SchemaType3 (x .|. y) = (SchemaType3 x, SchemaType3 y)
+-}
 record ModelSchema where
      constructor MkModelSchema
      key : Schema2
@@ -133,11 +143,11 @@ record ModelDataStore (m:ModelSchema) where
 
 Test_ModelSchema : ModelSchema
 Test_ModelSchema = MkModelSchema (EField "sku1" "asset")
-                                 ((IField "qty1" FTterm) .|. 
+                                 ((IField "qty1" FBool) .|. 
                                  (IField "note" FString))
 
 test_ModelData : ModelData Test_ModelSchema
-test_ModelData = MkMD 1 [1] [ ((Tt 2 0), "retail") ]
+test_ModelData = MkMD 1 [ 1 ] [ (False , "retail") ]
 
 test_ModelStore : ModelDataStore Test_ModelSchema
 test_ModelStore = MkDS "items" test_ModelData [test_ModelData]

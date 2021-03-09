@@ -4,6 +4,8 @@ import Printf
 --import Exchange
 import DataStore
 import Data.Vect as DV
+import Language.JSON
+import Language.JSON.Data
 
 
 %access public export
@@ -46,6 +48,19 @@ renderSchemaDataVect s (x :: xs) = ("["++renderSchemaDataAsJsonP x++"]" ) ++ a w
 renderModelData : (m:ModelSchema) -> (ModelData m)  -> String
 renderModelData m x = printf """[%s,%s]""" (renderSchemaDataVect (key m) (data_key x)) 
                                                            (renderSchemaDataVect (val m) (data_val x))
+
+
+json2Schema2Data : (s:Schema2) -> JSON -> (SchemaType2 s)
+json2Schema2Data (IField name FBool) json = ?json2Schema2Data_rhs_4
+json2Schema2Data (IField name FString) json = ?json2Schema2Data_rhs_5
+json2Schema2Data (IField name FTterm) json = ?json2Schema2Data_rhs_6
+json2Schema2Data (EField name ns) json = ?json2Schema2Data_rhs_2
+json2Schema2Data (s1 .|. s2) (JArray []) = ?json2Schema2Data_rhs_1
+json2Schema2Data (s1 .|. s2) (JArray (x :: xs)) = ?json2Schema2Data_rhs_3
+
+
+
+
 
 --renderSchemaDataVect (key m) (data_key x)
 -- renderSchemaDataAsJsonP (data_val x)
