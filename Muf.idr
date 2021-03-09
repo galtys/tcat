@@ -265,6 +265,10 @@ testingEvent1 ev = do
         console_log (the String (cast new_val))
         console_log "hmm done"
 
+
+test_json : String
+test_json = renderModelData Test_ModelSchema test_ModelData 
+
 partial main : JS_IO ()
 main = do      
    new_row_sha1 <- calc_sha1 "abc"
@@ -300,10 +304,12 @@ main = do
    line_list2io table_composite_id test_list4
    -}
    
-   case (parse js1) of
+   
+   console_log test_json   
+   case (parse test_json) of
      Nothing => console_log "na"
      (Just j) => console_log (Language.JSON.Data.format 2 j)
-   
+            
    setUp
    onEvent "#p2__Qty" Input testingEvent1
    console_log $ schema2thead (OrderLineKey1 .+. (SInt (FA "Qty" False) ))                   
