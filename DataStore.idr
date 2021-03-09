@@ -120,8 +120,10 @@ record ModelSchema where
 record ModelData (m:ModelSchema) where
      constructor MkMD
      size : Nat
-     data_key : Vect size (SchemaType2 (key m))
-     data_val : Vect size (SchemaType2 (val m))
+     data_key : SchemaType2 (key m)
+     data_val : SchemaType2 (val m)
+     --data_key : Vect size (SchemaType2 (key m))
+     --data_val : Vect size (SchemaType2 (val m))
      
 record ModelDataStore (m:ModelSchema) where
    constructor MkDS
@@ -130,10 +132,12 @@ record ModelDataStore (m:ModelSchema) where
    amendments : List (ModelData m)     
 
 Test_ModelSchema : ModelSchema
-Test_ModelSchema = MkModelSchema (EField "sku1" "asset") (IField "qty1" FTterm)
+Test_ModelSchema = MkModelSchema (EField "sku1" "asset")
+                                 ((IField "qty1" FTterm) .|. 
+                                 (IField "note" FString))
 
 test_ModelData : ModelData Test_ModelSchema
-test_ModelData = MkMD 1 [(1,Create)] [(Tt 2 0)]
+test_ModelData = MkMD 1 (1,Create) ((Tt 2 0), "retail")
 
 test_ModelStore : ModelDataStore Test_ModelSchema
 test_ModelStore = MkDS "items" test_ModelData [test_ModelData]

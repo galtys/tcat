@@ -131,20 +131,30 @@ line2row (Just _rowid) x@(MkOrderLine k v)
            printf "<tr>%s</tr>" _line
 
 tterm2json : Tterm -> String
-tterm2json (Tt dr cr) = printf "{dr=%d,cr=%d}" dr cr
+tterm2json (Tt dr cr) = printf """{"dr"=%d,"cr"=%d}""" dr cr
 
+quote : String
+quote = pack ['"']
 
 -- assumption: column(field) names are unique
 renderSchemaDataAsJsonP : (SchemaType2 schema) -> String
-renderSchemaDataAsJsonP {schema = (IField name FTterm)} item = printf "{name=%s,value=%s}" name (tterm2json item)
-renderSchemaDataAsJsonP {schema = (IField name FBool)} item = printf "{name=%s,value=%s}" name val where
+renderSchemaDataAsJsonP {schema = (IField name FTterm)} item = printf """{"name"="%s","value"=%s}""" name (tterm2json item)
+renderSchemaDataAsJsonP {schema = (IField name FBool)} item = printf """{"name"="%s","value"=%s}""" name val where
                       val = if (item == True) then "true" else "false"
-renderSchemaDataAsJsonP {schema = (IField name FString)} item = printf "{name=%s,value=%s}" name item
+renderSchemaDataAsJsonP {schema = (IField name FString)} item = printf """{"name"="%s","value"="%s"}""" name item 
 renderSchemaDataAsJsonP {schema = (EField name ns)} (i,symbol_op) 
                  = let op = if (symbol_op == Create) then "Create" else "Delete"
-                       op_json=printf "{i=%d,op=%s}" i op
-                       ret = printf "{name=%s,value=%s}" name op_json in
+                       op_json=printf """{"i"=%d,"op"="%s"}""" i op
+                       ret = printf """{"name"="%s","value"=%s}""" name op_json in
                        ret
 renderSchemaDataAsJsonP {schema = (y .|. z)} (iteml,itemr) = (renderSchemaDataAsJsonP iteml)++
                                                            "," ++
                                                            (renderSchemaDataAsJsonP itemr)
+
+renderModelData : (m:ModelSchema) -> (ModelData m)  -> String
+renderModelData m x = renderSchemaDataAsJsonP (data_val x)
+--renderModelData x = x --[ renderSchemaDataAsJsonP xx | xx <- data_key x] --, renderSchemaDataAsJsonP (data_val x))
+
+-- Local Variables:
+-- idris-load-packages: ("contrib")
+-- End:
