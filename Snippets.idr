@@ -130,4 +130,21 @@ line2row (Just _rowid) x@(MkOrderLine k v)
            _line = concat [printf "%s" x | x <- _items ++ [_qty_item] ] in
            printf "<tr>%s</tr>" _line
 
+tterm2json : Tterm -> String
+tterm2json (Tt dr cr) = printf "{dr=%d,cr=%d}" dr cr
 
+
+-- assumption: column(field) names are unique
+renderSchemaDataAsJsonP : (SchemaType2 schema) -> String
+renderSchemaDataAsJsonP {schema = (IField name FTterm)} item = printf "{name=%s,value=%s}" name (tterm2json item)
+renderSchemaDataAsJsonP {schema = (IField name FBool)} item = printf "{name=%s,value=%s}" name val where
+                      val = if (item == True) then "true" else "false"
+renderSchemaDataAsJsonP {schema = (IField name FString)} item = printf "{name=%s,value=%s}" name item
+renderSchemaDataAsJsonP {schema = (EField name ns)} (i,symbol_op) 
+                 = let op = if (symbol_op == Create) then "Create" else "Delete"
+                       op_json=printf "{i=%d,op=%s}" i op
+                       ret = printf "{name=%s,value=%s}" name op_json in
+                       ret
+renderSchemaDataAsJsonP {schema = (y .|. z)} (iteml,itemr) = (renderSchemaDataAsJsonP iteml)++
+                                                           "," ++
+                                                           (renderSchemaDataAsJsonP itemr)

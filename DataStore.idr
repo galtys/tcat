@@ -61,8 +61,12 @@ Semigroup SymbolOP where
      (<+>) Delete Create = Create
      (<+>) Delete Delete = Delete
 
-
-
+Eq SymbolOP where
+     (==) Create Create = True
+     (==) Delete Delete = True
+     (==) _ _ = False     
+     (/=) x y = not (x==y)
+     
 record FieldArgs where
   constructor FA
   name : String
@@ -105,7 +109,7 @@ SchemaType2 : Schema2 -> Type
 SchemaType2 (IField name FBool)= Bool
 SchemaType2 (IField name FString )= String
 SchemaType2 (IField name FTterm ) = Tterm
-SchemaType2 (EField name ns ) = (Nat,SymbolOP)
+SchemaType2 (EField name ns ) = (Integer,SymbolOP)
 SchemaType2 (x .|. y) = (SchemaType2 x, SchemaType2 y)
 
 record ModelSchema where
