@@ -146,14 +146,14 @@ keySchema2 : Schema2
 keySchema2 = (EField "sku1" "asset")
                                  
 valSchema2 : Schema2
-valSchema2 = (IField "qty1" FBool) .|. (IField "note" FString)
+valSchema2 = (IField "qty1" FBool) .|. (IField "note" FString) .|. (IField "qty" FTterm)
 
 Test_ModelSchema : ModelSchema
 Test_ModelSchema = MkModelSchema keySchema2 valSchema2
                                  
 
 test_ModelData : ModelData Test_ModelSchema
-test_ModelData = MkMD 1 [ 1 ] [ (False , "retail") ]
+test_ModelData = MkMD 1 [ 1 ] [ (False , "retail", Tt 3 0 ) ]
 
 test_ModelStore : ModelDataStore Test_ModelSchema
 test_ModelStore = MkDS "items" test_ModelData [test_ModelData]

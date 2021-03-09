@@ -20,7 +20,7 @@ test_key = display_as_key  test_val
 
 
 tterm2json : Tterm -> String
-tterm2json (Tt dr cr) = printf """{"dr":%d,"cr":%d}""" dr cr
+tterm2json (Tt dr cr) = printf """[%d,%d]""" dr cr
 
 --op = if (symbol_op == Create) then "Create" else "Delete"
 --                       op_json=printf """{"i":%d,"op":"%s"}""" i op
@@ -72,10 +72,16 @@ list_json_to_str ( (JString x) :: xs) = x
 list_json_to_num : List JSON -> Integer
 list_json_to_num ( (JNumber x) :: xs) = the Integer (cast x)
 
+list_json_to_tterm : List JSON -> Tterm
+list_json_to_tterm ((JArray ((JNumber dr) :: (JNumber cr) :: x ))::xs) = Tt (the Integer (cast dr)) (the Integer (cast cr))
+
+--(JArray (JNumber dr) :: (JNumber cr) :: xs ) = Tt (the Integer (cast dr)) (the Integer (cast cr))
+
+
 json2Schema2Data : (s:Schema2) -> List JSON -> (SchemaType2 s)
 json2Schema2Data (IField name FBool) x = list_json_to_bool x
 json2Schema2Data (IField name FString) x = list_json_to_str x
---json2Schema2Data (IField name FTterm) x = ?ret3
+json2Schema2Data (IField name FTterm) x = list_json_to_tterm x
 json2Schema2Data (EField name ns) x = list_json_to_num x
 --json2Schema2Data (s1 .|. s2) (JArray []) = ()
 json2Schema2Data (s1 .|. s2) (x :: xs) = ( json2Schema2Data s1 [x] , json2Schema2Data s2 xs)
