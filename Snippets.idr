@@ -67,13 +67,17 @@ list_json_to_bool : List JSON -> Bool
 list_json_to_bool ( (JBoolean x) :: xs) = x
 
 list_json_to_str : List JSON -> String
+--list_json_to_str [] = Nothing
 list_json_to_str ( (JString x) :: xs) = x
 
 list_json_to_num : List JSON -> Integer
+--list_json_to_num [] = Nothing
 list_json_to_num ( (JNumber x) :: xs) = the Integer (cast x)
 
 list_json_to_tterm : List JSON -> Tterm
-list_json_to_tterm ((JArray ((JNumber dr) :: (JNumber cr) :: x ))::xs) = Tt (the Integer (cast dr)) (the Integer (cast cr))
+--list_json_to_tterm [] = Nothing
+list_json_to_tterm ((JArray ((JNumber dr) :: (JNumber cr) :: x ))::xs) =Tt (the Integer (cast dr)) (the Integer (cast cr))
+--list_json_to_tterm _ = Nothing
 
 --(JArray (JNumber dr) :: (JNumber cr) :: xs ) = Tt (the Integer (cast dr)) (the Integer (cast cr))
 
@@ -85,7 +89,7 @@ json2Schema2Data (IField name FTterm) x = list_json_to_tterm x
 json2Schema2Data (EField name ns) x = list_json_to_num x
 --json2Schema2Data (s1 .|. s2) (JArray []) = ()
 json2Schema2Data (s1 .|. s2) (x :: xs) = ( json2Schema2Data s1 [x] , json2Schema2Data s2 xs)
-
+--json2Schema2Data s _ = Nothing
 
 
 
