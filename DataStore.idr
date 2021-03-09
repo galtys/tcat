@@ -130,11 +130,15 @@ record ModelSchema where
 record ModelData (m:ModelSchema) where
      constructor MkMD
      size : Nat
---     data_key : SchemaType2 (key m)
---     data_val : SchemaType2 (val m)
      data_key : Vect size (SchemaType2 (key m))
      data_val : Vect size (SchemaType2 (val m))
+
+record ModelDataList (m:ModelSchema) where
+     constructor MkMDList
+     data_keyL : List (SchemaType2 (key m))
+     data_valL : List (SchemaType2 (val m))
      
+               
 record ModelDataStore (m:ModelSchema) where
    constructor MkDS
    ns : String
@@ -153,7 +157,11 @@ Test_ModelSchema = MkModelSchema keySchema2 valSchema2
                                  
 
 test_ModelData : ModelData Test_ModelSchema
-test_ModelData = MkMD 1 [ 1 ] [ (False , "retail", Tt 3 0 ) ]
+test_ModelData = MkMD 4 [ 1,2,3,4 ] 
+                        [ (False , "res", Tt 3 0 ),
+                          (False , "r", Tt 0 3 ),
+                          (False , "il", Tt 1 0 ),
+                          (False , "l", Tt 0 7 ) ]
 
 test_ModelStore : ModelDataStore Test_ModelSchema
 test_ModelStore = MkDS "items" test_ModelData [test_ModelData]

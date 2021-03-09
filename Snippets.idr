@@ -50,17 +50,27 @@ renderSchemaDataAsJsonP1 {schema = (y .|. z)} (iteml,itemr) = (renderSchemaDataA
                                                            "," ++
                                                            (renderSchemaDataAsJsonP1 itemr)
 
+joinVect : (Vect size String) -> String
+joinVect [] = ""
+joinVect (x :: xs) = x ++ a ++ (joinVect xs) where
+                    a = if ( length xs==0 ) then "" else ","
 
-renderSchemaDataVect : (s:Schema2) -> Vect size (SchemaType2 s) -> String
-renderSchemaDataVect s [] = ""
-renderSchemaDataVect s (x :: xs) = ("["++renderSchemaDataAsJsonP1 x++"]" ) ++ a where
-               a = if ( length xs==0 ) then "" else ","
+
+--joinVect (x:xs) = "" -- 
+
+
+renderSchemaDataVect : (s:Schema2) -> Vect size (SchemaType2 s) -> Vect size String
+renderSchemaDataVect s [] = []
+renderSchemaDataVect s (x :: xs) = [ "["++(renderSchemaDataAsJsonP1 x)++"]" ] ++ (renderSchemaDataVect s xs)  
+
+--renderSchemaDataVect s (x :: xs) = [renderSchemaDataAsJsonP1 x] ++ (renderSchemaDataVect s xs)  
+
                
 
 
 renderModelData : (m:ModelSchema) -> (ModelData m)  -> String
-renderModelData m x = printf """[%s,%s]""" (renderSchemaDataVect (key m) (data_key x)) 
-                                                           (renderSchemaDataVect (val m) (data_val x))
+renderModelData m x = printf """[ [%s],  [%s]   ]""" (  joinVect $ renderSchemaDataVect (key m) (data_key x) ) 
+                                           (  joinVect $ renderSchemaDataVect (val m) (data_val x) )
 
 
 list_json_to_bool : List JSON -> Bool
@@ -89,10 +99,63 @@ json2Schema2Data (IField name FTterm) x = list_json_to_tterm x
 json2Schema2Data (EField name ns) x = list_json_to_num x
 --json2Schema2Data (s1 .|. s2) (JArray []) = ()
 json2Schema2Data (s1 .|. s2) (x :: xs) = ( json2Schema2Data s1 [x] , json2Schema2Data s2 xs)
+
+
+json2ListJSON : JSON -> List JSON
+json2ListJSON (JArray xs) = xs
+json2ListJSON _ = []
+
+{-
+json2ListJSON JNull = ?json2ListJSON_rhs_1
+json2ListJSON (JBoolean x) = ?json2ListJSON_rhs_2
+json2ListJSON (JNumber x) = ?json2ListJSON_rhs_3
+json2ListJSON (JString x) = ?json2ListJSON_rhs_4
+json2ListJSON (JObject xs) = ?json2ListJSON_rhs_6
+-}
+
 --json2Schema2Data s _ = Nothing
 
+--list2vect : (s:Schema2) -> (size :Nat) -> List (SchemaType2 s) -> Maybe (Vect size (SchemaType2 s))
+--list2vect s size [] = Nothing
+--list2vect s size (x :: xs) = ?ret_2
+
+json2Schema2ListData : (s:Schema2) -> JSON -> List (SchemaType2 s)
+--json2Schema2ListData s [] = []
+json2Schema2ListData s (JArray ( (JArray x)::xs))= [(json2Schema2Data s x)] ++ (json2Schema2ListData s (JArray xs) )
 
 
+--json2kv : JSON -> (List JSON, List JSON)
+--json2kv (JArray ((JArray keyD) :: (JArray valD) :: xs) )    =  (keyD ,valD)
+
+json2kv : JSON -> (JSON, JSON)
+json2kv (JArray (( keyD) :: ( valD) :: xs) )    =  (keyD ,valD)
+
+
+_test_json2 :JSON
+_test_json2 = JArray [JArray [JBoolean False, JString "res", JArray [JNumber 3.0, JNumber 0.0]],
+JArray [JBoolean False, JString "r", JArray [JNumber 0.0, JNumber 3.0]],
+JArray [JBoolean False, JString "il", JArray [JNumber 1.0, JNumber 0.0]],
+JArray [JBoolean False, JString "l", JArray [JNumber 0.0, JNumber 7.0]]]
+
+
+
+
+{-
+json2ModelData : (m:ModelSchema) -> ( JSON, JSON) -> Maybe (ModelData m)
+json2ModelData m (keyD,valD)
+       = let kk = json2Schema2ListData (key m) keyD
+             dk = (fromList kk)
+             
+             vv = (json2Schema2ListData (val m) valD)
+             dv = (fromList vv)
+             sz = (length dv)  in
+             
+         Just (MkMD sz dk dv) 
+
+json2ModelData m _ = Nothing
+-}
+
+--json2ModelData2 : (m:ModelSchema) -> Maybe JSON -> Maybe (ModelData m)
 
 --renderSchemaDataVect (key m) (data_key x)
 -- renderSchemaDataAsJsonP (data_val x)
