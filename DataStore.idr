@@ -109,7 +109,7 @@ SchemaType2 : Schema2 -> Type
 SchemaType2 (IField name FBool)= Bool
 SchemaType2 (IField name FString )= String
 SchemaType2 (IField name FTterm ) = Tterm
-SchemaType2 (EField name ns ) = (Integer,SymbolOP)
+SchemaType2 (EField name ns ) = Integer
 SchemaType2 (x .|. y) = (SchemaType2 x, SchemaType2 y)
 
 record ModelSchema where
@@ -137,7 +137,7 @@ Test_ModelSchema = MkModelSchema (EField "sku1" "asset")
                                  (IField "note" FString))
 
 test_ModelData : ModelData Test_ModelSchema
-test_ModelData = MkMD 1 [(1,Create)] [ ((Tt 2 0), "retail") ]
+test_ModelData = MkMD 1 [1] [ ((Tt 2 0), "retail") ]
 
 test_ModelStore : ModelDataStore Test_ModelSchema
 test_ModelStore = MkDS "items" test_ModelData [test_ModelData]
