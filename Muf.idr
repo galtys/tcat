@@ -2,6 +2,7 @@ module Main
 
 import Printf as PF
 import Snippets
+import Snippets2
 --import Exchange
 import Language.JSON
 import Language.JSON.Data
