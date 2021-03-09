@@ -141,10 +141,16 @@ record ModelDataStore (m:ModelSchema) where
    totals : ModelData m
    amendments : List (ModelData m)     
 
+
+keySchema2 : Schema2
+keySchema2 = (EField "sku1" "asset")
+                                 
+valSchema2 : Schema2
+valSchema2 = (IField "qty1" FBool) .|. (IField "note" FString)
+
 Test_ModelSchema : ModelSchema
-Test_ModelSchema = MkModelSchema (EField "sku1" "asset")
-                                 ((IField "qty1" FBool) .|. 
-                                 (IField "note" FString))
+Test_ModelSchema = MkModelSchema keySchema2 valSchema2
+                                 
 
 test_ModelData : ModelData Test_ModelSchema
 test_ModelData = MkMD 1 [ 1 ] [ (False , "retail") ]
