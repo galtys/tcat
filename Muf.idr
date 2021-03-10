@@ -11,18 +11,6 @@ import DataStore
 import Data.SortedMap
 import Control.Monad.State
 
-js1 : String
-js1 =  """{
-  "key1": [11,89],
-  "key2": {
-      "key2.1": true,
-      "key2.2": {
-        "key2.2.1": "bar",
-        "key2.2.2": 200
-      }
-    }
-  }"""
-
 {--
 function update_qty(key, value) {
   document.getElementById(key).innerText=value;

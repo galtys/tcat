@@ -135,16 +135,17 @@ record ModelData (m:ModelSchema) where
 
 record ModelDataList (m:ModelSchema) where
      constructor MkMDList
+     ns : String
      data_keyL : List (SchemaType2 (key m))
      data_valL : List (SchemaType2 (val m))
      
-               
+{-               
 record ModelDataStore (m:ModelSchema) where
    constructor MkDS
    ns : String
    totals : ModelData m
    amendments : List (ModelData m)     
-
+-}
 
 keySchema2 : Schema2
 keySchema2 = (EField "sku1" "asset")
@@ -162,9 +163,10 @@ test_ModelData = MkMD 4 [ 1,2,3,4 ]
                           (False , "r", Tt 0 3 ),
                           (False , "il", Tt 1 0 ),
                           (False , "l", Tt 0 7 ) ]
-
+{-
 test_ModelStore : ModelDataStore Test_ModelSchema
 test_ModelStore = MkDS "items" test_ModelData [test_ModelData]
+-}
 
 -- String -> index
 OrderLineKey1 : Schema

@@ -54,14 +54,21 @@ table_card key schema = ret where
               <form>
               </form>
               -->
-              <table class="table table-sm table-hover table-info">
+      	    <div class="flex-container">
+      	      <div class="flex-item-a">
+      	      
+              <table class="table table-sm table-hover">
                 <thead>
                     %s
                 </thead>
                 <tbody %s >
                 </tbody>
-                
               </table>
+              
+              </div>
+              
+            </div>
+              
               <button class="btn btn-primary" id="table_card_button">ClickMe</button>
               
               <div class="card-footer">
@@ -108,6 +115,10 @@ renderDataWithSchema2 p_id  {schema = (SInt (FA name True) )} item = [ render_nu
 renderDataWithSchema2 p_id  {schema = (SInt (FA name False) )} item = [ render_number_in_td_tag item]
 
 renderDataWithSchema2 p_id {schema = (y .+. z)} (iteml, itemr) = (renderDataWithSchema2 p_id iteml) ++ (renderDataWithSchema2 p_id itemr)
+
+
+
+
 
 public export
 line2row : RowID -> OrderLine -> String
