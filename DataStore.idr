@@ -51,12 +51,19 @@ i2s x = the String (cast x)
      
 Semigroup Tterm where
      (<+>) a b = tadd a b
-     
+
 Show Tterm where
      show (Tt x y) = show(x) ++ "//" ++ show(y)
 
-data SymbolOP = Create | Delete
+{-
+namespace symbol_no_functor
+     data SymbolOP = Create | Delete
+-}
 
+
+data SymbolOP a = Create a | Delete a | Empty
+
+{-
 Semigroup SymbolOP where
      (<+>) Create Create = Create
      (<+>) Create Delete = Delete
@@ -68,7 +75,8 @@ Eq SymbolOP where
      (==) Delete Delete = True
      (==) _ _ = False     
      (/=) x y = not (x==y)
-     
+-}
+
 record FieldArgs where
   constructor FA
   name : String
@@ -94,7 +102,7 @@ data Schema : Type where
      SString : (fargs : FieldArgs) -> Schema
      SInt :    (fargs : FieldArgs) -> Schema
      STterm :  (fargs : FieldArgs) -> Schema
-     SSymbolOP : (fargs : FieldArgs) -> Schema
+--     SSymbolOP : (fargs : FieldArgs) -> Schema
      (.+.) : (s1 : Schema) -> (s2 : Schema) -> Schema 
      (.->.) : (s1 : Schema) -> (s2 : Schema) -> Schema 
      
@@ -102,10 +110,10 @@ SchemaType : Schema -> Type
 SchemaType (SString name)= String
 SchemaType (SInt name )= Integer
 SchemaType (STterm name ) = Tterm
-SchemaType (SSymbolOP name) = SymbolOP
 SchemaType (x .+. y) = (SchemaType x, SchemaType y)
 SchemaType (x .->. y) = ( (SchemaType x) -> (SchemaType y))
 
+--SchemaType (SSymbolOP name) = SymbolOP
 
 SchemaType2 : Schema2 -> Type
 SchemaType2 (IField name FBool)= Bool
@@ -177,13 +185,16 @@ OrderLineKey2 = (SString (FA "sku1" False) ) .->.
                 (SInt (FA "price_unit" False) ) .+. 
                 (SString (FA "sku2" False) )
 
+
+{-
+Items1 : Schema
+Items1 =  SString (FA "sku1" False) .->. SSymbolOP (FA "assets" False) 
+
 Items2 : Schema
 Items2 =  ( (SString (FA "sku1" False)) .->. SSymbolOP (FA "assets" False) ) .->. 
             (STterm  (FA "qty" True) )
 
-Items1 : Schema
-Items1 =  SString (FA "sku1" False) .->. SSymbolOP (FA "assets" False) 
-
+-}
 
 _f_val : String -> Tterm 
 _f_val "p1" = Tt 4 0
