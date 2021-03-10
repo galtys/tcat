@@ -55,15 +55,8 @@ Semigroup Tterm where
 Show Tterm where
      show (Tt x y) = show(x) ++ "//" ++ show(y)
 
-{-
-namespace symbol_no_functor
-     data SymbolOP = Create | Delete
--}
+data SymbolOP = Create | Delete
 
-
-data SymbolOP a = Create a | Delete a | Empty
-
-{-
 Semigroup SymbolOP where
      (<+>) Create Create = Create
      (<+>) Create Delete = Delete
@@ -75,7 +68,6 @@ Eq SymbolOP where
      (==) Delete Delete = True
      (==) _ _ = False     
      (/=) x y = not (x==y)
--}
 
 record FieldArgs where
   constructor FA
