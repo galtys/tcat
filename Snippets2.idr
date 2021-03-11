@@ -76,11 +76,6 @@ renderDataAsKey {schema = (IField name FTterm)} item = the String (cast (t2integ
 renderDataAsKey {schema = (EField name ns)} item = the String (cast item)
 renderDataAsKey {schema = (y .|. z)} (iteml, itemr) = (renderDataAsKey iteml) ++ (renderDataAsKey itemr)
 
-public export
-get_row_id : String -> (SchemaType2 schema) -> String
-get_row_id p_id  item = p_id++ "_row"++(renderDataAsKey item)
-
-
 namespace tab_widget
    public export
    id_att_format : String
@@ -139,6 +134,10 @@ namespace tab_widget
    _lines2io p_id (x::xs) = do
       insert_beforeend p_id x
       _lines2io p_id xs
+
+   public export
+   get_row_id : String -> (SchemaType2 schema) -> String
+   get_row_id p_id  item = p_id++ "_row"++(renderDataAsKey item)
 
    public export
    insert_rows : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()

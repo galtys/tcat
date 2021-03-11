@@ -1431,10 +1431,10 @@ function $partial_1_3$Snippets2__tab_95_widget___123_insert_95_rows_95_4_125_(x1
     });
 }
 
-function $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows_95_5_125_(){
-    return (function(x1){
-        return (function(x2){
-            return Snippets2__tab_95_widget___123_insert_95_rows_95_5_125_(x1, x2);
+function $partial_2_4$Snippets2__tab_95_widget___123_insert_95_rows_95_5_125_(x1, x2){
+    return (function(x3){
+        return (function(x4){
+            return Snippets2__tab_95_widget___123_insert_95_rows_95_5_125_(x1, x2, x3, x4);
         });
     });
 }
@@ -1447,27 +1447,35 @@ function $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows_95_6_125_(){
     });
 }
 
-function $partial_2_3$Snippets2__tab_95_widget___123_insert_95_rows_95_7_125_(x1, x2){
-    return (function(x3){
-        return Snippets2__tab_95_widget___123_insert_95_rows_95_7_125_(x1, x2, x3);
+function $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows_95_8_125_(){
+    return (function(x1){
+        return (function(x2){
+            return Snippets2__tab_95_widget___123_insert_95_rows_95_8_125_(x1, x2);
+        });
     });
 }
 
-function $partial_5_6$Snippets2__tab_95_widget___123_table_95_card2_95_8_125_(x1, x2, x3, x4, x5){
+function $partial_2_3$Snippets2__tab_95_widget___123_insert_95_rows_95_9_125_(x1, x2){
+    return (function(x3){
+        return Snippets2__tab_95_widget___123_insert_95_rows_95_9_125_(x1, x2, x3);
+    });
+}
+
+function $partial_5_6$Snippets2__tab_95_widget___123_table_95_card2_95_10_125_(x1, x2, x3, x4, x5){
     return (function(x6){
-        return Snippets2__tab_95_widget___123_table_95_card2_95_8_125_(x1, x2, x3, x4, x5, x6);
+        return Snippets2__tab_95_widget___123_table_95_card2_95_10_125_(x1, x2, x3, x4, x5, x6);
     });
 }
 
-function $partial_2_3$Printf___123_toFunction_95_9_125_(x1, x2){
+function $partial_2_3$Printf___123_toFunction_95_11_125_(x1, x2){
     return (function(x3){
-        return Printf___123_toFunction_95_9_125_(x1, x2, x3);
+        return Printf___123_toFunction_95_11_125_(x1, x2, x3);
     });
 }
 
-function $partial_2_3$Printf___123_toFunction_95_10_125_(x1, x2){
+function $partial_2_3$Printf___123_toFunction_95_12_125_(x1, x2){
     return (function(x3){
-        return Printf___123_toFunction_95_10_125_(x1, x2, x3);
+        return Printf___123_toFunction_95_12_125_(x1, x2, x3);
     });
 }
 
@@ -1491,6 +1499,7 @@ function $HC_2_1$Main__EField($1, $2){
     this.$2 = $2;
 }
 
+const $HC_0_0$Main__FBool = ({type: 0});
 const $HC_0_3$Printf__FEnd = ({type: 3});
 function $HC_1_0$Printf__FInt($1){
     this.type = 0;
@@ -1503,6 +1512,7 @@ function $HC_2_2$Printf__FOther($1, $2){
     this.$2 = $2;
 }
 
+const $HC_0_1$Main__FString = ({type: 1});
 function $HC_1_1$Printf__FString($1){
     this.type = 1;
     this.$1 = $1;
@@ -1575,7 +1585,7 @@ function Snippets2__tab_95_widget___95_lines2io($_0_arg, $_1_arg){
     if(($_1_arg.type === 1)) {
         return $partial_3_4$Snippets2__tab_95_widget___123__95_lines2io_95_0_125_($_0_arg, $_1_arg.$1, $_1_arg.$2);
     } else {
-        $JSRTS.die("*** Snippets2.idr:125:4-127:23:unmatched case in Snippets2.tab_widget._lines2io ***");
+        $JSRTS.die("*** Snippets2.idr:134:4-136:23:unmatched case in Snippets2.tab_widget._lines2io ***");
     }
 }
 
@@ -1640,14 +1650,18 @@ function Snippets2__tab_95_widget__insert_95_rows($_0_arg, $_1_arg, $_2_arg){
     let $cg$2 = null;
     $cg$2 = $_2_arg.$3;
     const $_13_in = Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_1_3$Snippets2__tab_95_widget___123_insert_95_rows_95_4_125_($_1_arg), $HC_0_0$Prelude__List__Nil, $cg$2);
-    const $_23_in = Prelude__List__zipWith(null, null, null, $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows_95_5_125_(), $_3_in, $_13_in);
-    return $partial_2_3$Snippets2__tab_95_widget___123_insert_95_rows_95_7_125_($_0_arg, $_23_in);
+    let $cg$3 = null;
+    $cg$3 = $_2_arg.$2;
+    const $_23_in = Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_2_4$Snippets2__tab_95_widget___123_insert_95_rows_95_5_125_($_0_arg, $_1_arg), $HC_0_0$Prelude__List__Nil, $cg$3);
+    const $_31_in = Prelude__List__zipWith(null, null, null, $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows_95_6_125_(), $_3_in, $_13_in);
+    const $_34_in = Prelude__List__zipWith(null, null, null, $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows_95_6_125_(), $_23_in, $_31_in);
+    return $partial_2_3$Snippets2__tab_95_widget___123_insert_95_rows_95_9_125_($_0_arg, $_34_in);
 }
 
-// Main.items_ModelDataList
+// Main.items_ModelDataList'
 
-function Main__items_95_ModelDataList(){
-    return new $HC_3_0$Main__MkMDList("items", new $HC_2_1$Prelude__List___58__58_((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_1$Prelude__List___58__58_((new $JSRTS.jsbn.BigInteger(("2"))), new $HC_2_1$Prelude__List___58__58_((new $JSRTS.jsbn.BigInteger(("3"))), new $HC_2_1$Prelude__List___58__58_((new $JSRTS.jsbn.BigInteger(("4"))), $HC_0_0$Prelude__List__Nil)))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Main__Tt((new $JSRTS.jsbn.BigInteger(("3"))), (new $JSRTS.jsbn.BigInteger(("0")))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Main__Tt((new $JSRTS.jsbn.BigInteger(("7"))), (new $JSRTS.jsbn.BigInteger(("0")))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Main__Tt((new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("0")))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Main__Tt((new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("39")))), $HC_0_0$Prelude__List__Nil)))));
+function Main__items_95_ModelDataList_39_(){
+    return new $HC_3_0$Main__MkMDList("items", new $HC_2_1$Prelude__List___58__58_((new $JSRTS.jsbn.BigInteger(("1"))), new $HC_2_1$Prelude__List___58__58_((new $JSRTS.jsbn.BigInteger(("2"))), new $HC_2_1$Prelude__List___58__58_((new $JSRTS.jsbn.BigInteger(("3"))), new $HC_2_1$Prelude__List___58__58_((new $JSRTS.jsbn.BigInteger(("4"))), $HC_0_0$Prelude__List__Nil)))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(false, new $HC_2_0$Builtins__MkPair("res", new $HC_2_0$Main__Tt((new $JSRTS.jsbn.BigInteger(("3"))), (new $JSRTS.jsbn.BigInteger(("0")))))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(false, new $HC_2_0$Builtins__MkPair("r", new $HC_2_0$Main__Tt((new $JSRTS.jsbn.BigInteger(("0"))), (new $JSRTS.jsbn.BigInteger(("3")))))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(false, new $HC_2_0$Builtins__MkPair("il", new $HC_2_0$Main__Tt((new $JSRTS.jsbn.BigInteger(("1"))), (new $JSRTS.jsbn.BigInteger(("0")))))), new $HC_2_1$Prelude__List___58__58_(new $HC_2_0$Builtins__MkPair(false, new $HC_2_0$Builtins__MkPair("l", new $HC_2_0$Main__Tt((new $JSRTS.jsbn.BigInteger(("0"))), (new $JSRTS.jsbn.BigInteger(("7")))))), $HC_0_0$Prelude__List__Nil)))));
 }
 
 // Main.main
@@ -1657,7 +1671,7 @@ function Main__main($_0_in){
     const $_2_in = JSIO__calc_95_sha256("abc", $_0_in);
     const $_3_in = JSIO__console_95_log($_1_in, $_0_in);
     const $_4_in = JSIO__console_95_log($_2_in, $_0_in);
-    return Snippets2__tab_95_widget__table_95_card2("order1", new $HC_2_0$Main__MkModelSchema(new $HC_2_1$Main__EField("sku1", "asset"), new $HC_2_0$Main__IField("qty", $HC_0_2$Main__FTterm)), Main__items_95_ModelDataList())($_0_in);
+    return Snippets2__tab_95_widget__table_95_card2("order1", new $HC_2_0$Main__MkModelSchema(new $HC_2_1$Main__EField("sku1", "asset"), new $HC_2_2$Main_____124___(new $HC_2_0$Main__IField("flag", $HC_0_0$Main__FBool), new $HC_2_2$Main_____124___(new $HC_2_0$Main__IField("note", $HC_0_1$Main__FString), new $HC_2_0$Main__IField("qty", $HC_0_2$Main__FTterm)))), Main__items_95_ModelDataList_39_())($_0_in);
 }
 
 // Prelude.Show.primNumShow
@@ -1702,6 +1716,34 @@ function Prelude__Show__primNumShow($_0_arg, $_1_arg, $_2_arg, $_3_arg){
     }
 }
 
+// Snippets2.renderDataAsKey
+
+function Snippets2__renderDataAsKey($_0_arg, $_1_arg){
+    
+    if(($_0_arg.type === 2)) {
+        
+        return (Snippets2__renderDataAsKey($_0_arg.$1, $_1_arg.$1) + Snippets2__renderDataAsKey($_0_arg.$2, $_1_arg.$2));
+    } else if(($_0_arg.type === 1)) {
+        return (($_1_arg).toString());
+    } else {
+        const $cg$3 = $_0_arg.$2;
+        if(($cg$3.type === 0)) {
+            
+            if($_1_arg) {
+                return "True";
+            } else {
+                return "False";
+            }
+        } else if(($cg$3.type === 1)) {
+            return $_1_arg;
+        } else {
+            let $cg$4 = null;
+            $cg$4 = $_1_arg.$1.subtract($_1_arg.$2);
+            return (($cg$4).toString());
+        }
+    }
+}
+
 // Snippets2.renderDataWithSchema2
 
 function Snippets2__renderDataWithSchema2($_0_arg, $_1_arg){
@@ -1710,54 +1752,86 @@ function Snippets2__renderDataWithSchema2($_0_arg, $_1_arg){
         
         return Prelude__List___43__43_(null, Snippets2__renderDataWithSchema2($_0_arg.$1, $_1_arg.$1), Snippets2__renderDataWithSchema2($_0_arg.$2, $_1_arg.$2));
     } else if(($_0_arg.type === 1)) {
-        let $cg$7 = null;
+        let $cg$12 = null;
         if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
-            $cg$7 = $HC_0_0$Prelude__List__Nil;
+            $cg$12 = $HC_0_0$Prelude__List__Nil;
         } else {
-            let $cg$8 = null;
+            let $cg$13 = null;
             if((((("<td>%d</td>".slice(1) == "")) ? 1|0 : 0|0) === 0)) {
-                $cg$8 = true;
+                $cg$13 = true;
             } else {
-                $cg$8 = false;
+                $cg$13 = false;
             }
             
-            let $cg$9 = null;
-            if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0($cg$8, true).type === 1)) {
-                $cg$9 = $HC_0_0$Prelude__Strings__StrNil;
+            let $cg$14 = null;
+            if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0($cg$13, true).type === 1)) {
+                $cg$14 = $HC_0_0$Prelude__Strings__StrNil;
             } else {
-                $cg$9 = new $HC_2_1$Prelude__Strings__StrCons("<td>%d</td>".slice(1)[0], "<td>%d</td>".slice(1).slice(1));
+                $cg$14 = new $HC_2_1$Prelude__Strings__StrCons("<td>%d</td>".slice(1)[0], "<td>%d</td>".slice(1).slice(1));
             }
             
-            $cg$7 = new $HC_2_1$Prelude__List___58__58_("<td>%d</td>"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$9));
+            $cg$12 = new $HC_2_1$Prelude__List___58__58_("<td>%d</td>"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$14));
         }
         
-        return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$7), "")($_1_arg), $HC_0_0$Prelude__List__Nil);
+        return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$12), "")($_1_arg), $HC_0_0$Prelude__List__Nil);
     } else {
-        
-        let $cg$3 = null;
-        if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
-            $cg$3 = $HC_0_0$Prelude__List__Nil;
+        const $cg$3 = $_0_arg.$2;
+        if(($cg$3.type === 0)) {
+            
+            if($_1_arg) {
+                return new $HC_2_1$Prelude__List___58__58_("<td>True</td>", $HC_0_0$Prelude__List__Nil);
+            } else {
+                return new $HC_2_1$Prelude__List___58__58_("<td>False</td>", $HC_0_0$Prelude__List__Nil);
+            }
+        } else if(($cg$3.type === 1)) {
+            let $cg$8 = null;
+            if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
+                $cg$8 = $HC_0_0$Prelude__List__Nil;
+            } else {
+                let $cg$9 = null;
+                if((((("<td>%s</td>".slice(1) == "")) ? 1|0 : 0|0) === 0)) {
+                    $cg$9 = true;
+                } else {
+                    $cg$9 = false;
+                }
+                
+                let $cg$10 = null;
+                if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0($cg$9, true).type === 1)) {
+                    $cg$10 = $HC_0_0$Prelude__Strings__StrNil;
+                } else {
+                    $cg$10 = new $HC_2_1$Prelude__Strings__StrCons("<td>%s</td>".slice(1)[0], "<td>%s</td>".slice(1).slice(1));
+                }
+                
+                $cg$8 = new $HC_2_1$Prelude__List___58__58_("<td>%s</td>"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$10));
+            }
+            
+            return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$8), "")($_1_arg), $HC_0_0$Prelude__List__Nil);
         } else {
             let $cg$4 = null;
-            if((((("<td>%d</td>".slice(1) == "")) ? 1|0 : 0|0) === 0)) {
-                $cg$4 = true;
+            if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
+                $cg$4 = $HC_0_0$Prelude__List__Nil;
             } else {
-                $cg$4 = false;
+                let $cg$5 = null;
+                if((((("<td>%d</td>".slice(1) == "")) ? 1|0 : 0|0) === 0)) {
+                    $cg$5 = true;
+                } else {
+                    $cg$5 = false;
+                }
+                
+                let $cg$6 = null;
+                if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0($cg$5, true).type === 1)) {
+                    $cg$6 = $HC_0_0$Prelude__Strings__StrNil;
+                } else {
+                    $cg$6 = new $HC_2_1$Prelude__Strings__StrCons("<td>%d</td>".slice(1)[0], "<td>%d</td>".slice(1).slice(1));
+                }
+                
+                $cg$4 = new $HC_2_1$Prelude__List___58__58_("<td>%d</td>"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$6));
             }
             
-            let $cg$5 = null;
-            if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0($cg$4, true).type === 1)) {
-                $cg$5 = $HC_0_0$Prelude__Strings__StrNil;
-            } else {
-                $cg$5 = new $HC_2_1$Prelude__Strings__StrCons("<td>%d</td>".slice(1)[0], "<td>%d</td>".slice(1).slice(1));
-            }
-            
-            $cg$3 = new $HC_2_1$Prelude__List___58__58_("<td>%d</td>"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$5));
+            let $cg$7 = null;
+            $cg$7 = $_1_arg.$1.subtract($_1_arg.$2);
+            return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$4), "")($cg$7), $HC_0_0$Prelude__List__Nil);
         }
-        
-        let $cg$6 = null;
-        $cg$6 = $_1_arg.$1.subtract($_1_arg.$2);
-        return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$3), "")($cg$6), $HC_0_0$Prelude__List__Nil);
     }
 }
 
@@ -1768,7 +1842,7 @@ function Snippets2__tab_95_widget__table_95_card2($_0_arg, $_1_arg, $_2_arg){
     $cg$1 = $_2_arg.$1;
     const $_3_in = ($_0_arg + ("__" + $cg$1));
     const $_7_in = ($_3_in + "__composite_table");
-    return $partial_5_6$Snippets2__tab_95_widget___123_table_95_card2_95_8_125_($_0_arg, $_3_in, $_2_arg, $_1_arg, $_7_in);
+    return $partial_5_6$Snippets2__tab_95_widget___123_table_95_card2_95_10_125_($_0_arg, $_3_in, $_2_arg, $_1_arg, $_7_in);
 }
 
 // Printf.toFunction
@@ -1780,13 +1854,13 @@ function Printf__toFunction($_0_arg, $_1_arg){
         if(($_0_arg.type === 3)) {
             return $_1_arg;
         } else if(($_0_arg.type === 0)) {
-            return $partial_2_3$Printf___123_toFunction_95_9_125_($_0_arg.$1, $_1_arg);
+            return $partial_2_3$Printf___123_toFunction_95_11_125_($_0_arg.$1, $_1_arg);
         } else if(($_0_arg.type === 2)) {
             $tco$$_1_arg = ($_1_arg + (($_0_arg.$1)+("")));
             $_0_arg = $_0_arg.$2;
             $_1_arg = $tco$$_1_arg;
         } else {
-            return $partial_2_3$Printf___123_toFunction_95_10_125_($_0_arg.$1, $_1_arg);
+            return $partial_2_3$Printf___123_toFunction_95_12_125_($_0_arg.$1, $_1_arg);
         }
     }
 }
@@ -1843,49 +1917,58 @@ function Snippets2__tab_95_widget___123_insert_95_rows_95_4_125_($_0_lift, $_1_l
 
 // Snippets2.tab_widget.{insert_rows_5}
 
-function Snippets2__tab_95_widget___123_insert_95_rows_95_5_125_($_0_lift, $_1_lift){
-    return new $HC_2_0$Builtins__MkPair($_0_lift, $_1_lift);
+function Snippets2__tab_95_widget___123_insert_95_rows_95_5_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift){
+    let $cg$1 = null;
+    $cg$1 = $_1_lift.$1;
+    return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_(($_0_lift + ("_row" + Snippets2__renderDataAsKey($cg$1, $_2_lift))), $HC_0_0$Prelude__List__Nil), $_3_lift);
 }
 
 // Snippets2.tab_widget.{insert_rows_6}
 
 function Snippets2__tab_95_widget___123_insert_95_rows_95_6_125_($_0_lift, $_1_lift){
+    return new $HC_2_0$Builtins__MkPair($_0_lift, $_1_lift);
+}
+
+// Snippets2.tab_widget.{insert_rows_8}
+
+function Snippets2__tab_95_widget___123_insert_95_rows_95_8_125_($_0_lift, $_1_lift){
     let $cg$1 = null;
-    let $cg$2 = null;
+    const $cg$3 = $_0_lift.$2;
+    let $cg$4 = null;
     if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
-        $cg$2 = $HC_0_0$Prelude__List__Nil;
+        $cg$4 = $HC_0_0$Prelude__List__Nil;
     } else {
-        let $cg$3 = null;
-        if((((("<tr>%s %s</tr>".slice(1) == "")) ? 1|0 : 0|0) === 0)) {
-            $cg$3 = true;
+        let $cg$5 = null;
+        if((((("<tr id=%s>%s %s</tr>".slice(1) == "")) ? 1|0 : 0|0) === 0)) {
+            $cg$5 = true;
         } else {
-            $cg$3 = false;
+            $cg$5 = false;
         }
         
-        let $cg$4 = null;
-        if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0($cg$3, true).type === 1)) {
-            $cg$4 = $HC_0_0$Prelude__Strings__StrNil;
+        let $cg$6 = null;
+        if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0($cg$5, true).type === 1)) {
+            $cg$6 = $HC_0_0$Prelude__Strings__StrNil;
         } else {
-            $cg$4 = new $HC_2_1$Prelude__Strings__StrCons("<tr>%s %s</tr>".slice(1)[0], "<tr>%s %s</tr>".slice(1).slice(1));
+            $cg$6 = new $HC_2_1$Prelude__Strings__StrCons("<tr id=%s>%s %s</tr>".slice(1)[0], "<tr id=%s>%s %s</tr>".slice(1).slice(1));
         }
         
-        $cg$2 = new $HC_2_1$Prelude__List___58__58_("<tr>%s %s</tr>"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$4));
+        $cg$4 = new $HC_2_1$Prelude__List___58__58_("<tr id=%s>%s %s</tr>"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$6));
     }
     
-    $cg$1 = new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$2), "")($_0_lift.$1)($_0_lift.$2), $HC_0_0$Prelude__List__Nil);
+    $cg$1 = new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$4), "")($_0_lift.$1)($cg$3.$1)($cg$3.$2), $HC_0_0$Prelude__List__Nil);
     return Prelude__List___43__43_(null, $cg$1, $_1_lift);
 }
 
-// Snippets2.tab_widget.{insert_rows_7}
+// Snippets2.tab_widget.{insert_rows_9}
 
-function Snippets2__tab_95_widget___123_insert_95_rows_95_7_125_($_0_lift, $_1_lift, $_2_lift){
-    const $_33_in = Snippets2__tab_95_widget___95_lines2io($_0_lift, Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows_95_6_125_(), $HC_0_0$Prelude__List__Nil, $_1_lift))($_2_lift);
+function Snippets2__tab_95_widget___123_insert_95_rows_95_9_125_($_0_lift, $_1_lift, $_2_lift){
+    const $_46_in = Snippets2__tab_95_widget___95_lines2io($_0_lift, Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows_95_8_125_(), $HC_0_0$Prelude__List__Nil, $_1_lift))($_2_lift);
     return $HC_0_0$MkUnit;
 }
 
-// Snippets2.tab_widget.{table_card2_8}
+// Snippets2.tab_widget.{table_card2_10}
 
-function Snippets2__tab_95_widget___123_table_95_card2_95_8_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift, $_4_lift, $_5_lift){
+function Snippets2__tab_95_widget___123_table_95_card2_95_10_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift, $_4_lift, $_5_lift){
     let $cg$1 = null;
     if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
         $cg$1 = $HC_0_0$Prelude__List__Nil;
@@ -1961,15 +2044,15 @@ function Snippets2__tab_95_widget___123_table_95_card2_95_8_125_($_0_lift, $_1_l
     return Snippets2__tab_95_widget__insert_95_rows($_4_lift, $_3_lift, $_2_lift)($_5_lift);
 }
 
-// Printf.{toFunction_9}
+// Printf.{toFunction_11}
 
-function Printf___123_toFunction_95_9_125_($_0_lift, $_1_lift, $_2_lift){
+function Printf___123_toFunction_95_11_125_($_0_lift, $_1_lift, $_2_lift){
     return Printf__toFunction($_0_lift, ($_1_lift + Prelude__Show__primNumShow(null, $partial_0_1$prim_95__95_toStrBigInt(), $HC_0_0$Prelude__Show__Open, $_2_lift)));
 }
 
-// Printf.{toFunction_10}
+// Printf.{toFunction_12}
 
-function Printf___123_toFunction_95_10_125_($_0_lift, $_1_lift, $_2_lift){
+function Printf___123_toFunction_95_12_125_($_0_lift, $_1_lift, $_2_lift){
     return Printf__toFunction($_0_lift, ($_1_lift + $_2_lift));
 }
 
@@ -2061,52 +2144,100 @@ function Snippets2__schema2thead2_58_schema2th_58_0($_0_arg, $_1_arg){
     if(($_1_arg.type === 2)) {
         return Prelude__List___43__43_(null, Snippets2__schema2thead2_58_schema2th_58_0(null, $_1_arg.$1), Snippets2__schema2thead2_58_schema2th_58_0(null, $_1_arg.$2));
     } else if(($_1_arg.type === 1)) {
-        let $cg$6 = null;
+        let $cg$13 = null;
         if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
-            $cg$6 = $HC_0_0$Prelude__List__Nil;
+            $cg$13 = $HC_0_0$Prelude__List__Nil;
         } else {
-            let $cg$7 = null;
+            let $cg$14 = null;
             if((((("<th>%s[%s]</th>".slice(1) == "")) ? 1|0 : 0|0) === 0)) {
-                $cg$7 = true;
+                $cg$14 = true;
             } else {
-                $cg$7 = false;
+                $cg$14 = false;
             }
             
-            let $cg$8 = null;
-            if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0($cg$7, true).type === 1)) {
-                $cg$8 = $HC_0_0$Prelude__Strings__StrNil;
+            let $cg$15 = null;
+            if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0($cg$14, true).type === 1)) {
+                $cg$15 = $HC_0_0$Prelude__Strings__StrNil;
             } else {
-                $cg$8 = new $HC_2_1$Prelude__Strings__StrCons("<th>%s[%s]</th>".slice(1)[0], "<th>%s[%s]</th>".slice(1).slice(1));
+                $cg$15 = new $HC_2_1$Prelude__Strings__StrCons("<th>%s[%s]</th>".slice(1)[0], "<th>%s[%s]</th>".slice(1).slice(1));
             }
             
-            $cg$6 = new $HC_2_1$Prelude__List___58__58_("<th>%s[%s]</th>"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$8));
+            $cg$13 = new $HC_2_1$Prelude__List___58__58_("<th>%s[%s]</th>"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$15));
         }
         
-        return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$6), "")($_1_arg.$1)($_1_arg.$2), $HC_0_0$Prelude__List__Nil);
+        return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$13), "")($_1_arg.$1)($_1_arg.$2), $HC_0_0$Prelude__List__Nil);
     } else {
-        
-        let $cg$3 = null;
-        if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
-            $cg$3 = $HC_0_0$Prelude__List__Nil;
+        const $cg$3 = $_1_arg.$2;
+        if(($cg$3.type === 0)) {
+            let $cg$10 = null;
+            if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
+                $cg$10 = $HC_0_0$Prelude__List__Nil;
+            } else {
+                let $cg$11 = null;
+                if((((("<th>%s</th>".slice(1) == "")) ? 1|0 : 0|0) === 0)) {
+                    $cg$11 = true;
+                } else {
+                    $cg$11 = false;
+                }
+                
+                let $cg$12 = null;
+                if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0($cg$11, true).type === 1)) {
+                    $cg$12 = $HC_0_0$Prelude__Strings__StrNil;
+                } else {
+                    $cg$12 = new $HC_2_1$Prelude__Strings__StrCons("<th>%s</th>".slice(1)[0], "<th>%s</th>".slice(1).slice(1));
+                }
+                
+                $cg$10 = new $HC_2_1$Prelude__List___58__58_("<th>%s</th>"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$12));
+            }
+            
+            return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$10), "")($_1_arg.$1), $HC_0_0$Prelude__List__Nil);
+        } else if(($cg$3.type === 1)) {
+            let $cg$7 = null;
+            if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
+                $cg$7 = $HC_0_0$Prelude__List__Nil;
+            } else {
+                let $cg$8 = null;
+                if((((("<th>%s</th>".slice(1) == "")) ? 1|0 : 0|0) === 0)) {
+                    $cg$8 = true;
+                } else {
+                    $cg$8 = false;
+                }
+                
+                let $cg$9 = null;
+                if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0($cg$8, true).type === 1)) {
+                    $cg$9 = $HC_0_0$Prelude__Strings__StrNil;
+                } else {
+                    $cg$9 = new $HC_2_1$Prelude__Strings__StrCons("<th>%s</th>".slice(1)[0], "<th>%s</th>".slice(1).slice(1));
+                }
+                
+                $cg$7 = new $HC_2_1$Prelude__List___58__58_("<th>%s</th>"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$9));
+            }
+            
+            return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$7), "")($_1_arg.$1), $HC_0_0$Prelude__List__Nil);
         } else {
             let $cg$4 = null;
-            if((((("<th>%s</th>".slice(1) == "")) ? 1|0 : 0|0) === 0)) {
-                $cg$4 = true;
+            if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
+                $cg$4 = $HC_0_0$Prelude__List__Nil;
             } else {
-                $cg$4 = false;
+                let $cg$5 = null;
+                if((((("<th>%s</th>".slice(1) == "")) ? 1|0 : 0|0) === 0)) {
+                    $cg$5 = true;
+                } else {
+                    $cg$5 = false;
+                }
+                
+                let $cg$6 = null;
+                if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0($cg$5, true).type === 1)) {
+                    $cg$6 = $HC_0_0$Prelude__Strings__StrNil;
+                } else {
+                    $cg$6 = new $HC_2_1$Prelude__Strings__StrCons("<th>%s</th>".slice(1)[0], "<th>%s</th>".slice(1).slice(1));
+                }
+                
+                $cg$4 = new $HC_2_1$Prelude__List___58__58_("<th>%s</th>"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$6));
             }
             
-            let $cg$5 = null;
-            if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0($cg$4, true).type === 1)) {
-                $cg$5 = $HC_0_0$Prelude__Strings__StrNil;
-            } else {
-                $cg$5 = new $HC_2_1$Prelude__Strings__StrCons("<th>%s</th>".slice(1)[0], "<th>%s</th>".slice(1).slice(1));
-            }
-            
-            $cg$3 = new $HC_2_1$Prelude__List___58__58_("<th>%s</th>"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$5));
+            return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$4), "")($_1_arg.$1), $HC_0_0$Prelude__List__Nil);
         }
-        
-        return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$3), "")($_1_arg.$1), $HC_0_0$Prelude__List__Nil);
     }
 }
 
