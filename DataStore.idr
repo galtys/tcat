@@ -122,6 +122,7 @@ SchemaType3 (IField name FTterm ) = ((Double -> JSON), (Double -> JSON))
 SchemaType3 (EField name ns ) = (Double -> JSON)
 SchemaType3 (x .|. y) = (SchemaType3 x, SchemaType3 y)
 -}
+
 record ModelSchema where
      constructor MkModelSchema
      key : Schema2
@@ -131,9 +132,12 @@ keyItems : Schema2
 keyItems = (EField "sku1" "asset")                                
 valItems : Schema2
 valItems = (IField "qty" FTterm)
-items_ModelSchema : ModelSchema
-items_ModelSchema = MkModelSchema keyItems valItems
 
+--Items_ModelSchema : ModelSchema
+--Items_ModelSchema = MkModelSchema keyItems valItems
+
+Test_ModelSchema : ModelSchema
+Test_ModelSchema = MkModelSchema keyItems valItems --Items_ModelSchema
 
 --namespace model_data
 record ModelData (m:ModelSchema) where
@@ -146,6 +150,8 @@ record ModelData (m:ModelSchema) where
 record ModelDataList (m:ModelSchema) where
      constructor MkMDList
      ns : String
+     --default_key : (SchemaType2 (key m))
+     --default_value : (SchemaType2 (val m))
      keyL : List (SchemaType2 (key m))
      valL : List (SchemaType2 (val m))
 
@@ -157,14 +163,14 @@ record ModelDataStore (m:ModelSchema) where
    amendments : List (ModelData m)     
 -}
 
-{-
-items_ModelDataList : ModelDataList items_ModelSchema
+
+items_ModelDataList : ModelDataList Test_ModelSchema
 items_ModelDataList = MkMDList "items" [ 1,2,3,4 ] 
                         [ ( Tt 3 0 ),
                           ( Tt 0 3 ),
                           ( Tt 1 0 ),
                           ( Tt 7 0 ) ]
--}
+
 
 {-
 test_ModelData : ModelData Test_ModelSchema
@@ -174,10 +180,8 @@ test_ModelData = MkMD 4 [ 1,2,3,4 ]
                           (False , "il", Tt 1 0 ),
                           (False , "l", Tt 0 7 ) ]
 -}                          
-Test_ModelSchema : ModelSchema
-Test_ModelSchema = items_ModelSchema
-test_ModelData : ModelData Test_ModelSchema
 
+test_ModelData : ModelData Test_ModelSchema
 test_ModelData = MkMD 4 [ 1,2,3,4 ] 
                         [ (Tt 3 0 ),
                           (Tt 0 3 ),

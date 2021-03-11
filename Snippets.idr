@@ -104,10 +104,58 @@ json2Schema2ListData : (s:Schema2) -> JSON -> List (SchemaType2 s)
 --json2Schema2ListData s [] = []
 json2Schema2ListData s (JArray ( (JArray x)::xs))= [(json2Schema2Data s x)] ++ (json2Schema2ListData s (JArray xs) )
 
-
+ 
 --json2kv : JSON -> (List JSON, List JSON)
 --json2kv (JArray ((JArray keyD) :: (JArray valD) :: xs) )    =  (keyD ,valD)
 
 json2kv : JSON -> (JSON, JSON)
 json2kv (JArray (( keyD) :: ( valD) :: xs) )    =  (keyD ,valD)
+
+
+--- testing it 
+
+
+
+test_json : String
+test_json = renderModelData Test_ModelSchema test_ModelData --items_ModelDataList
+
+
+listJSON_2_kv : List JSON -> (List JSON,List JSON)
+listJSON_2_kv (a::b::xs) = (json2ListJSON a, json2ListJSON b)
+listJSON_2_kv _ = ([],[])
+
+test_inv_ : (m:ModelSchema) -> Maybe ( ModelDataList m  )
+test_inv_ m = do 
+          js <- (parse test_json)
+          let (k,v) =  listJSON_2_kv (json2ListJSON js)
+          let ko = [ (json2Schema2Data (key m) (json2ListJSON x)  ) | x <- ( k )]
+          let vo = [ (json2Schema2Data (val m) (json2ListJSON x)  ) | x <- ( v )]
+          let sz = (length ko)
+          pure (MkMDList "items" ko vo)
+
+{-
+to_model_data : (m:ModelSchema) -> Maybe (ModelData m)
+to_model_data m  = do
+          x <- (test_inv_ m)
+          let k = data_keyL x
+          let v = data_valL x
+          let z = (zip k v)
+          let zv = fromList z
+          
+          let sz = length z
+          
+          let (kk,vv) = Data.Vect.unzip zv
+          pure ( MkMD (length z) kk vv )
+          
+                              
+          --let (keyD,valD) =  (json2kv js)
+          --let ret_val = [ (json2Schema2Data valSchema2 (json2ListJSON x)  ) | x <- (json2ListJSON valD)]
+          --pure ret_val
+-}          
+-- test_inv_ valSchema2
+
+
+
+
+
 
