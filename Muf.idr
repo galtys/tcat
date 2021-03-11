@@ -185,6 +185,9 @@ table_amendments_id : Integer -> TableID
 table_amendments_id x = printf "so_table_amendments%d" x
 
 
+{- old way, no ModelData, no flexbox -}
+
+
 line2io : TableID -> RowID -> OrderLine -> JS_IO ()
 line2io tableid rowid x = insert_beforeend tableid $ line2row rowid x
 
@@ -199,7 +202,11 @@ line_list2io_amend tableid ( x@(MkOrderLine k@(sku1, price, sku2) v) :: xs) = do
 
           line2io tableid (Just sku1) x
           line_list2io_amend tableid xs
+
+
           
+                    
+                                        
 {-          
 line_list2io : TableID -> List OrderLine -> JS_IO ()
 line_list2io tableid [] = pure ()
@@ -321,6 +328,8 @@ main = do
       
    insert_beforeend "so_composite" (table_card table_composite_id THeader)
    line_list2io_amend table_composite_id test_list
+
+
 
    -- line_list2io table_composite_id test_list
    

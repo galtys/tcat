@@ -107,27 +107,30 @@ render_text_in_td_tag : String -> String
 render_text_in_td_tag v = printf "<td>%s</td>" v
 
 public export
-renderDataWithSchema2 : String -> (SchemaType schema) -> List String
-renderDataWithSchema2 p_id  {schema = (SString (FA name True)  )} item = [render_text_input_tag (concat [p_id,"__",name]) item]
-renderDataWithSchema2 p_id  {schema = (SString (FA name False)  )} item = [ render_text_in_td_tag item ]
+renderDataWithSchema : String -> (SchemaType schema) -> List String
+renderDataWithSchema p_id  {schema = (SString (FA name True)  )} item = [render_text_input_tag (concat [p_id,"__",name]) item]
+renderDataWithSchema p_id  {schema = (SString (FA name False)  )} item = [ render_text_in_td_tag item ]
 
-renderDataWithSchema2 p_id  {schema = (SInt (FA name True) )} item = [ render_number_input_tag (concat [p_id, "__",name]) item ]
-renderDataWithSchema2 p_id  {schema = (SInt (FA name False) )} item = [ render_number_in_td_tag item]
+renderDataWithSchema p_id  {schema = (SInt (FA name True) )} item = [ render_number_input_tag (concat [p_id, "__",name]) item ]
+renderDataWithSchema p_id  {schema = (SInt (FA name False) )} item = [ render_number_in_td_tag item]
 
-renderDataWithSchema2 p_id {schema = (y .+. z)} (iteml, itemr) = (renderDataWithSchema2 p_id iteml) ++ (renderDataWithSchema2 p_id itemr)
-
-
-
+renderDataWithSchema p_id {schema = (y .+. z)} (iteml, itemr) = (renderDataWithSchema p_id iteml) ++ (renderDataWithSchema p_id itemr)
 
 
 public export
 line2row : RowID -> OrderLine -> String
 line2row Nothing key = ""
 line2row (Just _rowid) x@(MkOrderLine k v)
-     = let _items = (renderDataWithSchema2 _rowid k)
+     = let _items = (renderDataWithSchema _rowid k)
            _qty = (t2integer v)
            _qty_item = render_number_input_tag (concat [_rowid, "__Qty"]) _qty
            _line = concat [printf "%s" x | x <- _items ++ [_qty_item] ] in
            printf "<tr>%s</tr>" _line
 
 
+
+{-
+
+
+
+-}
