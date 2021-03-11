@@ -95,7 +95,6 @@ record ModelSchema where
      key : Schema2
      val : Schema2
 
-
 --namespace model_data
 record ModelData (m:ModelSchema) where
      constructor MkMD
@@ -112,13 +111,11 @@ record ModelDataList (m:ModelSchema) where
      keyL : List (SchemaType2 (key m))
      valL : List (SchemaType2 (val m))
 
-
 _f_val : String -> Tterm 
 _f_val "p1" = Tt 4 0
 _f_val "p2" = Tt 1 0
 _f_val "p3" = Tt 7 0
 _f_val _    = Tt 0 0
-
 
 test_kv : List (String,Tterm)
 test_kv = [("p1",Tt 4 0), ("p2", Tt 1 0), ("p3",Tt 7 0)]

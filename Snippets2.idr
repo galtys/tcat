@@ -40,6 +40,8 @@ public export
 render_text_input_tag : TagID -> String ->  String
 render_text_input_tag tagid val= printf """<td> <input type="text" class="form-control" id="%s" value="%s" > </td>""" tagid val
 
+
+-- using td tags
 public export
 render_number_in_td_tag : Integer -> String
 render_number_in_td_tag v = printf "<td>%d</td>" v
@@ -50,22 +52,30 @@ render_text_in_td_tag v = printf "<td>%s</td>" v
 
 public export
 renderDataWithSchema2Edit : String -> (SchemaType2 schema) -> List String
-renderDataWithSchema2Edit p_id  {schema = (IField name FBool)} True = ["<td>True</td>"]
-renderDataWithSchema2Edit p_id  {schema = (IField name FBool)} False = ["<td>False</td>"]
+renderDataWithSchema2Edit p_id  {schema = (IField name FBool)} True = [render_text_in_td_tag "True"]
+renderDataWithSchema2Edit p_id  {schema = (IField name FBool)} False = [render_text_in_td_tag "False"]
 renderDataWithSchema2Edit p_id  {schema = (IField name FString)} item = [render_text_input_tag (concat [p_id, "__",name]) item] --render_text_in_td_tag item
 renderDataWithSchema2Edit p_id  {schema = (IField name FTterm)} item = [render_number_input_tag (concat [p_id, "__",name]) (t2integer item)]
 renderDataWithSchema2Edit p_id  {schema = (EField name ns)} item = [render_number_input_tag (concat [p_id, "__",name]) (item)]
 renderDataWithSchema2Edit p_id {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2Edit p_id iteml) ++ (renderDataWithSchema2Edit p_id itemr)
 
+-- using td tags
+public export
+render_number_in_td_tag2 : String -> Integer -> String
+render_number_in_td_tag2 p_id v = printf "<td id=%s>%d</td>" p_id v
 
 public export
-renderDataWithSchema2 : (SchemaType2 schema) -> List String
-renderDataWithSchema2 {schema = (IField name FBool)} True = ["<td>True</td>"]
-renderDataWithSchema2 {schema = (IField name FBool)} False = ["<td>False</td>"]
-renderDataWithSchema2 {schema = (IField name FString)} item = [(render_text_in_td_tag item)] --render_text_in_td_tag item
-renderDataWithSchema2 {schema = (IField name FTterm)} item = [(render_number_in_td_tag (t2integer item))]
-renderDataWithSchema2 {schema = (EField name ns)} item = [(render_number_in_td_tag item)]
-renderDataWithSchema2 {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2 iteml) ++ (renderDataWithSchema2 itemr)
+render_text_in_td_tag2 : String -> String -> String
+render_text_in_td_tag2 p_id v = printf "<td id=%s>%s</td>" p_id v
+
+public export
+renderDataWithSchema2 : String -> (SchemaType2 schema) -> List String
+renderDataWithSchema2 p_id {schema = (IField name FBool)} True = [render_text_in_td_tag2 (p_id++name) "True"]
+renderDataWithSchema2 p_id {schema = (IField name FBool)} False = [render_text_in_td_tag2 (p_id++name) "False"]
+renderDataWithSchema2 p_id {schema = (IField name FString)} item = [(render_text_in_td_tag2 (p_id++name) item)] --render_text_in_td_tag item
+renderDataWithSchema2 p_id {schema = (IField name FTterm)} item = [(render_number_in_td_tag2 (p_id++name) (t2integer item))]
+renderDataWithSchema2 p_id {schema = (EField name ns)} item = [(render_number_in_td_tag2 (p_id++name) item)]
+renderDataWithSchema2 p_id {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2 p_id iteml) ++ (renderDataWithSchema2 p_id itemr)
 
 public export
 renderDataAsKey : (SchemaType2 schema) -> String
@@ -123,8 +133,7 @@ namespace tab_widget
    public export 
    get_composite_id : String -> (m:ModelSchema) -> (ModelDataList m) -> String
    get_composite_id p_id m y = (p_id ++ "__" ++ (name y))
-   
-   
+      
    public export
    get_table_id : String ->  String  --this is to reference the table body
    get_table_id p_id  = ( p_id  ++ "__composite_table" )
@@ -142,15 +151,19 @@ namespace tab_widget
    public export
    insert_rows : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
    insert_rows p_id m mdl = do
-      let row_k = [ concat (renderDataWithSchema2 x)  | x <- (keyL mdl)]
-      let row_v = [ concat (renderDataWithSchema2 x)  | x <- (valL mdl)]
-      let row_ids = [get_row_id p_id x | x <- (keyL mdl)]
+      let row_ids = [ (get_row_id p_id x) | x <- (keyL mdl)]
+      --let rid_k = zip row_ids (keyL mdl)
+      --let test_zip = zip (keyL mdl) (valL mdl)
+      --console_log (show test_zip)
+      let row_k = [ concat (renderDataWithSchema2 (get_row_id p_id x) x)  | x <-(keyL mdl)]
+      let row_v = [ concat (renderDataWithSchema2 ("") y)  | y <-(valL mdl)]
+
       let rows_zip = zip row_k row_v
       let rows_ids_zip = zip row_ids rows_zip
-      let rows_tr = [ (printf "<tr id=%s>%s %s</tr>" r_id k v) | (r_id,(k,v)) <- rows_ids_zip]
+      let rows_tr = [ (printf "<tr id=%s>%s %s</tr>" rid k v) | (rid,(k,v)) <- rows_ids_zip]
       
       _lines2io p_id rows_tr
-      pure ()      
+      pure ()
          
    public export  --main init
    table_card2 : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
@@ -163,11 +176,8 @@ namespace tab_widget
       let _composite_html = ( printf _composite _composite_id )
       
       let _th_html = printf _tf (name mdl) (schema2thead2 schema_header ) (id_att _composite_table_id )
-      
-      
+            
       insert_beforeend parent_tag_id _composite_html
       insert_beforeend _composite_id "<h2>Order</h2>"
       insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader)  
       insert_rows _composite_table_id m mdl
-
-
