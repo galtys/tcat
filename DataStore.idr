@@ -90,13 +90,15 @@ data Schema2 : Type where
 --     ESymbol : (e:String) -> Schema2 
 --     FSymbolOP : FieldDef
 
+{-
 data Schema : Type where
      SString : (fargs : FieldArgs) -> Schema
      SInt :    (fargs : FieldArgs) -> Schema
      STterm :  (fargs : FieldArgs) -> Schema
---     SSymbolOP : (fargs : FieldArgs) -> Schema
+     SSymbolOP : (fargs : FieldArgs) -> Schema
      (.+.) : (s1 : Schema) -> (s2 : Schema) -> Schema 
      (.->.) : (s1 : Schema) -> (s2 : Schema) -> Schema 
+
      
 SchemaType : Schema -> Type
 SchemaType (SString name)= String
@@ -104,6 +106,7 @@ SchemaType (SInt name )= Integer
 SchemaType (STterm name ) = Tterm
 SchemaType (x .+. y) = (SchemaType x, SchemaType y)
 SchemaType (x .->. y) = ( (SchemaType x) -> (SchemaType y))
+-}
 
 --SchemaType (SSymbolOP name) = SymbolOP
 
@@ -162,6 +165,8 @@ test_ModelStore = MkDS "items" test_ModelData [test_ModelData]
 -}
 
 -- String -> index
+
+{-
 OrderLineKey1 : Schema
 OrderLineKey1 = (SString (FA "sku1" False) ) .+. 
                 (SInt (FA "price_unit" False) ) .+. 
@@ -171,7 +176,7 @@ OrderLineKey2 : Schema
 OrderLineKey2 = (SString (FA "sku1" False) ) .->. 
                 (SInt (FA "price_unit" False) ) .+. 
                 (SString (FA "sku2" False) )
-
+-}
 
 {-
 Items1 : Schema
@@ -263,13 +268,13 @@ record OrderLineKey where
 --   discount : Integer
 
 
-
+{-
 record OrderLine where
      constructor MkOrderLine     
      --key : OrderLineKey
      key : (SchemaType OrderLineKey1)
      qty : Tterm --(SchemaType )
-
+-}
 
 
 {-

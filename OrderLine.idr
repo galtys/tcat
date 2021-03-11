@@ -7,6 +7,8 @@ import JSIO
 
 %access public export
 
+{-
+
 test_line : OrderLine
 test_line = MkOrderLine ("p1", 188, "$") (Tt 15 0)
 
@@ -38,11 +40,12 @@ table_composite_id = "so_table1"
 
 table_amendments_id : Integer -> TableID
 table_amendments_id x = printf "so_table_amendments%d" x
-
+-}
 
 {- old way, no ModelData, no flexbox -}
 
 
+{-
 line2io : TableID -> RowID -> OrderLine -> JS_IO ()
 line2io tableid rowid x = insert_beforeend tableid $ line2row rowid x
 
@@ -59,7 +62,7 @@ line_list2io_amend tableid ( x@(MkOrderLine k@(sku1, price, sku2) v) :: xs) = do
 
 THeader : Schema
 THeader = OrderLineKey1 .+. (SInt (FA "Qty" True) ) 
-
+-}
 
 
 -- was in main: 

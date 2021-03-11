@@ -15,6 +15,7 @@ _unit_dropdown = """
    </div>
 """
 
+{-
 public export
 TableID : Type
 TableID = String
@@ -22,8 +23,10 @@ TableID = String
 public export
 RowID : Type
 RowID = Maybe String
+-}
 
 --old
+{-
 public export
 schema2thead : Schema -> String
 schema2thead sch = ret where
@@ -34,6 +37,7 @@ schema2thead sch = ret where
   ths : String
   ths = concat $ schema2th sch
   ret = printf "<tr>%s</tr>" ths
+-}
 
 --new
 public export
@@ -52,9 +56,11 @@ schema2thead2 sch = ret where
 
 
 --get_composite_id parent_tag_id m mdl = (parent_tag_id ++ "__" ++ (name mdl) )
+
 public export
 TagID : Type
 TagID = String
+
 
 public export
 render_number_input_tag : TagID -> Integer ->  String
@@ -64,6 +70,7 @@ public export
 render_text_input_tag : TagID -> String ->  String
 render_text_input_tag tagid val= printf """<td> <input type="text" class="form-control" id="%s" value="%s" > </td>""" tagid val
 
+
 public export
 render_number_in_td_tag : Integer -> String
 render_number_in_td_tag v = printf "<td>%d</td>" v
@@ -72,6 +79,7 @@ public export
 render_text_in_td_tag : String -> String
 render_text_in_td_tag v = printf "<td>%s</td>" v
 
+{-
 public export
 renderDataWithSchema : String -> (SchemaType schema) -> List String
 renderDataWithSchema p_id  {schema = (SString (FA name True)  )} item = [render_text_input_tag (concat [p_id,"__",name]) item]
@@ -81,6 +89,7 @@ renderDataWithSchema p_id  {schema = (SInt (FA name True) )} item = [ render_num
 renderDataWithSchema p_id  {schema = (SInt (FA name False) )} item = [ render_number_in_td_tag item]
 
 renderDataWithSchema p_id {schema = (y .+. z)} (iteml, itemr) = (renderDataWithSchema p_id iteml) ++ (renderDataWithSchema p_id itemr)
+-}
 
 public export
 renderDataWithSchema2Edit : String -> (SchemaType2 schema) -> List String
@@ -113,7 +122,7 @@ renderDataWithSchema2 p_id  {schema = (SInt (FA name False) )} item = [ render_n
 renderDataWithSchema2 p_id {schema = (y .+. z)} (iteml, itemr) = (renderDataWithSchema2 p_id iteml) ++ (renderDataWithSchema2 p_id itemr)
 -}
 
-
+{-
 public export
 line2row : RowID -> OrderLine -> String
 line2row Nothing key = ""
@@ -123,6 +132,7 @@ line2row (Just _rowid) x@(MkOrderLine k v)
            _qty_item = render_number_input_tag (concat [_rowid, "__Qty"]) _qty
            _line = concat [printf "%s" x | x <- _items ++ [_qty_item] ] in
            printf "<tr>%s</tr>" _line
+-}
 
 namespace tab_widget
    public export
@@ -235,6 +245,7 @@ id_att : String -> String
 id_att x = printf id_att_format x
 -}
 
+{-
 public export
 table_card : TableID -> Schema -> String
 table_card key schema = ret where
@@ -269,7 +280,7 @@ table_card key schema = ret where
             """
      ret = printf _tf "SO440" (schema2thead schema) (id_att key)
 
-
+-}
 
 
 {-
