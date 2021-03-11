@@ -23,7 +23,6 @@ public export
 RowID : Type
 RowID = Maybe String
 
-
 --old
 public export
 schema2thead : Schema -> String
@@ -51,6 +50,10 @@ schema2thead2 sch = ret where
   ret = printf "<tr>%s</tr>" ths
 
 
+
+--get_composite_id parent_tag_id m mdl = (parent_tag_id ++ "__" ++ (name mdl) )
+
+
 namespace tab_widget
    public export
    id_att_format : String
@@ -59,6 +62,14 @@ namespace tab_widget
    public export
    id_att : String -> String
    id_att x = printf id_att_format x
+   public export
+   _composite : String
+   _composite = """
+          <div id="%s" class="sticky-top">
+	      
+	      
+	  </div>   
+   """
    public export
    _tf : String
    _tf = """
@@ -76,7 +87,7 @@ namespace tab_widget
                 <thead>
                     %s
                 </thead>
-                <tbody %s >
+                <tbody %s>   <!-- id =is not in the template  because it will be used for amendments too -->
                 </tbody>
               </table>
             </div>
@@ -88,17 +99,31 @@ namespace tab_widget
             </div>
           </div>  <!-- /.card -->
             """
-   public export
-   get_table_id : String -> (m:ModelSchema) -> ModelDataList m -> String  --this is to reference the table
-   get_table_id parent_tag_id m mdl = (parent_tag_id ++ "__" ++ (name mdl) )
+   public export 
+   get_composite_id : String -> (m:ModelSchema) -> (ModelDataList m) -> String
+   get_composite_id p_id m y = (p_id ++ "__" ++ (name y))
+   
    
    public export
+   get_table_id : String ->  String  --this is to reference the table
+   get_table_id p_id  = ( p_id  ++ "__composite_table" )
+   
+   public export  --main init
    table_card2 : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
    table_card2 parent_tag_id m mdl = do
-      let schema = (key m) .|. (val m)
-      let _th = printf _tf (name mdl) (schema2thead2 schema ) (id_att (get_table_id parent_tag_id m mdl ) )
+      let schema_header = (key m) .|. (val m)
       
-      insert_beforeend parent_tag_id _th  --(table_card table_composite_id THeader)
+      let _composite_id = get_composite_id parent_tag_id m mdl
+      let _composite_table_id = get_table_id _composite_id
+      
+      let _composite = ( printf _composite _composite_id )
+      
+      let _th = printf _tf (name mdl) (schema2thead2 schema_header ) (id_att _composite_table_id )
+      
+      
+      insert_beforeend parent_tag_id _composite
+      insert_beforeend _composite_id "<h2>Order</h2>"
+      insert_beforeend _composite_id _th  --(table_card table_composite_id THeader)  
 
 
 
