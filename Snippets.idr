@@ -116,20 +116,21 @@ json2kv (JArray (( keyD) :: ( valD) :: xs) )    =  (keyD ,valD)
 
 
 
-test_json : String
-test_json = renderModelData Items_ModelSchema test_ModelData --items_ModelDataList
+test_json : (m:ModelSchema) -> (ModelData m) -> String
+test_json ms md = renderModelData ms md --items_ModelDataList
 
+--test_json ms md = renderModelData Items_ModelSchema test_ModelData
 
 listJSON_2_kv : List JSON -> (List JSON,List JSON)
 listJSON_2_kv (a::b::xs) = (json2ListJSON a, json2ListJSON b)
 listJSON_2_kv _ = ([],[])
 
-test_inv_ : (m:ModelSchema) -> Maybe ( ModelDataList m  )
-test_inv_ m = do 
-          js <- (parse test_json)
+test_inv_ : (m:ModelSchema) -> (ModelData m) -> Maybe ( ModelDataList m  )
+test_inv_ ms md = do 
+          js <- (parse (test_json ms md))
           let (k,v) =  listJSON_2_kv (json2ListJSON js)
-          let ko = [ (json2Schema2Data (key m) (json2ListJSON x)  ) | x <- ( k )]
-          let vo = [ (json2Schema2Data (val m) (json2ListJSON x)  ) | x <- ( v )]
+          let ko = [ (json2Schema2Data (key ms) (json2ListJSON x)  ) | x <- ( k )]
+          let vo = [ (json2Schema2Data (val ms) (json2ListJSON x)  ) | x <- ( v )]
           let sz = (length ko)
           pure (MkMDList "items" ko vo)
 

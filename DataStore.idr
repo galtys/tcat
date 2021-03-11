@@ -128,16 +128,6 @@ record ModelSchema where
      key : Schema2
      val : Schema2
 
-keyItems : Schema2
-keyItems = (EField "sku1" "asset")                                
-valItems : Schema2
-valItems = (IField "qty" FTterm)
-
---Items_ModelSchema : ModelSchema
---Items_ModelSchema = MkModelSchema keyItems valItems
-
-Items_ModelSchema : ModelSchema
-Items_ModelSchema = MkModelSchema keyItems valItems --Items_ModelSchema
 
 --namespace model_data
 record ModelData (m:ModelSchema) where
@@ -165,29 +155,6 @@ record ModelDataStore (m:ModelSchema) where
 
 
 
-items_ModelDataList : ModelDataList Items_ModelSchema
-items_ModelDataList = MkMDList "items" [ 1,2,3,4 ] 
-                        [ ( Tt 3 0 ),
-                          ( Tt 0 3 ),
-                          ( Tt 1 0 ),
-                          ( Tt 7 0 ) ]
-
-
-{-
-test_ModelData : ModelData Items_ModelSchema
-test_ModelData = MkMD 4 [ 1,2,3,4 ] 
-                        [ (False , "res", Tt 3 0 ),
-                          (False , "r", Tt 0 3 ),
-                          (False , "il", Tt 1 0 ),
-                          (False , "l", Tt 0 7 ) ]
--}                          
-
-test_ModelData : ModelData Items_ModelSchema
-test_ModelData = MkMD 4 [ 1,2,3,4 ] 
-                        [ (Tt 3 0 ),
-                          (Tt 0 3 ),
-                          (Tt 1 0 ),
-                          (Tt 0 7 ) ]
                                                                               
 {-
 test_ModelStore : ModelDataStore Items_ModelSchema
