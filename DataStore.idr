@@ -74,8 +74,8 @@ record FieldArgs where
   name : String
   rw : Bool
 
-infixr 6 .+.
-infixr 5 .->.
+--infixr 6 .+.
+--infixr 5 .->.
 infixr 5 .|.
 
 data FieldDef : Type where
