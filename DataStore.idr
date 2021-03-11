@@ -9,9 +9,6 @@ import Language.JSON.Data
 
 %access public export
 
-       
---data Schema = SString | SInt | (.+.) Schema Schema
-
 data Tterm = Tt Integer Integer
 
 tadd : Tterm -> Tterm -> Tterm
@@ -74,8 +71,6 @@ record FieldArgs where
   name : String
   rw : Bool
 
---infixr 6 .+.
---infixr 5 .->.
 infixr 5 .|.
 
 data FieldDef : Type where
@@ -87,28 +82,6 @@ data Schema2 : Type where
      IField : (name:String) -> (ft:FieldDef) -> Schema2
      EField : (name:String) -> (ns : String)-> Schema2  --col name, type name, ?add type of index?
      (.|.) : (s1 : Schema2) -> (s2 : Schema2) -> Schema2 
---     ESymbol : (e:String) -> Schema2 
---     FSymbolOP : FieldDef
-
-{-
-data Schema : Type where
-     SString : (fargs : FieldArgs) -> Schema
-     SInt :    (fargs : FieldArgs) -> Schema
-     STterm :  (fargs : FieldArgs) -> Schema
-     SSymbolOP : (fargs : FieldArgs) -> Schema
-     (.+.) : (s1 : Schema) -> (s2 : Schema) -> Schema 
-     (.->.) : (s1 : Schema) -> (s2 : Schema) -> Schema 
-
-     
-SchemaType : Schema -> Type
-SchemaType (SString name)= String
-SchemaType (SInt name )= Integer
-SchemaType (STterm name ) = Tterm
-SchemaType (x .+. y) = (SchemaType x, SchemaType y)
-SchemaType (x .->. y) = ( (SchemaType x) -> (SchemaType y))
--}
-
---SchemaType (SSymbolOP name) = SymbolOP
 
 SchemaType2 : Schema2 -> Type
 SchemaType2 (IField name FBool)= Bool
@@ -116,15 +89,6 @@ SchemaType2 (IField name FString )= String
 SchemaType2 (IField name FTterm ) = Tterm
 SchemaType2 (EField name ns ) = Integer
 SchemaType2 (x .|. y) = (SchemaType2 x, SchemaType2 y)
-
-{-
-SchemaType3 : Schema2 -> Type
-SchemaType3 (IField name FBool)= (Bool -> JSON)
-SchemaType3 (IField name FString )= (String -> JSON)
-SchemaType3 (IField name FTterm ) = ((Double -> JSON), (Double -> JSON))
-SchemaType3 (EField name ns ) = (Double -> JSON)
-SchemaType3 (x .|. y) = (SchemaType3 x, SchemaType3 y)
--}
 
 record ModelSchema where
      constructor MkModelSchema
@@ -148,45 +112,6 @@ record ModelDataList (m:ModelSchema) where
      keyL : List (SchemaType2 (key m))
      valL : List (SchemaType2 (val m))
 
-{-               
-record ModelDataStore (m:ModelSchema) where
-   constructor MkDS
-   ns : String
-   totals : ModelData m
-   amendments : List (ModelData m)     
--}
-
-
-
-                                                                              
-{-
-test_ModelStore : ModelDataStore Items_ModelSchema
-test_ModelStore = MkDS "items" test_ModelData [test_ModelData]
--}
-
--- String -> index
-
-{-
-OrderLineKey1 : Schema
-OrderLineKey1 = (SString (FA "sku1" False) ) .+. 
-                (SInt (FA "price_unit" False) ) .+. 
-                (SString (FA "sku2" False) )
-
-OrderLineKey2 : Schema
-OrderLineKey2 = (SString (FA "sku1" False) ) .->. 
-                (SInt (FA "price_unit" False) ) .+. 
-                (SString (FA "sku2" False) )
--}
-
-{-
-Items1 : Schema
-Items1 =  SString (FA "sku1" False) .->. SSymbolOP (FA "assets" False) 
-
-Items2 : Schema
-Items2 =  ( (SString (FA "sku1" False)) .->. SSymbolOP (FA "assets" False) ) .->. 
-            (STterm  (FA "qty" True) )
-
--}
 
 _f_val : String -> Tterm 
 _f_val "p1" = Tt 4 0
@@ -194,15 +119,6 @@ _f_val "p2" = Tt 1 0
 _f_val "p3" = Tt 7 0
 _f_val _    = Tt 0 0
 
---    let uux = State kvm Tterm in
-
-{-
-_test_state : String -> State (SortedMap String Tterm) Tterm
-_test_state k = do
-     sm <- get
-     let val = (lookup k sm)
-     pure val
--}
 
 test_kv : List (String,Tterm)
 test_kv = [("p1",Tt 4 0), ("p2", Tt 1 0), ("p3",Tt 7 0)]
@@ -225,56 +141,6 @@ _map_to_lambda kvm
 muf37 : String -> Tterm 
 muf37 = _map_to_lambda (execState (interpret test_kv) empty)
 
-{-
-record TestItems2 where
-     constructor MkTestItems2
-     muf : (SchemaType Items2)
-
-
-
-v2test1 : (SchemaType2 schema) -> (SchemaType2 schema) -> List (SchemaType2 schema)
-v2test1 {schema=( SString (FA s1 rw)) } item1  item2= ?ret
-
-v2test2 : (SchemaType2 schema) -> (SchemaType2 schema) -> List (SchemaType2 schema)
-v2test2 {schema=( SString f1 .->. SSymbolOP f2) } item1@(k1,v1) item2@(k2,v2) 
-       = if k1 == k2 then [ (k1, v1 <+> v2  ) ] else [item1,item2]
-       
-v2test2 {schema=( (SString f1 .->. SSymbolOP f2) .->. STterm f3) } item1@(k1,v1) item2@(k2,v2)
-       = if (fst k1)==(fst k2) then [ (k1, v1<+>v2 ) ] else [item1,item2]
-v2test2 x y =[]
--}
-              
---v2test2 {schema=( SString (FA s1 rw1) .->. ( STterm (FA s2 rw2)) ) } item1@(k1,v1) item2@(k2,v2) 
---       = if k1 == k2 then [ (k1, v1 <+> v2  ) ] else [item1,item2]
-
-
-
---(SInt (FA "p1" False) )  .+.(SInt (FA "p2" False)  ).+.(SInt (FA "line" False) ).+.
-
-{-
-record OrderLineKey where
-     constructor MkOrderLineKey
-     p1  : Integer  --partner 1
-     p2  : Integer  --partner 2
-     line : Integer -- line number
-     sku1 : Integer  -- sku1
-     sku2 : Integer  -- sku2
-     price_unit : Integer
--}
---     product_sku1 : Integer
---     product_sku2 : Integer
---   product_uom : UOM
---   tax_id : Integer
---   discount : Integer
-
-
-{-
-record OrderLine where
-     constructor MkOrderLine     
-     --key : OrderLineKey
-     key : (SchemaType OrderLineKey1)
-     qty : Tterm --(SchemaType )
--}
 
 
 {-
