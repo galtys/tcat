@@ -142,3 +142,47 @@ calc_sha1 = foreign FFI_JS "calc_sha1(%0)" (String -> JS_IO String)
 
 calc_sha256 : String -> JS_IO String
 calc_sha256 = foreign FFI_JS "calc_sha256(%0)" (String -> JS_IO String)
+
+
+
+
+-- UPDATE EVENTS
+
+
+partial onClick : String -> JS_IO () -> JS_IO ()
+onClick selector callback =
+  foreign FFI_JS 
+    "onClick(%0, %1)"
+    (String -> JsFn (() -> JS_IO ()) -> JS_IO ())
+    selector (MkJsFn (\_ => callback))
+
+partial onInput : String -> JS_IO () -> JS_IO ()
+onInput selector callback =
+  foreign FFI_JS 
+    "onInput(%0, %1)"
+    (String -> JsFn (() -> JS_IO ()) -> JS_IO ())
+    selector (MkJsFn (\_ => callback))
+
+
+partial onInit : JS_IO () -> JS_IO ()
+onInit callback =
+  foreign FFI_JS
+    "onInit(%0)"
+    ((JsFn (() -> JS_IO ())) -> JS_IO ())
+    (MkJsFn (\_ => callback))
+
+partial setUp : JS_IO ()
+setUp = do 
+           onClick "#table_card_button" (console_log "button table card")
+           onClick "#big_one" (console_log "button bigone")
+--           onClick "#punch" (doAction PUNCH) 
+--           onClick "#magic" (doAction MAGIC) 
+
+
+testingEvent1 : Ptr -> JS_IO ()
+testingEvent1 ev = do
+        new_val <- call_js_ptr ev
+        console_log "input event received "
+        console_log (the String (cast new_val))
+        console_log "hmm done"
+

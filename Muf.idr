@@ -18,46 +18,6 @@ import JSIO
 
 
 
-partial onClick : String -> JS_IO () -> JS_IO ()
-onClick selector callback =
-  foreign FFI_JS 
-    "onClick(%0, %1)"
-    (String -> JsFn (() -> JS_IO ()) -> JS_IO ())
-    selector (MkJsFn (\_ => callback))
-
-partial onInput : String -> JS_IO () -> JS_IO ()
-onInput selector callback =
-  foreign FFI_JS 
-    "onInput(%0, %1)"
-    (String -> JsFn (() -> JS_IO ()) -> JS_IO ())
-    selector (MkJsFn (\_ => callback))
-
-
-partial onInit : JS_IO () -> JS_IO ()
-onInit callback =
-  foreign FFI_JS
-    "onInit(%0)"
-    ((JsFn (() -> JS_IO ())) -> JS_IO ())
-    (MkJsFn (\_ => callback))
-
-partial setUp : JS_IO ()
-setUp = do 
-           onClick "#table_card_button" (console_log "button table card")
-           onClick "#big_one" (console_log "button bigone")
---           onClick "#punch" (doAction PUNCH) 
---           onClick "#magic" (doAction MAGIC) 
-
-
-testingEvent1 : Ptr -> JS_IO ()
-testingEvent1 ev = do
-        new_val <- call_js_ptr ev
-        console_log "input event received "
-        console_log (the String (cast new_val))
-        console_log "hmm done"
-
-
-
-
 
 test_json : String
 test_json = renderModelData Test_ModelSchema test_ModelData --items_ModelDataList
@@ -105,10 +65,6 @@ main = do
    console_log new_row_sha1
    console_log new_row_sha256
 
---   insert_beforeend "so_table1" example_row
-   
-   --line2io aline1
-   --line2io aline2
 
       
    insert_beforeend "so_composite" (table_card table_composite_id THeader)
@@ -116,24 +72,6 @@ main = do
 
 
 
-   -- line_list2io table_composite_id test_list
-   
-   {-
-   insert_beforeend "so_amendments" (table_card (table_amendments_id 1) )
-   line_list2io_amend (table_amendments_id 1) test_list
-
-   insert_beforeend "so_amendments" (table_card (table_amendments_id 2) )
-   line_list2io_amend (table_amendments_id 2) test_list2      
-   line_list2io table_composite_id test_list2
-
-   insert_beforeend "so_amendments" (table_card (table_amendments_id 3) )
-   line_list2io_amend (table_amendments_id 3) test_list3
-   line_list2io table_composite_id test_list3   
-
-   insert_beforeend "so_amendments" (table_card (table_amendments_id 4) )
-   line_list2io_amend (table_amendments_id 4) test_list4
-   line_list2io table_composite_id test_list4
-   -}
    
    
    console_log test_json   
