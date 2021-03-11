@@ -2,6 +2,7 @@ module Snippets2
 
 import Printf
 import DataStore
+import JSIO
 
 _unit_dropdown : String
 _unit_dropdown = """
@@ -22,12 +23,8 @@ public export
 RowID : Type
 RowID = Maybe String
 
-id_att_format : String
-id_att_format = """ id="%s" """
 
-id_att : String -> String
-id_att x = printf id_att_format x
-
+--old
 public export
 schema2thead : Schema -> String
 schema2thead sch = ret where
@@ -38,6 +35,80 @@ schema2thead sch = ret where
   ths : String
   ths = concat $ schema2th sch
   ret = printf "<tr>%s</tr>" ths
+
+--new
+public export
+schema2thead2 : Schema2 -> String
+schema2thead2 sch = ret where
+  schema2th : Schema2 -> List String
+  schema2th (IField name FBool)  =  [printf "<th>%s</th>" name ]
+  schema2th (IField name FString) = [printf "<th>%s</th>" name ]
+  schema2th (IField name FTterm ) = [printf "<th>%s</th>" name ]     --SchemaType2 (IField name FTterm ) = Tterm
+  schema2th (EField name ns) = [printf "<th>%s[%s]</th>" name ns]
+  schema2th (s1 .|. s2) = (schema2th s1) ++ (schema2th s2)
+  ths : String
+  ths = concat $ schema2th sch
+  ret = printf "<tr>%s</tr>" ths
+
+
+namespace tab_widget
+   public export
+   id_att_format : String
+   id_att_format = """ id="%s" """
+   
+   public export
+   id_att : String -> String
+   id_att x = printf id_att_format x
+   public export
+   _tf : String
+   _tf = """
+            <!-- Content Edit Table -->
+            <div class="card border-dark  mt-3">
+              <div class="card-header">
+              <h4>%s</h4>
+              </div>
+            <div class="card-body">
+              <!--
+              <form>
+              </form>
+              -->
+              <table class="table table-sm table-hover">
+                <thead>
+                    %s
+                </thead>
+                <tbody %s >
+                </tbody>
+              </table>
+            </div>
+              
+            <div class="card-footer">
+                   <button class="btn btn-primary" id="table_card_edit">Edit</button>
+            <div/>
+              
+            </div>
+          </div>  <!-- /.card -->
+            """
+   public export
+   get_table_id : String -> (m:ModelSchema) -> ModelDataList m -> String  --this is to reference the table
+   get_table_id parent_tag_id m mdl = (parent_tag_id ++ "__" ++ (name mdl) )
+   
+   public export
+   table_card2 : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
+   table_card2 parent_tag_id m mdl = do
+      let schema = (key m) .|. (val m)
+      let _th = printf _tf (name mdl) (schema2thead2 schema ) (id_att (get_table_id parent_tag_id m mdl ) )
+      
+      insert_beforeend parent_tag_id _th  --(table_card table_composite_id THeader)
+
+
+
+{-
+id_att_format : String
+id_att_format = """ id="%s" """
+
+id_att : String -> String
+id_att x = printf id_att_format x
+-}
 
 public export
 table_card : TableID -> Schema -> String
@@ -72,58 +143,6 @@ table_card key schema = ret where
           </div>  <!-- /.card -->
             """
      ret = printf _tf "SO440" (schema2thead schema) (id_att key)
-
-
-
-
-
-
-
-
-
-
-
-
-
-     --ret = printf _tf "SO440" (schema2thead schema) (id_att key)
-
-namespace tab_widget
-
-   _tf : String
-   _tf = """
-          <!-- Content Edit Table -->
-          <div class="card border-dark  mt-3">
-              <div class="card-header">
-              <h4>%s</h4>
-              </div>
-            <div class="card-body">
-              <!--
-              <form>
-              </form>
-              -->
-              <table class="table table-sm table-hover">
-                <thead>
-                    %s
-                </thead>
-                <tbody %s >
-                </tbody>
-              </table>
-            </div>
-              
-              <button class="btn btn-primary" id="table_card_button">ClickMe</button>
-              
-              <div class="card-footer">
-              <div/>
-              
-            </div>
-          </div>  <!-- /.card -->
-            """
-
-   public export
-   table_card2 : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
-   table_card2 p_id m mdl = do
-      pure ()
-
 
 
 

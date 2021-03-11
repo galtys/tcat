@@ -149,7 +149,7 @@ record ModelData (m:ModelSchema) where
 --namespace model_data_list
 record ModelDataList (m:ModelSchema) where
      constructor MkMDList
-     ns : String
+     name : String
      --default_key : (SchemaType2 (key m))
      --default_value : (SchemaType2 (val m))
      keyL : List (SchemaType2 (key m))
