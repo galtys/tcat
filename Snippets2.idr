@@ -67,6 +67,20 @@ renderDataWithSchema2 {schema = (IField name FTterm)} item = [(render_number_in_
 renderDataWithSchema2 {schema = (EField name ns)} item = [(render_number_in_td_tag item)]
 renderDataWithSchema2 {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2 iteml) ++ (renderDataWithSchema2 itemr)
 
+public export
+renderDataAsKey : (SchemaType2 schema) -> String
+renderDataAsKey {schema = (IField name FBool)} True = "True"
+renderDataAsKey {schema = (IField name FBool)} False = "False"
+renderDataAsKey {schema = (IField name FString)} item = item
+renderDataAsKey {schema = (IField name FTterm)} item = the String (cast (t2integer item))
+renderDataAsKey {schema = (EField name ns)} item = the String (cast item)
+renderDataAsKey {schema = (y .|. z)} (iteml, itemr) = (renderDataAsKey iteml) ++ (renderDataAsKey itemr)
+
+public export
+get_row_id : String -> (SchemaType2 schema) -> String
+get_row_id p_id  item = p_id++ "_row"++(renderDataAsKey item)
+
+
 namespace tab_widget
    public export
    id_att_format : String
@@ -131,8 +145,10 @@ namespace tab_widget
    insert_rows p_id m mdl = do
       let row_k = [ concat (renderDataWithSchema2 x)  | x <- (keyL mdl)]
       let row_v = [ concat (renderDataWithSchema2 x)  | x <- (valL mdl)]
+      let row_ids = [get_row_id p_id x | x <- (keyL mdl)]
       let rows_zip = zip row_k row_v
-      let rows_tr = [ (printf "<tr>%s %s</tr>" k v) | (k,v) <- rows_zip]
+      let rows_ids_zip = zip row_ids rows_zip
+      let rows_tr = [ (printf "<tr id=%s>%s %s</tr>" r_id k v) | (r_id,(k,v)) <- rows_ids_zip]
       
       _lines2io p_id rows_tr
       pure ()      
