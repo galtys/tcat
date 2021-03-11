@@ -268,7 +268,7 @@ testingEvent1 ev = do
 
 
 test_json : String
-test_json = renderModelData Test_ModelSchema test_ModelData 
+test_json = renderModelData Test_ModelSchema test_ModelData --items_ModelDataList
 
 
 listJSON_2_kv : List JSON -> (List JSON,List JSON)
@@ -282,8 +282,9 @@ test_inv_ m = do
           let ko = [ (json2Schema2Data (key m) (json2ListJSON x)  ) | x <- ( k )]
           let vo = [ (json2Schema2Data (val m) (json2ListJSON x)  ) | x <- ( v )]
           let sz = (length ko)
-          pure (MkMDList ko vo)
+          pure (MkMDList "items" ko vo)
 
+{-
 to_model_data : (m:ModelSchema) -> Maybe (ModelData m)
 to_model_data m  = do
           x <- (test_inv_ m)
@@ -301,6 +302,7 @@ to_model_data m  = do
           --let (keyD,valD) =  (json2kv js)
           --let ret_val = [ (json2Schema2Data valSchema2 (json2ListJSON x)  ) | x <- (json2ListJSON valD)]
           --pure ret_val
+-}          
 -- test_inv_ valSchema2
 
 

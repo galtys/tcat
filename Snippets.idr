@@ -18,6 +18,8 @@ test_key : String
 test_key = display_as_key  test_val
 -}
 
+{- THIS PART IS ABOUT  SchemaType2 -> JSON -}
+
 
 tterm2json : Tterm -> String
 tterm2json (Tt dr cr) = printf """[%d,%d]""" dr cr
@@ -65,12 +67,18 @@ renderSchemaDataVect s (x :: xs) = [ "["++(renderSchemaDataAsJsonP1 x)++"]" ] ++
 
 --renderSchemaDataVect s (x :: xs) = [renderSchemaDataAsJsonP1 x] ++ (renderSchemaDataVect s xs)  
 
-               
 
 
 renderModelData : (m:ModelSchema) -> (ModelData m)  -> String
 renderModelData m x = printf """[ [%s],  [%s]   ]""" (  joinVect $ renderSchemaDataVect (key m) (data_key x) ) 
                                            (  joinVect $ renderSchemaDataVect (val m) (data_val x) )
+
+
+
+
+
+
+{- THIS PART IS ABOUT  JSON ->   SchemaType2 ->  -}
 
 
 list_json_to_bool : List JSON -> Bool
@@ -87,9 +95,6 @@ list_json_to_num ( (JNumber x) :: xs) = the Integer (cast x)
 list_json_to_tterm : List JSON -> Tterm
 --list_json_to_tterm [] = Nothing
 list_json_to_tterm ((JArray ((JNumber dr) :: (JNumber cr) :: x ))::xs) =Tt (the Integer (cast dr)) (the Integer (cast cr))
---list_json_to_tterm _ = Nothing
-
---(JArray (JNumber dr) :: (JNumber cr) :: xs ) = Tt (the Integer (cast dr)) (the Integer (cast cr))
 
 
 json2Schema2Data : (s:Schema2) -> List JSON -> (SchemaType2 s)
@@ -105,19 +110,6 @@ json2ListJSON : JSON -> List JSON
 json2ListJSON (JArray xs) = xs
 json2ListJSON _ = []
 
-{-
-json2ListJSON JNull = ?json2ListJSON_rhs_1
-json2ListJSON (JBoolean x) = ?json2ListJSON_rhs_2
-json2ListJSON (JNumber x) = ?json2ListJSON_rhs_3
-json2ListJSON (JString x) = ?json2ListJSON_rhs_4
-json2ListJSON (JObject xs) = ?json2ListJSON_rhs_6
--}
-
---json2Schema2Data s _ = Nothing
-
---list2vect : (s:Schema2) -> (size :Nat) -> List (SchemaType2 s) -> Maybe (Vect size (SchemaType2 s))
---list2vect s size [] = Nothing
---list2vect s size (x :: xs) = ?ret_2
 
 json2Schema2ListData : (s:Schema2) -> JSON -> List (SchemaType2 s)
 --json2Schema2ListData s [] = []
@@ -130,41 +122,3 @@ json2Schema2ListData s (JArray ( (JArray x)::xs))= [(json2Schema2Data s x)] ++ (
 json2kv : JSON -> (JSON, JSON)
 json2kv (JArray (( keyD) :: ( valD) :: xs) )    =  (keyD ,valD)
 
-
-_test_json2 :JSON
-_test_json2 = JArray [JArray [JBoolean False, JString "res", JArray [JNumber 3.0, JNumber 0.0]],
-JArray [JBoolean False, JString "r", JArray [JNumber 0.0, JNumber 3.0]],
-JArray [JBoolean False, JString "il", JArray [JNumber 1.0, JNumber 0.0]],
-JArray [JBoolean False, JString "l", JArray [JNumber 0.0, JNumber 7.0]]]
-
-
-
-
-{-
-json2ModelData : (m:ModelSchema) -> ( JSON, JSON) -> Maybe (ModelData m)
-json2ModelData m (keyD,valD)
-       = let kk = json2Schema2ListData (key m) keyD
-             dk = (fromList kk)
-             
-             vv = (json2Schema2ListData (val m) valD)
-             dv = (fromList vv)
-             sz = (length dv)  in
-             
-         Just (MkMD sz dk dv) 
-
-json2ModelData m _ = Nothing
--}
-
---json2ModelData2 : (m:ModelSchema) -> Maybe JSON -> Maybe (ModelData m)
-
---renderSchemaDataVect (key m) (data_key x)
--- renderSchemaDataAsJsonP (data_val x)
-
---renderModelData m x = [ renderSchemaDataAsJsonP xx | xx <- (data_key x)]
-
---renderModelData x = x --[ renderSchemaDataAsJsonP xx | xx <- data_key x] --, renderSchemaDataAsJsonP (data_val x))
-
--- Local Variables:
--- idris-load-packages: ("contrib")
--- End:
- 

@@ -127,18 +127,28 @@ record ModelSchema where
      key : Schema2
      val : Schema2
 
+keyItems : Schema2
+keyItems = (EField "sku1" "asset")                                
+valItems : Schema2
+valItems = (IField "qty" FTterm)
+items_ModelSchema : ModelSchema
+items_ModelSchema = MkModelSchema keyItems valItems
+
+
+--namespace model_data
 record ModelData (m:ModelSchema) where
      constructor MkMD
      size : Nat
      data_key : Vect size (SchemaType2 (key m))
      data_val : Vect size (SchemaType2 (val m))
 
+--namespace model_data_list
 record ModelDataList (m:ModelSchema) where
      constructor MkMDList
      ns : String
-     data_keyL : List (SchemaType2 (key m))
-     data_valL : List (SchemaType2 (val m))
-     
+     keyL : List (SchemaType2 (key m))
+     valL : List (SchemaType2 (val m))
+
 {-               
 record ModelDataStore (m:ModelSchema) where
    constructor MkDS
@@ -147,22 +157,33 @@ record ModelDataStore (m:ModelSchema) where
    amendments : List (ModelData m)     
 -}
 
-keySchema2 : Schema2
-keySchema2 = (EField "sku1" "asset")
-                                 
-valSchema2 : Schema2
-valSchema2 = (IField "qty1" FBool) .|. (IField "note" FString) .|. (IField "qty" FTterm)
+{-
+items_ModelDataList : ModelDataList items_ModelSchema
+items_ModelDataList = MkMDList "items" [ 1,2,3,4 ] 
+                        [ ( Tt 3 0 ),
+                          ( Tt 0 3 ),
+                          ( Tt 1 0 ),
+                          ( Tt 7 0 ) ]
+-}
 
-Test_ModelSchema : ModelSchema
-Test_ModelSchema = MkModelSchema keySchema2 valSchema2
-                                 
-
+{-
 test_ModelData : ModelData Test_ModelSchema
 test_ModelData = MkMD 4 [ 1,2,3,4 ] 
                         [ (False , "res", Tt 3 0 ),
                           (False , "r", Tt 0 3 ),
                           (False , "il", Tt 1 0 ),
                           (False , "l", Tt 0 7 ) ]
+-}                          
+Test_ModelSchema : ModelSchema
+Test_ModelSchema = items_ModelSchema
+test_ModelData : ModelData Test_ModelSchema
+
+test_ModelData = MkMD 4 [ 1,2,3,4 ] 
+                        [ (Tt 3 0 ),
+                          (Tt 0 3 ),
+                          (Tt 1 0 ),
+                          (Tt 0 7 ) ]
+                                                                              
 {-
 test_ModelStore : ModelDataStore Test_ModelSchema
 test_ModelStore = MkDS "items" test_ModelData [test_ModelData]
