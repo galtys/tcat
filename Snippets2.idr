@@ -124,7 +124,6 @@ line2row (Just _rowid) x@(MkOrderLine k v)
            _line = concat [printf "%s" x | x <- _items ++ [_qty_item] ] in
            printf "<tr>%s</tr>" _line
 
-
 namespace tab_widget
    public export
    id_att_format : String
@@ -175,13 +174,39 @@ namespace tab_widget
    
    
    public export
-   get_table_id : String ->  String  --this is to reference the table
+   get_table_id : String ->  String  --this is to reference the table body
    get_table_id p_id  = ( p_id  ++ "__composite_table" )
+   
+
+   {-   
+   public export
+   line2row2 : String -> (m:ModelSchema) -> (
+   line2row2 p_id x@(MkOrderLine k v)
+     = let _items = (renderDataWithSchema _rowid k)
+           _qty = (t2integer v)
+           _qty_item = render_number_input_tag (concat [_rowid, "__Qty"]) _qty
+           _line = concat [printf "%s" x | x <- _items ++ [_qty_item] ] in
+           printf "<tr>%s</tr>" _line
+   -}
+   public export
+   _lines2io : String -> List String -> JS_IO ()
+   _lines2io p_id (x::xs) = do
+      insert_beforeend p_id x
+      _lines2io p_id xs
 
    public export
    insert_rows : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
-   insert_rows = ?ret
+   insert_rows p_id m mdl = do
+      let row_k = [ concat (renderDataWithSchema2 x)  | x <- (keyL mdl)]
+      let row_v = [ concat (renderDataWithSchema2 x)  | x <- (valL mdl)]
+      let rows_zip = zip row_k row_v
+      --let rows_zip = zip (keyL mdl) (valL mdl)
+      --let row_schema = (key m) .|. (val m)
+      --let rows = [ concat (renderDataWithSchema2 x)  | x <- rows_zip]      
+      let rows_tr = [ (printf "<tr>%s %s</tr>" k v) | (k,v) <- rows_zip]
       
+      _lines2io p_id rows_tr
+      pure ()      
          
    public export  --main init
    table_card2 : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
@@ -199,7 +224,7 @@ namespace tab_widget
       insert_beforeend parent_tag_id _composite_html
       insert_beforeend _composite_id "<h2>Order</h2>"
       insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader)  
-
+      insert_rows _composite_table_id m mdl
 
 
 {-
