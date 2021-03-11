@@ -28,6 +28,7 @@ main = do
    new_row_sha256 <- calc_sha256 "abc"
    console_log new_row_sha1
    console_log new_row_sha256
+   
    tab_widget.table_card2 "so_composite" Items_ModelSchema items_ModelDataList
       
 --   insert_beforeend "so_composite" (table_card table_composite_id THeader)
