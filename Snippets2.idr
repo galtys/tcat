@@ -66,10 +66,9 @@ namespace tab_widget
    _composite : String
    _composite = """
           <div id="%s" class="sticky-top">
-	      
-	      
 	  </div>   
    """
+   
    public export
    _tf : String
    _tf = """
@@ -116,14 +115,14 @@ namespace tab_widget
       let _composite_id = get_composite_id parent_tag_id m mdl
       let _composite_table_id = get_table_id _composite_id
       
-      let _composite = ( printf _composite _composite_id )
+      let _composite_html = ( printf _composite _composite_id )
       
-      let _th = printf _tf (name mdl) (schema2thead2 schema_header ) (id_att _composite_table_id )
+      let _th_html = printf _tf (name mdl) (schema2thead2 schema_header ) (id_att _composite_table_id )
       
       
-      insert_beforeend parent_tag_id _composite
+      insert_beforeend parent_tag_id _composite_html
       insert_beforeend _composite_id "<h2>Order</h2>"
-      insert_beforeend _composite_id _th  --(table_card table_composite_id THeader)  
+      insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader)  
 
 
 
@@ -168,8 +167,6 @@ table_card key schema = ret where
           </div>  <!-- /.card -->
             """
      ret = printf _tf "SO440" (schema2thead schema) (id_att key)
-
-
 
 public export
 TagID : Type
