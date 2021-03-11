@@ -195,41 +195,12 @@ line2io tableid rowid x = insert_beforeend tableid $ line2row rowid x
 line_list2io_amend : TableID -> List OrderLine -> JS_IO ()
 line_list2io_amend tableid [] = pure ()
 line_list2io_amend tableid ( x@(MkOrderLine k@(sku1, price, sku2) v) :: xs) = do
-          -- let key_s = (display_as_key k)
-          -- console_log key_s
           let new_qty = printf "%d" (t2integer v)
           --console_log $ show $ ((renderDataWithSchema "" k) ++ [("Qty",new_qty )] )
 
           line2io tableid (Just sku1) x
           line_list2io_amend tableid xs
 
-
-          
-                    
-                                        
-{-          
-line_list2io : TableID -> List OrderLine -> JS_IO ()
-line_list2io tableid [] = pure ()
-line_list2io tableid ( x@(MkOrderLine k v) :: xs) = do
-          --console_log (show k)
-          let key_s = (display_as_key k)
-          -- console_log key_s
---          console_log $ show $ renderDataWithSchema k
-          q_flag <- get_qty_int_flag key_s
-          case (q_flag==0) of
-              True => line2io tableid (Just key_s) x
-              False => do
-                      q <- get_qty_int key_s
-                      let new_qty = (t2int v) + q
-                      case (new_qty==0) of 
-                         True => remove_row key_s
-                         False => update_qty key_s new_qty
-                      
-          line_list2io tableid xs
--}
-
---line2io_amend : OrderLine -> JS_IO ()
---line2io_amend x = insert_beforeend table_amendments_id $ line2row Nothing x
 
 THeader : Schema
 THeader = OrderLineKey1 .+. (SInt (FA "Qty" True) ) 

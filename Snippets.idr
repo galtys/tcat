@@ -10,22 +10,11 @@ import Language.JSON.Data
 
 %access public export
 
-{-
-test_val : (SchemaType OrderLineKey1)
-test_val = (1,7,1,"1",100,188)
-
-test_key : String
-test_key = display_as_key  test_val
--}
-
 {- THIS PART IS ABOUT  SchemaType2 -> JSON -}
 
 
 tterm2json : Tterm -> String
 tterm2json (Tt dr cr) = printf """[%d,%d]""" dr cr
-
---op = if (symbol_op == Create) then "Create" else "Delete"
---                       op_json=printf """{"i":%d,"op":"%s"}""" i op
 
 -- assumption: column(field) names are unique
 renderSchemaDataAsJsonP : (SchemaType2 schema) -> String
