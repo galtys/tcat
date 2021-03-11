@@ -82,6 +82,37 @@ renderDataWithSchema p_id  {schema = (SInt (FA name False) )} item = [ render_nu
 
 renderDataWithSchema p_id {schema = (y .+. z)} (iteml, itemr) = (renderDataWithSchema p_id iteml) ++ (renderDataWithSchema p_id itemr)
 
+public export
+renderDataWithSchema2Edit : String -> (SchemaType2 schema) -> List String
+renderDataWithSchema2Edit p_id  {schema = (IField name FBool)} True = ["<td>True</td>"]
+renderDataWithSchema2Edit p_id  {schema = (IField name FBool)} False = ["<td>False</td>"]
+renderDataWithSchema2Edit p_id  {schema = (IField name FString)} item = [render_text_input_tag (concat [p_id, "__",name]) item] --render_text_in_td_tag item
+renderDataWithSchema2Edit p_id  {schema = (IField name FTterm)} item = [render_number_input_tag (concat [p_id, "__",name]) (t2integer item)]
+renderDataWithSchema2Edit p_id  {schema = (EField name ns)} item = [render_number_input_tag (concat [p_id, "__",name]) (item)]
+renderDataWithSchema2Edit p_id {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2Edit p_id iteml) ++ (renderDataWithSchema2Edit p_id itemr)
+
+
+public export
+renderDataWithSchema2 : (SchemaType2 schema) -> List String
+renderDataWithSchema2 {schema = (IField name FBool)} True = ["<td>True</td>"]
+renderDataWithSchema2 {schema = (IField name FBool)} False = ["<td>False</td>"]
+renderDataWithSchema2 {schema = (IField name FString)} item = [(render_text_in_td_tag item)] --render_text_in_td_tag item
+renderDataWithSchema2 {schema = (IField name FTterm)} item = [(render_number_in_td_tag (t2integer item))]
+renderDataWithSchema2 {schema = (EField name ns)} item = [(render_number_in_td_tag item)]
+renderDataWithSchema2 {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2 iteml) ++ (renderDataWithSchema2 itemr)
+
+
+{-
+
+
+renderDataWithSchema2 p_id  {schema = (SString (FA name False)  )} item = [ render_text_in_td_tag item ]
+
+renderDataWithSchema2 p_id  {schema = (SInt (FA name True) )} item = [ render_number_input_tag (concat [p_id, "__",name]) item ]
+renderDataWithSchema2 p_id  {schema = (SInt (FA name False) )} item = [ render_number_in_td_tag item]
+
+renderDataWithSchema2 p_id {schema = (y .+. z)} (iteml, itemr) = (renderDataWithSchema2 p_id iteml) ++ (renderDataWithSchema2 p_id itemr)
+-}
+
 
 public export
 line2row : RowID -> OrderLine -> String
