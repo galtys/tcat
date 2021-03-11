@@ -54,9 +54,6 @@ table_card key schema = ret where
               <form>
               </form>
               -->
-      	    <div class="flex-container">
-      	      <div class="flex-item-a">
-      	      
               <table class="table table-sm table-hover">
                 <thead>
                     %s
@@ -64,9 +61,6 @@ table_card key schema = ret where
                 <tbody %s >
                 </tbody>
               </table>
-              
-              </div>
-              
             </div>
               
               <button class="btn btn-primary" id="table_card_button">ClickMe</button>
