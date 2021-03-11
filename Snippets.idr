@@ -117,7 +117,7 @@ json2kv (JArray (( keyD) :: ( valD) :: xs) )    =  (keyD ,valD)
 
 
 test_json : String
-test_json = renderModelData Test_ModelSchema test_ModelData --items_ModelDataList
+test_json = renderModelData Items_ModelSchema test_ModelData --items_ModelDataList
 
 
 listJSON_2_kv : List JSON -> (List JSON,List JSON)

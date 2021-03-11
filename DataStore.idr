@@ -136,8 +136,8 @@ valItems = (IField "qty" FTterm)
 --Items_ModelSchema : ModelSchema
 --Items_ModelSchema = MkModelSchema keyItems valItems
 
-Test_ModelSchema : ModelSchema
-Test_ModelSchema = MkModelSchema keyItems valItems --Items_ModelSchema
+Items_ModelSchema : ModelSchema
+Items_ModelSchema = MkModelSchema keyItems valItems --Items_ModelSchema
 
 --namespace model_data
 record ModelData (m:ModelSchema) where
@@ -164,7 +164,7 @@ record ModelDataStore (m:ModelSchema) where
 -}
 
 
-items_ModelDataList : ModelDataList Test_ModelSchema
+items_ModelDataList : ModelDataList Items_ModelSchema
 items_ModelDataList = MkMDList "items" [ 1,2,3,4 ] 
                         [ ( Tt 3 0 ),
                           ( Tt 0 3 ),
@@ -173,7 +173,7 @@ items_ModelDataList = MkMDList "items" [ 1,2,3,4 ]
 
 
 {-
-test_ModelData : ModelData Test_ModelSchema
+test_ModelData : ModelData Items_ModelSchema
 test_ModelData = MkMD 4 [ 1,2,3,4 ] 
                         [ (False , "res", Tt 3 0 ),
                           (False , "r", Tt 0 3 ),
@@ -181,7 +181,7 @@ test_ModelData = MkMD 4 [ 1,2,3,4 ]
                           (False , "l", Tt 0 7 ) ]
 -}                          
 
-test_ModelData : ModelData Test_ModelSchema
+test_ModelData : ModelData Items_ModelSchema
 test_ModelData = MkMD 4 [ 1,2,3,4 ] 
                         [ (Tt 3 0 ),
                           (Tt 0 3 ),
@@ -189,7 +189,7 @@ test_ModelData = MkMD 4 [ 1,2,3,4 ]
                           (Tt 0 7 ) ]
                                                                               
 {-
-test_ModelStore : ModelDataStore Test_ModelSchema
+test_ModelStore : ModelDataStore Items_ModelSchema
 test_ModelStore = MkDS "items" test_ModelData [test_ModelData]
 -}
 
