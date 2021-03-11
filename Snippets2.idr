@@ -157,8 +157,8 @@ namespace tab_widget
       --let test_zip = zip (keyL mdl) (valL mdl)
       --console_log (show test_zip)
       
-      let row_k = [ concat [ (fst u) (snd u) | u <-  zip (renderDataWithSchema2 x) row_ids]   | x <-(keyL mdl)]      
-      
+--      let row_k = [ concat [ (fst u) (snd u) | u <-  zip (renderDataWithSchema2 x) row_ids]   | x <-(keyL mdl)]      
+      let row_k = [ concat [ fk (snd x) | fk <- renderDataWithSchema2 (fst x)]  | x <-zip (keyL mdl) row_ids]     
       
       let row_v = [ concat [ fv (snd x) | fv <- renderDataWithSchema2 (fst x)]  | x <-zip (valL mdl) row_ids]     
       
