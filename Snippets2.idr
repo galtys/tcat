@@ -61,21 +61,21 @@ renderDataWithSchema2Edit p_id {schema = (y .|. z)} (iteml, itemr) = (renderData
 
 -- using td tags
 public export
-render_number_in_td_tag2 : (String,Integer) -> (String -> String)
-render_number_in_td_tag2 (name,v) = ( \x => (printf """<td id=%s_%s>""" x name)++(printf "%d</td>" v))
+render_number_in_td_tag2 : String -> Integer -> String
+render_number_in_td_tag2 p_id v = printf """<td id="%s">%d</td>""" p_id v
 
 public export
-render_text_in_td_tag2 : (String,String) -> (String -> String)
-render_text_in_td_tag2 (name, v) = ( \x =>   (printf """<td id=%s_%s>""" x name)++(printf "%s</td>" v))
+render_text_in_td_tag2 : String -> String -> String
+render_text_in_td_tag2 p_id v   = printf   """<td id="%s">%s</td>""" p_id v
 
 public export
-renderDataWithSchema2 : (SchemaType2 schema) -> List (String->String)
-renderDataWithSchema2  {schema = (IField name FBool)} True = [ (render_text_in_td_tag2 (name, "True")) ]
-renderDataWithSchema2  {schema = (IField name FBool)} False = [(render_text_in_td_tag2 (name,"False")) ]
-renderDataWithSchema2  {schema = (IField name FString)} item = [(render_text_in_td_tag2 (name,item)) ] 
-renderDataWithSchema2  {schema = (IField name FTterm)} item = [(render_number_in_td_tag2 (name, (t2integer item)) ) ]
-renderDataWithSchema2  {schema = (EField name ns)} item = [(render_number_in_td_tag2 (name, item)) ]
-renderDataWithSchema2  {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2 iteml) ++ (renderDataWithSchema2 itemr)
+renderDataWithSchema2 : String -> (SchemaType2 schema) -> List String
+renderDataWithSchema2 p_id {schema = (IField name FBool)} True = [ render_text_in_td_tag2 (p_id ++ "_"++name) "True"]
+renderDataWithSchema2 p_id {schema = (IField name FBool)} False = [render_text_in_td_tag2 (p_id ++ "_"++name) "False" ]
+renderDataWithSchema2 p_id {schema = (IField name FString)} item = [render_text_in_td_tag2 (p_id ++ "_"++name) item]
+renderDataWithSchema2 p_id {schema = (IField name FTterm)} item = [render_number_in_td_tag2 (p_id ++ "_"++name) (t2integer item)]
+renderDataWithSchema2 p_id {schema = (EField name ns)} item = [render_number_in_td_tag2 (p_id ++ "_"++name) item]
+renderDataWithSchema2 p_id {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2 p_id iteml) ++ (renderDataWithSchema2 p_id itemr)
 
 public export
 renderDataAsKey : (SchemaType2 schema) -> String
@@ -153,29 +153,11 @@ namespace tab_widget
    insert_rows : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
    insert_rows p_id m mdl = do
       let row_ids = [ (get_row_id p_id x) | x <- (keyL mdl)]
-      --let rid_k = zip row_ids (keyL mdl)
-      --let test_zip = zip (keyL mdl) (valL mdl)
-      --console_log (show test_zip)
       
---      let row_k = [ concat [ (fst u) (snd u) | u <-  zip (renderDataWithSchema2 x) row_ids]   | x <-(keyL mdl)]      
-      let row_k = [ concat [ fk (snd x) | fk <- renderDataWithSchema2 (fst x)]  | x <-zip (keyL mdl) row_ids]     
+      let row_k = [ concat (renderDataWithSchema2 (snd x) (fst x))  | x <-zip (keyL mdl) row_ids]
+      let row_v = [ concat (renderDataWithSchema2 (snd x) (fst x))  | x <-zip (valL mdl) row_ids]
       
-      let row_v = [ concat [ fv (snd x) | fv <- renderDataWithSchema2 (fst x)]  | x <-zip (valL mdl) row_ids]     
-      
-      --let row_v = [  ([concat[ (fk rid)| fk <-  (renderDataWithSchema2 v)] | v <- (valL mdl)]  )  | rid <- row_ids]      
-       
-        
-          
-      --let row_k = [ ([ (fst u) (snd u) | u <- (zip x row_ids)]) | x <- row_fk ]
-      
---      let row_fk = [ [ u | u <-  (renderDataWithSchema2 x)]   | x <-(keyL mdl)]      
---      let row_k = [ ([ (fst u) (snd u) | u <- (zip x row_ids)]) | x <- row_fk ]
-      
-      
-      console_log (show  [show x | x <- row_k])
---      console_log (show row_ids)
-      --let row_v = [ [ (fv rid) | (fv,rid) <-zip (renderDataWithSchema2 x) row_ids]  | x <-(valL mdl)]
-
+                  
       let rows_zip = zip row_k row_v
       let rows_ids_zip = zip row_ids rows_zip
       let rows_tr = [ (printf "<tr id=%s>%s %s</tr>" rid k v) | (rid,(k,v)) <- rows_ids_zip]
