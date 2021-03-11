@@ -74,6 +74,59 @@ table_card key schema = ret where
      ret = printf _tf "SO440" (schema2thead schema) (id_att key)
 
 
+
+
+
+
+
+
+
+
+
+
+
+     --ret = printf _tf "SO440" (schema2thead schema) (id_att key)
+
+namespace tab_widget
+
+   _tf : String
+   _tf = """
+          <!-- Content Edit Table -->
+          <div class="card border-dark  mt-3">
+              <div class="card-header">
+              <h4>%s</h4>
+              </div>
+            <div class="card-body">
+              <!--
+              <form>
+              </form>
+              -->
+              <table class="table table-sm table-hover">
+                <thead>
+                    %s
+                </thead>
+                <tbody %s >
+                </tbody>
+              </table>
+            </div>
+              
+              <button class="btn btn-primary" id="table_card_button">ClickMe</button>
+              
+              <div class="card-footer">
+              <div/>
+              
+            </div>
+          </div>  <!-- /.card -->
+            """
+
+   public export
+   table_card2 : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
+   table_card2 p_id m mdl = do
+      pure ()
+
+
+
+
 public export
 TagID : Type
 TagID = String
