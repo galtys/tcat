@@ -35,9 +35,9 @@ Items_ModelSchema = MkModelSchema keyItems valItems --Items_ModelSchema
 items_ModelDataList : ModelDataList Items_ModelSchema
 items_ModelDataList = MkMDList "items" [ 1,2,3,4 ] 
                         [ ( Tt 3 0 ),
-                          ( Tt 0 3 ),
+                          ( Tt 7 0 ),
                           ( Tt 1 0 ),
-                          ( Tt 7 0 ) ]
+                          ( Tt 1 39 ) ]
 
 
 {-
@@ -52,9 +52,9 @@ test_ModelData = MkMD 4 [ 1,2,3,4 ]
 test_ModelData : ModelData Items_ModelSchema
 test_ModelData = MkMD 4 [ 1,2,3,4 ] 
                         [ (Tt 3 0 ),
-                          (Tt 0 3 ),
+                          (Tt 2 0 ),
                           (Tt 1 0 ),
-                          (Tt 0 7 ) ]
+                          (Tt 1 78 ) ]
 
 partial main : JS_IO ()
 main = do      
