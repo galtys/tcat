@@ -33,11 +33,20 @@ valItems' = (IField "flag" FBool) .|. (IField "note" FString) .|. (IField "qty" 
 --Items_ModelSchema : ModelSchema
 --Items_ModelSchema = MkModelSchema keyItems valItems
 
+_items_rw : Schema2 -> Bool
+_items_rw (IField name ft) = True
+_items_rw (EField name ns) = False
+_items_rw (s1 .|. s2) = False
+
+
+
+
+
 Items_ModelSchema : ModelSchema
-Items_ModelSchema = MkModelSchema keyItems valItems --Items_ModelSchema
+Items_ModelSchema = MkModelSchema keyItems valItems _items_rw   --Items_ModelSchema
 
 Items_ModelSchema' : ModelSchema
-Items_ModelSchema' = MkModelSchema keyItems valItems' --Items_ModelSchema
+Items_ModelSchema' = MkModelSchema keyItems valItems' _items_rw --Items_ModelSchema
 
 items_ModelDataList : ModelDataList Items_ModelSchema
 items_ModelDataList = MkMDList "items" [ 1,2,3,4 ] 

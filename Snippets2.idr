@@ -61,20 +61,18 @@ renderDataWithSchema2Edit p_id {schema = (y .|. z)} (iteml, itemr) = (renderData
 
 
 
-
-
 -- using td tags
 public export
 render_number_in_td_tag2 : String -> Integer -> String
-render_number_in_td_tag2 p_id v = printf """<td id="%s">%d</td>""" p_id v
+render_number_in_td_tag2 p_id v = printf   """<td id="%s" data-val="%d">%d</td>""" p_id v v
 
 public export
 render_text_in_td_tag2 : String -> String -> String
-render_text_in_td_tag2 p_id v   = printf   """<td id="%s">%s</td>""" p_id v
+render_text_in_td_tag2 p_id v   = printf   """<td id="%s" data-val="%s">%s</td>""" p_id v v
 
 public export
 render_tterm_in_td_tag2 : String -> Tterm -> String
-render_tterm_in_td_tag2 p_id v = printf """<td id="%s">%d</td>""" p_id (t2integer v)
+render_tterm_in_td_tag2 p_id v = printf """<td id="%s" data-dr="%d" data-cr="%d">%d</td>""" p_id (dr v) (cr v) (t2integer v)
 
 public export
 cell_id : String -> String -> String

@@ -9,7 +9,12 @@ import Language.JSON.Data
 
 %access public export
 
-data Tterm = Tt Integer Integer
+--data Tterm = Tt Integer Integer
+
+record Tterm where
+  constructor Tt
+  dr : Integer
+  cr : Integer
 
 tadd : Tterm -> Tterm -> Tterm
 tadd (Tt dr1 cr1) (Tt dr2 cr2) = (Tt dr cr) where
@@ -66,12 +71,14 @@ Eq SymbolOP where
      (==) _ _ = False     
      (/=) x y = not (x==y)
 
+infixr 5 .|.
+
+{-
 record FieldArgs where
   constructor FA
   name : String
   rw : Bool
-
-infixr 5 .|.
+-}
 
 data FieldDef : Type where
      FBool :  FieldDef
@@ -94,15 +101,18 @@ record ModelSchema where
      constructor MkModelSchema
      key : Schema2
      val : Schema2
+     rw : Schema2 -> Bool
 
---namespace model_data
 record ModelData (m:ModelSchema) where
      constructor MkMD
      size : Nat
      data_key : Vect size (SchemaType2 (key m))
      data_val : Vect size (SchemaType2 (val m))
 
---namespace model_data_list
+record Pokus (m:ModelSchema) where
+     constructor MkPokus
+     -- rwk : (key m) -> Bool
+
 record ModelDataList (m:ModelSchema) where
      constructor MkMDList
      name : String
