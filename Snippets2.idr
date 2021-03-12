@@ -59,6 +59,10 @@ renderDataWithSchema2Edit p_id  {schema = (IField name FTterm)} item = [render_n
 renderDataWithSchema2Edit p_id  {schema = (EField name ns)} item = [render_number_input_tag (concat [p_id, "__",name]) (item)]
 renderDataWithSchema2Edit p_id {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2Edit p_id iteml) ++ (renderDataWithSchema2Edit p_id itemr)
 
+
+
+
+
 -- using td tags
 public export
 render_number_in_td_tag2 : String -> Integer -> String
@@ -69,21 +73,29 @@ render_text_in_td_tag2 : String -> String -> String
 render_text_in_td_tag2 p_id v   = printf   """<td id="%s">%s</td>""" p_id v
 
 public export
+render_tterm_in_td_tag2 : String -> Tterm -> String
+render_tterm_in_td_tag2 p_id v = printf """<td id="%s">%d</td>""" p_id (t2integer v)
+
+public export
+cell_id : String -> String -> String
+cell_id p_id name = p_id ++ "_"++name
+
+public export
 renderDataWithSchema2 : String -> (SchemaType2 schema) -> List String
-renderDataWithSchema2 p_id {schema = (IField name FBool)} True = [ render_text_in_td_tag2 (p_id ++ "_"++name) "True"]
-renderDataWithSchema2 p_id {schema = (IField name FBool)} False = [render_text_in_td_tag2 (p_id ++ "_"++name) "False" ]
-renderDataWithSchema2 p_id {schema = (IField name FString)} item = [render_text_in_td_tag2 (p_id ++ "_"++name) item]
-renderDataWithSchema2 p_id {schema = (IField name FTterm)} item = [render_number_in_td_tag2 (p_id ++ "_"++name) (t2integer item)]
-renderDataWithSchema2 p_id {schema = (EField name ns)} item = [render_number_in_td_tag2 (p_id ++ "_"++name) item]
+renderDataWithSchema2 p_id {schema = (IField name FBool)}   True  = [render_text_in_td_tag2   (cell_id p_id name) "True"]
+renderDataWithSchema2 p_id {schema = (IField name FBool)}   False = [render_text_in_td_tag2   (cell_id p_id name) "False"]
+renderDataWithSchema2 p_id {schema = (IField name FString)} item  = [render_text_in_td_tag2   (cell_id p_id name) item]
+renderDataWithSchema2 p_id {schema = (IField name FTterm)}  item  = [render_tterm_in_td_tag2  (cell_id p_id name) item]
+renderDataWithSchema2 p_id {schema = (EField name ns)}      item  = [render_number_in_td_tag2 (cell_id p_id name) item]
 renderDataWithSchema2 p_id {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2 p_id iteml) ++ (renderDataWithSchema2 p_id itemr)
 
 public export
 renderDataAsKey : (SchemaType2 schema) -> String
-renderDataAsKey {schema = (IField name FBool)} True = "True"
-renderDataAsKey {schema = (IField name FBool)} False = "False"
+renderDataAsKey {schema = (IField name FBool)}   True = "True"
+renderDataAsKey {schema = (IField name FBool)}   False = "False"
 renderDataAsKey {schema = (IField name FString)} item = item
-renderDataAsKey {schema = (IField name FTterm)} item = the String (cast (t2integer item))
-renderDataAsKey {schema = (EField name ns)} item = the String (cast item)
+renderDataAsKey {schema = (IField name FTterm)}  item = the String (cast (t2integer item))
+renderDataAsKey {schema = (EField name ns)}      item = the String (cast item)
 renderDataAsKey {schema = (y .|. z)} (iteml, itemr) = (renderDataAsKey iteml) ++ (renderDataAsKey itemr)
 
 namespace tab_widget
