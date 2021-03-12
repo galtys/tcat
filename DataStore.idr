@@ -106,8 +106,8 @@ record ModelData (m:ModelSchema) where
 record ModelDataList (m:ModelSchema) where
      constructor MkMDList
      name : String
-     --default_key : (SchemaType2 (key m))
-     --default_value : (SchemaType2 (val m))
+     --default_key : (SchemaType2 (key m))    -- as ZERO element?
+     --default_value : (SchemaType2 (val m)) -- Acting as ZERO element?
      keyL : List (SchemaType2 (key m))
      valL : List (SchemaType2 (val m))
 

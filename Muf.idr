@@ -71,19 +71,17 @@ main = do
    console_log new_row_sha256
    
    tab_widget.table_card2 "order1" Items_ModelSchema' items_ModelDataList'
-      
+
 --   insert_beforeend "so_composite" (table_card table_composite_id THeader)
 --   line_list2io_amend table_composite_id test_list
-  
-   
-            
+
+
 --   setUp
 --   onEvent "#p2__Qty" Input testingEvent1
 --   console_log $ schema2thead (OrderLineKey1 .+. (SInt (FA "Qty" False) ))                   
 
+--onInit setUp
 
-   --onInit setUp
-   
 -- Local Variables:
 -- idris-load-packages: ("contrib")
 -- End:

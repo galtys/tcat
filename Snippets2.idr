@@ -164,7 +164,11 @@ namespace tab_widget
       
       _lines2io p_id rows_tr
       pure ()
-         
+   
+   public export
+   on_table_edit : JS_IO ()
+   on_table_edit = console_log "table edit"
+   
    public export  --main init
    table_card2 : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
    table_card2 parent_tag_id m mdl = do
@@ -181,3 +185,4 @@ namespace tab_widget
       insert_beforeend _composite_id "<h2>Order</h2>"
       insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader)  
       insert_rows _composite_table_id m mdl
+      onClick "#table_card_edit" on_table_edit
