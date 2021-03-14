@@ -88,6 +88,21 @@ renderDataWithSchema2 p_id {schema = (EField name ns)}      item  = [render_numb
 renderDataWithSchema2 p_id {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2 p_id iteml) ++ (renderDataWithSchema2 p_id itemr)
 
 public export
+get_cell_keys : String -> (s:Schema2) -> List String
+get_cell_keys p_id (IField name fd)  = [cell_id p_id name]
+get_cell_keys p_id (EField name fd)  = [cell_id p_id name]
+get_cell_keys p_id (y .|. z)  = (get_cell_keys p_id y) ++ (get_cell_keys p_id z)
+
+public export
+make_cells_editable : String -> (s:Schema2) -> JS_IO ()
+make_cells_editable p_id (IField name fd)  = console_log (printf "row: %s, field: %s" p_id name)
+make_cells_editable p_id (EField name fd)  = console_log (printf "row: %s, field: %s" p_id name)
+make_cells_editable p_id (y .|. z)  = do 
+                                    make_cells_editable p_id y
+                                    make_cells_editable p_id z
+
+
+public export
 renderDataAsKey : (SchemaType2 schema) -> String
 renderDataAsKey {schema = (IField name FBool)}   True = "True"
 renderDataAsKey {schema = (IField name FBool)}   False = "False"
@@ -176,6 +191,14 @@ namespace tab_widget
       _lines2io p_id rows_tr
       pure ()
    
+   
+   public export
+   _cells_editable : (s:Schema2) -> List String -> JS_IO ()
+   _cells_editable s [] = pure ()
+   _cells_editable s (x::xs) = do
+             make_cells_editable x s
+             _cells_editable s xs
+   
    public export
    on_table_edit: String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
    on_table_edit parent_tag_id m mdl = do
@@ -186,10 +209,12 @@ namespace tab_widget
       console_log _composite_table_id
       
       let row_ids = [ (get_row_id _composite_table_id x) | x <- (keyL mdl)]
-      let row_k = [ concat (renderDataWithSchema2 (snd x) (fst x))  | x <-zip (keyL mdl) row_ids]
-      let row_v = [ concat (renderDataWithSchema2 (snd x) (fst x))  | x <-zip (valL mdl) row_ids]
-
-      console_log (show row_k)
+      let row_k =   [ get_cell_keys x (key m) | x <- row_ids]
+      let row_v =   [ get_cell_keys x (val m) | x <- row_ids]
+      --let row_v = [ concat (renderDataWithSchema2 (snd x) (fst x))  | x <-zip (valL mdl) row_ids]
+      _cells_editable (val m) row_ids
+      --console_log (show row_v)
+      
       
    public export  --main init
    table_card2 : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
