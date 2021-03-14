@@ -172,7 +172,19 @@ namespace tab_widget
    public export
    get_table_id : String ->  String  --this is to reference the table body
    get_table_id p_id  = ( p_id  ++ "__composite_table" )
+
+   public export
+   get_card_footer_id : String -> String
+   get_card_footer_id p_id = p_id ++ "__card_footer"
    
+   public export
+   get_edit_button_id : String -> String
+   get_edit_button_id p_id = p_id ++ "__edit_buttion"
+
+   public export
+   get_commit_button_id : String -> String
+   get_commit_button_id p_id = p_id ++ "__commit_buttion"      
+         
    public export
    _lines2io : String -> List String -> JS_IO ()
    _lines2io p_id [] = pure ()
@@ -222,19 +234,17 @@ namespace tab_widget
       let row_v =   [ get_cell_keys x (val m) | x <- row_ids]
       --let row_v = [ concat (renderDataWithSchema2 (snd x) (fst x))  | x <-zip (valL mdl) row_ids]
       _cells_editable (val m) row_ids
+      toggle_hide_show_element (get_edit_button_id _composite_id)
+      toggle_hide_show_element (get_commit_button_id _composite_id)
+            
       --console_log (show row_v)
       
    public export
-   get_card_footer_id : String -> String
-   get_card_footer_id p_id = p_id ++ "__card_footer"
-   
-   public export
-   get_edit_button_id : String -> String
-   get_edit_button_id p_id = p_id ++ "__edit_buttion"
-
-   public export
-   get_commit_button_id : String -> String
-   get_commit_button_id p_id = p_id ++ "__commit_buttion"
+   on_table_commit: String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
+   on_table_commit parent_tag_id m mdl = do
+      let _composite_id = get_composite_id parent_tag_id m mdl
+      toggle_hide_show_element (get_edit_button_id _composite_id)
+      toggle_hide_show_element (get_commit_button_id _composite_id)
       
    public export  --main init
    table_card2 : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
@@ -259,6 +269,11 @@ namespace tab_widget
       let _commit_button = get_commit_button_id _composite_id
       
       insert_beforeend _footer_id (printf _button _edit_button "Edit")
-      
+      insert_beforeend _footer_id (printf _button _commit_button "Commit")
+            
       onClick ("#" ++ _edit_button) (on_table_edit parent_tag_id m mdl)
+      onClick ("#" ++ _commit_button) (on_table_commit parent_tag_id m mdl)
+      
+      toggle_hide_show_element (_commit_button)
+                  
       --onClick "#table_card_edit" (on_table_edit parent_tag_id m mdl)

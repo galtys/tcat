@@ -62,6 +62,10 @@ implementation Show EventType where
 
 
 
+
+
+
+
 onEvent : String -> EventType -> (Ptr -> JS_IO () ) -> JS_IO ()
 onEvent selector evType callback 
   = let ev_str= show evType in
@@ -69,6 +73,12 @@ onEvent selector evType callback
       "document.querySelector(%0).addEventListener(%1, %2)" --selector, event (eg click), callback
       (String -> String -> JsFn ( Ptr -> JS_IO () ) -> JS_IO ())  -- args type
       selector ev_str (MkJsFn callback)  -- args
+
+
+
+toggle_hide_show_element : String -> JS_IO ()
+toggle_hide_show_element = foreign FFI_JS "toggle_hide_snow_element(%0)" (String -> JS_IO() )
+
 
 update_qty : String -> Int -> JS_IO ()
 update_qty = foreign FFI_JS "update_qty(%0,%1)" (String -> Int -> JS_IO ())
