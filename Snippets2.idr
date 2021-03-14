@@ -284,6 +284,16 @@ namespace tab_widget
    _cells_ro s (x::xs) = do
              make_cells_ro x s
              _cells_ro s xs
+
+   public export
+   _read_cells : (s:Schema2) -> List String -> JS_IO (Maybe (List (SchemaType2 s)) )
+   _read_cells s [] = pure Nothing
+   _read_cells s (p_id::xs) = do
+              c <- read_cells p_id s
+              ret <- _read_cells s xs
+              case ret of
+                  Nothing => pure (Just [c])
+                  (Just x) => pure (Just ([c]++x))
    
    public export
    on_table_edit: String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
@@ -301,7 +311,7 @@ namespace tab_widget
       _cells_editable (val m) row_ids
       toggle_hide_show_element (get_edit_button_id _composite_id)
       toggle_hide_show_element (get_commit_button_id _composite_id)
-            
+      
       --console_log (show row_v)
       
    public export
@@ -310,11 +320,15 @@ namespace tab_widget
       let _composite_id = get_composite_id parent_tag_id m mdl
       let _composite_table_id = get_table_id _composite_id      
       let row_ids = [ (get_row_id _composite_table_id x) | x <- (keyL mdl)]
-            
+      
       toggle_hide_show_element (get_edit_button_id _composite_id)
       toggle_hide_show_element (get_commit_button_id _composite_id)
       _cells_ro (val m) row_ids
-      
+      ret_v <- _read_cells (val m) row_ids
+      ret_k <- _read_cells (key m) row_ids
+      case ret_v of
+         Nothing => console_log "empty??"
+         (Just r_v) => console_log "muf"
       
    public export  --main init
    table_card2 : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
