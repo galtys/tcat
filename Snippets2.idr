@@ -148,14 +148,23 @@ namespace tab_widget
               </table>
             </div>
               
-            <div class="card-footer">
+            <div class="card_footer" id="%s">
+                   <!--
                    <button class="btn btn-primary" id="table_card_edit">Edit</button>
                    <button class="btn btn-primary" id="table_card_commit">Commit</button>
+                   
+                   -->
             <div/>
               
             </div>
           </div>  <!-- /.card -->
             """
+   public export            
+   _button : String
+   _button = """
+             <button class="btn btn-primary" id="%s">%s</button>
+         """  -- _button_id label
+         
    public export 
    get_composite_id : String -> (m:ModelSchema) -> (ModelDataList m) -> String
    get_composite_id p_id m y = (p_id ++ "__" ++ (name y))
@@ -215,6 +224,17 @@ namespace tab_widget
       _cells_editable (val m) row_ids
       --console_log (show row_v)
       
+   public export
+   get_card_footer_id : String -> String
+   get_card_footer_id p_id = p_id ++ "__card_footer"
+   
+   public export
+   get_edit_button_id : String -> String
+   get_edit_button_id p_id = p_id ++ "__edit_buttion"
+
+   public export
+   get_commit_button_id : String -> String
+   get_commit_button_id p_id = p_id ++ "__commit_buttion"
       
    public export  --main init
    table_card2 : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
@@ -226,10 +246,19 @@ namespace tab_widget
       
       let _composite_html = ( printf _composite _composite_id )
       
-      let _th_html = printf _tf (name mdl) (schema2thead2 schema_header ) (id_att _composite_table_id )
+      let _footer_id = get_card_footer_id _composite_id
+      
+      let _th_html = printf _tf (name mdl) (schema2thead2 schema_header ) (id_att _composite_table_id ) (_footer_id)
             
       insert_beforeend parent_tag_id _composite_html
       insert_beforeend _composite_id "<h2>Order</h2>"
       insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader)  
       insert_rows _composite_table_id m mdl
-      onClick "#table_card_edit" (on_table_edit parent_tag_id m mdl)
+      
+      let _edit_button = get_edit_button_id _composite_id
+      let _commit_button = get_commit_button_id _composite_id
+      
+      insert_beforeend _footer_id (printf _button _edit_button "Edit")
+      
+      onClick ("#" ++ _edit_button) (on_table_edit parent_tag_id m mdl)
+      --onClick "#table_card_edit" (on_table_edit parent_tag_id m mdl)
