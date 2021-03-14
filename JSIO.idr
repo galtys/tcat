@@ -140,6 +140,8 @@ get_qty x = (_get_qty_m' x) >>= parse_int_m
 update_element_text : String -> String -> JS_IO ()
 update_element_text = foreign FFI_JS "update_element_text(%0,%1)" (String -> String -> JS_IO ())
 
+get_element_text : String -> JS_IO String
+get_element_text = foreign FFI_JS "get_element_text(%0)" (String -> JS_IO String)
 
 console_log : String -> JS_IO ()
 console_log = foreign FFI_JS "console_log(%0)" (String -> JS_IO () )

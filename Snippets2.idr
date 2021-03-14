@@ -137,30 +137,28 @@ make_cells_ro p_id (y .|. z)  = do
 
 public export
 read_cells : String -> (s:Schema2) -> JS_IO (SchemaType2 s)
+read_cells p_id (IField name FBool) = do
+                   let _cell_id = cell_id p_id name
+                   v <- get_element_text _cell_id
+                   pure (if (v=="True") then True else False)
+read_cells p_id (IField name FString) = do
+                   let _cell_id = cell_id p_id name                                      
+                   v <- get_element_text _cell_id
+                   pure v
 read_cells p_id (IField name FTterm)  = do
                    let _cell_id = cell_id p_id name
                    qty <- get_qty_int _cell_id
                    let qty_integer = the Integer (cast qty)
                    pure (integer2t qty_integer)
-                   
---read_cells p_id (IField name fd)  = pure ?ret1
---read_cells p_id (EField name fd)  = pure ?ret2  -- console_log (printf "row: %s, field: %s" p_id name)
+read_cells p_id (EField name ns)  = do
+                   let _cell_id = cell_id p_id name
+                   v <- get_qty_int _cell_id
+                   let qty_integer = the Integer (cast v)                   
+                   pure qty_integer
 read_cells p_id (y .|. z)  =  do
                    r_y <- read_cells p_id y
                    r_z <- read_cells p_id z
                    pure (r_y,r_z)
-
-
-
-
-
-
-
-
-
--- make cells read only
--- read cell data
-
 
 public export
 renderDataAsKey : (SchemaType2 schema) -> String

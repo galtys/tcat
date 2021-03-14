@@ -54,6 +54,15 @@ function update_element_text(key,text) {
     }
 }
 
+function get_element_text(key) {
+    var e = document.getElementById(key);
+    if (e==null) {
+	return "";
+    } else {
+	return e.innerText;
+    }
+}
+
 function get_qty_int_value2(key) {
     var e = document.getElementById(key);
     if (e==null) {
