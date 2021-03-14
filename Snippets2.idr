@@ -108,13 +108,14 @@ make_cells_editable p_id (IField name FTterm)  = do
                    let input_element = render_number_input (the Integer (cast qty))
                    update_element_text (cell_id p_id name) "" --console_log (printf "row: %s, field: %s" p_id name)
                    insert_beforeend _cell_id input_element
-
-
 make_cells_editable p_id (IField name fd)  = console_log (printf "row: %s, field: %s" p_id name)
 make_cells_editable p_id (EField name fd)  = console_log (printf "row: %s, field: %s" p_id name)
 make_cells_editable p_id (y .|. z)  = do 
                                     make_cells_editable p_id y
                                     make_cells_editable p_id z
+
+-- make cells read only
+-- read cell data
 
 
 public export
