@@ -111,8 +111,8 @@ make_cells_editable p_id (IField name FTterm)  = do
                    let input_element = render_number_input _cell_input_id (the Integer (cast qty)) 
                    update_element_text (cell_id p_id name) "" --console_log (printf "row: %s, field: %s" p_id name)
                    insert_beforeend _cell_id input_element
-make_cells_editable p_id (IField name fd)  = console_log (printf "row: %s, field: %s" p_id name)
-make_cells_editable p_id (EField name fd)  = console_log (printf "row: %s, field: %s" p_id name)
+make_cells_editable p_id (IField name fd)  = pure () --console_log (printf "row: %s, field: %s" p_id name)
+make_cells_editable p_id (EField name fd)  = pure () --console_log (printf "row: %s, field: %s" p_id name)
 make_cells_editable p_id (y .|. z)  = do 
                                     make_cells_editable p_id y
                                     make_cells_editable p_id z
@@ -132,6 +132,27 @@ make_cells_ro p_id (EField name fd)  = pure ()-- console_log (printf "row: %s, f
 make_cells_ro p_id (y .|. z)  = do 
                                     make_cells_ro p_id y
                                     make_cells_ro p_id z
+
+
+
+public export
+read_cells : String -> (s:Schema2) -> JS_IO (SchemaType2 s)
+read_cells p_id (IField name FTterm)  = do
+                   let _cell_id = cell_id p_id name
+                   qty <- get_qty_int _cell_id
+                   let qty_integer = the Integer (cast qty)
+                   pure (integer2t qty_integer)
+                   
+--read_cells p_id (IField name fd)  = pure ?ret1
+--read_cells p_id (EField name fd)  = pure ?ret2  -- console_log (printf "row: %s, field: %s" p_id name)
+read_cells p_id (y .|. z)  =  do
+                   r_y <- read_cells p_id y
+                   r_z <- read_cells p_id z
+                   pure (r_y,r_z)
+
+
+
+
 
 
 
@@ -272,8 +293,8 @@ namespace tab_widget
       --let _composite_id = "order1" ++ "__" ++ "items"
       let _composite_id = get_composite_id parent_tag_id m mdl
       let _composite_table_id = get_table_id _composite_id      
-      console_log "table edit"
-      console_log _composite_table_id
+      --console_log "table edit"
+      --console_log _composite_table_id
       
       let row_ids = [ (get_row_id _composite_table_id x) | x <- (keyL mdl)]
       let row_k =   [ get_cell_keys x (key m) | x <- row_ids]
