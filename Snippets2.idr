@@ -135,6 +135,7 @@ namespace tab_widget
               
             <div class="card-footer">
                    <button class="btn btn-primary" id="table_card_edit">Edit</button>
+                   <button class="btn btn-primary" id="table_card_commit">Commit</button>
             <div/>
               
             </div>
@@ -176,9 +177,20 @@ namespace tab_widget
       pure ()
    
    public export
-   on_table_edit : JS_IO ()
-   on_table_edit = console_log "table edit"
-   
+   on_table_edit: String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
+   on_table_edit parent_tag_id m mdl = do
+      --let _composite_id = "order1" ++ "__" ++ "items"
+      let _composite_id = get_composite_id parent_tag_id m mdl
+      let _composite_table_id = get_table_id _composite_id      
+      console_log "table edit"
+      console_log _composite_table_id
+      
+      let row_ids = [ (get_row_id _composite_table_id x) | x <- (keyL mdl)]
+      let row_k = [ concat (renderDataWithSchema2 (snd x) (fst x))  | x <-zip (keyL mdl) row_ids]
+      let row_v = [ concat (renderDataWithSchema2 (snd x) (fst x))  | x <-zip (valL mdl) row_ids]
+
+      console_log (show row_k)
+      
    public export  --main init
    table_card2 : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
    table_card2 parent_tag_id m mdl = do
@@ -195,4 +207,4 @@ namespace tab_widget
       insert_beforeend _composite_id "<h2>Order</h2>"
       insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader)  
       insert_rows _composite_table_id m mdl
-      onClick "#table_card_edit" on_table_edit
+      onClick "#table_card_edit" (on_table_edit parent_tag_id m mdl)
