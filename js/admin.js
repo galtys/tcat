@@ -41,9 +41,20 @@ function get_qty(key) {
     if (e==null) {
 	return "";
     } else {
-      e.innerText
+      return e.innerText
     }
 }
+
+function update_element_text(key,text) {
+    var e = document.getElementById(key);
+    if (e==null) {
+	return "";
+    } else {
+	e.innerText = text;
+    }
+}
+
+
 
 function get_qty_int(key) {
     var e = document.getElementById(key);

@@ -132,6 +132,11 @@ _get_qty_m' key = do
 get_qty : String -> JS_IO (Maybe Int)
 get_qty x = (_get_qty_m' x) >>= parse_int_m
 
+
+update_element_text : String -> String -> JS_IO ()
+update_element_text = foreign FFI_JS "update_element_text(%0,%1)" (String -> String -> JS_IO ())
+
+
 console_log : String -> JS_IO ()
 console_log = foreign FFI_JS "console_log(%0)" (String -> JS_IO () )
 

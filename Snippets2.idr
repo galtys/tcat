@@ -36,6 +36,13 @@ public export
 render_number_input_tag : TagID -> Integer ->  String
 render_number_input_tag tagid val= printf """<td> <input type="number" class="form-control" id="%s" value="%d"> </td>""" tagid val
 
+
+
+public export
+render_number_input : Integer ->  String
+render_number_input val= printf """<input type="number" class="form-control" value="%d">""" val
+
+
 public export
 render_text_input_tag : TagID -> String ->  String
 render_text_input_tag tagid val= printf """<td> <input type="text" class="form-control" id="%s" value="%s" > </td>""" tagid val
@@ -95,6 +102,14 @@ get_cell_keys p_id (y .|. z)  = (get_cell_keys p_id y) ++ (get_cell_keys p_id z)
 
 public export
 make_cells_editable : String -> (s:Schema2) -> JS_IO ()
+make_cells_editable p_id (IField name FTterm)  = do
+                   let _cell_id = cell_id p_id name
+                   qty <- get_qty_int _cell_id
+                   let input_element = render_number_input (the Integer (cast qty))
+                   update_element_text (cell_id p_id name) "" --console_log (printf "row: %s, field: %s" p_id name)
+                   insert_beforeend _cell_id input_element
+
+
 make_cells_editable p_id (IField name fd)  = console_log (printf "row: %s, field: %s" p_id name)
 make_cells_editable p_id (EField name fd)  = console_log (printf "row: %s, field: %s" p_id name)
 make_cells_editable p_id (y .|. z)  = do 
@@ -204,7 +219,7 @@ namespace tab_widget
       let row_k = [ concat (renderDataWithSchema2 (snd x) (fst x))  | x <-zip (keyL mdl) row_ids]
       let row_v = [ concat (renderDataWithSchema2 (snd x) (fst x))  | x <-zip (valL mdl) row_ids]
       
-                  
+      
       let rows_zip = zip row_k row_v
       let rows_ids_zip = zip row_ids rows_zip
       let rows_tr = [ (printf "<tr id=%s>%s %s</tr>" rid k v) | (rid,(k,v)) <- rows_ids_zip]
