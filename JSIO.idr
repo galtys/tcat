@@ -89,6 +89,10 @@ _get_qty = foreign FFI_JS "get_qty(%0)" (String -> JS_IO String)
 get_qty_int : String -> JS_IO Int
 get_qty_int = foreign FFI_JS "get_qty_int(%0)" (String -> JS_IO Int)
 
+
+get_qty_int_attr : String -> String -> JS_IO Int
+get_qty_int_attr = foreign FFI_JS "get_qty_int_attr(%0,%1)" (String -> String -> JS_IO Int)
+
 get_qty_int_flag : String -> JS_IO Int
 get_qty_int_flag = foreign FFI_JS "get_qty_int_flag(%0)" (String -> JS_IO Int)
 

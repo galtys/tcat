@@ -54,7 +54,20 @@ function update_element_text(key,text) {
     }
 }
 
-
+function get_qty_int_attr(key, attr) {
+    var e = document.getElementById(key);
+    if (e==null) {
+	return 0;
+    } else {
+	var av = e.getAttribute(attr);
+	var v = parseInt(av,10);
+	if (isNaN(v)) {
+	    return 0;
+	} else {
+	    return v;
+	}
+    }
+}
 
 function get_qty_int(key) {
     var e = document.getElementById(key);
