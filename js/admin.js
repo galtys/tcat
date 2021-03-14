@@ -54,12 +54,12 @@ function update_element_text(key,text) {
     }
 }
 
-function get_qty_int_attr(key, attr) {
+function get_qty_int_value2(key) {
     var e = document.getElementById(key);
     if (e==null) {
 	return 0;
     } else {
-	var av = e.getAttribute(attr);
+	var av = e.value;
 	var v = parseInt(av,10);
 	if (isNaN(v)) {
 	    return 0;

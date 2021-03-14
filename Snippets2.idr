@@ -36,13 +36,6 @@ public export
 render_number_input_tag : TagID -> Integer ->  String
 render_number_input_tag tagid val= printf """<td> <input type="number" class="form-control" id="%s" value="%d"> </td>""" tagid val
 
-
-
-public export
-render_number_input : Integer ->  String
-render_number_input val= printf """<input type="number" class="form-control" value="%d">""" val
-
-
 public export
 render_text_input_tag : TagID -> String ->  String
 render_text_input_tag tagid val= printf """<td> <input type="text" class="form-control" id="%s" value="%s" > </td>""" tagid val
@@ -56,6 +49,10 @@ render_number_in_td_tag v = printf "<td>%d</td>" v
 public export
 render_text_in_td_tag : String -> String
 render_text_in_td_tag v = printf "<td>%s</td>" v
+
+public export
+render_number_input : String -> Integer ->  String
+render_number_input c_id val= printf """<input type="number" class="form-control" value="%d" id="%s">""" val c_id
 
 public export
 renderDataWithSchema2Edit : String -> (SchemaType2 schema) -> List String
@@ -86,6 +83,11 @@ cell_id : String -> String -> String
 cell_id p_id name = p_id ++ "_"++name
 
 public export
+cell_input_id : String -> String -> String
+cell_input_id p_id name = (cell_id p_id name) ++ "_input_tag"
+
+
+public export
 renderDataWithSchema2 : String -> (SchemaType2 schema) -> List String
 renderDataWithSchema2 p_id {schema = (IField name FBool)}   True  = [render_text_in_td_tag2   (cell_id p_id name) "True"]
 renderDataWithSchema2 p_id {schema = (IField name FBool)}   False = [render_text_in_td_tag2   (cell_id p_id name) "False"]
@@ -104,8 +106,9 @@ public export
 make_cells_editable : String -> (s:Schema2) -> JS_IO ()
 make_cells_editable p_id (IField name FTterm)  = do
                    let _cell_id = cell_id p_id name
+                   let _cell_input_id = cell_input_id p_id name
                    qty <- get_qty_int _cell_id
-                   let input_element = render_number_input (the Integer (cast qty))
+                   let input_element = render_number_input _cell_input_id (the Integer (cast qty)) 
                    update_element_text (cell_id p_id name) "" --console_log (printf "row: %s, field: %s" p_id name)
                    insert_beforeend _cell_id input_element
 make_cells_editable p_id (IField name fd)  = console_log (printf "row: %s, field: %s" p_id name)
@@ -113,6 +116,26 @@ make_cells_editable p_id (EField name fd)  = console_log (printf "row: %s, field
 make_cells_editable p_id (y .|. z)  = do 
                                     make_cells_editable p_id y
                                     make_cells_editable p_id z
+
+public export
+make_cells_ro : String -> (s:Schema2) -> JS_IO ()
+make_cells_ro p_id (IField name FTterm)  = do
+                   let _cell_id = cell_id p_id name
+                   let _cell_input_id = cell_input_id p_id name
+                   -- need to get into the input tag
+                   qty <- get_qty_int_value2 _cell_input_id
+                   update_element_text (cell_id p_id name) "" --console_log (printf "row: %s, field: %s" p_id name)
+                   update_element_text (cell_id p_id name)  (the String (cast qty))
+                   
+make_cells_ro p_id (IField name fd)  = pure ()
+make_cells_ro p_id (EField name fd)  = pure ()-- console_log (printf "row: %s, field: %s" p_id name)
+make_cells_ro p_id (y .|. z)  = do 
+                                    make_cells_ro p_id y
+                                    make_cells_ro p_id z
+
+
+
+
 
 -- make cells read only
 -- read cell data
@@ -235,6 +258,13 @@ namespace tab_widget
    _cells_editable s (x::xs) = do
              make_cells_editable x s
              _cells_editable s xs
+
+   public export
+   _cells_ro : (s:Schema2) -> List String -> JS_IO ()
+   _cells_ro s [] = pure ()
+   _cells_ro s (x::xs) = do
+             make_cells_ro x s
+             _cells_ro s xs
    
    public export
    on_table_edit: String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
@@ -259,8 +289,13 @@ namespace tab_widget
    on_table_commit: String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
    on_table_commit parent_tag_id m mdl = do
       let _composite_id = get_composite_id parent_tag_id m mdl
+      let _composite_table_id = get_table_id _composite_id      
+      let row_ids = [ (get_row_id _composite_table_id x) | x <- (keyL mdl)]
+            
       toggle_hide_show_element (get_edit_button_id _composite_id)
       toggle_hide_show_element (get_commit_button_id _composite_id)
+      _cells_ro (val m) row_ids
+      
       
    public export  --main init
    table_card2 : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
