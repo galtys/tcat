@@ -275,5 +275,5 @@ namespace tab_widget
       onClick ("#" ++ _commit_button) (on_table_commit parent_tag_id m mdl)
       
       toggle_hide_show_element (_commit_button)
-                  
+      
       --onClick "#table_card_edit" (on_table_edit parent_tag_id m mdl)
