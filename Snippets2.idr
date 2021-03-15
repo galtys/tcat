@@ -29,44 +29,8 @@ schema2thead2 sch = ret where
   ret = printf "<tr>%s</tr>" ths
 
 public export
-TagID : Type
-TagID = String
-
-{-
-public export
-render_number_input_tag : TagID -> Integer ->  String
-render_number_input_tag tagid val= printf """<td> <input type="number" class="form-control" id="%s" value="%d"> </td>""" tagid val
-
-public export
-render_text_input_tag : TagID -> String ->  String
-render_text_input_tag tagid val= printf """<td> <input type="text" class="form-control" id="%s" value="%s" > </td>""" tagid val
-
-
-
-public export
-render_number_in_td_tag : Integer -> String
-render_number_in_td_tag v = printf "<td>%d</td>" v
-
-public export
-render_text_in_td_tag : String -> String
-render_text_in_td_tag v = printf "<td>%s</td>" v
--}
-
-public export
 render_number_input : String -> Integer ->  String
 render_number_input c_id val= printf """<input type="number" class="form-control" value="%d" id="%s">""" val c_id
-
-{-
-public export
-renderDataWithSchema2Edit : String -> (SchemaType2 schema) -> List String
-renderDataWithSchema2Edit p_id  {schema = (IField name FBool)} True = [render_text_in_td_tag "True"]
-renderDataWithSchema2Edit p_id  {schema = (IField name FBool)} False = [render_text_in_td_tag "False"]
-renderDataWithSchema2Edit p_id  {schema = (IField name FString)} item = [render_text_input_tag (concat [p_id, "__",name]) item] --render_text_in_td_tag item
-renderDataWithSchema2Edit p_id  {schema = (IField name FTterm)} item = [render_number_input_tag (concat [p_id, "__",name]) (t2integer item)]
-renderDataWithSchema2Edit p_id  {schema = (EField name ns)} item = [render_number_input_tag (concat [p_id, "__",name]) (item)]
-renderDataWithSchema2Edit p_id {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2Edit p_id iteml) ++ (renderDataWithSchema2Edit p_id itemr)
--}
-
 
 -- using td tags
 public export
@@ -88,7 +52,6 @@ cell_id p_id name = p_id ++ "_"++name
 public export
 cell_input_id : String -> String -> String
 cell_input_id p_id name = (cell_id p_id name) ++ "_input_tag"
-
 
 public export
 renderDataWithSchema2 : String -> (SchemaType2 schema) -> List String
