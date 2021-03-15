@@ -378,11 +378,9 @@ namespace tab_widget
       -- table
       let _footer_id = get_card_footer_id _composite_id       
       insert_table _composite_id (id_att _footer_id) m mdl                 
-      
 
-      insert_table _amendments_id "" m mdl                 
-      
-      
+      insert_table _amendments_id "" m mdl
+--      insert_table _amendments_id "" m mdl
       -- buttons
       
       let _edit_button = get_edit_button_id _composite_id
