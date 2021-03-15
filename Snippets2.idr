@@ -232,30 +232,46 @@ namespace tab_widget
               <h4>%s</h4>
               </div>
             <div class="card-body">
-              <!--
-              <form>
-              </form>
-              -->
               <table class="table table-sm table-hover">
                 <thead>
                     %s
                 </thead>
-                <tbody %s>   <!-- id =is not in the template  because it will be used for amendments too -->
+                <tbody %s>
                 </tbody>
               </table>
             </div>
-              
+
             <div class="card_footer" %s>
-                   <!--
-                   <button class="btn btn-primary" id="table_card_edit">Edit</button>
-                   <button class="btn btn-primary" id="table_card_commit">Commit</button>
-                   
-                   -->
             <div/>
               
             </div>
           </div>  <!-- /.card -->
             """
+            
+   public export
+   _tf_wo_ids : String
+   _tf_wo_ids = """
+            <!-- Content Amendments -->
+            <div class="card border-dark  mt-3">
+              <div class="card-header">
+              <h4>%s</h4>
+              </div>
+            <div class="card-body">
+              <table class="table table-sm table-hover">
+                <thead>
+                    %s
+                </thead>
+                <tbody>
+                    %s
+                </tbody>
+              </table>
+            </div>
+
+            </div>
+          </div>  <!-- /.card -->
+            """
+            
+            
    public export            
    _button : String
    _button = """
@@ -294,6 +310,7 @@ namespace tab_widget
       insert_beforeend p_id x
       _lines2io p_id xs
 
+
    public export
    get_row_id : String -> (SchemaType2 schema) -> String
    get_row_id p_id  item = p_id++ "_row"++(renderDataAsKey item)
@@ -314,18 +331,13 @@ namespace tab_widget
       pure ()
                
    public export  -- wo ids
-   insert_rows_wo_ids : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
-   insert_rows_wo_ids p_id m mdl = do
---      let row_ids = [ (get_row_id p_id x) | x <- (keyL mdl)]
-      
-      let row_k = [ concat (render_wo_ids.renderDataWithSchema2 x)  | x <-(keyL mdl)]
-      let row_v = [ concat (render_wo_ids.renderDataWithSchema2 x)  | x <-(valL mdl)]
-      
-      let rows_zip = zip row_k row_v
-      let rows_tr = [ (printf "<tr >%s %s</tr>" k v) | (k,v) <- rows_zip]
-      
-      _lines2io p_id rows_tr
-      pure ()
+   render_rows_wo_ids : (m:ModelSchema) -> ModelDataList m -> String
+   render_rows_wo_ids m mdl 
+     = let row_k = [ concat (render_wo_ids.renderDataWithSchema2 x)  | x <-(keyL mdl)]
+           row_v = [ concat (render_wo_ids.renderDataWithSchema2 x)  | x <-(valL mdl)]
+           rows_zip = zip row_k row_v
+           ret = concat [ (printf "<tr> %s %s </tr>" k v) | (k,v) <- rows_zip] in
+        ret
    
    public export
    _cells_editable : (s:Schema2) -> List String -> JS_IO ()
@@ -399,16 +411,13 @@ namespace tab_widget
       insert_rows _composite_table_id m mdl
 
    public export
-   insert_table_wo_ids : String -> String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
-   insert_table_wo_ids _composite_id _footer_id m mdl = do
-
-      let _composite_table_id = get_table_id _composite_id
-
+   insert_table_wo_ids : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
+   insert_table_wo_ids p_id m mdl = do
+--      let _composite_table_id = get_table_id _composite_id
       let schema_header = (key m) .|. (val m)      
-      let _th_html = printf _tf (name mdl) (schema2thead2 schema_header ) (id_att _composite_table_id ) (_footer_id)
-
-      insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader)  
-      insert_rows_wo_ids _composite_table_id m mdl
+      let x = render_rows_wo_ids m mdl
+      let th_html = printf _tf_wo_ids (name mdl) (schema2thead2 schema_header ) x
+      insert_beforeend p_id th_html
 
    public export  --main init
    table_card2 : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
@@ -431,7 +440,9 @@ namespace tab_widget
       let _footer_id = get_card_footer_id _composite_id       
       insert_table _composite_id (id_att _footer_id) m mdl                 
 
-      insert_table_wo_ids _amendments_id "" m mdl
+      insert_table_wo_ids _amendments_id m mdl
+      insert_table_wo_ids _amendments_id m mdl
+      insert_table_wo_ids _amendments_id m mdl
 --      insert_table _amendments_id "" m mdl
       -- buttons
 
