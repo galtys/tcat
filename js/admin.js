@@ -69,7 +69,7 @@ function get_qty_int_data_val(key) {
     if (e==null) {
 	return 0;
     } else {
-	var av = e.data-val;
+	var av = e.dataval;
 	var v = parseInt(av,10);
 	if (isNaN(v)) {
 	    return 0;
@@ -83,7 +83,7 @@ function get_text_data_val(key) {
     if (e==null) {
 	return 0;
     } else {
-	var av = e.data-val;
+	var av = e.dataval;
 	return av
     }
 }
@@ -92,7 +92,7 @@ function get_qty_int_data_cr(key) {
     if (e==null) {
 	return 0;
     } else {
-	var av = e.data-cr;
+	var av = e.datacr;
 	var v = parseInt(av,10);
 	if (isNaN(v)) {
 	    return 0;
@@ -106,7 +106,7 @@ function get_qty_int_data_dr(key) {
     if (e==null) {
 	return 0;
     } else {
-	var av = e.data-dr;
+	var av = e.datadr;
 	var v = parseInt(av,10);
 	if (isNaN(v)) {
 	    return 0;

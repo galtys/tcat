@@ -35,7 +35,7 @@ render_number_input c_id val= printf """<input type="number" class="form-control
 -- using td tags
 public export
 render_number_in_td_tag2 : String -> Integer -> String
-render_number_in_td_tag2 p_id v = printf   """<td id="%s" data-val="%d">%d</td>""" p_id v v
+render_number_in_td_tag2 p_id v = printf   """<td id="%s" dataval="%d">%d</td>""" p_id v v
 
 --public export
 --render_number_in_td_tag2 : String -> Integer -> String
@@ -43,11 +43,11 @@ render_number_in_td_tag2 p_id v = printf   """<td id="%s" data-val="%d">%d</td>"
 
 public export
 render_text_in_td_tag2 : String -> String -> String
-render_text_in_td_tag2 p_id v   = printf   """<td id="%s" data-val="%s">%s</td>""" p_id v v
+render_text_in_td_tag2 p_id v   = printf   """<td id="%s" dataval="%s">%s</td>""" p_id v v
  
 public export
 render_tterm_in_td_tag2 : String -> Tterm -> String
-render_tterm_in_td_tag2 p_id v = printf """<td id="%s" data-dr="%d" data-cr="%d">%d</td>""" p_id (dr v) (cr v) (t2integer v)
+render_tterm_in_td_tag2 p_id v = printf """<td id="%s" datadr="%d" datacr="%d">%d</td>""" p_id (dr v) (cr v) (t2integer v)
 
 public export
 cell_id : String -> String -> String
@@ -330,25 +330,32 @@ namespace tab_widget
       case ret_v of
          Nothing => console_log "empty??"
          (Just r_v) => console_log "muf"
+
+   public export
+   insert_table : String -> String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
+   insert_table _composite_id _footer_id m mdl = do
+   
+      let _composite_table_id = get_table_id _composite_id
       
+      let schema_header = (key m) .|. (val m)      
+      let _th_html = printf _tf (name mdl) (schema2thead2 schema_header ) (id_att _composite_table_id ) (_footer_id)
+
+      insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader)  
+      insert_rows _composite_table_id m mdl
+   
+
    public export  --main init
    table_card2 : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
    table_card2 parent_tag_id m mdl = do
-      let schema_header = (key m) .|. (val m)
       
       let _composite_id = get_composite_id parent_tag_id m mdl
-      let _composite_table_id = get_table_id _composite_id
-      
-      let _composite_html = ( printf _composite _composite_id )
+      let _composite_html = ( printf _composite _composite_id )      
+      insert_beforeend parent_tag_id _composite_html
+      insert_beforeend _composite_id "<h2>Order</h2>"      
       
       let _footer_id = get_card_footer_id _composite_id
-      
-      let _th_html = printf _tf (name mdl) (schema2thead2 schema_header ) (id_att _composite_table_id ) (_footer_id)
-            
-      insert_beforeend parent_tag_id _composite_html
-      insert_beforeend _composite_id "<h2>Order</h2>"
-      insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader)  
-      insert_rows _composite_table_id m mdl
+       
+      insert_table _composite_id _footer_id m mdl                 
       
       let _edit_button = get_edit_button_id _composite_id
       let _commit_button = get_commit_button_id _composite_id
