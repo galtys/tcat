@@ -32,39 +32,44 @@ public export
 render_number_input : String -> Integer ->  String
 render_number_input c_id val= printf """<input type="number" class="form-control" value="%d" id="%s">""" val c_id
 
--- using td tags
-public export
-render_number_in_td_tag2 : String -> Integer -> String
-render_number_in_td_tag2 p_id v = printf   """<td id="%s" dataval="%d">%d</td>""" p_id v v
 
---public export
---render_number_in_td_tag2 : String -> Integer -> String
---render_number_in_td_tag2 p_id v = printf   """<td id="%s" data-val="%d">%d</td>""" p_id v v
+namespace render_with_ids
+  -- using td tags
+  public export
+  render_number_in_td_tag2 : String -> Integer -> String
+  render_number_in_td_tag2 p_id v = printf   """<td id="%s" dataval="%d">%d</td>""" p_id v v
 
-public export
-render_text_in_td_tag2 : String -> String -> String
-render_text_in_td_tag2 p_id v   = printf   """<td id="%s" dataval="%s">%s</td>""" p_id v v
- 
-public export
-render_tterm_in_td_tag2 : String -> Tterm -> String
-render_tterm_in_td_tag2 p_id v = printf """<td id="%s" datadr="%d" datacr="%d">%d</td>""" p_id (dr v) (cr v) (t2integer v)
+  --public export
+  --render_number_in_td_tag2 : String -> Integer -> String
+  --render_number_in_td_tag2 p_id v = printf   """<td id="%s" data-val="%d">%d</td>""" p_id v v
 
-public export
-cell_id : String -> String -> String
-cell_id p_id name = p_id ++ "_"++name
+  public export
+  render_text_in_td_tag2 : String -> String -> String
+  render_text_in_td_tag2 p_id v   = printf   """<td id="%s" dataval="%s">%s</td>""" p_id v v
+   
+  public export
+  render_tterm_in_td_tag2 : String -> Tterm -> String
+  render_tterm_in_td_tag2 p_id v = printf """<td id="%s" datadr="%d" datacr="%d">%d</td>""" p_id (dr v) (cr v) (t2integer v)
+  
+  public export
+  cell_id : String -> String -> String
+  cell_id p_id name = p_id ++ "_"++name
+  
+  public export
+  cell_input_id : String -> String -> String
+  cell_input_id p_id name = (cell_id p_id name) ++ "_input_tag"
+  
+  public export
+  renderDataWithSchema2 : String -> (SchemaType2 schema) -> List String
+  renderDataWithSchema2 p_id {schema = (IField name FBool)}   True  = [render_text_in_td_tag2   (cell_id p_id name) "True"]
+  renderDataWithSchema2 p_id {schema = (IField name FBool)}   False = [render_text_in_td_tag2   (cell_id p_id name) "False"]
+  renderDataWithSchema2 p_id {schema = (IField name FString)} item  = [render_text_in_td_tag2   (cell_id p_id name) item]
+  renderDataWithSchema2 p_id {schema = (IField name FTterm)}  item  = [render_tterm_in_td_tag2  (cell_id p_id name) item]
+  renderDataWithSchema2 p_id {schema = (EField name ns)}      item  = [render_number_in_td_tag2 (cell_id p_id name) item]
+  renderDataWithSchema2 p_id {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2 p_id iteml) ++ (renderDataWithSchema2 p_id itemr)
 
-public export
-cell_input_id : String -> String -> String
-cell_input_id p_id name = (cell_id p_id name) ++ "_input_tag"
 
-public export
-renderDataWithSchema2 : String -> (SchemaType2 schema) -> List String
-renderDataWithSchema2 p_id {schema = (IField name FBool)}   True  = [render_text_in_td_tag2   (cell_id p_id name) "True"]
-renderDataWithSchema2 p_id {schema = (IField name FBool)}   False = [render_text_in_td_tag2   (cell_id p_id name) "False"]
-renderDataWithSchema2 p_id {schema = (IField name FString)} item  = [render_text_in_td_tag2   (cell_id p_id name) item]
-renderDataWithSchema2 p_id {schema = (IField name FTterm)}  item  = [render_tterm_in_td_tag2  (cell_id p_id name) item]
-renderDataWithSchema2 p_id {schema = (EField name ns)}      item  = [render_number_in_td_tag2 (cell_id p_id name) item]
-renderDataWithSchema2 p_id {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2 p_id iteml) ++ (renderDataWithSchema2 p_id itemr)
+
 
 public export
 get_cell_keys : String -> (s:Schema2) -> List String
@@ -269,18 +274,17 @@ namespace tab_widget
    get_row_id : String -> (SchemaType2 schema) -> String
    get_row_id p_id  item = p_id++ "_row"++(renderDataAsKey item)
 
-   public export
+   public export  -- with ids
    insert_rows : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
    insert_rows p_id m mdl = do
       let row_ids = [ (get_row_id p_id x) | x <- (keyL mdl)]
       
-      let row_k = [ concat (renderDataWithSchema2 (snd x) (fst x))  | x <-zip (keyL mdl) row_ids]
-      let row_v = [ concat (renderDataWithSchema2 (snd x) (fst x))  | x <-zip (valL mdl) row_ids]
-      
+      let row_k = [ concat (render_with_ids.renderDataWithSchema2 (snd x) (fst x))  | x <-zip (keyL mdl) row_ids]
+      let row_v = [ concat (render_with_ids.renderDataWithSchema2 (snd x) (fst x))  | x <-zip (valL mdl) row_ids]
       
       let rows_zip = zip row_k row_v
       let rows_ids_zip = zip row_ids rows_zip
-      let rows_tr = [ (printf "<tr id=%s>%s %s</tr>" rid k v) | (rid,(k,v)) <- rows_ids_zip]
+      let rows_tr = [ (printf "<tr id=%s >%s %s</tr>" rid k v) | (rid,(k,v)) <- rows_ids_zip]
       
       _lines2io p_id rows_tr
       pure ()
@@ -363,18 +367,18 @@ namespace tab_widget
    table_card2 parent_tag_id m mdl = do
       
       -- composite placeholder
-      
+
       let _composite_id = get_composite_id parent_tag_id m mdl      
       let _composite_html = ( printf _composite _composite_id )      
       insert_beforeend parent_tag_id _composite_html
       insert_beforeend _composite_id "<h2>Order</h2>"      
-      
+
       -- amendments placeholder
       let _amendments_id = get_amendments_id parent_tag_id m mdl      
       let _amendments_html = ( printf _amendments _amendments_id )      
       insert_beforeend parent_tag_id _amendments_html
       insert_beforeend _amendments_id "<h2>Amendments</h2>"      
-                  
+
       -- table
       let _footer_id = get_card_footer_id _composite_id       
       insert_table _composite_id (id_att _footer_id) m mdl                 
@@ -382,7 +386,7 @@ namespace tab_widget
       insert_table _amendments_id "" m mdl
 --      insert_table _amendments_id "" m mdl
       -- buttons
-      
+
       let _edit_button = get_edit_button_id _composite_id
       let _commit_button = get_commit_button_id _composite_id      
       insert_beforeend _footer_id (printf _button _edit_button "Edit")
