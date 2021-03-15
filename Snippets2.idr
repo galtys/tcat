@@ -178,13 +178,22 @@ namespace tab_widget
    public export
    id_att : String -> String
    id_att x = printf id_att_format x
+   
    public export
    _composite : String
    _composite = """
           <div id="%s" class="sticky-top">
 	  </div>   
    """
+
+   public export
+   _amendments : String
+   _amendments = """
+          <div id="%s">
+	  </div>   
+   """
    
+         
    public export
    _tf : String
    _tf = """
@@ -226,11 +235,16 @@ namespace tab_widget
          
    public export 
    get_composite_id : String -> (m:ModelSchema) -> (ModelDataList m) -> String
-   get_composite_id p_id m y = (p_id ++ "__" ++ (name y))
+   get_composite_id p_id m y = (p_id ++ "__composite__" ++ (name y))
+
+   public export 
+   get_amendments_id : String -> (m:ModelSchema) -> (ModelDataList m) -> String
+   get_amendments_id p_id m y = (p_id ++ "__amendments__" ++ (name y))
+      
       
    public export
    get_table_id : String ->  String  --this is to reference the table body
-   get_table_id p_id  = ( p_id  ++ "__composite_table" )
+   get_table_id p_id  = ( p_id  ++ "__table" )
 
    public export
    get_card_footer_id : String -> String
@@ -348,24 +362,35 @@ namespace tab_widget
    table_card2 : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
    table_card2 parent_tag_id m mdl = do
       
-      let _composite_id = get_composite_id parent_tag_id m mdl
+      -- composite placeholder
+      
+      let _composite_id = get_composite_id parent_tag_id m mdl      
       let _composite_html = ( printf _composite _composite_id )      
       insert_beforeend parent_tag_id _composite_html
       insert_beforeend _composite_id "<h2>Order</h2>"      
       
-      let _footer_id = get_card_footer_id _composite_id
-       
+      -- amendments placeholder
+      let _amendments_id = get_amendments_id parent_tag_id m mdl      
+      let _amendments_html = ( printf _amendments _amendments_id )      
+      insert_beforeend parent_tag_id _amendments_html
+      insert_beforeend _amendments_id "<h2>Amendments</h2>"      
+                  
+      -- table
+      let _footer_id = get_card_footer_id _composite_id       
       insert_table _composite_id (id_att _footer_id) m mdl                 
       
+
+      insert_table _amendments_id "" m mdl                 
+      
+      
+      -- buttons
+      
       let _edit_button = get_edit_button_id _composite_id
-      let _commit_button = get_commit_button_id _composite_id
-      
+      let _commit_button = get_commit_button_id _composite_id      
       insert_beforeend _footer_id (printf _button _edit_button "Edit")
-      insert_beforeend _footer_id (printf _button _commit_button "Commit")
-            
+      insert_beforeend _footer_id (printf _button _commit_button "Commit")            
       onClick ("#" ++ _edit_button) (on_table_edit parent_tag_id m mdl)
-      onClick ("#" ++ _commit_button) (on_table_commit parent_tag_id m mdl)
-      
+      onClick ("#" ++ _commit_button) (on_table_commit parent_tag_id m mdl)      
       toggle_hide_show_element (_commit_button)
       
       --onClick "#table_card_edit" (on_table_edit parent_tag_id m mdl)
