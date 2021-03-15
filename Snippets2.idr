@@ -312,28 +312,19 @@ namespace tab_widget
       
       _lines2io p_id rows_tr
       pure ()
-
-   
-   public export
-   _lines2io_wo_ids : String -> List String -> JS_IO ()
-   _lines2io_wo_ids p_id [] = pure ()
-   _lines2io_wo_ids p_id (x::xs) = do
-      insert_beforeend p_id x
-      _lines2io_wo_ids p_id xs
                
    public export  -- wo ids
    insert_rows_wo_ids : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
    insert_rows_wo_ids p_id m mdl = do
-      let row_ids = [ (get_row_id p_id x) | x <- (keyL mdl)]
+--      let row_ids = [ (get_row_id p_id x) | x <- (keyL mdl)]
       
-      let row_k = [ concat (render_with_ids.renderDataWithSchema2 (snd x) (fst x))  | x <-zip (keyL mdl) row_ids]
-      let row_v = [ concat (render_with_ids.renderDataWithSchema2 (snd x) (fst x))  | x <-zip (valL mdl) row_ids]
+      let row_k = [ concat (render_wo_ids.renderDataWithSchema2 x)  | x <-(keyL mdl)]
+      let row_v = [ concat (render_wo_ids.renderDataWithSchema2 x)  | x <-(valL mdl)]
       
       let rows_zip = zip row_k row_v
-      let rows_ids_zip = zip row_ids rows_zip
-      let rows_tr = [ (printf "<tr id=%s >%s %s</tr>" rid k v) | (rid,(k,v)) <- rows_ids_zip]
+      let rows_tr = [ (printf "<tr >%s %s</tr>" k v) | (k,v) <- rows_zip]
       
-      _lines2io_wo_ids p_id rows_tr
+      _lines2io p_id rows_tr
       pure ()
    
    public export
@@ -434,7 +425,7 @@ namespace tab_widget
       let _amendments_id = get_amendments_id parent_tag_id m mdl      
       let _amendments_html = ( printf _amendments _amendments_id )      
       insert_beforeend parent_tag_id _amendments_html
-      insert_beforeend _amendments_id "<h2>Amendments</h2>"      
+      insert_beforeend _amendments_id "<h2>Amendments</h2>"
 
       -- table
       let _footer_id = get_card_footer_id _composite_id       
