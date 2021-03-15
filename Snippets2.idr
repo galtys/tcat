@@ -401,13 +401,13 @@ namespace tab_widget
       toggle_hide_show_element (get_edit_button_id _composite_id)
       toggle_hide_show_element (get_commit_button_id _composite_id)
       _cells_ro (val m) row_ids
-      ret_v <- _read_cells (val m) row_ids
       ret_k <- _read_cells (key m) row_ids
-      case ret_v of
-         Nothing => console_log "empty??"
-         (Just r_v) => do
+      ret_v <- _read_cells (val m) row_ids      
+      case (ret_k, ret_v) of
+         (Nothing,Nothing) => console_log "empty??"
+         ( (Just r_k),(Just r_v) )=> do
                   console_log "muf"
-                  insert_table_wo_ids _amendments_id m mdl
+                  insert_table_wo_ids _amendments_id m (MkMDList ((name mdl)++":amend") r_k r_v)
 
 
    public export
