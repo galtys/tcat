@@ -207,7 +207,7 @@ namespace tab_widget
               </table>
             </div>
               
-            <div class="card_footer" id="%s">
+            <div class="card_footer" %s>
                    <!--
                    <button class="btn btn-primary" id="table_card_edit">Edit</button>
                    <button class="btn btn-primary" id="table_card_commit">Commit</button>
@@ -334,15 +334,15 @@ namespace tab_widget
    public export
    insert_table : String -> String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
    insert_table _composite_id _footer_id m mdl = do
-   
+
       let _composite_table_id = get_table_id _composite_id
-      
+
       let schema_header = (key m) .|. (val m)      
-      let _th_html = printf _tf (name mdl) (schema2thead2 schema_header ) (id_att _composite_table_id ) (_footer_id)
+      let _th_html = printf _tf (name mdl) (schema2thead2 schema_header ) (id_att _composite_table_id ) (id_att _footer_id)
 
       insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader)  
       insert_rows _composite_table_id m mdl
-   
+
 
    public export  --main init
    table_card2 : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
