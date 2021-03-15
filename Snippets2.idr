@@ -381,14 +381,23 @@ namespace tab_widget
       toggle_hide_show_element (get_commit_button_id _composite_id)
       
       --console_log (show row_v)
-      
+   public export
+   insert_table_wo_ids : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
+   insert_table_wo_ids p_id m mdl = do
+--      let _composite_table_id = get_table_id _composite_id
+      let schema_header = (key m) .|. (val m)      
+      let x = render_rows_wo_ids m mdl
+      let th_html = printf _tf_wo_ids (name mdl) (schema2thead2 schema_header ) x
+      insert_beforeend p_id th_html
+            
    public export
    on_table_commit: String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
    on_table_commit parent_tag_id m mdl = do
       let _composite_id = get_composite_id parent_tag_id m mdl
+      let _amendments_id = get_amendments_id parent_tag_id m mdl            
       let _composite_table_id = get_table_id _composite_id      
       let row_ids = [ (get_row_id _composite_table_id x) | x <- (keyL mdl)]
-      
+                        
       toggle_hide_show_element (get_edit_button_id _composite_id)
       toggle_hide_show_element (get_commit_button_id _composite_id)
       _cells_ro (val m) row_ids
@@ -396,7 +405,10 @@ namespace tab_widget
       ret_k <- _read_cells (key m) row_ids
       case ret_v of
          Nothing => console_log "empty??"
-         (Just r_v) => console_log "muf"
+         (Just r_v) => do
+                  console_log "muf"
+                  insert_table_wo_ids _amendments_id m mdl
+
 
    public export
    insert_table : String -> String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
@@ -409,15 +421,6 @@ namespace tab_widget
 
       insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader)  
       insert_rows _composite_table_id m mdl
-
-   public export
-   insert_table_wo_ids : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
-   insert_table_wo_ids p_id m mdl = do
---      let _composite_table_id = get_table_id _composite_id
-      let schema_header = (key m) .|. (val m)      
-      let x = render_rows_wo_ids m mdl
-      let th_html = printf _tf_wo_ids (name mdl) (schema2thead2 schema_header ) x
-      insert_beforeend p_id th_html
 
    public export  --main init
    table_card2 : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
@@ -441,10 +444,8 @@ namespace tab_widget
       insert_table _composite_id (id_att _footer_id) m mdl                 
 
       insert_table_wo_ids _amendments_id m mdl
-      insert_table_wo_ids _amendments_id m mdl
-      insert_table_wo_ids _amendments_id m mdl
---      insert_table _amendments_id "" m mdl
-      -- buttons
+--      insert_table_wo_ids _amendments_id m mdl
+--      insert_table_wo_ids _amendments_id m mdl
 
       let _edit_button = get_edit_button_id _composite_id
       let _commit_button = get_commit_button_id _composite_id      
