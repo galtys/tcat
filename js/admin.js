@@ -63,6 +63,61 @@ function get_element_text(key) {
     }
 }
 
+// -----------------------------------------------
+function get_qty_int_data_val(key) {
+    var e = document.getElementById(key);
+    if (e==null) {
+	return 0;
+    } else {
+	var av = e.data-val;
+	var v = parseInt(av,10);
+	if (isNaN(v)) {
+	    return 0;
+	} else {
+	    return v;
+	}
+    }
+}
+function get_text_data_val(key) {
+    var e = document.getElementById(key);
+    if (e==null) {
+	return 0;
+    } else {
+	var av = e.data-val;
+	return av
+    }
+}
+function get_qty_int_data_cr(key) {
+    var e = document.getElementById(key);
+    if (e==null) {
+	return 0;
+    } else {
+	var av = e.data-cr;
+	var v = parseInt(av,10);
+	if (isNaN(v)) {
+	    return 0;
+	} else {
+	    return v;
+	}
+    }
+}
+function get_qty_int_data_dr(key) {
+    var e = document.getElementById(key);
+    if (e==null) {
+	return 0;
+    } else {
+	var av = e.data-dr;
+	var v = parseInt(av,10);
+	if (isNaN(v)) {
+	    return 0;
+	} else {
+	    return v;
+	}
+    }
+}
+
+//---------------------------------------------------
+
 function get_qty_int_value2(key) {
     var e = document.getElementById(key);
     if (e==null) {

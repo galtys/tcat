@@ -37,10 +37,14 @@ public export
 render_number_in_td_tag2 : String -> Integer -> String
 render_number_in_td_tag2 p_id v = printf   """<td id="%s" data-val="%d">%d</td>""" p_id v v
 
+--public export
+--render_number_in_td_tag2 : String -> Integer -> String
+--render_number_in_td_tag2 p_id v = printf   """<td id="%s" data-val="%d">%d</td>""" p_id v v
+
 public export
 render_text_in_td_tag2 : String -> String -> String
 render_text_in_td_tag2 p_id v   = printf   """<td id="%s" data-val="%s">%s</td>""" p_id v v
-
+ 
 public export
 render_tterm_in_td_tag2 : String -> Tterm -> String
 render_tterm_in_td_tag2 p_id v = printf """<td id="%s" data-dr="%d" data-cr="%d">%d</td>""" p_id (dr v) (cr v) (t2integer v)
@@ -105,7 +109,7 @@ public export
 read_cells : String -> (s:Schema2) -> JS_IO (SchemaType2 s)
 read_cells p_id (IField name FBool) = do
                    let _cell_id = cell_id p_id name
-                   v <- get_element_text _cell_id
+                   v <- get_text_data_val _cell_id
                    pure (if (v=="True") then True else False)
 read_cells p_id (IField name FString) = do
                    let _cell_id = cell_id p_id name                                      
@@ -125,6 +129,37 @@ read_cells p_id (y .|. z)  =  do
                    r_y <- read_cells p_id y
                    r_z <- read_cells p_id z
                    pure (r_y,r_z)
+
+
+-- td: data-val  or data-dr/data-cr
+public export
+read_cells_attr : String -> (s:Schema2) -> JS_IO (SchemaType2 s)
+read_cells_attr p_id (IField name FBool) = do
+                   let _cell_id = cell_id p_id name
+                   v <- get_text_data_val _cell_id
+                   pure (if (v=="True") then True else False)
+read_cells_attr p_id (IField name FString) = do
+                   let _cell_id = cell_id p_id name                                      
+                   v <- get_element_text _cell_id
+                   pure v
+read_cells_attr p_id (IField name FTterm)  = do
+                   let _cell_input_id = cell_input_id p_id name
+                   dr <- get_qty_int_data_dr _cell_input_id
+                   cr <- get_qty_int_data_cr _cell_input_id                   
+                   let dr_integer = the Integer (cast dr)
+                   let cr_integer = the Integer (cast cr)
+                   pure (Tt dr_integer cr_integer)
+                   
+read_cells_attr p_id (EField name ns)  = do
+                   let _cell_id = cell_id p_id name
+                   v <- get_qty_int _cell_id
+                   let qty_integer = the Integer (cast v)                   
+                   pure qty_integer
+read_cells_attr p_id (y .|. z)  =  do
+                   r_y <- read_cells_attr p_id y
+                   r_z <- read_cells_attr p_id z
+                   pure (r_y,r_z)
+
 
 public export
 renderDataAsKey : (SchemaType2 schema) -> String

@@ -93,6 +93,21 @@ get_qty_int = foreign FFI_JS "get_qty_int(%0)" (String -> JS_IO Int)
 get_qty_int_value2 : String -> JS_IO Int
 get_qty_int_value2 = foreign FFI_JS "get_qty_int_value2(%0)" (String -> JS_IO Int)
 
+-- ----------------------------------------------------------------------------------
+get_qty_int_data_val : String -> JS_IO Int
+get_qty_int_data_val = foreign FFI_JS "get_qty_int_data_val(%0)" (String -> JS_IO Int)
+
+get_text_data_val : String -> JS_IO String
+get_text_data_val = foreign FFI_JS "get_text_data_val(%0)" (String -> JS_IO String)
+
+get_qty_int_data_dr : String -> JS_IO Int
+get_qty_int_data_dr = foreign FFI_JS "get_qty_int_data_dr(%0)" (String -> JS_IO Int)
+
+get_qty_int_data_cr : String -> JS_IO Int
+get_qty_int_data_cr = foreign FFI_JS "get_qty_int_data_cr(%0)" (String -> JS_IO Int)
+
+-- ----------------------------------------------------------------------------------
+
 get_qty_int_flag : String -> JS_IO Int
 get_qty_int_flag = foreign FFI_JS "get_qty_int_flag(%0)" (String -> JS_IO Int)
 
