@@ -338,7 +338,7 @@ namespace tab_widget
       let _composite_table_id = get_table_id _composite_id
 
       let schema_header = (key m) .|. (val m)      
-      let _th_html = printf _tf (name mdl) (schema2thead2 schema_header ) (id_att _composite_table_id ) (id_att _footer_id)
+      let _th_html = printf _tf (name mdl) (schema2thead2 schema_header ) (id_att _composite_table_id ) (_footer_id)
 
       insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader)  
       insert_rows _composite_table_id m mdl
@@ -355,7 +355,7 @@ namespace tab_widget
       
       let _footer_id = get_card_footer_id _composite_id
        
-      insert_table _composite_id _footer_id m mdl                 
+      insert_table _composite_id (id_att _footer_id) m mdl                 
       
       let _edit_button = get_edit_button_id _composite_id
       let _commit_button = get_commit_button_id _composite_id
