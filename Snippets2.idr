@@ -68,8 +68,32 @@ namespace render_with_ids
   renderDataWithSchema2 p_id {schema = (EField name ns)}      item  = [render_number_in_td_tag2 (cell_id p_id name) item]
   renderDataWithSchema2 p_id {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2 p_id iteml) ++ (renderDataWithSchema2 p_id itemr)
 
+namespace render_wo_ids
+  -- using td tags
+  public export
+  render_number_in_td_tag2 : Integer -> String
+  render_number_in_td_tag2 v = printf   """<td>%d</td>""" v
 
+  --public export
+  --render_number_in_td_tag2 : String -> Integer -> String
+  --render_number_in_td_tag2 p_id v = printf   """<td id="%s" data-val="%d">%d</td>""" p_id v v
 
+  public export
+  render_text_in_td_tag2 : String -> String
+  render_text_in_td_tag2 v   = printf   """<td>%s</td>""" v
+   
+  public export
+  render_tterm_in_td_tag2 : Tterm -> String
+  render_tterm_in_td_tag2 v = printf """<td>%d</td>""" (t2integer v)
+    
+  public export
+  renderDataWithSchema2 : (SchemaType2 schema) -> List String
+  renderDataWithSchema2 {schema = (IField name FBool)}   True  = [render_text_in_td_tag2 "True"]
+  renderDataWithSchema2 {schema = (IField name FBool)}   False = [render_text_in_td_tag2 "False"]
+  renderDataWithSchema2 {schema = (IField name FString)} item  = [render_text_in_td_tag2 item]
+  renderDataWithSchema2 {schema = (IField name FTterm)}  item  = [render_tterm_in_td_tag2 item]
+  renderDataWithSchema2 {schema = (EField name ns)}      item  = [render_number_in_td_tag2 item]
+  renderDataWithSchema2 {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2 iteml) ++ (renderDataWithSchema2 itemr)
 
 public export
 get_cell_keys : String -> (s:Schema2) -> List String
@@ -288,7 +312,29 @@ namespace tab_widget
       
       _lines2io p_id rows_tr
       pure ()
+
    
+   public export
+   _lines2io_wo_ids : String -> List String -> JS_IO ()
+   _lines2io_wo_ids p_id [] = pure ()
+   _lines2io_wo_ids p_id (x::xs) = do
+      insert_beforeend p_id x
+      _lines2io_wo_ids p_id xs
+               
+   public export  -- wo ids
+   insert_rows_wo_ids : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
+   insert_rows_wo_ids p_id m mdl = do
+      let row_ids = [ (get_row_id p_id x) | x <- (keyL mdl)]
+      
+      let row_k = [ concat (render_with_ids.renderDataWithSchema2 (snd x) (fst x))  | x <-zip (keyL mdl) row_ids]
+      let row_v = [ concat (render_with_ids.renderDataWithSchema2 (snd x) (fst x))  | x <-zip (valL mdl) row_ids]
+      
+      let rows_zip = zip row_k row_v
+      let rows_ids_zip = zip row_ids rows_zip
+      let rows_tr = [ (printf "<tr id=%s >%s %s</tr>" rid k v) | (rid,(k,v)) <- rows_ids_zip]
+      
+      _lines2io_wo_ids p_id rows_tr
+      pure ()
    
    public export
    _cells_editable : (s:Schema2) -> List String -> JS_IO ()
@@ -361,6 +407,17 @@ namespace tab_widget
       insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader)  
       insert_rows _composite_table_id m mdl
 
+   public export
+   insert_table_wo_ids : String -> String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
+   insert_table_wo_ids _composite_id _footer_id m mdl = do
+
+      let _composite_table_id = get_table_id _composite_id
+
+      let schema_header = (key m) .|. (val m)      
+      let _th_html = printf _tf (name mdl) (schema2thead2 schema_header ) (id_att _composite_table_id ) (_footer_id)
+
+      insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader)  
+      insert_rows_wo_ids _composite_table_id m mdl
 
    public export  --main init
    table_card2 : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
@@ -383,7 +440,7 @@ namespace tab_widget
       let _footer_id = get_card_footer_id _composite_id       
       insert_table _composite_id (id_att _footer_id) m mdl                 
 
-      insert_table _amendments_id "" m mdl
+      insert_table_wo_ids _amendments_id "" m mdl
 --      insert_table _amendments_id "" m mdl
       -- buttons
 
