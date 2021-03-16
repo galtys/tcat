@@ -59,6 +59,11 @@ Show Tterm where
 
 data SymbolOP = Create | Delete | Empty
 
+implementation Show SymbolOP where
+  show Create = "Create"
+  show Delete = "Delete"
+  show Empty = "Empty"
+
 Eq SymbolOP where
      (==) Create Create = True
      (==) Delete Delete = True

@@ -16,14 +16,17 @@ _unit_dropdown = """
 """
 
 public export
-schema2thead2 : Schema2 Key-> String
+schema2thead2 : Schema2 kv-> String
 schema2thead2 sch = ret where
-  schema2th : Schema2 Key-> List String
+  schema2th : Schema2 kv -> List String
   schema2th (IField name FBool)  =  [printf "<th>%s</th>" name ]
   schema2th (IField name FString) = [printf "<th>%s</th>" name ]
   schema2th (IField name FTterm ) = [printf "<th>%s</th>" name ]     --SchemaType2 (IField name FTterm ) = Tterm
+  schema2th (IFieldV name FTtermV ) = [printf "<th>%s</th>" name ]     --SchemaType2 (IField name FTterm ) = Tterm  
+  schema2th (IFieldV name FSop ) = [printf "<th>%s</th>" name ]
   schema2th (EField name ns) = [printf "<th>%s[%s]</th>" name ns]
   schema2th (s1 .|. s2) = (schema2th s1) ++ (schema2th s2)
+  schema2th (s1 .+. s2) = (schema2th s1) ++ (schema2th s2)
   ths : String
   ths = concat $ schema2th sch
   ret = printf "<tr>%s</tr>" ths
@@ -65,8 +68,11 @@ namespace render_with_ids
   renderDataWithSchema2 p_id {schema = (IField name FBool)}   False = [render_text_in_td_tag2   (cell_id p_id name) "False"]
   renderDataWithSchema2 p_id {schema = (IField name FString)} item  = [render_text_in_td_tag2   (cell_id p_id name) item]
   renderDataWithSchema2 p_id {schema = (IField name FTterm)}  item  = [render_tterm_in_td_tag2  (cell_id p_id name) item]
+  renderDataWithSchema2 p_id {schema = (IFieldV name FTtermV)}  item  = [render_tterm_in_td_tag2  (cell_id p_id name) item]
+  renderDataWithSchema2 p_id {schema = (IFieldV name FSop)}  item  = [render_text_in_td_tag2  (cell_id p_id name) (show item)]    
   renderDataWithSchema2 p_id {schema = (EField name ns)}      item  = [render_number_in_td_tag2 (cell_id p_id name) item]
   renderDataWithSchema2 p_id {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2 p_id iteml) ++ (renderDataWithSchema2 p_id itemr)
+  renderDataWithSchema2 p_id {schema = (y .+. z)} (iteml, itemr) = (renderDataWithSchema2 p_id iteml) ++ (renderDataWithSchema2 p_id itemr)
 
 
 
@@ -94,9 +100,12 @@ namespace render_wo_ids
   renderDataWithSchema2 {schema = (IField name FBool)}   False = [render_text_in_td_tag2 "False"]
   renderDataWithSchema2 {schema = (IField name FString)} item  = [render_text_in_td_tag2 item]
   renderDataWithSchema2 {schema = (IField name FTterm)}  item  = [render_tterm_in_td_tag2 item]
+  renderDataWithSchema2 {schema = (IFieldV name FTtermV)}  item  = [render_tterm_in_td_tag2 item]
+  renderDataWithSchema2 {schema = (IFieldV name FSop)}  item  = [render_text_in_td_tag2 (show item)]
   renderDataWithSchema2 {schema = (EField name ns)}      item  = [render_number_in_td_tag2 item]
   renderDataWithSchema2 {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2 iteml) ++ (renderDataWithSchema2 itemr)
-
+  renderDataWithSchema2 {schema = (y .+. z)} (iteml, itemr) = (renderDataWithSchema2 iteml) ++ (renderDataWithSchema2 itemr)
+  
 public export
 get_cell_keys : String -> (s:Schema2 Key) -> List String
 get_cell_keys p_id (IField name fd)  = [cell_id p_id name]
@@ -104,8 +113,15 @@ get_cell_keys p_id (EField name fd)  = [cell_id p_id name]
 get_cell_keys p_id (y .|. z)  = (get_cell_keys p_id y) ++ (get_cell_keys p_id z)
 
 public export
-make_cells_editable : String -> (s:Schema2 Key) -> JS_IO ()
+make_cells_editable : String -> (s:Schema2 kv) -> JS_IO ()
 make_cells_editable p_id (IField name FTterm)  = do
+                   let _cell_id = cell_id p_id name
+                   let _cell_input_id = cell_input_id p_id name
+                   qty <- get_qty_int _cell_id
+                   let input_element = render_number_input _cell_input_id (the Integer (cast qty)) 
+                   update_element_text (cell_id p_id name) "" --console_log (printf "row: %s, field: %s" p_id name)
+                   insert_beforeend _cell_id input_element
+make_cells_editable p_id (IFieldV name FTtermV)  = do
                    let _cell_id = cell_id p_id name
                    let _cell_input_id = cell_input_id p_id name
                    qty <- get_qty_int _cell_id
@@ -117,9 +133,12 @@ make_cells_editable p_id (EField name fd)  = pure () --console_log (printf "row:
 make_cells_editable p_id (y .|. z)  = do 
                                     make_cells_editable p_id y
                                     make_cells_editable p_id z
+make_cells_editable p_id (y .+. z)  = do 
+                                    make_cells_editable p_id y
+                                    make_cells_editable p_id z
 
 public export
-make_cells_ro : String -> (s:Schema2 Key) -> JS_IO ()
+make_cells_ro : String -> (s:Schema2 kv) -> JS_IO ()
 make_cells_ro p_id (IField name FTterm)  = do
                    let _cell_id = cell_id p_id name
                    let _cell_input_id = cell_input_id p_id name
@@ -127,7 +146,13 @@ make_cells_ro p_id (IField name FTterm)  = do
                    qty <- get_qty_int_value2 _cell_input_id
                    update_element_text (cell_id p_id name) "" --console_log (printf "row: %s, field: %s" p_id name)
                    update_element_text (cell_id p_id name)  (the String (cast qty))
-
+make_cells_ro p_id (IFieldV name FTtermV)  = do
+                   let _cell_id = cell_id p_id name
+                   let _cell_input_id = cell_input_id p_id name
+                   -- need to get into the input tag
+                   qty <- get_qty_int_value2 _cell_input_id
+                   update_element_text (cell_id p_id name) "" --console_log (printf "row: %s, field: %s" p_id name)
+                   update_element_text (cell_id p_id name)  (the String (cast qty))
 make_cells_ro p_id (IField name fd)  = pure ()
 make_cells_ro p_id (EField name fd)  = pure ()-- console_log (printf "row: %s, field: %s" p_id name)
 make_cells_ro p_id (y .|. z)  = do 
@@ -137,7 +162,7 @@ make_cells_ro p_id (y .|. z)  = do
 
 
 public export  -- read <td>%s</td> when cells are read-only
-read_cells : String -> (s:Schema2 Key) -> JS_IO (SchemaType2 s)
+read_cells : String -> (s:Schema2 kv) -> JS_IO (SchemaType2 s)
 read_cells p_id (IField name FBool) = do
                    let _cell_id = cell_id p_id name
                    v <- get_text_data_val _cell_id
@@ -151,6 +176,11 @@ read_cells p_id (IField name FTterm)  = do
                    qty <- get_qty_int _cell_id
                    let qty_integer = the Integer (cast qty)
                    pure (integer2t qty_integer)
+read_cells p_id (IFieldV name FTtermV)  = do
+                   let _cell_id = cell_id p_id name
+                   qty <- get_qty_int _cell_id
+                   let qty_integer = the Integer (cast qty)
+                   pure (integer2t qty_integer)                   
 read_cells p_id (EField name ns)  = do
                    let _cell_id = cell_id p_id name
                    v <- get_qty_int _cell_id
@@ -164,7 +194,7 @@ read_cells p_id (y .|. z)  =  do
 
 -- td: data-val  or data-dr/data-cr
 public export
-read_cells_attr : String -> (s:Schema2 Key) -> JS_IO (SchemaType2 s)
+read_cells_attr : String -> (s:Schema2 kv) -> JS_IO (SchemaType2 s)
 read_cells_attr p_id (IField name FBool) = do
                    let _cell_id = cell_id p_id name
                    v <- get_text_data_val _cell_id
@@ -174,6 +204,13 @@ read_cells_attr p_id (IField name FString) = do
                    v <- get_element_text _cell_id
                    pure v
 read_cells_attr p_id (IField name FTterm)  = do
+                   let _cell_input_id = cell_input_id p_id name
+                   dr <- get_qty_int_data_dr _cell_input_id
+                   cr <- get_qty_int_data_cr _cell_input_id                   
+                   let dr_integer = the Integer (cast dr)
+                   let cr_integer = the Integer (cast cr)
+                   pure (Tt dr_integer cr_integer)
+read_cells_attr p_id (IFieldV name FTtermV)  = do
                    let _cell_input_id = cell_input_id p_id name
                    dr <- get_qty_int_data_dr _cell_input_id
                    cr <- get_qty_int_data_cr _cell_input_id                   
@@ -190,6 +227,10 @@ read_cells_attr p_id (y .|. z)  =  do
                    r_y <- read_cells_attr p_id y
                    r_z <- read_cells_attr p_id z
                    pure (r_y,r_z)
+read_cells_attr p_id (y .+. z)  =  do
+                   r_y <- read_cells_attr p_id y
+                   r_z <- read_cells_attr p_id z
+                   pure (r_y,r_z)
 
 
 public export
@@ -198,6 +239,8 @@ renderDataAsKey {schema = (IField name FBool)}   True = "True"
 renderDataAsKey {schema = (IField name FBool)}   False = "False"
 renderDataAsKey {schema = (IField name FString)} item = item
 renderDataAsKey {schema = (IField name FTterm)}  item = the String (cast (t2integer item))
+renderDataAsKey {schema = (IFieldV name FTtermV)}  item = the String (cast (t2integer item))
+renderDataAsKey {schema = (IFieldV name FSop)}  item = show item
 renderDataAsKey {schema = (EField name ns)}      item = the String (cast item)
 renderDataAsKey {schema = (y .|. z)} (iteml, itemr) = (renderDataAsKey iteml) ++ (renderDataAsKey itemr)
 
