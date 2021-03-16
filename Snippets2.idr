@@ -201,6 +201,14 @@ renderDataAsKey {schema = (IField name FTterm)}  item = the String (cast (t2inte
 renderDataAsKey {schema = (EField name ns)}      item = the String (cast item)
 renderDataAsKey {schema = (y .|. z)} (iteml, itemr) = (renderDataAsKey iteml) ++ (renderDataAsKey itemr)
 
+public export
+runjsio : (ty) -> List (JS_IO ty) -> JS_IO ty
+runjsio ty [] = pure ty
+runjsio ty (x::xs) = do
+   ret <- x
+   runjsio ty xs
+   pure ret
+   
 namespace tab_widget
    public export
    id_att_format : String
@@ -340,13 +348,16 @@ namespace tab_widget
            rows_zip = zip row_k row_v
            ret = concat [ (printf "<tr> %s %s </tr>" k v) | (k,v) <- rows_zip] in
         ret
+
    
+{-         
    public export
    _cells_editable : (s:Schema2) -> List String -> JS_IO ()
    _cells_editable s [] = pure ()
    _cells_editable s (x::xs) = do
              make_cells_editable x s
              _cells_editable s xs
+-}
 
    public export
    _cells_ro : (s:Schema2) -> List String -> JS_IO ()
@@ -354,7 +365,7 @@ namespace tab_widget
    _cells_ro s (x::xs) = do
              make_cells_ro x s
              _cells_ro s xs
-
+   
    public export
    _read_cells : (s:Schema2) -> List String -> JS_IO (Maybe (List (SchemaType2 s)) )
    _read_cells s [] = pure Nothing
@@ -378,10 +389,14 @@ namespace tab_widget
       let row_k =   [ get_cell_keys x (key m) | x <- row_ids]
       let row_v =   [ get_cell_keys x (val m) | x <- row_ids]
       --let row_v = [ concat (renderDataWithSchema2 (snd x) (fst x))  | x <-zip (valL mdl) row_ids]
-      _cells_editable (val m) row_ids
+      
+--      _cells_editable (val m) row_ids
+      runjsio () [ make_cells_editable x (val m) | x <- row_ids]
+
+      
       toggle_hide_show_element (get_edit_button_id _composite_id)
       toggle_hide_show_element (get_commit_button_id _composite_id)
-      
+
       --console_log (show row_v)
    public export
    insert_table_wo_ids : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
