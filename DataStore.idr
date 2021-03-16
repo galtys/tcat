@@ -69,6 +69,9 @@ Eq SymbolOP where
 Eq Tterm where
      (==) (Tt dr1 cr1) (Tt dr2 cr2) = ( (dr1+cr2)==(cr1+dr2) )
 
+tinv: Tterm -> Tterm
+tinv (Tt dr cr) = Tt cr dr
+
 inv: SymbolOP -> SymbolOP
 inv Create = Delete
 inv Delete = Create
@@ -124,13 +127,20 @@ SchemaType2 (EField name ns ) = Integer
 SchemaType2 (x .|. y) = (SchemaType2 x, SchemaType2 y)
 SchemaType2 (x .+. y) = (SchemaType2 x, SchemaType2 y)
 
+SchemaTypeVal : Schema2 Val -> Type
+SchemaTypeVal (IFieldV name FTtermV) = Tterm
+SchemaTypeVal (IFieldV name FSop) = SymbolOP
+SchemaTypeVal (s1 .+. s2) = (SchemaTypeVal s1, SchemaTypeVal s2)
 
-schema2ZeroVal : (s:Schema2 Key) -> (SchemaType2 s)
+schema2ZeroVal : (s:Schema2 kv) -> (SchemaType2 s)
 schema2ZeroVal (IField name FBool) = False
-schema2ZeroVal (IField name FString ) = ""
 schema2ZeroVal (IField name FTterm ) = (Tt 0 0)
+schema2ZeroVal (IField name FString ) =  ""
+schema2ZeroVal (IFieldV name FTtermV ) = (Tt 0 0)
+schema2ZeroVal (IFieldV name FSop ) = Empty
 schema2ZeroVal (EField name ns) = 0
 schema2ZeroVal (x .|. y) = (schema2ZeroVal x,schema2ZeroVal y)
+schema2ZeroVal (x .+. y) = (schema2ZeroVal x,schema2ZeroVal y)
 
 public export 
 eqSchema2 : (SchemaType2 schema) -> (SchemaType2 schema) -> Bool
@@ -143,11 +153,19 @@ eqSchema2 {schema = (EField name ns)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (y .|. z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqSchema2  i1r i2r)
 eqSchema2 {schema = (y .+. z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqSchema2  i1r i2r)
 
+public export
+invSchema2 : (SchemaTypeVal schema) -> (SchemaTypeVal schema)
+invSchema2 {schema = (IFieldV name FTtermV)} item1 = tinv (item1)
+invSchema2 {schema = (IFieldV name FSop)} item1 = inv (item1)
+invSchema2 {schema = (y .+. z)} (iteml,itemr) = (invSchema2 iteml, invSchema2 itemr)
+
 public export -- semigroup operation
 addSchema2Vals : (SchemaType2 schema) -> (SchemaType2 schema) -> (SchemaType2 schema)
 addSchema2Vals {schema = (IField name FBool)} item1 item2 = (item1 || item2)
-addSchema2Vals {schema = (IField name FString)} item1 item2 = if ((item2== "") || (item1=="")) then (item1 <+> item2) else item2
+addSchema2Vals {schema = (IField name FString)} item1 item2 = item1 <+> item2
 addSchema2Vals {schema = (IField name FTterm)} item1 item2 = item1 <+> item2  -- For Tterm, add
+addSchema2Vals {schema = (IFieldV name FTtermV)} item1 item2 = item1 <+> item2  -- For Tterm, add
+addSchema2Vals {schema = (IFieldV name FSop)} item1 item2 = item1 <+> item2  -- For Tterm, add
 addSchema2Vals {schema = (EField name ns)} item1 item2 = if ((item2== 0) || (item1==0)) then (item1 + item2) else item2
 addSchema2Vals {schema = (y .|. z)} (i1l,i1r) (i2l,i2r) = ( addSchema2Vals i1l i2l, addSchema2Vals i1r i2r)
 
