@@ -312,14 +312,6 @@ namespace tab_widget
    public export
    get_commit_button_id : String -> String
    get_commit_button_id p_id = p_id ++ "__commit_buttion"      
-         
-   public export
-   _lines2io : String -> List String -> JS_IO ()
-   _lines2io p_id [] = pure ()
-   _lines2io p_id (x::xs) = do
-      insert_beforeend p_id x
-      _lines2io p_id xs
-
 
    public export
    get_row_id : String -> (SchemaType2 schema) -> String
@@ -337,7 +329,8 @@ namespace tab_widget
       let rows_ids_zip = zip row_ids rows_zip
       let rows_tr = [ (printf "<tr id=%s >%s %s</tr>" rid k v) | (rid,(k,v)) <- rows_ids_zip]
       
-      _lines2io p_id rows_tr
+      --_lines2io p_id rows_tr
+      runjsio () [insert_beforeend p_id x | x <- rows_tr]
       pure ()
                
    public export  -- wo ids
@@ -348,24 +341,7 @@ namespace tab_widget
            rows_zip = zip row_k row_v
            ret = concat [ (printf "<tr> %s %s </tr>" k v) | (k,v) <- rows_zip] in
         ret
-
-   
-{-         
-   public export
-   _cells_editable : (s:Schema2) -> List String -> JS_IO ()
-   _cells_editable s [] = pure ()
-   _cells_editable s (x::xs) = do
-             make_cells_editable x s
-             _cells_editable s xs
--}
-
-   public export
-   _cells_ro : (s:Schema2) -> List String -> JS_IO ()
-   _cells_ro s [] = pure ()
-   _cells_ro s (x::xs) = do
-             make_cells_ro x s
-             _cells_ro s xs
-   
+        
    public export
    _read_cells : (s:Schema2) -> List String -> JS_IO (Maybe (List (SchemaType2 s)) )
    _read_cells s [] = pure Nothing
@@ -417,7 +393,9 @@ namespace tab_widget
                         
       toggle_hide_show_element (get_edit_button_id _composite_id)
       toggle_hide_show_element (get_commit_button_id _composite_id)
-      _cells_ro (val m) row_ids
+      --_cells_ro (val m) row_ids
+      runjsio () [make_cells_ro x (val m) | x <- row_ids]
+      
       ret_k <- _read_cells (key m) row_ids
       ret_v <- _read_cells (val m) row_ids      
       case (ret_k, ret_v) of
