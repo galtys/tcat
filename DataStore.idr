@@ -177,8 +177,8 @@ addSchema2Vals {schema = (y .|. z)} (i1l,i1r) (i2l,i2r) = ( addSchema2Vals i1l i
 record ModelSchema where
      constructor MkModelSchema
      key : Schema2 Key
-     val : Schema2 Key
-     rw : Schema2 Key -> Bool
+     val : Schema2 Val
+--     rw : Schema2 kv -> Bool
 
 record ModelData (m:ModelSchema) where
      constructor MkMD

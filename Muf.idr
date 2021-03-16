@@ -24,28 +24,28 @@ import JSIO
 keyItems : Schema2 Key
 keyItems = (EField "sku1" "asset")                                
 
-valItems : Schema2 Key
-valItems = (IField "qty" FTterm)
+valItems : Schema2 Val
+valItems = (IFieldV "qty" FTtermV)
 
-valItems' : Schema2 Key
-valItems' = (IField "flag" FBool) .|. (IField "note" FString) .|. (IField "qty" FTterm)
+--valItems' : Schema2 Key
+--valItems' = (IField "flag" FBool) .|. (IField "note" FString) .|. (IField "qty" FTterm)
 
 --Items_ModelSchema : ModelSchema
 --Items_ModelSchema = MkModelSchema keyItems valItems
 
-_items_rw : Schema2 Key-> Bool
+_items_rw : Schema2 kv-> Bool
 _items_rw (IField name ft) = True
 _items_rw (EField name ns) = False
 _items_rw (s1 .|. s2) = False
 
 Items_ModelSchema : ModelSchema
-Items_ModelSchema = MkModelSchema keyItems valItems _items_rw   --Items_ModelSchema
+Items_ModelSchema = MkModelSchema keyItems valItems    --Items_ModelSchema
 
-Items_ModelSchema' : ModelSchema
-Items_ModelSchema' = MkModelSchema keyItems valItems' _items_rw --Items_ModelSchema
+--Items_ModelSchema' : ModelSchema
+--Items_ModelSchema' = MkModelSchema keyItems valItems' _items_rw --Items_ModelSchema
 
-zeroVal : (SchemaType2 Main.valItems)
-zeroVal = (Tt 0 0)
+--zeroVal : (SchemaType2 Main.valItems)
+--zeroVal = (Tt 0 0)
 
 
 items_ModelDataList : ModelDataList Items_ModelSchema
@@ -55,16 +55,17 @@ items_ModelDataList = MkMDList "items" [ 1,2,3,4 ]
                           ( Tt 1 0 ),
                           ( Tt 1 39 ) ]
 
-zeroVal' : (SchemaType2 Main.valItems')
-zeroVal' = (False , "", Tt 0 0 )
+--zeroVal' : (SchemaType2 Main.valItems')
+--zeroVal' = (False , "", Tt 0 0 )
 
-
+{-
 items_ModelDataList' : ModelDataList Items_ModelSchema'
 items_ModelDataList' = MkMDList "items" [ 1,2,3,4 ] 
                         [ (False , "res", Tt 3 0 ),
                           (False , "r", Tt 0 3 ),
                           (False , "il", Tt 1 0 ),
                           (False , "l", Tt 0 7 ) ]
+-}
 
 {-
 test_ModelData : ModelData Items_ModelSchema
@@ -83,7 +84,7 @@ main = do
    console_log new_row_sha1
    console_log new_row_sha256
    
-   tab_widget.table_card2 "order1" Items_ModelSchema' items_ModelDataList'
+   tab_widget.table_card2 "order1" Items_ModelSchema items_ModelDataList
 
 --   insert_beforeend "so_composite" (table_card table_composite_id THeader)
 --   line_list2io_amend table_composite_id test_list

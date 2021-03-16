@@ -107,10 +107,12 @@ namespace render_wo_ids
   renderDataWithSchema2 {schema = (y .+. z)} (iteml, itemr) = (renderDataWithSchema2 iteml) ++ (renderDataWithSchema2 itemr)
   
 public export
-get_cell_keys : String -> (s:Schema2 Key) -> List String
+get_cell_keys : String -> (s:Schema2 kv) -> List String
 get_cell_keys p_id (IField name fd)  = [cell_id p_id name]
+get_cell_keys p_id (IFieldV name fd)  = [cell_id p_id name]
 get_cell_keys p_id (EField name fd)  = [cell_id p_id name]
 get_cell_keys p_id (y .|. z)  = (get_cell_keys p_id y) ++ (get_cell_keys p_id z)
+get_cell_keys p_id (y .+. z)  = (get_cell_keys p_id y) ++ (get_cell_keys p_id z)
 
 public export
 make_cells_editable : String -> (s:Schema2 kv) -> JS_IO ()
@@ -422,9 +424,9 @@ namespace tab_widget
    insert_table_wo_ids : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
    insert_table_wo_ids p_id m mdl = do
 --      let _composite_table_id = get_table_id _composite_id
-      let schema_header = (key m) .|. (val m)      
+      --let schema_header = (key m) .|. (val m)      
       let x = render_rows_wo_ids m mdl
-      let th_html = printf _tf_wo_ids (name mdl) (schema2thead2 schema_header ) x
+      let th_html = printf _tf_wo_ids (name mdl) ((schema2thead2 (key m))++(schema2thead2 (val m))) x
       insert_beforeend p_id th_html
   
    public export
@@ -457,8 +459,8 @@ namespace tab_widget
 
       let _composite_table_id = get_table_id _composite_id
 
-      let schema_header = (key m) .|. (val m)      
-      let _th_html = printf _tf (name mdl) (schema2thead2 schema_header ) (id_att _composite_table_id ) (_footer_id)
+--      let schema_header = (key m) .|. (val m)      
+      let _th_html = printf _tf (name mdl) ((schema2thead2 (key m))++(schema2thead2 (val m))) (id_att _composite_table_id ) (_footer_id)
 
       insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader)  
       insert_rows _composite_table_id m mdl
