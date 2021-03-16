@@ -76,6 +76,7 @@ Semigroup SymbolOP where
      (<+>) Delete Delete = Delete
 
 infixr 5 .|.
+infixr 5 .+.
 
 {-
 record FieldArgs where
@@ -89,10 +90,28 @@ data FieldDef : Type where
      FString : FieldDef
      FTterm :  FieldDef
 
+data KV = Key
+
 data Schema2 : Type where
-     IField : (name:String) -> (ft:FieldDef) -> Schema2
-     EField : (name:String) -> (ns : String)-> Schema2  --col name, type name, ?add type of index?
-     (.|.) : (s1 : Schema2) -> (s2 : Schema2) -> Schema2 
+     IField : (name:String) -> (ft: FieldDef) -> Schema2
+     EField : (name:String) -> (ns :String)-> Schema2  --col name, type name, ?add type of index?
+     (.|.) : (s1 : Schema2) -> (s2 :Schema2) -> Schema2 
+
+{-
+namespace test_def
+  data Schema : KV -> Type where
+     IField : (name:String) -> (ft: FieldDef) -> Schema K
+     EField : (name:String) -> (ns :String)-> Schema V
+     (.+.) : (s1 : Schema V) -> (s2 :Schema V) -> Schema V
+     (.|.) : (s1 : Schema K) -> (s2 :Schema K) -> Schema K
+
+  SchemaType : Schema kv -> Type
+  SchemaType (IField name ft) = ?SchemaType_rhs_1
+  SchemaType (EField name ns) = ?SchemaType_rhs_2
+  SchemaType (s1 .+. s2) = ?SchemaType_rhs_3
+  SchemaType (s1 .|. s2) = ?SchemaType_rhs_4
+-}
+
 
 SchemaType2 : Schema2 -> Type
 SchemaType2 (IField name FBool)= Bool
@@ -118,9 +137,10 @@ eqSchema2 {schema = (y .|. z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqS
 
 public export -- semigroup operation
 addSchema2Vals : (SchemaType2 schema) -> (SchemaType2 schema) -> (SchemaType2 schema)
+addSchema2Vals {schema = (IField name FBool)} item1 item2 = (item1 || item2)
+addSchema2Vals {schema = (IField name FString)} item1 item2 = if ((item2== "") || (item1=="")) then (item1 <+> item2) else item2
 addSchema2Vals {schema = (IField name FTterm)} item1 item2 = item1 <+> item2  -- For Tterm, add
-addSchema2Vals {schema = (IField name x)} item1 item2 = item2                 -- for all others, replace by item2
-addSchema2Vals {schema = (EField name ns)} item1 item2 = item2
+addSchema2Vals {schema = (EField name ns)} item1 item2 = if ((item2== 0) || (item1==0)) then (item1 + item2) else item2
 addSchema2Vals {schema = (y .|. z)} (i1l,i1r) (i2l,i2r) = ( addSchema2Vals i1l i2l, addSchema2Vals i1r i2r)
 
 record ModelSchema where
