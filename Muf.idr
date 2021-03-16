@@ -41,7 +41,7 @@ _items_rw (s1 .|. s2) = False
 Items_ModelSchema : ModelSchema Val
 Items_ModelSchema = MkModelSchema keyItems valItems    --Items_ModelSchema
 
---Items_ModelSchema' : ModelSchema
+--Items_ModelSchema' : ModelSchema 
 --Items_ModelSchema' = MkModelSchema keyItems valItems' _items_rw --Items_ModelSchema
 
 --zeroVal : (SchemaType2 Main.valItems)
