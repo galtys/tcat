@@ -21,19 +21,19 @@ import JSIO
      Nothing => console_log "na"
      (Just j) => console_log (Language.JSON.Data.format 2 j)
 -}
-keyItems : Schema2
+keyItems : Schema2 Key
 keyItems = (EField "sku1" "asset")                                
 
-valItems : Schema2
+valItems : Schema2 Key
 valItems = (IField "qty" FTterm)
 
-valItems' : Schema2
+valItems' : Schema2 Key
 valItems' = (IField "flag" FBool) .|. (IField "note" FString) .|. (IField "qty" FTterm)
 
 --Items_ModelSchema : ModelSchema
 --Items_ModelSchema = MkModelSchema keyItems valItems
 
-_items_rw : Schema2 -> Bool
+_items_rw : Schema2 Key-> Bool
 _items_rw (IField name ft) = True
 _items_rw (EField name ns) = False
 _items_rw (s1 .|. s2) = False

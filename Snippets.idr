@@ -50,7 +50,7 @@ joinVect (x :: xs) = x ++ a ++ (joinVect xs) where
 --joinVect (x:xs) = "" -- 
 
 
-renderSchemaDataVect : (s:Schema2) -> Vect size (SchemaType2 s) -> Vect size String
+renderSchemaDataVect : (s:Schema2 Key) -> Vect size (SchemaType2 s) -> Vect size String
 renderSchemaDataVect s [] = []
 renderSchemaDataVect s (x :: xs) = [ "["++(renderSchemaDataAsJsonP1 x)++"]" ] ++ (renderSchemaDataVect s xs)  
 
@@ -86,7 +86,7 @@ list_json_to_tterm : List JSON -> Tterm
 list_json_to_tterm ((JArray ((JNumber dr) :: (JNumber cr) :: x ))::xs) =Tt (the Integer (cast dr)) (the Integer (cast cr))
 
 
-json2Schema2Data : (s:Schema2) -> List JSON -> (SchemaType2 s)
+json2Schema2Data : (s:Schema2 Key) -> List JSON -> (SchemaType2 s)
 json2Schema2Data (IField name FBool) x = list_json_to_bool x
 json2Schema2Data (IField name FString) x = list_json_to_str x
 json2Schema2Data (IField name FTterm) x = list_json_to_tterm x
@@ -100,7 +100,7 @@ json2ListJSON (JArray xs) = xs
 json2ListJSON _ = []
 
 
-json2Schema2ListData : (s:Schema2) -> JSON -> List (SchemaType2 s)
+json2Schema2ListData : (s:Schema2 Key) -> JSON -> List (SchemaType2 s)
 --json2Schema2ListData s [] = []
 json2Schema2ListData s (JArray ( (JArray x)::xs))= [(json2Schema2Data s x)] ++ (json2Schema2ListData s (JArray xs) )
 

@@ -54,26 +54,37 @@ i2s x = the String (cast x)
 Semigroup Tterm where
      (<+>) a b = tadd a b
 
-
 Show Tterm where
      show (Tt x y) = show(x) ++ "//" ++ show(y)
 
-data SymbolOP = Create | Delete
+data SymbolOP = Create | Delete | Empty
 
 Eq SymbolOP where
      (==) Create Create = True
      (==) Delete Delete = True
-     (==) _ _ = False     
+     (==) Empty Empty = True
+     (==)     _     _ = False
      (/=) x y = not (x==y)
 
 Eq Tterm where
      (==) (Tt dr1 cr1) (Tt dr2 cr2) = ( (dr1+cr2)==(cr1+dr2) )
 
+inv: SymbolOP -> SymbolOP
+inv Create = Delete
+inv Delete = Create
+inv Empty  = Empty
+
 Semigroup SymbolOP where
-     (<+>) Create Create = Create
-     (<+>) Create Delete = Delete
-     (<+>) Delete Create = Create
-     (<+>) Delete Delete = Delete
+  (<+>) Create Create = Create
+  (<+>) Create Delete = Empty
+  (<+>) Create Empty =  Create
+  (<+>) Delete Create = Empty
+  (<+>) Delete Delete = Delete
+  (<+>) Delete Empty =  Delete
+  (<+>) Empty Create =  Create
+  (<+>) Empty Delete =  Delete
+  (<+>) Empty Empty =   Empty
+
 
 infixr 5 .|.
 infixr 5 .+.
@@ -85,42 +96,36 @@ record FieldArgs where
   rw : Bool
 -}
 
-data FieldDef : Type where
-     FBool :  FieldDef
-     FString : FieldDef
-     FTterm :  FieldDef
+data FieldDefKey : Type where
+     FBool :  FieldDefKey
+     FString : FieldDefKey
+     FTterm :  FieldDefKey
+     
+data FieldDefVal : Type where
+     FTtermV :  FieldDefVal
+     FSop    :  FieldDefVal
 
-data KV = Key
+data KV = Key | Val
 
-data Schema2 : Type where
-     IField : (name:String) -> (ft: FieldDef) -> Schema2
-     EField : (name:String) -> (ns :String)-> Schema2  --col name, type name, ?add type of index?
-     (.|.) : (s1 : Schema2) -> (s2 :Schema2) -> Schema2 
+data Schema2 : KV -> Type where
+     IField : (name:String) -> (ft: FieldDefKey) -> Schema2 Key
+     IFieldV : (name:String) -> (ft: FieldDefVal) -> Schema2 Val
+     EField : (name:String) -> (ns :String)-> Schema2 Key --col name, type name, ?add type of index?
+     (.|.) : (s1 : Schema2 Key) -> (s2 :Schema2 Key) -> Schema2 Key 
+     (.+.) : (s1 : Schema2 Val) -> (s2 :Schema2 Val) -> Schema2 Val
 
-{-
-namespace test_def
-  data Schema : KV -> Type where
-     IField : (name:String) -> (ft: FieldDef) -> Schema K
-     EField : (name:String) -> (ns :String)-> Schema V
-     (.+.) : (s1 : Schema V) -> (s2 :Schema V) -> Schema V
-     (.|.) : (s1 : Schema K) -> (s2 :Schema K) -> Schema K
-
-  SchemaType : Schema kv -> Type
-  SchemaType (IField name ft) = ?SchemaType_rhs_1
-  SchemaType (EField name ns) = ?SchemaType_rhs_2
-  SchemaType (s1 .+. s2) = ?SchemaType_rhs_3
-  SchemaType (s1 .|. s2) = ?SchemaType_rhs_4
--}
-
-
-SchemaType2 : Schema2 -> Type
+SchemaType2 : Schema2 kv-> Type
 SchemaType2 (IField name FBool)= Bool
 SchemaType2 (IField name FString )= String
 SchemaType2 (IField name FTterm ) = Tterm
+SchemaType2 (IFieldV name FTtermV) = Tterm
+SchemaType2 (IFieldV name FSop) = SymbolOP
 SchemaType2 (EField name ns ) = Integer
 SchemaType2 (x .|. y) = (SchemaType2 x, SchemaType2 y)
+SchemaType2 (x .+. y) = (SchemaType2 x, SchemaType2 y)
 
-schema2ZeroVal : (s:Schema2) -> (SchemaType2 s)
+
+schema2ZeroVal : (s:Schema2 Key) -> (SchemaType2 s)
 schema2ZeroVal (IField name FBool) = False
 schema2ZeroVal (IField name FString ) = ""
 schema2ZeroVal (IField name FTterm ) = (Tt 0 0)
@@ -132,8 +137,11 @@ eqSchema2 : (SchemaType2 schema) -> (SchemaType2 schema) -> Bool
 eqSchema2 {schema = (IField name FBool)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IField name FString)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IField name FTterm)} item1 item2 = (item1 == item2)
+eqSchema2 {schema = (IFieldV name FTtermV)} item1 item2 = (item1 == item2)
+eqSchema2 {schema = (IFieldV name FSop)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (EField name ns)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (y .|. z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqSchema2  i1r i2r)
+eqSchema2 {schema = (y .+. z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqSchema2  i1r i2r)
 
 public export -- semigroup operation
 addSchema2Vals : (SchemaType2 schema) -> (SchemaType2 schema) -> (SchemaType2 schema)
@@ -145,9 +153,9 @@ addSchema2Vals {schema = (y .|. z)} (i1l,i1r) (i2l,i2r) = ( addSchema2Vals i1l i
 
 record ModelSchema where
      constructor MkModelSchema
-     key : Schema2
-     val : Schema2
-     rw : Schema2 -> Bool
+     key : Schema2 Key
+     val : Schema2 Key
+     rw : Schema2 Key -> Bool
 
 record ModelData (m:ModelSchema) where
      constructor MkMD
