@@ -331,8 +331,10 @@ namespace tab_widget
       let rows_tr = [ (printf "<tr id=%s >%s %s</tr>" rid k v) | (rid,(k,v)) <- rows_ids_zip]
       
       --_lines2io p_id rows_tr
-      runjsio () [insert_beforeend p_id x | x <- rows_tr]
-      pure ()
+      if True then
+         runjsio () [insert_beforeend p_id x | x <- rows_tr]
+      else 
+         pure ()
                
    public export  -- wo ids
    render_rows_wo_ids : (m:ModelSchema) -> ModelDataList m -> String
@@ -381,7 +383,7 @@ namespace tab_widget
       let x = render_rows_wo_ids m mdl
       let th_html = printf _tf_wo_ids (name mdl) (schema2thead2 schema_header ) x
       insert_beforeend p_id th_html
-            
+  
    public export
    on_table_commit: String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
    on_table_commit parent_tag_id m mdl = do
@@ -394,7 +396,9 @@ namespace tab_widget
       toggle_hide_show_element (get_commit_button_id _composite_id)
       --_cells_ro (val m) row_ids
       runjsio () [make_cells_ro x (val m) | x <- row_ids]
+
       
+      {-      
       ret_k <- _read_cells (key m) row_ids
       ret_v <- _read_cells (val m) row_ids      
       case (ret_k, ret_v) of
@@ -402,7 +406,7 @@ namespace tab_widget
          ( (Just r_k),(Just r_v) )=> do
                   console_log "muf"
                   insert_table_wo_ids _amendments_id m (MkMDList ((name mdl)++":amend") r_k r_v)
-
+-}
 
    public export
    insert_table : String -> String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
