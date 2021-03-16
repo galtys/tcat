@@ -335,11 +335,11 @@ namespace tab_widget
          """  -- _button_id label
          
    public export 
-   get_composite_id : String -> (m:ModelSchema) -> (ModelDataList m) -> String
+   get_composite_id : {a:KV} -> String -> (m:(ModelSchema a) ) -> (ModelDataList a m ) -> String
    get_composite_id p_id m y = (p_id ++ "__composite__" ++ (name y))
 
    public export 
-   get_amendments_id : String -> (m:ModelSchema) -> (ModelDataList m) -> String
+   get_amendments_id : {a:KV} -> String -> (m:ModelSchema a) -> (ModelDataList a m) -> String
    get_amendments_id p_id m y = (p_id ++ "__amendments__" ++ (name y))
       
       
@@ -364,7 +364,7 @@ namespace tab_widget
    get_row_id p_id  item = p_id++ "_row"++(renderDataAsKey item)
 
    public export  -- with ids
-   insert_rows : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
+   insert_rows : {a:KV} -> String -> (m:ModelSchema a) -> ModelDataList a m -> JS_IO ()
    insert_rows p_id m mdl = do
       let row_ids = [ (get_row_id p_id x) | x <- (keyL mdl)]
       
@@ -382,7 +382,7 @@ namespace tab_widget
          pure ()
                
    public export  -- wo ids
-   render_rows_wo_ids : (m:ModelSchema) -> ModelDataList m -> String
+   render_rows_wo_ids : {a:KV} -> (m:ModelSchema a) -> ModelDataList a m -> String
    render_rows_wo_ids m mdl 
      = let row_k = [ concat (render_wo_ids.renderDataWithSchema2 x)  | x <-(keyL mdl)]
            row_v = [ concat (render_wo_ids.renderDataWithSchema2 x)  | x <-(valL mdl)]
@@ -401,7 +401,7 @@ namespace tab_widget
                   (Just x) => pure (Just ([c]++x))
    
    public export
-   on_table_edit: String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
+   on_table_edit: {a:KV} -> String -> (m:ModelSchema a) -> ModelDataList a m -> JS_IO ()
    on_table_edit parent_tag_id m mdl = do
       --let _composite_id = "order1" ++ "__" ++ "items"
       let _composite_id = get_composite_id parent_tag_id m mdl
@@ -421,7 +421,7 @@ namespace tab_widget
 
       --console_log (show row_v)
    public export
-   insert_table_wo_ids : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
+   insert_table_wo_ids : {a:KV} -> String -> (m:ModelSchema a) -> ModelDataList a m -> JS_IO ()
    insert_table_wo_ids p_id m mdl = do
 --      let _composite_table_id = get_table_id _composite_id
       --let schema_header = (key m) .|. (val m)      
@@ -430,7 +430,7 @@ namespace tab_widget
       insert_beforeend p_id th_html
   
    public export
-   on_table_commit: String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
+   on_table_commit: {a:KV} -> String -> (m:ModelSchema a) -> ModelDataList a m -> JS_IO ()
    on_table_commit parent_tag_id m mdl = do
       let _composite_id = get_composite_id parent_tag_id m mdl
       let _amendments_id = get_amendments_id parent_tag_id m mdl            
@@ -454,7 +454,7 @@ namespace tab_widget
 -}
 
    public export
-   insert_table : String -> String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
+   insert_table : {a:KV} -> String -> String -> (m:ModelSchema a) -> ModelDataList a m -> JS_IO ()
    insert_table _composite_id _footer_id m mdl = do
 
       let _composite_table_id = get_table_id _composite_id
@@ -466,7 +466,7 @@ namespace tab_widget
       insert_rows _composite_table_id m mdl
 
    public export  --main init
-   table_card2 : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
+   table_card2 : {a:KV} -> String -> (m:ModelSchema a) -> ModelDataList a m -> JS_IO ()
    table_card2 parent_tag_id m mdl = do
       
       -- composite placeholder

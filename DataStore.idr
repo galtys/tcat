@@ -174,23 +174,25 @@ addSchema2Vals {schema = (IFieldV name FSop)} item1 item2 = item1 <+> item2  -- 
 addSchema2Vals {schema = (EField name ns)} item1 item2 = if ((item2== 0) || (item1==0)) then (item1 + item2) else item2
 addSchema2Vals {schema = (y .|. z)} (i1l,i1r) (i2l,i2r) = ( addSchema2Vals i1l i2l, addSchema2Vals i1r i2r)
 
-record ModelSchema where
+record ModelSchema (a:KV) where
      constructor MkModelSchema
      key : Schema2 Key
-     val : Schema2 Val
+     val : Schema2 a
 --     rw : Schema2 kv -> Bool
 
-record ModelData (m:ModelSchema) where
+
+record ModelData (a:KV) (m: (ModelSchema a))  where
      constructor MkMD
      size : Nat
-     data_key : Vect size (SchemaType2 (key m))
-     data_val : Vect size (SchemaType2 (val m))
+     data_key : Vect size (SchemaType2 (key m ) )
+     data_val : Vect size (SchemaType2 (val m ) )
 
-record Pokus (m:ModelSchema) where
-     constructor MkPokus
+
+--record Pokus (m:ModelSchema) where
+--     constructor MkPokus
      -- rwk : (key m) -> Bool
 
-record ModelDataList (m:ModelSchema) where
+record ModelDataList (a:KV) (m:ModelSchema a) where
      constructor MkMDList
      name : String
      --default_key : (SchemaType2 (key m))    -- as ZERO element?

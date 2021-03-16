@@ -58,7 +58,7 @@ renderSchemaDataVect s (x :: xs) = [ "["++(renderSchemaDataAsJsonP1 x)++"]" ] ++
 
 
 
-renderModelData : (m:ModelSchema) -> (ModelData m)  -> String
+renderModelData : {a:KV}-> (m:ModelSchema a) -> (ModelData a m)  -> String
 renderModelData m x = printf """[ [%s],  [%s]   ]""" (  joinVect $ renderSchemaDataVect (key m) (data_key x) ) 
                                            (  joinVect $ renderSchemaDataVect (val m) (data_val x) )
 
@@ -116,7 +116,7 @@ json2kv (JArray (( keyD) :: ( valD) :: xs) )    =  (keyD ,valD)
 
 
 
-test_json : (m:ModelSchema) -> (ModelData m) -> String
+test_json : {a:KV} -> (m:ModelSchema a) -> (ModelData a m) -> String
 test_json ms md = renderModelData ms md --items_ModelDataList
 
 --test_json ms md = renderModelData Items_ModelSchema test_ModelData
@@ -126,7 +126,7 @@ listJSON_2_kv (a::b::xs) = (json2ListJSON a, json2ListJSON b)
 listJSON_2_kv _ = ([],[])
 
 
-test_inv_ : (m:ModelSchema) -> (ModelData m) -> Maybe ( ModelDataList m  )
+test_inv_ : {a:KV} -> (m:ModelSchema a) -> (ModelData a m) -> Maybe ( ModelDataList a m  )
 test_inv_ ms md = do 
           js <- (parse (test_json ms md))
           let (k,v) =  listJSON_2_kv (json2ListJSON js)

@@ -38,7 +38,7 @@ _items_rw (IField name ft) = True
 _items_rw (EField name ns) = False
 _items_rw (s1 .|. s2) = False
 
-Items_ModelSchema : ModelSchema
+Items_ModelSchema : ModelSchema Val
 Items_ModelSchema = MkModelSchema keyItems valItems    --Items_ModelSchema
 
 --Items_ModelSchema' : ModelSchema
@@ -48,7 +48,7 @@ Items_ModelSchema = MkModelSchema keyItems valItems    --Items_ModelSchema
 --zeroVal = (Tt 0 0)
 
 
-items_ModelDataList : ModelDataList Items_ModelSchema
+items_ModelDataList : (ModelDataList Val) Items_ModelSchema
 items_ModelDataList = MkMDList "items" [ 1,2,3,4 ] 
                         [ ( Tt 3 0 ),
                           ( Tt 7 0 ),
