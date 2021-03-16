@@ -54,22 +54,26 @@ i2s x = the String (cast x)
 Semigroup Tterm where
      (<+>) a b = tadd a b
 
+
 Show Tterm where
      show (Tt x y) = show(x) ++ "//" ++ show(y)
 
 data SymbolOP = Create | Delete
-
-Semigroup SymbolOP where
-     (<+>) Create Create = Create
-     (<+>) Create Delete = Delete
-     (<+>) Delete Create = Create
-     (<+>) Delete Delete = Delete
 
 Eq SymbolOP where
      (==) Create Create = True
      (==) Delete Delete = True
      (==) _ _ = False     
      (/=) x y = not (x==y)
+
+Eq Tterm where
+     (==) (Tt dr1 cr1) (Tt dr2 cr2) = ( (dr1+cr2)==(cr1+dr2) )
+
+Semigroup SymbolOP where
+     (<+>) Create Create = Create
+     (<+>) Create Delete = Delete
+     (<+>) Delete Create = Create
+     (<+>) Delete Delete = Delete
 
 infixr 5 .|.
 
@@ -96,6 +100,16 @@ SchemaType2 (IField name FString )= String
 SchemaType2 (IField name FTterm ) = Tterm
 SchemaType2 (EField name ns ) = Integer
 SchemaType2 (x .|. y) = (SchemaType2 x, SchemaType2 y)
+
+
+
+public export 
+eqSchema2 : (SchemaType2 schema) -> (SchemaType2 schema) -> Bool
+eqSchema2 {schema = (IField name FBool)} item1 item2 = (item1 == item2)
+eqSchema2 {schema = (IField name FString)} item1 item2 = (item1 == item2)
+eqSchema2 {schema = (IField name FTterm)} item1 item2 = (item1 == item2)
+eqSchema2 {schema = (EField name ns)} item1 item2 = (item1 == item2)
+eqSchema2 {schema = (y .|. z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqSchema2  i1r i2r)
 
 public export -- semigroup operation
 addSchema2Vals : (SchemaType2 schema) -> (SchemaType2 schema) -> (SchemaType2 schema)

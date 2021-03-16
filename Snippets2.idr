@@ -136,7 +136,7 @@ make_cells_ro p_id (y .|. z)  = do
 
 
 
-public export
+public export  -- read <td>%s</td> when cells are read-only
 read_cells : String -> (s:Schema2) -> JS_IO (SchemaType2 s)
 read_cells p_id (IField name FBool) = do
                    let _cell_id = cell_id p_id name
@@ -209,6 +209,7 @@ runjsio ty (x::xs) = do
    runjsio ty xs
    pure ret
    
+  
 namespace tab_widget
    public export
    id_att_format : String
@@ -368,8 +369,6 @@ namespace tab_widget
       
 --      _cells_editable (val m) row_ids
       runjsio () [ make_cells_editable x (val m) | x <- row_ids]
-
-      
       toggle_hide_show_element (get_edit_button_id _composite_id)
       toggle_hide_show_element (get_commit_button_id _composite_id)
 
