@@ -44,6 +44,10 @@ Items_ModelSchema = MkModelSchema keyItems valItems _items_rw   --Items_ModelSch
 Items_ModelSchema' : ModelSchema
 Items_ModelSchema' = MkModelSchema keyItems valItems' _items_rw --Items_ModelSchema
 
+zeroVal : (SchemaType2 Main.valItems)
+zeroVal = (Tt 0 0)
+
+
 items_ModelDataList : ModelDataList Items_ModelSchema
 items_ModelDataList = MkMDList "items" [ 1,2,3,4 ] 
                         [ ( Tt 3 0 ),
@@ -51,16 +55,16 @@ items_ModelDataList = MkMDList "items" [ 1,2,3,4 ]
                           ( Tt 1 0 ),
                           ( Tt 1 39 ) ]
 
+zeroVal' : (SchemaType2 Main.valItems')
+zeroVal' = (False , "", Tt 0 0 )
+
+
 items_ModelDataList' : ModelDataList Items_ModelSchema'
 items_ModelDataList' = MkMDList "items" [ 1,2,3,4 ] 
                         [ (False , "res", Tt 3 0 ),
                           (False , "r", Tt 0 3 ),
                           (False , "il", Tt 1 0 ),
                           (False , "l", Tt 0 7 ) ]
-
-
-testVals : (SchemaType2 Main.valItems')
-testVals = (False , "res", Tt 3 0 )
 
 {-
 test_ModelData : ModelData Items_ModelSchema

@@ -101,7 +101,12 @@ SchemaType2 (IField name FTterm ) = Tterm
 SchemaType2 (EField name ns ) = Integer
 SchemaType2 (x .|. y) = (SchemaType2 x, SchemaType2 y)
 
-
+schema2ZeroVal : (s:Schema2) -> (SchemaType2 s)
+schema2ZeroVal (IField name FBool) = False
+schema2ZeroVal (IField name FString ) = ""
+schema2ZeroVal (IField name FTterm ) = (Tt 0 0)
+schema2ZeroVal (EField name ns) = 0
+schema2ZeroVal (x .|. y) = (schema2ZeroVal x,schema2ZeroVal y)
 
 public export 
 eqSchema2 : (SchemaType2 schema) -> (SchemaType2 schema) -> Bool
@@ -139,6 +144,7 @@ record ModelDataList (m:ModelSchema) where
      name : String
      --default_key : (SchemaType2 (key m))    -- as ZERO element?
      --default_value : (SchemaType2 (val m)) -- Acting as ZERO element?
+--     zero_val : (SchemaType2 (val m)) can be calculated from m
      keyL : List (SchemaType2 (key m))
      valL : List (SchemaType2 (val m))
 
