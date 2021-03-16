@@ -68,6 +68,8 @@ namespace render_with_ids
   renderDataWithSchema2 p_id {schema = (EField name ns)}      item  = [render_number_in_td_tag2 (cell_id p_id name) item]
   renderDataWithSchema2 p_id {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2 p_id iteml) ++ (renderDataWithSchema2 p_id itemr)
 
+
+
 namespace render_wo_ids
   -- using td tags
   public export

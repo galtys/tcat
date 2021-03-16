@@ -97,6 +97,13 @@ SchemaType2 (IField name FTterm ) = Tterm
 SchemaType2 (EField name ns ) = Integer
 SchemaType2 (x .|. y) = (SchemaType2 x, SchemaType2 y)
 
+public export -- semigroup operation
+addSchema2Vals : (SchemaType2 schema) -> (SchemaType2 schema) -> (SchemaType2 schema)
+addSchema2Vals {schema = (IField name FTterm)} item1 item2 = item1 <+> item2  -- For Tterm, add
+addSchema2Vals {schema = (IField name x)} item1 item2 = item2                 -- for all others, replace by item2
+addSchema2Vals {schema = (EField name ns)} item1 item2 = item2
+addSchema2Vals {schema = (y .|. z)} (i1l,i1r) (i2l,i2r) = ( addSchema2Vals i1l i2l, addSchema2Vals i1r i2r)
+
 record ModelSchema where
      constructor MkModelSchema
      key : Schema2
