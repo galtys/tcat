@@ -135,10 +135,6 @@ test_inv_ ms md = do
           let sz = (length ko)
           pure (MkMDList "items" ko vo)
 
-
-
-
-
 {-
 to_model_data : (m:ModelSchema) -> Maybe (ModelData m)
 to_model_data m  = do

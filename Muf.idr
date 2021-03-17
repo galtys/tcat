@@ -49,11 +49,12 @@ Items_ModelSchema = MkModelSchema keyItems valItems    --Items_ModelSchema
 
 
 items_ModelDataList : (ModelDataList Val) Items_ModelSchema
-items_ModelDataList = MkMDList "items" [ 1,2,3,4 ] 
+items_ModelDataList = MkMDList "items" [ 1,2,3,4 ,2] 
                         [ ( Tt 3 0 ),
                           ( Tt 7 0 ),
                           ( Tt 1 0 ),
-                          ( Tt 1 39 ) ]
+                          ( Tt 1 39 ),
+                          ( Tt 0 1)  ]
 
 --zeroVal' : (SchemaType2 Main.valItems')
 --zeroVal' = (False , "", Tt 0 0 )

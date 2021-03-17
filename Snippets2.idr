@@ -368,6 +368,13 @@ namespace tab_widget
    insert_rows p_id m mdl = do
       let row_ids = [ (get_row_id p_id x) | x <- (keyL mdl)]
       
+      let muf = do
+          x <- zip (keyL mdl) row_ids
+          let item = fst x
+          let rid = (get_row_id p_id item)
+          let x1 = (read_cells_attr rid (val m)  )
+          pure x1
+      
       let row_k = [ concat (render_with_ids.renderDataWithSchema2 (snd x) (fst x))  | x <-zip (keyL mdl) row_ids]
       let row_v = [ concat (render_with_ids.renderDataWithSchema2 (snd x) (fst x))  | x <-zip (valL mdl) row_ids]
       
@@ -379,8 +386,35 @@ namespace tab_widget
       if True then
          runjsio () [insert_beforeend p_id x | x <- rows_tr]
       else 
-         pure ()
-               
+         pure ()        
+
+   public export  -- with ids
+   insert_rows2 : {a:KV} -> String -> (m:ModelSchema a) -> ModelDataList a m -> JS_IO ()
+   insert_rows2 p_id m mdl = do
+      --let row_ids = [ (get_row_id p_id x) | x <- (keyL mdl)]
+      
+      let muf = do
+          x <- zip (keyL mdl) (valL mdl)
+          let rid = (get_row_id p_id (fst x))
+          let r_val = (snd x)
+          let current = (read_cells rid (val m))
+          
+          
+          pure current
+      
+      {-
+      let row_k = [ concat (render_with_ids.renderDataWithSchema2 (snd x) (fst x))  | x <-zip (keyL mdl) row_ids]
+      let row_v = [ concat (render_with_ids.renderDataWithSchema2 (snd x) (fst x))  | x <-zip (valL mdl) row_ids]     
+      let rows_zip = zip row_k row_v
+      let rows_ids_zip = zip row_ids rows_zip
+      let rows_tr = [ (printf "<tr id=%s >%s %s</tr>" rid k v) | (rid,(k,v)) <- rows_ids_zip]
+      if True then
+         runjsio () [insert_beforeend p_id x | x <- rows_tr]
+      else 
+         pure ()        
+      -}
+      pure ()       
+                                             
    public export  -- wo ids
    render_rows_wo_ids : {a:KV} -> (m:ModelSchema a) -> ModelDataList a m -> String
    render_rows_wo_ids m mdl 
@@ -413,6 +447,10 @@ namespace tab_widget
       let row_k =   [ get_cell_keys x (key m) | x <- row_ids]
       let row_v =   [ get_cell_keys x (val m) | x <- row_ids]
       --let row_v = [ concat (renderDataWithSchema2 (snd x) (fst x))  | x <-zip (valL mdl) row_ids]
+      
+--      let muf = do
+--          x <- (keyL mdl)
+--          pure (get_row_id _composite_table_id x)
       
 --      _cells_editable (val m) row_ids
       runjsio () [ make_cells_editable x (val m) | x <- row_ids]

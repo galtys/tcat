@@ -87,6 +87,16 @@ function get_text_data_val(key) {
 	return av
     }
 }
+
+function key_exist(key) {
+    var e = document.getElementById(key);
+    if (e==null) {
+	return 0;
+    } else {
+	return 1;
+    }
+}
+
 function get_qty_int_data_cr(key) {
     var e = document.getElementById(key);
     if (e==null) {

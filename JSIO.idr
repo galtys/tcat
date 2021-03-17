@@ -103,6 +103,9 @@ get_text_data_val = foreign FFI_JS "get_text_data_val(%0)" (String -> JS_IO Stri
 get_qty_int_data_dr : String -> JS_IO Int
 get_qty_int_data_dr = foreign FFI_JS "get_qty_int_data_dr(%0)" (String -> JS_IO Int)
 
+key_exist : String -> JS_IO Int
+key_exist = foreign FFI_JS "key_exist(%0)" (String -> JS_IO Int)
+
 get_qty_int_data_cr : String -> JS_IO Int
 get_qty_int_data_cr = foreign FFI_JS "get_qty_int_data_cr(%0)" (String -> JS_IO Int)
 
