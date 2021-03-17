@@ -94,20 +94,34 @@ get_qty_int_value2 : String -> JS_IO Int
 get_qty_int_value2 = foreign FFI_JS "get_qty_int_value2(%0)" (String -> JS_IO Int)
 
 -- ----------------------------------------------------------------------------------
-get_qty_int_data_val : String -> JS_IO Int
-get_qty_int_data_val = foreign FFI_JS "get_qty_int_data_val(%0)" (String -> JS_IO Int)
+get_qty_int_dataval : String -> JS_IO Int
+get_qty_int_dataval = foreign FFI_JS "get_qty_int_dataval(%0)" (String -> JS_IO Int)
 
-get_text_data_val : String -> JS_IO String
-get_text_data_val = foreign FFI_JS "get_text_data_val(%0)" (String -> JS_IO String)
+get_text_dataval : String -> JS_IO String
+get_text_dataval = foreign FFI_JS "get_text_dataval(%0)" (String -> JS_IO String)
 
-get_qty_int_data_dr : String -> JS_IO Int
-get_qty_int_data_dr = foreign FFI_JS "get_qty_int_data_dr(%0)" (String -> JS_IO Int)
+get_qty_int_datadr : String -> JS_IO Int
+get_qty_int_datadr = foreign FFI_JS "get_qty_int_datadr(%0)" (String -> JS_IO Int)
 
 key_exist : String -> JS_IO Int
 key_exist = foreign FFI_JS "key_exist(%0)" (String -> JS_IO Int)
 
-get_qty_int_data_cr : String -> JS_IO Int
-get_qty_int_data_cr = foreign FFI_JS "get_qty_int_data_cr(%0)" (String -> JS_IO Int)
+get_qty_int_datacr : String -> JS_IO Int
+get_qty_int_datacr = foreign FFI_JS "get_qty_intdata_cr(%0)" (String -> JS_IO Int)
+
+
+set_qty_int_dataval : String -> Int -> JS_IO ()
+set_qty_int_dataval = foreign FFI_JS "set_qty_int_dataval(%0,%1)" (String -> Int -> JS_IO ())
+
+set_text_dataval : String -> String ->  JS_IO ()
+set_text_dataval = foreign FFI_JS "set_text_dataval(%0,%1)" (String -> String -> JS_IO ())
+
+set_qty_int_datadr : String -> Int ->  JS_IO ()
+set_qty_int_datadr = foreign FFI_JS "set_qty_int_datadr(%0,%1)" (String -> Int -> JS_IO () )
+
+set_qty_int_datacr : String -> Int -> JS_IO ()
+set_qty_int_datacr = foreign FFI_JS "set_qty_int_datacr(%0,%1)" (String -> Int -> JS_IO ())
+
 
 -- ----------------------------------------------------------------------------------
 

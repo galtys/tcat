@@ -64,7 +64,7 @@ function get_element_text(key) {
 }
 
 // -----------------------------------------------
-function get_qty_int_data_val(key) {
+function get_qty_int_dataval(key) {
     var e = document.getElementById(key);
     if (e==null) {
 	return 0;
@@ -78,7 +78,7 @@ function get_qty_int_data_val(key) {
 	}
     }
 }
-function get_text_data_val(key) {
+function get_text_dataval(key) {
     var e = document.getElementById(key);
     if (e==null) {
 	return 0;
@@ -97,7 +97,7 @@ function key_exist(key) {
     }
 }
 
-function get_qty_int_data_cr(key) {
+function get_qty_int_datacr(key) {
     var e = document.getElementById(key);
     if (e==null) {
 	return 0;
@@ -111,7 +111,7 @@ function get_qty_int_data_cr(key) {
 	}
     }
 }
-function get_qty_int_data_dr(key) {
+function get_qty_int_datadr(key) {
     var e = document.getElementById(key);
     if (e==null) {
 	return 0;
@@ -123,6 +123,40 @@ function get_qty_int_data_dr(key) {
 	} else {
 	    return v;
 	}
+    }
+}
+
+    ///set
+function set_qty_int_dataval(key,val) {
+    var e = document.getElementById(key);
+    if (e==null) {
+	return 0;
+    } else {
+	e.dataval=val;
+    }
+}
+function set_text_dataval(key,val) {
+    var e = document.getElementById(key);
+    if (e==null) {
+	return 0;
+    } else {
+	e.dataval=val;
+    }
+}
+function set_qty_int_datacr(key,val) {
+    var e = document.getElementById(key);
+    if (e==null) {
+	return 0;
+    } else {
+	e.datacr = val;
+    }
+}
+function set_qty_int_datadr(key,val) {
+    var e = document.getElementById(key);
+    if (e==null) {
+	return 0;
+    } else {
+	e.datadr = val;
     }
 }
 

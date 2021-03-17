@@ -167,7 +167,7 @@ public export  -- read <td>%s</td> when cells are read-only
 read_cells : String -> (s:Schema2 kv) -> JS_IO (SchemaType2 s)
 read_cells p_id (IField name FBool) = do
                    let _cell_id = cell_id p_id name
-                   v <- get_text_data_val _cell_id
+                   v <- get_element_text _cell_id
                    pure (if (v=="True") then True else False)
 read_cells p_id (IField name FString) = do
                    let _cell_id = cell_id p_id name                                      
@@ -199,30 +199,30 @@ public export
 read_cells_attr : String -> (s:Schema2 kv) -> JS_IO (SchemaType2 s)
 read_cells_attr p_id (IField name FBool) = do
                    let _cell_id = cell_id p_id name
-                   v <- get_text_data_val _cell_id
+                   v <- get_text_dataval _cell_id
                    pure (if (v=="True") then True else False)
 read_cells_attr p_id (IField name FString) = do
                    let _cell_id = cell_id p_id name                                      
-                   v <- get_element_text _cell_id
+                   v <- get_text_dataval _cell_id
                    pure v
 read_cells_attr p_id (IField name FTterm)  = do
                    let _cell_input_id = cell_input_id p_id name
-                   dr <- get_qty_int_data_dr _cell_input_id
-                   cr <- get_qty_int_data_cr _cell_input_id                   
+                   dr <- get_qty_int_datadr _cell_input_id
+                   cr <- get_qty_int_datacr _cell_input_id                   
                    let dr_integer = the Integer (cast dr)
                    let cr_integer = the Integer (cast cr)
                    pure (Tt dr_integer cr_integer)
 read_cells_attr p_id (IFieldV name FTtermV)  = do
                    let _cell_input_id = cell_input_id p_id name
-                   dr <- get_qty_int_data_dr _cell_input_id
-                   cr <- get_qty_int_data_cr _cell_input_id                   
+                   dr <- get_qty_int_datadr _cell_input_id
+                   cr <- get_qty_int_datacr _cell_input_id                   
                    let dr_integer = the Integer (cast dr)
                    let cr_integer = the Integer (cast cr)
                    pure (Tt dr_integer cr_integer)
                    
 read_cells_attr p_id (EField name ns)  = do
                    let _cell_id = cell_id p_id name
-                   v <- get_qty_int _cell_id
+                   v <- get_qty_int_dataval _cell_id
                    let qty_integer = the Integer (cast v)                   
                    pure qty_integer
 read_cells_attr p_id (y .|. z)  =  do
@@ -396,9 +396,11 @@ namespace tab_widget
       let muf = do
           x <- zip (keyL mdl) (valL mdl)
           let rid = (get_row_id p_id (fst x))
+          let ke = key_exist rid
+          
           let r_val = (snd x)
           let current = (read_cells rid (val m))
-          
+                    
           
           pure current
       
