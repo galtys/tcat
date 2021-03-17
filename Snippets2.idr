@@ -194,6 +194,30 @@ read_cells p_id (y .|. z)  =  do
                    pure (r_y,r_z)
 
 
+set_cells_attr : String -> (SchemaType2 schema) -> JS_IO ()
+set_cells_attr p_id {schema=(IField name FBool)} True= do
+                   let _cell_id = cell_input_id p_id name
+                   set_text_dataval _cell_id "True"
+set_cells_attr p_id {schema=(IField name FBool)} False= do
+                   let _cell_id = cell_input_id p_id name
+                   set_text_dataval _cell_id "False"
+set_cells_attr p_id {schema=(IField name FString)} item = do
+                   let _cell_id = cell_input_id p_id name
+                   set_text_dataval _cell_id item
+                                      
+set_cells_attr p_id {schema=(IField name FTterm)} item= do
+                   let _cell_id = cell_input_id p_id name
+                   set_qty_int_datadr p_id (integer_to_int (dr item))
+                   set_qty_int_datacr p_id (integer_to_int (cr item))
+set_cells_attr p_id {schema=(IFieldV name FTtermV)} item= do
+                   let _cell_id = cell_input_id p_id name
+                   set_qty_int_datadr p_id (integer_to_int (dr item))
+                   set_qty_int_datacr p_id (integer_to_int (cr item))
+
+set_cells_attr p_id {schema=(EField name ns)} item = do
+                   let _cell_id = cell_input_id p_id name
+                   set_qty_int_dataval p_id (integer_to_int item)
+
 -- td: data-val  or data-dr/data-cr
 public export
 read_cells_attr : String -> (s:Schema2 kv) -> JS_IO (SchemaType2 s)
