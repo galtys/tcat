@@ -107,6 +107,8 @@ function get_qty_int_datacr(key) {
 	if (isNaN(v)) {
 	    return 0;
 	} else {
+	    console_log ("reading cr from: "+key)
+	    console_log (v)
 	    return v;
 	}
     }
@@ -121,6 +123,8 @@ function get_qty_int_datadr(key) {
 	if (isNaN(v)) {
 	    return 0;
 	} else {
+	    console_log ("reading dr from: "+key)
+	    console_log (v)	    
 	    return v;
 	}
     }
@@ -132,7 +136,7 @@ function set_qty_int_dataval(key,val) {
     if (e==null) {
 	return 0;
     } else {
-	e.dataval=val;
+	e.setAttribute("dataval",val);
     }
 }
 function set_text_dataval(key,val) {
@@ -140,15 +144,15 @@ function set_text_dataval(key,val) {
     if (e==null) {
 	return 0;
     } else {
-	e.dataval=val;
+	e.setAttribute("dataval",val);	
     }
 }
 function set_qty_int_datacr(key,val) {
-    var e = document.getElementById(key);
+    var e = document.getElementById(key);    
     if (e==null) {
 	return 0;
     } else {
-	e.datacr = val;
+        e.setAttribute("datacr",val);
     }
 }
 function set_qty_int_datadr(key,val) {
@@ -156,7 +160,9 @@ function set_qty_int_datadr(key,val) {
     if (e==null) {
 	return 0;
     } else {
-	e.datadr = val;
+	//console_log ("setting datadr")
+	//console_log (val)
+	e.setAttribute("datadr",val);
     }
 }
 

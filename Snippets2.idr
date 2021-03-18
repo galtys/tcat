@@ -194,29 +194,62 @@ read_cells p_id (y .|. z)  =  do
                    pure (r_y,r_z)
 
 
+public export
 set_cells_attr : String -> (SchemaType2 schema) -> JS_IO ()
 set_cells_attr p_id {schema=(IField name FBool)} True= do
-                   let _cell_id = cell_input_id p_id name
+                   let _cell_id = cell_id p_id name
                    set_text_dataval _cell_id "True"
 set_cells_attr p_id {schema=(IField name FBool)} False= do
-                   let _cell_id = cell_input_id p_id name
+                   let _cell_id = cell_id p_id name
                    set_text_dataval _cell_id "False"
 set_cells_attr p_id {schema=(IField name FString)} item = do
-                   let _cell_id = cell_input_id p_id name
+                   let _cell_id = cell_id p_id name
                    set_text_dataval _cell_id item
                                       
 set_cells_attr p_id {schema=(IField name FTterm)} item= do
-                   let _cell_id = cell_input_id p_id name
+                   let _cell_id = cell_id p_id name
+                   console_log "FTterm"
+                   console_log _cell_id
                    set_qty_int_datadr p_id (integer_to_int (dr item))
                    set_qty_int_datacr p_id (integer_to_int (cr item))
 set_cells_attr p_id {schema=(IFieldV name FTtermV)} item= do
-                   let _cell_id = cell_input_id p_id name
+                   let _cell_id = cell_id p_id name
+                   console_log "FTtermV"
+                   console_log _cell_id                   
                    set_qty_int_datadr p_id (integer_to_int (dr item))
                    set_qty_int_datacr p_id (integer_to_int (cr item))
-
 set_cells_attr p_id {schema=(EField name ns)} item = do
-                   let _cell_id = cell_input_id p_id name
+                   let _cell_id = cell_id p_id name
                    set_qty_int_dataval p_id (integer_to_int item)
+
+
+
+
+public export
+update_cells : String -> (SchemaType2 schema) -> JS_IO ()
+update_cells p_id {schema=(IField name FBool)} True= do
+                   let _cell_id = cell_id p_id name
+                   update_element_text _cell_id "True"
+update_cells p_id {schema=(IField name FBool)} False= do
+                   let _cell_id = cell_id p_id name
+                   update_element_text _cell_id "False"
+update_cells p_id {schema=(IField name FString)} item = do
+                   let _cell_id = cell_id p_id name
+                   update_element_text _cell_id item
+                                      
+update_cells p_id {schema=(IField name FTterm)} item= do
+                   let _cell_id = cell_id p_id name
+                   update_element_text _cell_id (printf "%d" (t2integer item))
+
+update_cells p_id {schema=(IFieldV name FTtermV)} item= do
+                   let _cell_id = cell_id p_id name
+                   update_element_text _cell_id (printf "%d" (t2integer item))
+
+update_cells p_id {schema=(EField name ns)} item = do
+                   let _cell_id = cell_id p_id name
+                   set_qty_int_dataval p_id (integer_to_int item)
+
+
 
 -- td: data-val  or data-dr/data-cr
 public export
@@ -411,24 +444,7 @@ namespace tab_widget
          runjsio () [insert_beforeend p_id x | x <- rows_tr]
       else 
          pure ()        
-{-
-   public export
-   update_cell : String -> (sk: Schema2 Key) -> (sv: Schema2 Val) -> (SchemaType2 sk) -> (SchemaType2 sv) -> JS_IO ()
-   update_cell p_id sk sv x_key x_val = do
-   
-      let rid = (get_row_id p_id x_key)
-      ke <- key_exist rid
-      let newvalue = (addSchema2Vals item current)
-      let k = concat (render_with_ids.renderDataWithSchema2 x_key rid )
-      let v = concat (render_with_ids.renderDataWithSchema2 x_key rid )
-      let row = printf "<tr id=%s >%s %s</tr>" rid k v
-
-      if (ke==1) then 
-         current = read_cells rid sv         
-         set_cells_attr rid newvalue
-      else
-         insert_beforeend p_id row
--}         
+         
    public export  -- with ids
    insert_rows2 : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
    insert_rows2 p_id m mdl = do
@@ -445,7 +461,14 @@ namespace tab_widget
           let row = printf "<tr id=%s >%s %s</tr>" rid k v                
           --let ret = update_cell p_id (key m) (val m) x_key x_val
           let ret = do
-              insert_beforeend p_id row
+                     ke <- key_exist rid
+                     console_log ("ke: " ++ (show ke))
+                     current <- read_cells rid (val m)
+--                     console_log (show current)                     
+                     if (ke==1) then update_cells rid (addSchema2Vals current x_val) --console_log $ concat (renderDataWithSchema2 (addSchema2Vals current x_val) )-- set_cells_attr rid current --(addSchema2Vals current x_val)
+
+                                else insert_beforeend p_id row
+
           pure ret
       runjsio () muf
 
