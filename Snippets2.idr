@@ -463,11 +463,16 @@ namespace tab_widget
       else 
          pure ()        
          
+         
+   public export
+   update_cells_ke1 : String -> (sv:Schema2 Val) -> (SchemaType2 sv) -> JS_IO ()
+   update_cells_ke1 rid sv x_val = do
+          current <- read_cells rid sv
+          update_cells rid (addSchema2Vals current x_val)
+          
    public export  -- with ids
    insert_rows2 : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
    insert_rows2 p_id m mdl = do
-      --let row_ids = [ (get_row_id p_id x) | x <- (keyL mdl)]      
-      --let in_list = (zip (keyL mdl) (valL mdl))
       
       let muf = do
           x <- (zip (keyL mdl) (valL mdl))
@@ -476,14 +481,11 @@ namespace tab_widget
           let rid = (get_row_id p_id x_key)
           let k =  concat (render_with_ids.renderDataWithSchema2 rid x_key)
           let v =  concat (render_with_ids.renderDataWithSchema2 rid x_val)
-          let row = printf "<tr id=%s >%s %s</tr>" rid k v                
-          --let ret = update_cell p_id (key m) (val m) x_key x_val
+          let row = printf "<tr id=%s >%s %s</tr>" rid k v
           let ret = do
                      ke <- key_exist rid
-                     current <- read_cells rid (val m)
-                     if (ke==1) then update_cells rid (addSchema2Vals current x_val)
+                     if (ke==1) then update_cells_ke1 rid (val m) x_val
                                 else insert_beforeend p_id row
-
           pure ret
       runjsio () muf
 
