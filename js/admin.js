@@ -69,7 +69,7 @@ function get_qty_int_dataval(key) {
     if (e==null) {
 	return 0;
     } else {
-	var av = e.dataval;
+	var av = e.getAttribute("dataval");
 	var v = parseInt(av,10);
 	if (isNaN(v)) {
 	    return 0;
@@ -83,7 +83,7 @@ function get_text_dataval(key) {
     if (e==null) {
 	return 0;
     } else {
-	var av = e.dataval;
+	var av = e.getAttribute("dataval");
 	return av
     }
 }
@@ -102,7 +102,7 @@ function get_qty_int_datacr(key) {
     if (e==null) {
 	return 0;
     } else {
-	var av = e.datacr;
+	var av = e.getAttribute("datacr");
 	var v = parseInt(av,10);
 	if (isNaN(v)) {
 	    return 0;
@@ -118,7 +118,7 @@ function get_qty_int_datadr(key) {
     if (e==null) {
 	return 0;
     } else {
-	var av = e.datadr;
+	var av = e.getAttribute("datadr");
 	var v = parseInt(av,10);
 	if (isNaN(v)) {
 	    return 0;

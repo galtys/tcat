@@ -127,6 +127,7 @@ make_cells_editable p_id (IFieldV name FTtermV)  = do
                    let _cell_id = cell_id p_id name
                    let _cell_input_id = cell_input_id p_id name
                    qty <- get_qty_int _cell_id
+                   
                    let input_element = render_number_input _cell_input_id (the Integer (cast qty)) 
                    update_element_text (cell_id p_id name) "" --console_log (printf "row: %s, field: %s" p_id name)
                    insert_beforeend _cell_id input_element
@@ -192,6 +193,66 @@ read_cells p_id (y .|. z)  =  do
                    r_y <- read_cells p_id y
                    r_z <- read_cells p_id z
                    pure (r_y,r_z)
+
+public export
+read_cells_row : List String -> (s:Schema2 kv) -> JS_IO (List (SchemaType2 s))
+read_cells_row [] s = pure []
+read_cells_row (x :: xs) s_kv = do
+       row <- read_cells x s_kv
+       ret <- read_cells_row xs s_kv
+       pure ([row] ++ ret)
+--read_cells_row r_ids skv = do       
+-- td: data-val  or data-dr/data-cr
+
+public export
+read_cells_attr : String -> (s:Schema2 kv) -> JS_IO (SchemaType2 s)
+read_cells_attr p_id (IField name FBool) = do
+                   let _cell_id = cell_id p_id name
+                   v <- get_text_dataval _cell_id
+                   pure (if (v=="True") then True else False)
+read_cells_attr p_id (IField name FString) = do
+                   let _cell_id = cell_id p_id name                                      
+                   v <- get_text_dataval _cell_id
+                   pure v
+read_cells_attr p_id (IField name FTterm)  = do
+                   let _cell_input_id = cell_id p_id name
+                   dr <- get_qty_int_datadr _cell_input_id
+                   cr <- get_qty_int_datacr _cell_input_id                   
+                   let dr_integer = the Integer (cast dr)
+                   let cr_integer = the Integer (cast cr)
+                   pure (Tt dr_integer cr_integer)
+read_cells_attr p_id (IFieldV name FTtermV)  = do
+                   let _cell_input_id = cell_id p_id name
+                   console_log ("id: "++ _cell_input_id)
+                   dr <- get_qty_int_datadr _cell_input_id
+                   cr <- get_qty_int_datacr _cell_input_id 
+                   let dr_integer = the Integer (cast dr)
+                   let cr_integer = the Integer (cast cr)
+                   console_log $ printf "dr: %d cr:%d" dr_integer cr_integer
+                   pure (Tt dr_integer cr_integer)
+                   
+read_cells_attr p_id (EField name ns)  = do
+                   let _cell_id = cell_id p_id name
+                   v <- get_qty_int_dataval _cell_id
+                   let qty_integer = the Integer (cast v)                   
+                   pure qty_integer
+read_cells_attr p_id (y .|. z)  =  do
+                   r_y <- read_cells_attr p_id y
+                   r_z <- read_cells_attr p_id z
+                   pure (r_y,r_z)
+read_cells_attr p_id (y .+. z)  =  do
+                   r_y <- read_cells_attr p_id y
+                   r_z <- read_cells_attr p_id z
+                   pure (r_y,r_z)
+
+public export
+read_cells_attr_row : List String -> (s:Schema2 kv) -> JS_IO (List (SchemaType2 s))
+read_cells_attr_row [] s = pure []
+read_cells_attr_row (x :: xs) s_kv = do
+       row <- read_cells_attr x s_kv
+       ret <- read_cells_attr_row xs s_kv
+       pure ([row] ++ ret)
+
 
 
 public export
@@ -269,45 +330,6 @@ update_cells p_id item = do
                    update_cells_td p_id item
                    set_cells_attr  p_id item
 
--- td: data-val  or data-dr/data-cr
-public export
-read_cells_attr : String -> (s:Schema2 kv) -> JS_IO (SchemaType2 s)
-read_cells_attr p_id (IField name FBool) = do
-                   let _cell_id = cell_id p_id name
-                   v <- get_text_dataval _cell_id
-                   pure (if (v=="True") then True else False)
-read_cells_attr p_id (IField name FString) = do
-                   let _cell_id = cell_id p_id name                                      
-                   v <- get_text_dataval _cell_id
-                   pure v
-read_cells_attr p_id (IField name FTterm)  = do
-                   let _cell_input_id = cell_input_id p_id name
-                   dr <- get_qty_int_datadr _cell_input_id
-                   cr <- get_qty_int_datacr _cell_input_id                   
-                   let dr_integer = the Integer (cast dr)
-                   let cr_integer = the Integer (cast cr)
-                   pure (Tt dr_integer cr_integer)
-read_cells_attr p_id (IFieldV name FTtermV)  = do
-                   let _cell_input_id = cell_input_id p_id name
-                   dr <- get_qty_int_datadr _cell_input_id
-                   cr <- get_qty_int_datacr _cell_input_id                   
-                   let dr_integer = the Integer (cast dr)
-                   let cr_integer = the Integer (cast cr)
-                   pure (Tt dr_integer cr_integer)
-                   
-read_cells_attr p_id (EField name ns)  = do
-                   let _cell_id = cell_id p_id name
-                   v <- get_qty_int_dataval _cell_id
-                   let qty_integer = the Integer (cast v)                   
-                   pure qty_integer
-read_cells_attr p_id (y .|. z)  =  do
-                   r_y <- read_cells_attr p_id y
-                   r_z <- read_cells_attr p_id z
-                   pure (r_y,r_z)
-read_cells_attr p_id (y .+. z)  =  do
-                   r_y <- read_cells_attr p_id y
-                   r_z <- read_cells_attr p_id z
-                   pure (r_y,r_z)
 
 
 public export
@@ -536,13 +558,26 @@ namespace tab_widget
    insert_table_wo_ids : {a:KV} -> String -> (m:ModelSchema a) -> ModelDataList a m -> JS_IO ()
    insert_table_wo_ids p_id m mdl = do
 --      let _composite_table_id = get_table_id _composite_id
-      --let schema_header = (key m) .|. (val m)      
+      --let schema_header = (key m) .|. (val m)
       let x = render_rows_wo_ids m mdl
       let th_html = printf _tf_wo_ids (name mdl) ((schema2thead2 (key m))++(schema2thead2 (val m))) x
       insert_beforeend p_id th_html
-  
+
    public export
-   on_table_commit: {a:KV} -> String -> (m:ModelSchema a) -> ModelDataList a m -> JS_IO ()
+   get_table_row_ids: String -> List String -> JS_IO (List String)
+   get_table_row_ids table_id [] = do
+      r_id <- firstElementChild table_id
+      get_table_row_ids table_id [r_id]
+      
+   get_table_row_ids table_id (x::xs) = do
+      r_id <- nextElementSibling x
+      if (r_id=="") then
+         pure ( [x]++xs )
+      else
+         get_table_row_ids table_id ([r_id,x]++xs)
+         
+   public export
+   on_table_commit: String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
    on_table_commit parent_tag_id m mdl = do
       let _composite_id = get_composite_id parent_tag_id m mdl
       let _amendments_id = get_amendments_id parent_tag_id m mdl            
@@ -554,8 +589,19 @@ namespace tab_widget
       --_cells_ro (val m) row_ids
       runjsio () [make_cells_ro x (val m) | x <- row_ids]
 
-      r_id <- firstElementChild _composite_table_id
-      console_log r_id
+--      r_id <- firstElementChild _composite_table_id
+      r_ids_act <- get_table_row_ids _composite_table_id []
+      
+      row_cells_k <- read_cells_row r_ids_act (key m)
+      row_cells_v <- read_cells_row r_ids_act (val m)
+      row_cells_attr_v <- read_cells_attr_row r_ids_act (val m)
+      
+      let df = [ addSchema2Vals v (invSchema2 av) | (v,av) <- zip row_cells_v row_cells_attr_v] --
+      
+      let amend = MkMDList "items:amend" row_cells_k df
+      insert_table_wo_ids _amendments_id m amend
+      
+      --console_log $ show (renderDataWithSchema2 "" df)
       
       {-      
       ret_k <- _read_cells (key m) row_ids
@@ -613,3 +659,7 @@ namespace tab_widget
       toggle_hide_show_element (_commit_button)
       
       --onClick "#table_card_edit" (on_table_edit parent_tag_id m mdl)
+
+-- Local Variables:
+-- idris-load-packages: ("contrib")
+-- End:

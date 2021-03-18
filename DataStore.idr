@@ -159,7 +159,7 @@ eqSchema2 {schema = (y .|. z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqS
 eqSchema2 {schema = (y .+. z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqSchema2  i1r i2r)
 
 public export
-invSchema2 : (SchemaTypeVal schema) -> (SchemaTypeVal schema)
+invSchema2 : (SchemaType2 schema) -> (SchemaType2 schema)
 invSchema2 {schema = (IFieldV name FTtermV)} item1 = tinv (item1)
 invSchema2 {schema = (IFieldV name FSop)} item1 = inv (item1)
 invSchema2 {schema = (y .+. z)} (iteml,itemr) = (invSchema2 iteml, invSchema2 itemr)

@@ -107,7 +107,7 @@ key_exist : String -> JS_IO Int
 key_exist = foreign FFI_JS "key_exist(%0)" (String -> JS_IO Int)
 
 get_qty_int_datacr : String -> JS_IO Int
-get_qty_int_datacr = foreign FFI_JS "get_qty_intdata_cr(%0)" (String -> JS_IO Int)
+get_qty_int_datacr = foreign FFI_JS "get_qty_int_datacr(%0)" (String -> JS_IO Int)
 
 
 set_qty_int_dataval : String -> Int -> JS_IO ()
