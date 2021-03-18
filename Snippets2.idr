@@ -208,48 +208,60 @@ set_cells_attr p_id {schema=(IField name FString)} item = do
                                       
 set_cells_attr p_id {schema=(IField name FTterm)} item= do
                    let _cell_id = cell_id p_id name
-                   console_log "FTterm"
-                   console_log _cell_id
                    set_qty_int_datadr p_id (integer_to_int (dr item))
                    set_qty_int_datacr p_id (integer_to_int (cr item))
 set_cells_attr p_id {schema=(IFieldV name FTtermV)} item= do
                    let _cell_id = cell_id p_id name
-                   console_log "FTtermV"
-                   console_log _cell_id                   
                    set_qty_int_datadr p_id (integer_to_int (dr item))
                    set_qty_int_datacr p_id (integer_to_int (cr item))
 set_cells_attr p_id {schema=(EField name ns)} item = do
                    let _cell_id = cell_id p_id name
                    set_qty_int_dataval p_id (integer_to_int item)
-
+set_cells_attr p_id {schema=(y .|. z)} (il,ir) = do
+                   set_cells_attr p_id il
+                   set_cells_attr p_id ir
+set_cells_attr p_id {schema=(y .+. z)} (il,ir) = do
+                   set_cells_attr p_id il
+                   set_cells_attr p_id ir
 
 
 
 public export
-update_cells : String -> (SchemaType2 schema) -> JS_IO ()
-update_cells p_id {schema=(IField name FBool)} True= do
+update_cells_td : String -> (SchemaType2 schema) -> JS_IO ()
+update_cells_td p_id {schema=(IField name FBool)} True= do
                    let _cell_id = cell_id p_id name
                    update_element_text _cell_id "True"
-update_cells p_id {schema=(IField name FBool)} False= do
+update_cells_td p_id {schema=(IField name FBool)} False= do
                    let _cell_id = cell_id p_id name
                    update_element_text _cell_id "False"
-update_cells p_id {schema=(IField name FString)} item = do
+update_cells_td p_id {schema=(IField name FString)} item = do
                    let _cell_id = cell_id p_id name
                    update_element_text _cell_id item
                                       
-update_cells p_id {schema=(IField name FTterm)} item= do
+update_cells_td p_id {schema=(IField name FTterm)} item= do
                    let _cell_id = cell_id p_id name
                    update_element_text _cell_id (printf "%d" (t2integer item))
 
-update_cells p_id {schema=(IFieldV name FTtermV)} item= do
+update_cells_td p_id {schema=(IFieldV name FTtermV)} item= do
                    let _cell_id = cell_id p_id name
                    update_element_text _cell_id (printf "%d" (t2integer item))
 
-update_cells p_id {schema=(EField name ns)} item = do
+update_cells_td p_id {schema=(EField name ns)} item = do
                    let _cell_id = cell_id p_id name
                    set_qty_int_dataval p_id (integer_to_int item)
 
+update_cells_td p_id {schema=(y .|. z)} (il,ir) = do
+                   set_cells_attr p_id il
+                   set_cells_attr p_id ir
+update_cells_td p_id {schema=(y .+. z)} (il,ir) = do
+                   set_cells_attr p_id il
+                   set_cells_attr p_id ir
 
+public export
+update_cells : String -> (SchemaType2 schema) -> JS_IO ()
+update_cells p_id item = do
+                   update_cells_td p_id item
+                   set_cells_attr  p_id item
 
 -- td: data-val  or data-dr/data-cr
 public export
