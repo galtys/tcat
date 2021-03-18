@@ -199,27 +199,33 @@ set_cells_attr : String -> (SchemaType2 schema) -> JS_IO ()
 set_cells_attr p_id {schema=(IField name FBool)} True= do
                    let _cell_id = cell_id p_id name
                    set_text_dataval _cell_id "True"
+                   
 set_cells_attr p_id {schema=(IField name FBool)} False= do
                    let _cell_id = cell_id p_id name
                    set_text_dataval _cell_id "False"
+                   
 set_cells_attr p_id {schema=(IField name FString)} item = do
                    let _cell_id = cell_id p_id name
                    set_text_dataval _cell_id item
                                       
 set_cells_attr p_id {schema=(IField name FTterm)} item= do
                    let _cell_id = cell_id p_id name
-                   set_qty_int_datadr p_id (integer_to_int (dr item))
-                   set_qty_int_datacr p_id (integer_to_int (cr item))
+                   set_qty_int_datadr _cell_id (integer_to_int (dr item))
+                   set_qty_int_datacr _cell_id (integer_to_int (cr item))
+                   
 set_cells_attr p_id {schema=(IFieldV name FTtermV)} item= do
                    let _cell_id = cell_id p_id name
-                   set_qty_int_datadr p_id (integer_to_int (dr item))
-                   set_qty_int_datacr p_id (integer_to_int (cr item))
+                   set_qty_int_datadr _cell_id (integer_to_int (dr item))
+                   set_qty_int_datacr _cell_id (integer_to_int (cr item))
+                   
 set_cells_attr p_id {schema=(EField name ns)} item = do
                    let _cell_id = cell_id p_id name
-                   set_qty_int_dataval p_id (integer_to_int item)
+                   set_qty_int_dataval _cell_id (integer_to_int item)
+                   
 set_cells_attr p_id {schema=(y .|. z)} (il,ir) = do
                    set_cells_attr p_id il
                    set_cells_attr p_id ir
+                   
 set_cells_attr p_id {schema=(y .+. z)} (il,ir) = do
                    set_cells_attr p_id il
                    set_cells_attr p_id ir
@@ -474,11 +480,8 @@ namespace tab_widget
           --let ret = update_cell p_id (key m) (val m) x_key x_val
           let ret = do
                      ke <- key_exist rid
-                     console_log ("ke: " ++ (show ke))
                      current <- read_cells rid (val m)
---                     console_log (show current)                     
-                     if (ke==1) then update_cells rid (addSchema2Vals current x_val) --console_log $ concat (renderDataWithSchema2 (addSchema2Vals current x_val) )-- set_cells_attr rid current --(addSchema2Vals current x_val)
-
+                     if (ke==1) then update_cells rid (addSchema2Vals current x_val)
                                 else insert_beforeend p_id row
 
           pure ret

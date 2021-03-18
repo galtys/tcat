@@ -160,8 +160,6 @@ function set_qty_int_datadr(key,val) {
     if (e==null) {
 	return 0;
     } else {
-	//console_log ("setting datadr")
-	//console_log (val)
 	e.setAttribute("datadr",val);
     }
 }
