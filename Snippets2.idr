@@ -411,36 +411,44 @@ namespace tab_widget
          runjsio () [insert_beforeend p_id x | x <- rows_tr]
       else 
          pure ()        
+{-
+   public export
+   update_cell : String -> (sk: Schema2 Key) -> (sv: Schema2 Val) -> (SchemaType2 sk) -> (SchemaType2 sv) -> JS_IO ()
+   update_cell p_id sk sv x_key x_val = do
+   
+      let rid = (get_row_id p_id x_key)
+      ke <- key_exist rid
+      let newvalue = (addSchema2Vals item current)
+      let k = concat (render_with_ids.renderDataWithSchema2 x_key rid )
+      let v = concat (render_with_ids.renderDataWithSchema2 x_key rid )
+      let row = printf "<tr id=%s >%s %s</tr>" rid k v
 
+      if (ke==1) then 
+         current = read_cells rid sv         
+         set_cells_attr rid newvalue
+      else
+         insert_beforeend p_id row
+-}         
    public export  -- with ids
-   insert_rows2 : {a:KV} -> String -> (m:ModelSchema a) -> ModelDataList a m -> JS_IO ()
+   insert_rows2 : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
    insert_rows2 p_id m mdl = do
-      --let row_ids = [ (get_row_id p_id x) | x <- (keyL mdl)]
+      --let row_ids = [ (get_row_id p_id x) | x <- (keyL mdl)]      
+      --let in_list = (zip (keyL mdl) (valL mdl))
       
       let muf = do
-          x <- zip (keyL mdl) (valL mdl)
-          let rid = (get_row_id p_id (fst x))
-          let ke = key_exist rid
-          
-          let r_val = (snd x)
-          let current = (read_cells rid (val m))
-                    
-          
-          pure current
-      
-      {-
-      let row_k = [ concat (render_with_ids.renderDataWithSchema2 (snd x) (fst x))  | x <-zip (keyL mdl) row_ids]
-      let row_v = [ concat (render_with_ids.renderDataWithSchema2 (snd x) (fst x))  | x <-zip (valL mdl) row_ids]     
-      let rows_zip = zip row_k row_v
-      let rows_ids_zip = zip row_ids rows_zip
-      let rows_tr = [ (printf "<tr id=%s >%s %s</tr>" rid k v) | (rid,(k,v)) <- rows_ids_zip]
-      if True then
-         runjsio () [insert_beforeend p_id x | x <- rows_tr]
-      else 
-         pure ()        
-      -}
-      pure ()       
-                                             
+          x <- (zip (keyL mdl) (valL mdl))
+          let x_key = (Prelude.Basics.fst x)
+          let x_val = (Prelude.Basics.snd x)
+          let rid = (get_row_id p_id x_key)
+          let k =  concat (render_with_ids.renderDataWithSchema2 rid x_key)
+          let v =  concat (render_with_ids.renderDataWithSchema2 rid x_val)
+          let row = printf "<tr id=%s >%s %s</tr>" rid k v                
+          --let ret = update_cell p_id (key m) (val m) x_key x_val
+          let ret = do
+              insert_beforeend p_id row
+          pure ret
+      runjsio () muf
+
    public export  -- wo ids
    render_rows_wo_ids : {a:KV} -> (m:ModelSchema a) -> ModelDataList a m -> String
    render_rows_wo_ids m mdl 
@@ -518,7 +526,7 @@ namespace tab_widget
 -}
 
    public export
-   insert_table : {a:KV} -> String -> String -> (m:ModelSchema a) -> ModelDataList a m -> JS_IO ()
+   insert_table : String -> String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
    insert_table _composite_id _footer_id m mdl = do
 
       let _composite_table_id = get_table_id _composite_id
@@ -527,10 +535,10 @@ namespace tab_widget
       let _th_html = printf _tf (name mdl) ((schema2thead2 (key m))++(schema2thead2 (val m))) (id_att _composite_table_id ) (_footer_id)
 
       insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader)  
-      insert_rows _composite_table_id m mdl
+      insert_rows2 _composite_table_id m mdl
 
    public export  --main init
-   table_card2 : {a:KV} -> String -> (m:ModelSchema a) -> ModelDataList a m -> JS_IO ()
+   table_card2 : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
    table_card2 parent_tag_id m mdl = do
       
       -- composite placeholder
