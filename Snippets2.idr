@@ -476,12 +476,12 @@ namespace tab_widget
       
       let muf = do
           x <- (zip (keyL mdl) (valL mdl))
-          let x_key = (Prelude.Basics.fst x)
-          let x_val = (Prelude.Basics.snd x)
+          let x_key = (fst x)
+          let x_val = (snd x)
           let rid = (get_row_id p_id x_key)
           let k =  concat (render_with_ids.renderDataWithSchema2 rid x_key)
           let v =  concat (render_with_ids.renderDataWithSchema2 rid x_val)
-          let row = printf "<tr id=%s >%s %s</tr>" rid k v
+          let row = printf "<tr id=%s>%s %s</tr>" rid k v
           let ret = do
                      ke <- key_exist rid
                      if (ke==1) then update_cells_ke1 rid (val m) x_val
