@@ -554,6 +554,8 @@ namespace tab_widget
       --_cells_ro (val m) row_ids
       runjsio () [make_cells_ro x (val m) | x <- row_ids]
 
+      r_id <- firstElementChild _composite_table_id
+      console_log r_id
       
       {-      
       ret_k <- _read_cells (key m) row_ids

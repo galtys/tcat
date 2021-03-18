@@ -220,6 +220,23 @@ function get_qty_int_flag(key) {
     }
 }
 
+function firstElementChild(key) {
+    var e = document.getElementById(key);
+    if ((e==null) || (e.firstElementChild==null)) {
+	return "";
+    } else {
+	return e.firstElementChild.getAttribute("id");
+    }
+}
+
+function nextElementSibling(key) {
+    var e = document.getElementById(key);
+    if ((e==null) || (e.nextElementSibling==null)) {
+	return "";
+    } else {
+	return e.nextElementSibling.getAttribute("id");
+    }
+}
 
 function console_log(msg) {
     console.log(msg);
@@ -270,6 +287,10 @@ function toggle_hide_snow_element(element_id) {
 	x.style.display = "none";
     }
 }
+
+
+// --------------------
+
 
 
 

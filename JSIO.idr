@@ -196,7 +196,12 @@ calc_sha1 = foreign FFI_JS "calc_sha1(%0)" (String -> JS_IO String)
 calc_sha256 : String -> JS_IO String
 calc_sha256 = foreign FFI_JS "calc_sha256(%0)" (String -> JS_IO String)
 
+-------------------------------
+firstElementChild : String -> JS_IO String
+firstElementChild = foreign FFI_JS "firstElementChild(%0)" (String -> JS_IO String)
 
+nextElementSibling : String -> JS_IO String
+nextElementSibling = foreign FFI_JS "nextElementSibling(%0)" (String -> JS_IO String)
 
 
 -- UPDATE EVENTS
