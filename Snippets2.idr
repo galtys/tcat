@@ -617,39 +617,41 @@ namespace tab_widget
       insert_rows2 _composite_table_id m mdl
 
    public export  --main init
-   table_card2 : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
-   table_card2 parent_tag_id m mdl = do
+   table_composite : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   table_composite parent_tag_id m mdl = do
       
-      -- composite placeholder
-
+      -- Composite
       let _composite_id = get_composite_id parent_tag_id m mdl      
       let _composite_html = ( printf _composite _composite_id )      
       insert_beforeend parent_tag_id _composite_html
       insert_beforeend _composite_id "<h2>Order</h2>"      
 
-      -- amendments placeholder
+      let _edit_button = get_edit_button_id _composite_id
+      let _commit_button = get_commit_button_id _composite_id      
+      let _footer_id = get_card_footer_id _composite_id       
+      
+      insert_table _composite_id (id_att _footer_id) m mdl                 
+      
+      
+      insert_beforeend _footer_id (printf _button _edit_button "Edit")
+      insert_beforeend _footer_id (printf _button _commit_button "Commit")            
+      
+      
+      onClick ("#" ++ _edit_button) (on_table_edit parent_tag_id m mdl)
+      onClick ("#" ++ _commit_button) (on_table_commit parent_tag_id m mdl)      
+      toggle_hide_show_element (_commit_button)
+
+   public export  --main init
+   table_amendments : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   table_amendments parent_tag_id m mdl = do
+   
+      -- Amendments
       let _amendments_id = get_amendments_id parent_tag_id m mdl      
       let _amendments_html = ( printf _amendments _amendments_id )      
       insert_beforeend parent_tag_id _amendments_html
       insert_beforeend _amendments_id "<h2>Amendments</h2>"
 
-      -- table
-      let _footer_id = get_card_footer_id _composite_id       
-      insert_table _composite_id (id_att _footer_id) m mdl                 
-
-      insert_table_wo_ids _amendments_id m mdl
---      insert_table_wo_ids _amendments_id m mdl
---      insert_table_wo_ids _amendments_id m mdl
-
-      let _edit_button = get_edit_button_id _composite_id
-      let _commit_button = get_commit_button_id _composite_id      
-      insert_beforeend _footer_id (printf _button _edit_button "Edit")
-      insert_beforeend _footer_id (printf _button _commit_button "Commit")            
-      onClick ("#" ++ _edit_button) (on_table_edit parent_tag_id m mdl)
-      onClick ("#" ++ _commit_button) (on_table_commit parent_tag_id m mdl)      
-      toggle_hide_show_element (_commit_button)
-      
-      --onClick "#table_card_edit" (on_table_edit parent_tag_id m mdl)
+      insert_table_wo_ids _amendments_id m mdl      
 
 -- Local Variables:
 -- idris-load-packages: ("contrib")

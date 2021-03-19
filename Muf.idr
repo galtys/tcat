@@ -22,10 +22,13 @@ import JSIO
      (Just j) => console_log (Language.JSON.Data.format 2 j)
 -}
 keyItems : Schema2 Key
-keyItems = (EField "sku1" "asset")                                
+keyItems = (EField "sku1" "asset") .|. (EField "sku2" "asset")
 
 valItems : Schema2 Val
 valItems = (IFieldV "qty" FTtermV)
+
+priceItems : Schema2 Val
+priceItems = (IFieldV "price" FTtermV)
 
 --valItems' : Schema2 Key
 --valItems' = (IField "flag" FBool) .|. (IField "note" FString) .|. (IField "qty" FTterm)
@@ -49,7 +52,7 @@ Items_ModelSchema = MkModelSchema keyItems valItems    --Items_ModelSchema
 
 
 items_ModelDataList : (ModelDataList Val) Items_ModelSchema
-items_ModelDataList = MkMDList "items" [ 1,2,3,4 ,2] 
+items_ModelDataList = MkMDList "items" [ (1,100), (2,100), (3,100), (4,100) ,(2,100) ] 
                         [ ( Tt 3 0 ),
                           ( Tt 7 0 ),
                           ( Tt 1 0 ),
@@ -85,8 +88,9 @@ main = do
    console_log new_row_sha1
    console_log new_row_sha256
    
-   tab_widget.table_card2 "order1" Items_ModelSchema items_ModelDataList
-
+   tab_widget.table_composite "order1" Items_ModelSchema items_ModelDataList
+   tab_widget.table_amendments "order1" Items_ModelSchema items_ModelDataList
+   
 --   insert_beforeend "so_composite" (table_card table_composite_id THeader)
 --   line_list2io_amend table_composite_id test_list
 
