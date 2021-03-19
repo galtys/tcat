@@ -30,11 +30,8 @@ valItems = (IFieldV "qty" FTtermV)
 priceItems : Schema2 Val
 priceItems = (IFieldV "price" FTtermV)
 
---valItems' : Schema2 Key
---valItems' = (IField "flag" FBool) .|. (IField "note" FString) .|. (IField "qty" FTterm)
-
---Items_ModelSchema : ModelSchema
---Items_ModelSchema = MkModelSchema keyItems valItems
+subtotalItems : Schema2 Val
+subtotalItems = (IFieldV "subtotal" FTtermV)
 
 _items_rw : Schema2 kv-> Bool
 _items_rw (IField name ft) = True
@@ -42,44 +39,42 @@ _items_rw (EField name ns) = False
 _items_rw (s1 .|. s2) = False
 
 Items_ModelSchema : ModelSchema Val
-Items_ModelSchema = MkModelSchema keyItems valItems    --Items_ModelSchema
+Items_ModelSchema = MkModelSchema keyItems valItems
 
---Items_ModelSchema' : ModelSchema 
---Items_ModelSchema' = MkModelSchema keyItems valItems' _items_rw --Items_ModelSchema
+Pricelist_ModelSchema : ModelSchema Val
+Pricelist_ModelSchema = MkModelSchema keyItems priceItems
 
---zeroVal : (SchemaType2 Main.valItems)
---zeroVal = (Tt 0 0)
+Subtotal_ModelSchema : ModelSchema Val
+Subtotal_ModelSchema = MkModelSchema keyItems subtotalItems
+
+Warehouse_ModelSchema : ModelSchema Val
+Warehouse_ModelSchema = MkModelSchema keyItems ( (IFieldV "routing" FTtermV) .+. (IFieldV "done" FTtermV) )
+
+
+keyItems_data : List (SchemaType2 Main.keyItems)
+keyItems_data = [ (1,100), (2,100), (3,100), (4,100) ,(2,100) ] 
 
 
 items_ModelDataList : (ModelDataList Val) Items_ModelSchema
-items_ModelDataList = MkMDList "items" [ (1,100), (2,100), (3,100), (4,100) ,(2,100) ] 
+items_ModelDataList = MkMDList "items" keyItems_data
                         [ ( Tt 3 0 ),
                           ( Tt 7 0 ),
                           ( Tt 1 0 ),
                           ( Tt 1 0 ),
                           ( Tt 0 1)  ]
 
---zeroVal' : (SchemaType2 Main.valItems')
---zeroVal' = (False , "", Tt 0 0 )
+pricelist_ModelDataList : (ModelDataList Val) Pricelist_ModelSchema
+pricelist_ModelDataList = MkMDList "pricelist" [ (1,100), (2,100), (3,100), (4,100) ]
+                        [ ( Tt 3 0 ),
+                          ( Tt 7 0 ),
+                          ( Tt 1 0 ),
+                          ( Tt 2 0 )]
 
-{-
-items_ModelDataList' : ModelDataList Items_ModelSchema'
-items_ModelDataList' = MkMDList "items" [ 1,2,3,4 ] 
-                        [ (False , "res", Tt 3 0 ),
-                          (False , "r", Tt 0 3 ),
-                          (False , "il", Tt 1 0 ),
-                          (False , "l", Tt 0 7 ) ]
--}
+subtotal_ModelDataList : (ModelDataList Val) Subtotal_ModelSchema
+subtotal_ModelDataList = MkMDList "subtotal" [] []
 
-{-
-test_ModelData : ModelData Items_ModelSchema
-test_ModelData = MkMD 4 [ 1,2,3,4 ] 
-                        [ (Tt 3 0 ),
-                          (Tt 2 0 ),
-                          (Tt 1 0 ),
-                          (Tt 1 78 ) ]
--}
-
+warehouse_ModelDataList : (ModelDataList Val) Warehouse_ModelSchema
+warehouse_ModelDataList = MkMDList "warehouse" [] []
 
 partial main : JS_IO ()
 main = do      
@@ -88,9 +83,17 @@ main = do
    console_log new_row_sha1
    console_log new_row_sha256
    
-   tab_widget.table_composite "order1" Items_ModelSchema items_ModelDataList
-   tab_widget.table_amendments "order1" Items_ModelSchema items_ModelDataList
+   tab_widget.table_composite "Order1" "order1" Items_ModelSchema items_ModelDataList
+   tab_widget.table_amendments "Amendments" "order1" Items_ModelSchema items_ModelDataList
+
+   tab_widget.table_amendments "Pricelist" "pricelist" Pricelist_ModelSchema pricelist_ModelDataList   
    
+
+   tab_widget.table_amendments "Subtotals" "subtotal" Subtotal_ModelSchema subtotal_ModelDataList               
+
+                                    
+   tab_widget.table_composite "Warehouse" "warehouse" Warehouse_ModelSchema warehouse_ModelDataList
+                                                                                                               
 --   insert_beforeend "so_composite" (table_card table_composite_id THeader)
 --   line_list2io_amend table_composite_id test_list
 
