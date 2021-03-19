@@ -127,10 +127,13 @@ make_cells_editable p_id (IFieldV name FTtermV)  = do
                    let _cell_id = cell_id p_id name
                    let _cell_input_id = cell_input_id p_id name
                    qty <- get_qty_int _cell_id
-                   
-                   let input_element = render_number_input _cell_input_id (the Integer (cast qty)) 
+                   let qty_integer = (the Integer (cast qty))
+                   let input_element = render_number_input _cell_input_id qty_integer
+                   console_log input_element
                    update_element_text (cell_id p_id name) "" --console_log (printf "row: %s, field: %s" p_id name)
                    insert_beforeend _cell_id input_element
+                   
+                   
 make_cells_editable p_id (IField name fd)  = pure () --console_log (printf "row: %s, field: %s" p_id name)
 make_cells_editable p_id (EField name fd)  = pure () --console_log (printf "row: %s, field: %s" p_id name)
 make_cells_editable p_id (y .|. z)  = do 
@@ -154,8 +157,11 @@ make_cells_ro p_id (IFieldV name FTtermV)  = do
                    let _cell_input_id = cell_input_id p_id name
                    -- need to get into the input tag
                    qty <- get_qty_int_value2 _cell_input_id
-                   update_element_text (cell_id p_id name) "" --console_log (printf "row: %s, field: %s" p_id name)
-                   update_element_text (cell_id p_id name)  (the String (cast qty))
+                   let qty_string = (the String (cast qty))
+                   console_log (printf "make cells ro: %s" qty_string)
+                   --update_element_text (cell_id p_id name) "" --console_log (printf "row: %s, field: %s" p_id name)
+                   update_element_text (cell_id p_id name) qty_string
+                   
 make_cells_ro p_id (IField name fd)  = pure ()
 make_cells_ro p_id (EField name fd)  = pure ()-- console_log (printf "row: %s, field: %s" p_id name)
 make_cells_ro p_id (y .|. z)  = do 
@@ -529,6 +535,18 @@ namespace tab_widget
               case ret of
                   Nothing => pure (Just [c])
                   (Just x) => pure (Just ([c]++x))
+   public export
+   get_table_row_ids: String -> List String -> JS_IO (List String)
+   get_table_row_ids table_id [] = do
+      r_id <- firstElementChild table_id
+      get_table_row_ids table_id [r_id]
+      
+   get_table_row_ids table_id (x::xs) = do
+      r_id <- nextElementSibling x
+      if (r_id=="") then
+         pure ( [x]++xs )
+      else
+         get_table_row_ids table_id ([r_id,x]++xs)
    
    public export
    on_table_edit: {a:KV} -> String -> (m:ModelSchema a) -> ModelDataList a m -> JS_IO ()
@@ -539,7 +557,9 @@ namespace tab_widget
       --console_log "table edit"
       --console_log _composite_table_id
       
-      let row_ids = [ (get_row_id _composite_table_id x) | x <- (keyL mdl)]
+      --let row_ids = [ (get_row_id _composite_table_id x) | x <- (keyL mdl)]
+      row_ids <- get_table_row_ids _composite_table_id []
+            
       let row_k =   [ get_cell_keys x (key m) | x <- row_ids]
       let row_v =   [ get_cell_keys x (val m) | x <- row_ids]
       --let row_v = [ concat (renderDataWithSchema2 (snd x) (fst x))  | x <-zip (valL mdl) row_ids]
@@ -563,18 +583,6 @@ namespace tab_widget
       let th_html = printf _tf_wo_ids (name mdl) ((schema2thead2 (key m))++(schema2thead2 (val m))) x
       insert_beforeend p_id th_html
 
-   public export
-   get_table_row_ids: String -> List String -> JS_IO (List String)
-   get_table_row_ids table_id [] = do
-      r_id <- firstElementChild table_id
-      get_table_row_ids table_id [r_id]
-      
-   get_table_row_ids table_id (x::xs) = do
-      r_id <- nextElementSibling x
-      if (r_id=="") then
-         pure ( [x]++xs )
-      else
-         get_table_row_ids table_id ([r_id,x]++xs)
          
    public export
    on_table_commit: String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
@@ -582,19 +590,20 @@ namespace tab_widget
       let _composite_id = get_composite_id parent_tag_id m mdl
       let _amendments_id = get_amendments_id parent_tag_id m mdl            
       let _composite_table_id = get_table_id _composite_id      
-      let row_ids = [ (get_row_id _composite_table_id x) | x <- (keyL mdl)]
+      --let row_ids = [ (get_row_id _composite_table_id x) | x <- (keyL mdl)]
                         
       toggle_hide_show_element (get_edit_button_id _composite_id)
       toggle_hide_show_element (get_commit_button_id _composite_id)
+      row_ids <- get_table_row_ids _composite_table_id []
       --_cells_ro (val m) row_ids
       runjsio () [make_cells_ro x (val m) | x <- row_ids]
 
 --      r_id <- firstElementChild _composite_table_id
-      r_ids_act <- get_table_row_ids _composite_table_id []
+
       
-      row_cells_k <- read_cells_row r_ids_act (key m)
-      row_cells_v <- read_cells_row r_ids_act (val m)
-      row_cells_attr_v <- read_cells_attr_row r_ids_act (val m)
+      row_cells_k <- read_cells_row row_ids (key m)
+      row_cells_v <- read_cells_row row_ids (val m)
+      row_cells_attr_v <- read_cells_attr_row row_ids (val m)
       
       let df = [ addSchema2Vals v (invSchema2 av) | (v,av) <- zip row_cells_v row_cells_attr_v] --
       
