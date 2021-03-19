@@ -107,8 +107,6 @@ function get_qty_int_datacr(key) {
 	if (isNaN(v)) {
 	    return 0;
 	} else {
-	    console_log ("reading cr from: "+key)
-	    console_log (v)
 	    return v;
 	}
     }
@@ -123,8 +121,6 @@ function get_qty_int_datadr(key) {
 	if (isNaN(v)) {
 	    return 0;
 	} else {
-	    console_log ("reading dr from: "+key)
-	    console_log (v)	    
 	    return v;
 	}
     }

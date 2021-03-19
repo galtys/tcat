@@ -53,7 +53,7 @@ items_ModelDataList = MkMDList "items" [ 1,2,3,4 ,2]
                         [ ( Tt 3 0 ),
                           ( Tt 7 0 ),
                           ( Tt 1 0 ),
-                          ( Tt 1 39 ),
+                          ( Tt 1 0 ),
                           ( Tt 0 1)  ]
 
 --zeroVal' : (SchemaType2 Main.valItems')

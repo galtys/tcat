@@ -29,7 +29,7 @@ schema2thead2 sch = ret where
   schema2th (s1 .+. s2) = (schema2th s1) ++ (schema2th s2)
   ths : String
   ths = concat $ schema2th sch
-  ret = printf "<tr>%s</tr>" ths
+  ret = printf "%s" ths
 
 public export
 render_number_input : String -> Integer ->  String
@@ -121,7 +121,7 @@ make_cells_editable p_id (IField name FTterm)  = do
                    let _cell_input_id = cell_input_id p_id name
                    qty <- get_qty_int _cell_id
                    let input_element = render_number_input _cell_input_id (the Integer (cast qty)) 
-                   update_element_text (cell_id p_id name) "" --console_log (printf "row: %s, field: %s" p_id name)
+                   update_element_text (cell_id p_id name) ""
                    insert_beforeend _cell_id input_element
 make_cells_editable p_id (IFieldV name FTtermV)  = do
                    let _cell_id = cell_id p_id name
@@ -129,12 +129,11 @@ make_cells_editable p_id (IFieldV name FTtermV)  = do
                    qty <- get_qty_int _cell_id
                    let qty_integer = (the Integer (cast qty))
                    let input_element = render_number_input _cell_input_id qty_integer
-                   console_log input_element
-                   update_element_text (cell_id p_id name) "" --console_log (printf "row: %s, field: %s" p_id name)
+                   update_element_text (cell_id p_id name) ""
                    insert_beforeend _cell_id input_element
 
-make_cells_editable p_id (IField name fd)  = pure () --console_log (printf "row: %s, field: %s" p_id name)
-make_cells_editable p_id (EField name fd)  = pure () --console_log (printf "row: %s, field: %s" p_id name)
+make_cells_editable p_id (IField name fd)  = pure ()
+make_cells_editable p_id (EField name fd)  = pure ()
 make_cells_editable p_id (y .|. z)  = do 
                                     make_cells_editable p_id y
                                     make_cells_editable p_id z
@@ -149,7 +148,7 @@ make_cells_ro p_id (IField name FTterm)  = do
                    let _cell_input_id = cell_input_id p_id name
                    -- need to get into the input tag
                    qty <- get_qty_int_value2 _cell_input_id
-                   update_element_text (cell_id p_id name) "" --console_log (printf "row: %s, field: %s" p_id name)
+                   update_element_text (cell_id p_id name) ""
                    update_element_text (cell_id p_id name)  (the String (cast qty))
 make_cells_ro p_id (IFieldV name FTtermV)  = do
                    let _cell_id = cell_id p_id name
@@ -157,12 +156,10 @@ make_cells_ro p_id (IFieldV name FTtermV)  = do
                    -- need to get into the input tag
                    qty <- get_qty_int_value2 _cell_input_id
                    let qty_string = (the String (cast qty))
-                   console_log (printf "make cells ro: %s" qty_string)
-                   --update_element_text (cell_id p_id name) "" --console_log (printf "row: %s, field: %s" p_id name)
                    update_element_text (cell_id p_id name) qty_string
                    
 make_cells_ro p_id (IField name fd)  = pure ()
-make_cells_ro p_id (EField name fd)  = pure ()-- console_log (printf "row: %s, field: %s" p_id name)
+make_cells_ro p_id (EField name fd)  = pure ()
 make_cells_ro p_id (y .|. z)  = do 
                                     make_cells_ro p_id y
                                     make_cells_ro p_id z
@@ -228,12 +225,10 @@ read_cells_attr p_id (IField name FTterm)  = do
                    pure (Tt dr_integer cr_integer)
 read_cells_attr p_id (IFieldV name FTtermV)  = do
                    let _cell_input_id = cell_id p_id name
-                   console_log ("id: "++ _cell_input_id)
                    dr <- get_qty_int_datadr _cell_input_id
                    cr <- get_qty_int_datacr _cell_input_id 
                    let dr_integer = the Integer (cast dr)
                    let cr_integer = the Integer (cast cr)
-                   console_log $ printf "dr: %d cr:%d" dr_integer cr_integer
                    pure (Tt dr_integer cr_integer)
                    
 read_cells_attr p_id (EField name ns)  = do
@@ -557,33 +552,20 @@ namespace tab_widget
       --let _composite_id = "order1" ++ "__" ++ "items"
       let _composite_id = get_composite_id parent_tag_id m mdl
       let _composite_table_id = get_table_id _composite_id      
-      --console_log "table edit"
-      --console_log _composite_table_id
-      
-      --let row_ids = [ (get_row_id _composite_table_id x) | x <- (keyL mdl)]
       row_ids <- get_table_row_ids _composite_table_id []
             
       let row_k =   [ get_cell_keys x (key m) | x <- row_ids]
       let row_v =   [ get_cell_keys x (val m) | x <- row_ids]
-      --let row_v = [ concat (renderDataWithSchema2 (snd x) (fst x))  | x <-zip (valL mdl) row_ids]
-      
---      let muf = do
---          x <- (keyL mdl)
---          pure (get_row_id _composite_table_id x)
-      
---      _cells_editable (val m) row_ids
       runjsio () [ make_cells_editable x (val m) | x <- row_ids]
       toggle_hide_show_element (get_edit_button_id _composite_id)
       toggle_hide_show_element (get_commit_button_id _composite_id)
-
-      --console_log (show row_v)
+      
    public export
    insert_table_wo_ids : {a:KV} -> String -> (m:ModelSchema a) -> ModelDataList a m -> JS_IO ()
    insert_table_wo_ids p_id m mdl = do
---      let _composite_table_id = get_table_id _composite_id
-      --let schema_header = (key m) .|. (val m)
       let x = render_rows_wo_ids m mdl
-      let th_html = printf _tf_wo_ids (name mdl) ((schema2thead2 (key m))++(schema2thead2 (val m))) x
+      let head_m = printf "<tr>%s %s</tr>" (schema2thead2 (key m)) (schema2thead2 (val m))
+      let th_html = printf _tf_wo_ids (name mdl) head_m x
       insert_beforeend p_id th_html
 
          
@@ -593,7 +575,6 @@ namespace tab_widget
       let _composite_id = get_composite_id parent_tag_id m mdl
       let _amendments_id = get_amendments_id parent_tag_id m mdl            
       let _composite_table_id = get_table_id _composite_id      
-      --let row_ids = [ (get_row_id _composite_table_id x) | x <- (keyL mdl)]
                         
       toggle_hide_show_element (get_edit_button_id _composite_id)
       toggle_hide_show_element (get_commit_button_id _composite_id)
@@ -601,9 +582,6 @@ namespace tab_widget
       --_cells_ro (val m) row_ids
       runjsio () [make_cells_ro x (val m) | x <- row_ids]
 
---      r_id <- firstElementChild _composite_table_id
-
-      
       row_cells_k <- read_cells_row row_ids (key m)
       row_cells_v <- read_cells_row row_ids (val m)
       row_cells_attr_v <- read_cells_attr_row row_ids (val m)
@@ -614,16 +592,9 @@ namespace tab_widget
           let u = set_cells_attr (snd x) (fst x)
           pure u
       runjsio () upd
-      --let df = do          
-      --    pure (  )
-          
       let df = [ addSchema2Vals v (invSchema2 av)|  (v,av) <- zip row_cells_v row_cells_attr_v]
-      let df2 = [x | x <- zip row_ids df]
-      
-      let df3 = [ x | x <- df2 , not (eqSchema2 (snd x) zero_v) ]
-      
-      ---let df3k = [ (fst x) | x <- df3]
-      --let df3v = [ (snd x) | x <- df3]
+      let df2 = [x | x <- zip row_ids df]      
+      let df3 = [ x | x <- df2 , not (eqSchema2 (snd x) zero_v) ]      
       let (df3k, df3v) = unzip df3
       
       rowk <- read_cells_row df3k (key m)            
@@ -631,28 +602,15 @@ namespace tab_widget
       let amend = MkMDList "items:amend" rowk df3v
       insert_table_wo_ids _amendments_id m amend
       
-      --console_log $ show (renderDataWithSchema2 "" df)
-      
-      {-      
-      ret_k <- _read_cells (key m) row_ids
-      ret_v <- _read_cells (val m) row_ids      
-      case (ret_k, ret_v) of
-         (Nothing,Nothing) => console_log "empty??"
-         ( (Just r_k),(Just r_v) )=> do
-                  console_log "muf"
-                  insert_table_wo_ids _amendments_id m (MkMDList ((name mdl)++":amend") r_k r_v)
--}
-
    public export
    insert_table : String -> String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
    insert_table _composite_id _footer_id m mdl = do
 
       let _composite_table_id = get_table_id _composite_id
-
---      let schema_header = (key m) .|. (val m)      
-      let _th_html = printf _tf (name mdl) ((schema2thead2 (key m))++(schema2thead2 (val m))) (id_att _composite_table_id ) (_footer_id)
-
-      insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader)  
+      let head_m = printf "<tr>%s %s</tr>" (schema2thead2 (key m)) (schema2thead2 (val m))
+      
+      let _th_html = printf _tf (name mdl) head_m (id_att _composite_table_id ) (_footer_id)
+      insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader) 
       insert_rows2 _composite_table_id m mdl
 
    public export  --main init
