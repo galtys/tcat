@@ -600,7 +600,10 @@ namespace tab_widget
       rowk <- read_cells_row df3k (key m)            
                     
       let amend = MkMDList "items:amend" rowk df3v
-      insert_table_wo_ids _amendments_id m amend
+      if (length df3v) > 0 then
+         insert_table_wo_ids _amendments_id m amend
+      else
+         pure ()
       
    public export
    insert_table : String -> String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
