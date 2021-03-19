@@ -132,8 +132,7 @@ make_cells_editable p_id (IFieldV name FTtermV)  = do
                    console_log input_element
                    update_element_text (cell_id p_id name) "" --console_log (printf "row: %s, field: %s" p_id name)
                    insert_beforeend _cell_id input_element
-                   
-                   
+
 make_cells_editable p_id (IField name fd)  = pure () --console_log (printf "row: %s, field: %s" p_id name)
 make_cells_editable p_id (EField name fd)  = pure () --console_log (printf "row: %s, field: %s" p_id name)
 make_cells_editable p_id (y .|. z)  = do 
@@ -297,7 +296,11 @@ set_cells_attr p_id {schema=(y .+. z)} (il,ir) = do
                    set_cells_attr p_id il
                    set_cells_attr p_id ir
 
-
+--public export
+--set_cells_attr_row : List String, (SchemaType2 schema) -> JS_IO ()
+--set_cells_attr_row []  = pure ()
+--set_cells_attr_row (x :: xs) s_kv = do
+          
 
 public export
 update_cells_td : String -> (SchemaType2 schema) -> JS_IO ()
@@ -544,7 +547,7 @@ namespace tab_widget
    get_table_row_ids table_id (x::xs) = do
       r_id <- nextElementSibling x
       if (r_id=="") then
-         pure ( [x]++xs )
+         pure ( reverse ([x]++xs) )
       else
          get_table_row_ids table_id ([r_id,x]++xs)
    
@@ -604,10 +607,28 @@ namespace tab_widget
       row_cells_k <- read_cells_row row_ids (key m)
       row_cells_v <- read_cells_row row_ids (val m)
       row_cells_attr_v <- read_cells_attr_row row_ids (val m)
+      let zero_v = (schema2ZeroVal (val m))
       
-      let df = [ addSchema2Vals v (invSchema2 av) | (v,av) <- zip row_cells_v row_cells_attr_v] --
+      let upd = do
+          x <- zip row_cells_v row_ids
+          let u = set_cells_attr (snd x) (fst x)
+          pure u
+      runjsio () upd
+      --let df = do          
+      --    pure (  )
+          
+      let df = [ addSchema2Vals v (invSchema2 av)|  (v,av) <- zip row_cells_v row_cells_attr_v]
+      let df2 = [x | x <- zip row_ids df]
       
-      let amend = MkMDList "items:amend" row_cells_k df
+      let df3 = [ x | x <- df2 , not (eqSchema2 (snd x) zero_v) ]
+      
+      ---let df3k = [ (fst x) | x <- df3]
+      --let df3v = [ (snd x) | x <- df3]
+      let (df3k, df3v) = unzip df3
+      
+      rowk <- read_cells_row df3k (key m)            
+                    
+      let amend = MkMDList "items:amend" rowk df3v
       insert_table_wo_ids _amendments_id m amend
       
       --console_log $ show (renderDataWithSchema2 "" df)
