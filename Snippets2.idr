@@ -681,6 +681,50 @@ namespace tab_widget
       tab_widget.table_amendments (printf "Amendment:%s" parent_tag_id) "amendments" m mdl
 
 
+
+   public export
+   on_set_backorders: String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   on_set_backorders parent_tag_id m mdl = do
+      -- backorders      
+      let whsb_tab_id = get_table_id (get_composite_id "warehouse_backorders" m mdl)
+      whsb_row_ids <- get_table_row_ids whsb_tab_id []
+      
+      whsb_row_cells_k <- read_cells_row whsb_row_ids (key m)
+      whsb_row_cells_attr_v <- read_cells_attr_row whsb_row_ids (val m)
+      let whsb_inv = [ (invSchema2 av) | av <- whsb_row_cells_attr_v ] 
+      
+
+      -- read whs 
+      let whs2_tab_id = get_table_id (get_composite_id "warehouse" m mdl)
+      whs2_row_ids <- get_table_row_ids whs2_tab_id []
+      
+      whs2_row_cells_k <- read_cells_row whs2_row_ids (key m)
+      whs2_row_cells_attr_v <- read_cells_attr_row whs2_row_ids (val m)
+      let whs2_inv = [ (invSchema2 av) | av <- whs2_row_cells_attr_v ] 
+
+
+      -- read whs done
+      let whs3_tab_id = get_table_id (get_composite_id "warehouse_done" m mdl)
+      whs3_row_ids <- get_table_row_ids whs3_tab_id []
+      
+      whs3_row_cells_k <- read_cells_row whs3_row_ids (key m)
+      whs3_row_cells_attr_v <- read_cells_attr_row whs3_row_ids (val m)
+      
+      let whs3_inv = [ (invSchema2 av) | av <- whs3_row_cells_attr_v ] 
+
+
+      --let amendb = MkMDList (name mdl) ( whsb_row_cells_k      ++ whs2_row_cells_k       ++ whs3_row_cells_k)  
+      --                                 ( whsb_row_cells_attr_v ++ whs2_inv  ++ whs3_row_cells_attr_v)
+                                       
+      let amendb = MkMDList (name mdl) ( whsb_row_cells_k   ++ whs2_row_cells_k       ++ whs3_row_cells_k  )  
+                                       ( whsb_inv    ++ whs2_row_cells_attr_v ++ whs3_inv)
+                                       
+      insert_rows "warehouse_backorders" m amendb
+            
+      pure ()
+
+
+
    public export
    on_table_set_whs_route: String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
    on_table_set_whs_route parent_tag_id m mdl = do
@@ -702,13 +746,6 @@ namespace tab_widget
       whs_row_cells_k <- read_cells_row whs_row_ids (key m)
       whs_row_cells_attr_v <- read_cells_attr_row whs_row_ids (val m)
 
-      -- backorders      
-      let whsb_tab_id = get_table_id (get_composite_id "warehouse_backorders" m mdl)
-      whsb_row_ids <- get_table_row_ids whsb_tab_id []
-      
-      whsb_row_cells_k <- read_cells_row whsb_row_ids (key m)
-      whsb_row_cells_attr_v <- read_cells_attr_row whsb_row_ids (val m)
-      
       
 --      let current_whs_route = MkMDList (name mdl) whs_row_cells_k whs_row_cells_attr_v
       let whs_inv = [ (invSchema2 av) | av <- whs_row_cells_attr_v ]
@@ -716,19 +753,9 @@ namespace tab_widget
       let amend = MkMDList (name mdl) (row_cells_k ++ whs_row_cells_k)  (row_cells_attr_v ++ whs_inv )
 
       insert_rows "warehouse" m amend
+      on_set_backorders parent_tag_id m mdl
 
-      -- read whs again
-      let whs2_tab_id = get_table_id (get_composite_id "warehouse" m mdl)
-      whs2_row_ids <- get_table_row_ids whs_tab_id []
-      
-      whs2_row_cells_k <- read_cells_row whs2_row_ids (key m)
-      whs2_row_cells_attr_v <- read_cells_attr_row whs2_row_ids (val m)
-      let whs2_inv = [ (invSchema2 av) | av <- whs2_row_cells_attr_v ] 
 
-      let amendb = MkMDList (name mdl) (whs2_row_cells_k ++ whsb_row_cells_k)  (whs2_row_cells_attr_v ++ whs2_inv )
-      insert_rows "warehouse_backorders" m amend
-            
-      pure ()
 
    public export
    on_table_whs_done: String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
@@ -738,7 +765,9 @@ namespace tab_widget
       let _composite_table_id = get_table_id _composite_id      
       console_log "updating whs done"
   
- 
+      on_set_backorders parent_tag_id m mdl 
+  
+    
 
    public export
    add_whs_button : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
