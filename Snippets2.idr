@@ -662,7 +662,30 @@ namespace tab_widget
       insert_rows2 _composite_table_id m mdl
 
       tab_widget.table_amendments (printf "Amendment:%s" parent_tag_id) "amendments" m mdl
+
+   calc_order_t : (m_sub:ModelSchema Val) -> (t_sub:ModelSchema Val) -> JS_IO ()
+   calc_order_t m_sub m_t = do
+      let subtotal_id = get_table_id (get_composite_id_mdl_name "subtotal" "subtotal")
+      let t_id = get_table_id (get_composite_id_mdl_name "order_total" "order_total")
       
+      subtotal_ids <- get_table_row_ids subtotal_id []
+      t_ids <-get_table_row_ids t_id []
+      
+      subtotal_k <- read_cells_row subtotal_ids (key m_sub)
+      subtotal_v <- read_cells_attr_row subtotal_ids (val m_sub)
+      
+      t_k <- read_cells_row t_ids (key m_t)
+      t_v <- read_cells_attr_row t_ids (val m_t)
+      
+      let t_inv = [ (invSchema2 av) | av <- t_v ]
+      
+      let amend = MkMDList "order_total" (t_k ++ [] )
+                                         (t_inv ++ [] )
+      
+      insert_rows "order_total" m_t amend
+      
+      pure ()      
+                  
    public export 
    calc_order_subtotals : (m_items:ModelSchema Val) -> (m_price:ModelSchema Val) -> (m_sub:ModelSchema Val) -> JS_IO ()
    calc_order_subtotals m_items m_price m_sub = do
@@ -704,6 +727,8 @@ namespace tab_widget
                                       (subtotal_inv ++ new_sub )
       
       insert_rows "subtotal" m_sub amend
+      
+      calc_order_t Subtotal_ModelSchema Total_ModelSchema
       pure ()
 
    public export
