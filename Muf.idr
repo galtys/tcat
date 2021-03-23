@@ -104,7 +104,7 @@ main = do
    
    tab_widget.table_composite "Pricelist" "pricelist" Pricelist_ModelSchema pricelist_ModelDataList   
    
-   tab_widget.table_composite "Order1" "order1" Items_ModelSchema items_ModelDataList
+   tab_widget.table_composite "Order1 Items" "order1" Items_ModelSchema items_ModelDataList
    tab_widget.add_whs_button "order1" Items_ModelSchema items_ModelDataList
 
    tab_widget.table_composite "WHS Routing" "warehouse" Items_ModelSchema items_ModelDataList   
@@ -113,6 +113,8 @@ main = do
          
    tab_widget.table_composite "WHS Done" "warehouse_done" Items_ModelSchema items_ModelDataList   
    tab_widget.insert_rows "warehouse_done" Items_ModelSchema whs_ModelDataList
+   tab_widget.add_whs_done_button "warehouse_done" Items_ModelSchema items_ModelDataList
+
 
    tab_widget.table_composite "WHS Backorders" "warehouse_backorders" Items_ModelSchema items_ModelDataList   
    tab_widget.insert_rows "warehouse_backorders" Items_ModelSchema whs_ModelDataList

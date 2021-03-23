@@ -464,6 +464,9 @@ namespace tab_widget
    get_whs_route_button_id : String -> String
    get_whs_route_button_id p_id = p_id ++ "__commit_whs_route"      
 
+   public export
+   get_whs_done_button_id : String -> String
+   get_whs_done_button_id p_id = p_id ++ "__commit_whs_done"    
 
    public export
    get_row_id : String -> (SchemaType2 schema) -> String
@@ -727,6 +730,15 @@ namespace tab_widget
             
       pure ()
 
+   public export
+   on_table_whs_done: String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   on_table_whs_done parent_tag_id m mdl = do
+      let _composite_id = get_composite_id parent_tag_id m mdl
+      let _amendments_id = get_amendments_id parent_tag_id m mdl            
+      let _composite_table_id = get_table_id _composite_id      
+      console_log "updating whs done"
+  
+ 
 
    public export
    add_whs_button : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
@@ -739,6 +751,15 @@ namespace tab_widget
       onClick ("#" ++ _whs_route_button) (on_table_set_whs_route parent_tag_id m mdl)
       
    
+   public export
+   add_whs_done_button : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   add_whs_done_button parent_tag_id m mdl = do
+      let _composite_id = get_composite_id parent_tag_id m mdl      
+      let _footer_id = get_card_footer_id _composite_id
+      let _whs_done_button = get_whs_done_button_id _composite_id      
+      insert_beforeend _footer_id (printf _button _whs_done_button "Set Done")      
+      
+      onClick ("#" ++ _whs_done_button) (on_table_whs_done parent_tag_id m mdl)
 
 -- Local Variables:
 -- idris-load-packages: ("contrib")
