@@ -112,6 +112,12 @@ main = do
    
          
    tab_widget.table_composite "WHS Done" "warehouse_done" Items_ModelSchema items_ModelDataList   
+   tab_widget.insert_rows "warehouse_done" Items_ModelSchema whs_ModelDataList
+
+   tab_widget.table_composite "WHS Backorders" "warehouse_backorders" Items_ModelSchema items_ModelDataList   
+   tab_widget.insert_rows "warehouse_backorders" Items_ModelSchema whs_ModelDataList
+      
+                  
 --   tab_widget.insert_rows "warehouse_done" Items_ModelSchema warehouse_ModelDataList
                   
    tab_widget.insert_rows "pricelist" Pricelist_ModelSchema pricelist_ModelDataList'

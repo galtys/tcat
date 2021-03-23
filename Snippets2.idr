@@ -698,6 +698,14 @@ namespace tab_widget
       
       whs_row_cells_k <- read_cells_row whs_row_ids (key m)
       whs_row_cells_attr_v <- read_cells_attr_row whs_row_ids (val m)
+
+      -- backorders      
+      let whsb_tab_id = get_table_id (get_composite_id "warehouse_backorders" m mdl)
+      whsb_row_ids <- get_table_row_ids whsb_tab_id []
+      
+      whsb_row_cells_k <- read_cells_row whsb_row_ids (key m)
+      whsb_row_cells_attr_v <- read_cells_attr_row whsb_row_ids (val m)
+      
       
 --      let current_whs_route = MkMDList (name mdl) whs_row_cells_k whs_row_cells_attr_v
       let whs_inv = [ (invSchema2 av) | av <- whs_row_cells_attr_v ]
@@ -706,6 +714,16 @@ namespace tab_widget
 
       insert_rows "warehouse" m amend
 
+      -- read whs again
+      let whs2_tab_id = get_table_id (get_composite_id "warehouse" m mdl)
+      whs2_row_ids <- get_table_row_ids whs_tab_id []
+      
+      whs2_row_cells_k <- read_cells_row whs2_row_ids (key m)
+      whs2_row_cells_attr_v <- read_cells_attr_row whs2_row_ids (val m)
+      let whs2_inv = [ (invSchema2 av) | av <- whs2_row_cells_attr_v ] 
+
+      let amendb = MkMDList (name mdl) (whs2_row_cells_k ++ whsb_row_cells_k)  (whs2_row_cells_attr_v ++ whs2_inv )
+      insert_rows "warehouse_backorders" m amend
             
       pure ()
 
