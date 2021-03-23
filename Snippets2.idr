@@ -610,7 +610,7 @@ namespace tab_widget
       
       rowk <- read_cells_row df3k (key m)            
                     
-      let amend = MkMDList "items:amend" rowk df3v
+      let amend = MkMDList (name mdl) rowk df3v
       if (length df3v) > 0 then
          --insert_table_wo_ids _amendments_id m amend
          table_amendments (printf "Amendment:%s" parent_tag_id) "amendments" m amend

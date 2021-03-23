@@ -57,17 +57,26 @@ Warehouse_ModelSchema = MkModelSchema keyItems ( (IFieldV "routing" FTtermV) .+.
 
 items_ModelDataList : (ModelDataList Val) Items_ModelSchema
 items_ModelDataList = MkMDList "items" [] []
+
                           
 items_ModelDataList' : (ModelDataList Val) Items_ModelSchema
-items_ModelDataList' = MkMDList "items" [ (1,100), (2,100), (3,100), (4,100) ,(2,100) ] 
+items_ModelDataList' = MkMDList "items" [ (1,100), (2,100), (3,100), (4,100) ] 
                         [ ( Tt 3 0 ),
-                          ( Tt 7 0 ),
-                          ( Tt 1 0 ),
-                          ( Tt 1 0 ),
-                          ( Tt 0 1)  ]
+                          ( Tt 6 0 ),
+                          ( Tt 9 0 ),
+                          ( Tt 5 0 )]
+                                                                                                        
+items_ModelDataList'' : (ModelDataList Val) Items_ModelSchema
+items_ModelDataList'' = MkMDList "items" [ (1,100), (2,100), (3,100) ] 
+                        [ ( Tt 0 1 ),
+                          ( Tt 0 2 ),
+                          ( Tt 0 1 )]
 
 pricelist_ModelDataList : (ModelDataList Val) Pricelist_ModelSchema
-pricelist_ModelDataList = MkMDList "pricelist" [ (1,100), (2,100), (3,100), (4,100) ]
+pricelist_ModelDataList = MkMDList "pricelist" [] []
+
+pricelist_ModelDataList' : (ModelDataList Val) Pricelist_ModelSchema
+pricelist_ModelDataList' = MkMDList "pricelist" [ (1,100), (2,100), (3,100), (4,100) ]
                         [ ( Tt 3 0 ),
                           ( Tt 7 0 ),
                           ( Tt 1 0 ),
@@ -86,12 +95,15 @@ main = do
    console_log new_row_sha1
    console_log new_row_sha256
    
+   tab_widget.table_composite "Pricelist" "pricelist" Pricelist_ModelSchema pricelist_ModelDataList   
    tab_widget.table_composite "Order1" "order1" Items_ModelSchema items_ModelDataList
-
-
+   
+   
+   tab_widget.insert_rows "pricelist" Pricelist_ModelSchema pricelist_ModelDataList'
    tab_widget.insert_rows "order1" Items_ModelSchema items_ModelDataList'
-   tab_widget.insert_rows "order1" Items_ModelSchema items_ModelDataList'
+   tab_widget.insert_rows "order1" Items_ModelSchema items_ModelDataList''
       
+
    
 --   tab_widget.table_composite 
 
