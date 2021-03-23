@@ -73,6 +73,8 @@ subtotal_ModelDataList = MkMDList "subtotal" [ (1,100), (2,100), (3,100), (4,100
                           ( Tt 0 0 ),
                           ( Tt 0 0 )]
 
+t_ModelDataList : (ModelDataList Val) Total_ModelSchema
+t_ModelDataList = MkMDList "order_total" [ 100 ] [ (Tt 0 0) ]
 
 partial main : JS_IO ()
 main = do      
@@ -108,7 +110,7 @@ main = do
    tab_widget.insert_rows "order1" Items_ModelSchema items_ModelDataList'
    tab_widget.insert_rows "order1" Items_ModelSchema items_ModelDataList''
    
-
+   tab_widget.table_composite "Order Total" "order_total" Total_ModelSchema t_ModelDataList
       
 
    

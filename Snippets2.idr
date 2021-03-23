@@ -18,6 +18,11 @@ priceItems = (IFieldV "price" FTtermV)
 subtotalItems : Schema2 Val
 subtotalItems = (IFieldV "subtotal" FTtermV)
 
+
+keyTotal : Schema2 Key
+keyTotal = (EField "sku2" "asset")
+
+
 _items_rw : Schema2 kv-> Bool
 _items_rw (IField name ft) = True
 _items_rw (EField name ns) = False
@@ -32,6 +37,8 @@ Pricelist_ModelSchema = MkModelSchema keyItems priceItems
 Subtotal_ModelSchema : ModelSchema Val
 Subtotal_ModelSchema = MkModelSchema keyItems subtotalItems
 
+Total_ModelSchema : ModelSchema Val
+Total_ModelSchema = MkModelSchema keyTotal subtotalItems
 
 
 _unit_dropdown : String
