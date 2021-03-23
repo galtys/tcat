@@ -107,6 +107,9 @@ main = do
    tab_widget.table_composite "Order1 Items" "order1" Items_ModelSchema items_ModelDataList
    tab_widget.add_whs_button "order1" Items_ModelSchema items_ModelDataList
 
+   tab_widget.table_composite "Order1 Subtotals" "subtotal" Subtotal_ModelSchema subtotal_ModelDataList
+   tab_widget.insert_rows "subtotal" Subtotal_ModelSchema subtotal_ModelDataList
+
    tab_widget.table_composite "WHS Routing" "warehouse" Items_ModelSchema items_ModelDataList   
    tab_widget.insert_rows "warehouse" Items_ModelSchema whs_ModelDataList
    
