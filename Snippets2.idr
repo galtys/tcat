@@ -454,11 +454,16 @@ namespace tab_widget
    
    public export
    get_edit_button_id : String -> String
-   get_edit_button_id p_id = p_id ++ "__edit_buttion"
+   get_edit_button_id p_id = p_id ++ "__edit_button"
 
    public export
    get_commit_button_id : String -> String
-   get_commit_button_id p_id = p_id ++ "__commit_buttion"      
+   get_commit_button_id p_id = p_id ++ "__commit_button"      
+
+   public export
+   get_whs_route_button_id : String -> String
+   get_whs_route_button_id p_id = p_id ++ "__commit_whs_route"      
+
 
    public export
    get_row_id : String -> (SchemaType2 schema) -> String
@@ -559,6 +564,9 @@ namespace tab_widget
       runjsio () [ make_cells_editable x (val m) | x <- row_ids]
       toggle_hide_show_element (get_edit_button_id _composite_id)
       toggle_hide_show_element (get_commit_button_id _composite_id)
+--      toggle_hide_show_element (get_whs_route_button_id _composite_id)
+      
+      
       
    public export
    insert_table_wo_ids : {a:KV} -> String -> (m:ModelSchema a) -> ModelDataList a m -> JS_IO ()
@@ -579,16 +587,19 @@ namespace tab_widget
       insert_beforeend _amendments_id (printf "<h2>%s</h2>" title)
 
       insert_table_wo_ids _amendments_id m mdl      
-         
+
+                           
    public export
    on_table_commit: String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
    on_table_commit parent_tag_id m mdl = do
       let _composite_id = get_composite_id parent_tag_id m mdl
-      let _amendments_id = get_amendments_id parent_tag_id m mdl            
+--      let _amendments_id = get_amendments_id parent_tag_id m mdl            
       let _composite_table_id = get_table_id _composite_id      
                         
       toggle_hide_show_element (get_edit_button_id _composite_id)
       toggle_hide_show_element (get_commit_button_id _composite_id)
+--      toggle_hide_show_element (get_whs_route_button_id _composite_id)
+            
       row_ids <- get_table_row_ids _composite_table_id []
       --_cells_ro (val m) row_ids
       runjsio () [make_cells_ro x (val m) | x <- row_ids]
@@ -639,21 +650,23 @@ namespace tab_widget
       insert_beforeend parent_tag_id _composite_html
       insert_beforeend _composite_id (printf "<h2>%s</h2>" title)
 
-      let _edit_button = get_edit_button_id _composite_id
-      let _commit_button = get_commit_button_id _composite_id      
+      let _edit_button =    get_edit_button_id _composite_id
+      let _commit_button =  get_commit_button_id _composite_id      
+      
+            
       let _footer_id = get_card_footer_id _composite_id       
       
       insert_table _composite_id (id_att _footer_id) m mdl                 
       
       
       insert_beforeend _footer_id (printf _button _edit_button "Edit")
-      insert_beforeend _footer_id (printf _button _commit_button "Commit")            
-      
+      insert_beforeend _footer_id (printf _button _commit_button "Commit")
+
       
       onClick ("#" ++ _edit_button) (on_table_edit parent_tag_id m mdl)
-      onClick ("#" ++ _commit_button) (on_table_commit parent_tag_id m mdl)      
+      onClick ("#" ++ _commit_button) (on_table_commit parent_tag_id m mdl)
+ --     onClick ("#" ++ _whs_route_button) (on_table_set_whs_route parent_tag_id m mdl)
       toggle_hide_show_element (_commit_button)
-
 
    public export
    insert_rows : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
@@ -663,6 +676,51 @@ namespace tab_widget
       insert_rows2 _composite_table_id m mdl
 
       tab_widget.table_amendments (printf "Amendment:%s" parent_tag_id) "amendments" m mdl
+
+
+   public export
+   on_table_set_whs_route: String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   on_table_set_whs_route parent_tag_id m mdl = do
+      let _composite_id = get_composite_id parent_tag_id m mdl
+      let _amendments_id = get_amendments_id parent_tag_id m mdl            
+      let _composite_table_id = get_table_id _composite_id      
+      console_log "updating whs route"
+      row_ids <- get_table_row_ids _composite_table_id []
+      
+      row_cells_k <- read_cells_row row_ids (key m)
+      row_cells_attr_v <- read_cells_attr_row row_ids (val m)
+      
+      --let order_items = MkMDList (name mdl) row_cells_k row_cells_attr_v
+
+                  
+      let whs_tab_id = get_table_id (get_composite_id "warehouse" m mdl)
+      whs_row_ids <- get_table_row_ids whs_tab_id []
+      
+      whs_row_cells_k <- read_cells_row whs_row_ids (key m)
+      whs_row_cells_attr_v <- read_cells_attr_row whs_row_ids (val m)
+      
+--      let current_whs_route = MkMDList (name mdl) whs_row_cells_k whs_row_cells_attr_v
+      let whs_inv = [ (invSchema2 av) | av <- whs_row_cells_attr_v ]
+      
+      let amend = MkMDList (name mdl) (row_cells_k ++ whs_row_cells_k)  (row_cells_attr_v ++ whs_inv )
+
+      insert_rows "warehouse" m amend
+
+            
+      pure ()
+
+
+   public export
+   add_whs_button : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   add_whs_button parent_tag_id m mdl = do
+      let _composite_id = get_composite_id parent_tag_id m mdl      
+      let _footer_id = get_card_footer_id _composite_id
+      let _whs_route_button = get_whs_route_button_id _composite_id      
+      insert_beforeend _footer_id (printf _button _whs_route_button "Update Whs")      
+      
+      onClick ("#" ++ _whs_route_button) (on_table_set_whs_route parent_tag_id m mdl)
+      
+   
 
 -- Local Variables:
 -- idris-load-packages: ("contrib")
