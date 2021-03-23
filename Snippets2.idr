@@ -441,7 +441,7 @@ namespace tab_widget
 
    public export 
    get_amendments_id : {a:KV} -> String -> (m:ModelSchema a) -> (ModelDataList a m) -> String
-   get_amendments_id p_id m y = (p_id ++ "__amendments__" ++ (name y))
+   get_amendments_id p_id m y = "amendments" -- (p_id ++ "__amendments__" ++ (name y))
       
       
    public export
@@ -463,7 +463,7 @@ namespace tab_widget
    public export
    get_row_id : String -> (SchemaType2 schema) -> String
    get_row_id p_id  item = p_id++ "_row"++(renderDataAsKey item)
-
+{-
    public export  -- with ids
    insert_rows : {a:KV} -> String -> (m:ModelSchema a) -> ModelDataList a m -> JS_IO ()
    insert_rows p_id m mdl = do
@@ -488,7 +488,7 @@ namespace tab_widget
          runjsio () [insert_beforeend p_id x | x <- rows_tr]
       else 
          pure ()        
-         
+-}         
          
    public export
    update_cells_ke1 : String -> (sv:Schema2 Val) -> (SchemaType2 sv) -> JS_IO ()
@@ -568,6 +568,17 @@ namespace tab_widget
       let th_html = printf _tf_wo_ids (name mdl) head_m x
       insert_beforeend p_id th_html
 
+   public export  --main init
+   table_amendments : String -> String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   table_amendments title parent_tag_id m mdl = do
+   
+      -- Amendments
+      let _amendments_id = get_amendments_id parent_tag_id m mdl      
+      let _amendments_html = ( printf _amendments _amendments_id )
+      insert_beforeend parent_tag_id _amendments_html
+      insert_beforeend _amendments_id (printf "<h2>%s</h2>" title)
+
+      insert_table_wo_ids _amendments_id m mdl      
          
    public export
    on_table_commit: String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
@@ -601,7 +612,8 @@ namespace tab_widget
                     
       let amend = MkMDList "items:amend" rowk df3v
       if (length df3v) > 0 then
-         insert_table_wo_ids _amendments_id m amend
+         --insert_table_wo_ids _amendments_id m amend
+         table_amendments (printf "Amendment:%s" parent_tag_id) "amendments" m amend
       else
          pure ()
       
@@ -616,6 +628,7 @@ namespace tab_widget
       insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader) 
       insert_rows2 _composite_table_id m mdl
 
+                  
    public export  --main init
    table_composite : String -> String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
    table_composite title parent_tag_id m mdl = do
@@ -641,17 +654,15 @@ namespace tab_widget
       onClick ("#" ++ _commit_button) (on_table_commit parent_tag_id m mdl)      
       toggle_hide_show_element (_commit_button)
 
-   public export  --main init
-   table_amendments : String -> String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
-   table_amendments title parent_tag_id m mdl = do
-   
-      -- Amendments
-      let _amendments_id = get_amendments_id parent_tag_id m mdl      
-      let _amendments_html = ( printf _amendments _amendments_id )      
-      insert_beforeend parent_tag_id _amendments_html
-      insert_beforeend _amendments_id (printf "<h2>%s</h2>" title)
 
-      insert_table_wo_ids _amendments_id m mdl      
+   public export
+   insert_rows : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   insert_rows parent_tag_id m mdl = do   
+      let _composite_id = get_composite_id parent_tag_id m mdl
+      let _composite_table_id = get_table_id _composite_id
+      insert_rows2 _composite_table_id m mdl
+
+      tab_widget.table_amendments (printf "Amendment:%s" parent_tag_id) "amendments" m mdl
 
 -- Local Variables:
 -- idris-load-packages: ("contrib")

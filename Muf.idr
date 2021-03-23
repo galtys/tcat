@@ -4,7 +4,7 @@ import Data.Vect
 import Printf as PF
 import Snippets
 import Snippets2
-
+       
 import Language.JSON
 import Language.JSON.Data
 import DataStore
@@ -51,12 +51,15 @@ Warehouse_ModelSchema : ModelSchema Val
 Warehouse_ModelSchema = MkModelSchema keyItems ( (IFieldV "routing" FTtermV) .+. (IFieldV "done" FTtermV) )
 
 
-keyItems_data : List (SchemaType2 Main.keyItems)
-keyItems_data = [ (1,100), (2,100), (3,100), (4,100) ,(2,100) ] 
+--keyItems_data : List (SchemaType2 Main.keyItems)
+--keyItems_data = [ (1,100), (2,100), (3,100), (4,100) ,(2,100) ] 
 
 
 items_ModelDataList : (ModelDataList Val) Items_ModelSchema
-items_ModelDataList = MkMDList "items" keyItems_data
+items_ModelDataList = MkMDList "items" [] []
+                          
+items_ModelDataList' : (ModelDataList Val) Items_ModelSchema
+items_ModelDataList' = MkMDList "items" [ (1,100), (2,100), (3,100), (4,100) ,(2,100) ] 
                         [ ( Tt 3 0 ),
                           ( Tt 7 0 ),
                           ( Tt 1 0 ),
@@ -84,15 +87,21 @@ main = do
    console_log new_row_sha256
    
    tab_widget.table_composite "Order1" "order1" Items_ModelSchema items_ModelDataList
-   tab_widget.table_amendments "Amendments" "order1" Items_ModelSchema items_ModelDataList
 
-   tab_widget.table_amendments "Pricelist" "pricelist" Pricelist_ModelSchema pricelist_ModelDataList   
+
+   tab_widget.insert_rows "order1" Items_ModelSchema items_ModelDataList'
+   tab_widget.insert_rows "order1" Items_ModelSchema items_ModelDataList'
+      
+   
+--   tab_widget.table_composite 
+
+--   tab_widget.table_amendments "Pricelist" "pricelist" Pricelist_ModelSchema pricelist_ModelDataList   
    
 
-   tab_widget.table_amendments "Subtotals" "subtotal" Subtotal_ModelSchema subtotal_ModelDataList               
+--   tab_widget.table_amendments "Subtotals" "subtotal" Subtotal_ModelSchema subtotal_ModelDataList               
 
                                     
-   tab_widget.table_composite "Warehouse" "warehouse" Warehouse_ModelSchema warehouse_ModelDataList
+--   tab_widget.table_composite "Warehouse" "warehouse" Warehouse_ModelSchema warehouse_ModelDataList
                                                                                                                
 --   insert_beforeend "so_composite" (table_card table_composite_id THeader)
 --   line_list2io_amend table_composite_id test_list
