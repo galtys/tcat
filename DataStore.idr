@@ -48,6 +48,9 @@ integer2t x = case x == 0 of
                   True => (Tt x 0)
                   False => (Tt 0 (abs(x)))
 
+tmul : Tterm -> Tterm -> Tterm
+tmul t1 t2 = integer2t (   (t2integer t1)*(t2integer t2)   )
+
 i2s : Integer -> String
 i2s x = the String (cast x)
      
@@ -173,6 +176,22 @@ addSchema2Vals {schema = (IFieldV name FTtermV)} item1 item2 = item1 <+> item2  
 addSchema2Vals {schema = (IFieldV name FSop)} item1 item2 = item1 <+> item2  -- For Tterm, add
 addSchema2Vals {schema = (EField name ns)} item1 item2 = if ((item2== 0) || (item1==0)) then (item1 + item2) else item2
 addSchema2Vals {schema = (y .|. z)} (i1l,i1r) (i2l,i2r) = ( addSchema2Vals i1l i2l, addSchema2Vals i1r i2r)
+
+
+public export -- semigroup operation
+mulSchema2Vals : (SchemaType2 schema) -> (SchemaType2 schema) -> (SchemaType2 schema)
+
+mulSchema2Vals {schema = (IField name FTterm)} item1 item2 =   tmul item1 item2  -- For Tterm, add
+mulSchema2Vals {schema = (IFieldV name FTtermV)} item1 item2 = tmul item1 item2  -- For Tterm, add
+
+
+mulSchema2Vals {schema = (IField name FBool)} item1 item2 = (item1 && item2)
+mulSchema2Vals {schema = (IField name FString)} item1 item2 = item1 <+> item2
+mulSchema2Vals {schema = (IFieldV name FSop)} item1 item2 = item1 <+> item2  -- For Tterm, add
+mulSchema2Vals {schema = (EField name ns)} item1 item2 = if ((item2== 0) && (item1==0)) then (item1 * item2) else item2
+
+mulSchema2Vals {schema = (y .|. z)} (i1l,i1r) (i2l,i2r) = ( mulSchema2Vals i1l i2l, mulSchema2Vals i1r i2r)
+
 
 record ModelSchema (a:KV) where
      constructor MkModelSchema

@@ -4,6 +4,36 @@ import Printf
 import DataStore
 import JSIO
 
+%access public export
+
+keyItems : Schema2 Key
+keyItems = (EField "sku1" "asset") .|. (EField "sku2" "asset")
+
+valItems : Schema2 Val
+valItems = (IFieldV "qty" FTtermV)
+
+priceItems : Schema2 Val
+priceItems = (IFieldV "price" FTtermV)
+
+subtotalItems : Schema2 Val
+subtotalItems = (IFieldV "subtotal" FTtermV)
+
+_items_rw : Schema2 kv-> Bool
+_items_rw (IField name ft) = True
+_items_rw (EField name ns) = False
+_items_rw (s1 .|. s2) = False
+
+Items_ModelSchema : ModelSchema Val
+Items_ModelSchema = MkModelSchema keyItems valItems
+
+Pricelist_ModelSchema : ModelSchema Val
+Pricelist_ModelSchema = MkModelSchema keyItems priceItems
+
+Subtotal_ModelSchema : ModelSchema Val
+Subtotal_ModelSchema = MkModelSchema keyItems subtotalItems
+
+
+
 _unit_dropdown : String
 _unit_dropdown = """
    <div class="dropdown">
@@ -434,10 +464,14 @@ namespace tab_widget
    _button = """
              <button class="btn btn-primary" id="%s">%s</button>
          """  -- _button_id label
+   public export
+   get_composite_id_mdl_name : String -> String -> String  --parent_id, ModelDataList name
+   get_composite_id_mdl_name p_id mdl_name = (p_id ++ "__composite__" ++ mdl_name)
          
    public export 
    get_composite_id : {a:KV} -> String -> (m:(ModelSchema a) ) -> (ModelDataList a m ) -> String
-   get_composite_id p_id m y = (p_id ++ "__composite__" ++ (name y))
+   get_composite_id p_id m y = get_composite_id_mdl_name p_id (name y) --(p_id ++ "__composite__" ++ (name y))
+
 
    public export 
    get_amendments_id : {a:KV} -> String -> (m:ModelSchema a) -> (ModelDataList a m) -> String
@@ -592,6 +626,79 @@ namespace tab_widget
       insert_table_wo_ids _amendments_id m mdl      
 
                            
+
+   public export
+   convert_2sub : (sb: Schema2 Val) -> (SchemaType2 si) -> (SchemaType2 sb)
+   convert_2sub (IFieldV namex FTtermV) {si = (IFieldV name FTtermV) } item = item
+--   convert_items2sub si item = item
+   convert_2sub sb {si = (y .|. z)} it = convert_2sub sb it --(convert_items2sub sb it1, convert_items2sub sb it2)
+
+
+                  
+   public export
+   insert_table : String -> String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   insert_table _composite_id _footer_id m mdl = do
+
+      let _composite_table_id = get_table_id _composite_id
+      let head_m = printf "<tr>%s %s</tr>" (schema2thead2 (key m)) (schema2thead2 (val m))
+      
+      let _th_html = printf _tf (name mdl) head_m (id_att _composite_table_id ) (_footer_id)
+      insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader) 
+      insert_rows2 _composite_table_id m mdl
+
+                  
+   public export
+   insert_rows : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   insert_rows parent_tag_id m mdl = do   
+      let _composite_id = get_composite_id parent_tag_id m mdl
+      let _composite_table_id = get_table_id _composite_id
+      insert_rows2 _composite_table_id m mdl
+
+      tab_widget.table_amendments (printf "Amendment:%s" parent_tag_id) "amendments" m mdl
+      
+   public export 
+   calc_order_subtotals : (m_items:ModelSchema Val) -> (m_price:ModelSchema Val) -> (m_sub:ModelSchema Val) -> JS_IO ()
+   calc_order_subtotals m_items m_price m_sub = do
+      let order1_id = get_table_id (get_composite_id_mdl_name "order1" "items")
+      let pricelist_id = get_table_id (get_composite_id_mdl_name "pricelist" "pricelist")
+      let subtotal_id = get_table_id (get_composite_id_mdl_name "subtotal" "subtotal")
+
+      items_ids <- get_table_row_ids order1_id []
+      pricelist_ids <- get_table_row_ids pricelist_id []
+      subtotal_ids <- get_table_row_ids subtotal_id []
+      
+      
+      console_log $ show items_ids
+      console_log $ show pricelist_ids
+            
+      items_k <- read_cells_row items_ids (key m_items)
+      items_v <- read_cells_attr_row items_ids (val m_items)
+      
+      pricelist_k <- read_cells_row pricelist_ids (key m_price)
+      pricelist_v <- read_cells_attr_row pricelist_ids (val m_price)
+      
+      
+      
+      let i_s = [ convert_2sub (val m_sub) i | i <- items_v ]
+      let p_s = [ convert_2sub (val m_sub) i | i <- pricelist_v ]
+      
+            
+      let qty_price = [ x | x <- zip i_s p_s]
+      
+      let new_sub = [ (mulSchema2Vals (fst x) (snd x)) | x <- qty_price ]
+      
+      console_log $ show (length new_sub)
+      
+      subtotal_k <- read_cells_row subtotal_ids (key m_sub)
+      subtotal_v <- read_cells_attr_row subtotal_ids (val m_sub)
+      let subtotal_inv = [ (invSchema2 av) | av <- subtotal_v ]
+      
+      let amend = MkMDList "subtotal" (subtotal_k ++ subtotal_k )
+                                      (subtotal_inv ++ new_sub )
+      
+      insert_rows "subtotal" m_sub amend
+      pure ()
+
    public export
    on_table_commit: String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
    on_table_commit parent_tag_id m mdl = do
@@ -630,19 +737,9 @@ namespace tab_widget
          table_amendments (printf "Amendment:%s" parent_tag_id) "amendments" m amend
       else
          pure ()
-      
-   public export
-   insert_table : String -> String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
-   insert_table _composite_id _footer_id m mdl = do
 
-      let _composite_table_id = get_table_id _composite_id
-      let head_m = printf "<tr>%s %s</tr>" (schema2thead2 (key m)) (schema2thead2 (val m))
+      calc_order_subtotals Items_ModelSchema Pricelist_ModelSchema Subtotal_ModelSchema
       
-      let _th_html = printf _tf (name mdl) head_m (id_att _composite_table_id ) (_footer_id)
-      insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader) 
-      insert_rows2 _composite_table_id m mdl
-
-                  
    public export  --main init
    table_composite : String -> String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
    table_composite title parent_tag_id m mdl = do
@@ -670,15 +767,6 @@ namespace tab_widget
       onClick ("#" ++ _commit_button) (on_table_commit parent_tag_id m mdl)
  --     onClick ("#" ++ _whs_route_button) (on_table_set_whs_route parent_tag_id m mdl)
       toggle_hide_show_element (_commit_button)
-
-   public export
-   insert_rows : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
-   insert_rows parent_tag_id m mdl = do   
-      let _composite_id = get_composite_id parent_tag_id m mdl
-      let _composite_table_id = get_table_id _composite_id
-      insert_rows2 _composite_table_id m mdl
-
-      tab_widget.table_amendments (printf "Amendment:%s" parent_tag_id) "amendments" m mdl
 
 
 

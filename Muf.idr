@@ -21,31 +21,6 @@ import JSIO
      Nothing => console_log "na"
      (Just j) => console_log (Language.JSON.Data.format 2 j)
 -}
-keyItems : Schema2 Key
-keyItems = (EField "sku1" "asset") .|. (EField "sku2" "asset")
-
-valItems : Schema2 Val
-valItems = (IFieldV "qty" FTtermV)
-
-priceItems : Schema2 Val
-priceItems = (IFieldV "price" FTtermV)
-
-subtotalItems : Schema2 Val
-subtotalItems = (IFieldV "subtotal" FTtermV)
-
-_items_rw : Schema2 kv-> Bool
-_items_rw (IField name ft) = True
-_items_rw (EField name ns) = False
-_items_rw (s1 .|. s2) = False
-
-Items_ModelSchema : ModelSchema Val
-Items_ModelSchema = MkModelSchema keyItems valItems
-
-Pricelist_ModelSchema : ModelSchema Val
-Pricelist_ModelSchema = MkModelSchema keyItems priceItems
-
-Subtotal_ModelSchema : ModelSchema Val
-Subtotal_ModelSchema = MkModelSchema keyItems subtotalItems
 
 --Warehouse_ModelSchema : ModelSchema Val
 --Warehouse_ModelSchema = MkModelSchema keyItems ( (IFieldV "routing" FTtermV) .+. (IFieldV "done" FTtermV) )
@@ -92,7 +67,11 @@ pricelist_ModelDataList' = MkMDList "pricelist" [ (1,100), (2,100), (3,100), (4,
                           ( Tt 2 0 )]
 
 subtotal_ModelDataList : (ModelDataList Val) Subtotal_ModelSchema
-subtotal_ModelDataList = MkMDList "subtotal" [] []
+subtotal_ModelDataList = MkMDList "subtotal" [ (1,100), (2,100), (3,100), (4,100) ] 
+                        [ ( Tt 0 0 ),
+                          ( Tt 0 0 ),
+                          ( Tt 0 0 ),
+                          ( Tt 0 0 )]
 
 
 partial main : JS_IO ()
