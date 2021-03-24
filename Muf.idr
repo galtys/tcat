@@ -114,7 +114,7 @@ main = do
    tab_widget.table_composite "Order Total" "order_total" Total_ModelSchema t_ModelDataList
       
 
-   
+   calc_order_subtotals Items_ModelSchema Pricelist_ModelSchema Subtotal_ModelSchema   
 --   tab_widget.table_composite 
 
 --   tab_widget.table_amendments "Pricelist" "pricelist" Pricelist_ModelSchema pricelist_ModelDataList   
