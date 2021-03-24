@@ -9,6 +9,59 @@ import JSIO
 keyItems : Schema2 Key
 keyItems = (EField "sku1" "asset") .|. (EField "sku2" "asset")
 
+keyTotal : Schema2 Key
+keyTotal = (EField "sku2" "asset")
+
+drop_key : (c:String) -> (Schema2 Key) -> (Schema2 Key)
+drop_key c ( x@(EField n1 ns1) .|. y@(EField n2 ns2)) = case (c==n1) of 
+                                                              True => y
+                                                              False => case (c==n2) of 
+                                                                        True => x
+                                                                        False => (x .|. y)
+drop_key c ( x .|. y ) = (drop_key c x) .|. (drop_key c y)
+drop_key c f = f
+
+convert_s2 : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
+convert_s2 (IField namex FBool) {si = (IField name FBool) } item = item
+convert_s2 (IField namex FString) {si = (IField name FString) } item = item
+convert_s2 (EField namex ns) {si = (EField name ns2) } item = item
+convert_s2 sb {si = (y .|. z)} it = convert_s2 sb it
+
+convert_s3 : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
+convert_s3 (IField namex FBool) {si = (IField name FBool) } item = item
+convert_s3 (IField namex FString) {si = (IField name FString) } item = item
+convert_s3 (EField namex ns) {si = (EField name ns2) } item = item
+convert_s3 sb {si = (y .|. z)} it = convert_s3 sb it
+
+convert_sL : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
+convert_sL (IField namex FBool) {si = (IField name FBool) } item = item
+convert_sL (IField namex FString) {si = (IField name FString) } item = item
+convert_sL (EField namex ns) {si = (EField name ns2) } item = item
+convert_sL sb {si = (y .|. z)} (iL,iR) = convert_sL sb iR
+
+convert_sR : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
+convert_sR (IField namex FBool) {si = (IField name FBool) } item = item
+convert_sR (IField namex FString) {si = (IField name FString) } item = item
+convert_sR (EField namex ns) {si = (EField name ns2) } item = item
+convert_sR sb {si = (y .|. z)} (iL,iR) = convert_sR sb iL
+
+drop_col : (sb: Schema2 Key) -> (c:String) -> (SchemaType2 sk) -> (SchemaType2 sb )
+drop_col  sb c {sk= (y@(EField n1 ns1) .|. z@(EField n2 ns2) ) } item  = case (c==n1) of
+                                                                 True => convert_sL sb item
+                                                                 False => case (c==n2) of
+                                                                      True => convert_sR sb item
+                                                                      False => convert_s3 sb item --(il,ir)
+--drop_col item = item
+
+
+--                                                              True => (snd item)
+--                                                              False => ?ret --case (c==n2) of 
+--                                                                        True => (drop_col c i1)
+  --                                                                      False => (i1,i2)
+
+--drop_col c {sk = (x .|. y) } item = drop_col c item
+
+
 valItems : Schema2 Val
 valItems = (IFieldV "qty" FTtermV)
 
@@ -19,8 +72,6 @@ subtotalItems : Schema2 Val
 subtotalItems = (IFieldV "subtotal" FTtermV)
 
 
-keyTotal : Schema2 Key
-keyTotal = (EField "sku2" "asset")
 
 
 _items_rw : Schema2 kv-> Bool
@@ -640,8 +691,9 @@ namespace tab_widget
 --   convert_items2sub si item = item
    convert_2sub sb {si = (y .|. z)} it = convert_2sub sb it --(convert_items2sub sb it1, convert_items2sub sb it2)
 
+--   m_sub2m_t : (k_t: Schema2 Key) -> (SchemaType2 k_s) -> (SchemaType2 k_t) -- drop column
+--   m_sub2m_t k_t k_s = ?ret
 
-                  
    public export
    insert_table : String -> String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
    insert_table _composite_id _footer_id m mdl = do
@@ -677,10 +729,14 @@ namespace tab_widget
       t_k <- read_cells_row t_ids (key m_t)
       t_v <- read_cells_attr_row t_ids (val m_t)
       
+      let xx = [ (drop_col (key m_t) "sku1" i) | i <- subtotal_k]
+      
       let t_inv = [ (invSchema2 av) | av <- t_v ]
       
-      let amend = MkMDList "order_total" (t_k ++ [] )
-                                         (t_inv ++ [] )
+      let ss = [ convert_2sub (val m_t) s | s <- subtotal_v ]
+      
+      let amend = MkMDList "order_total" (t_k ++ xx )
+                                         (t_inv ++  ss)
       
       insert_rows "order_total" m_t amend
       

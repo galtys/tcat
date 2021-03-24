@@ -125,6 +125,11 @@ data Schema2 : KV -> Type where
      (.|.) : (s1 : Schema2 Key) -> (s2 :Schema2 Key) -> Schema2 Key 
      (.+.) : (s1 : Schema2 Val) -> (s2 :Schema2 Val) -> Schema2 Val
 
+--Eq (Schema2 Key) where
+--     (==) x y = ?reteq
+
+
+
 SchemaType2 : Schema2 kv-> Type
 SchemaType2 (IField name FBool)= Bool
 SchemaType2 (IField name FString )= String
@@ -176,6 +181,7 @@ addSchema2Vals {schema = (IFieldV name FTtermV)} item1 item2 = item1 <+> item2  
 addSchema2Vals {schema = (IFieldV name FSop)} item1 item2 = item1 <+> item2  -- For Tterm, add
 addSchema2Vals {schema = (EField name ns)} item1 item2 = if ((item2== 0) || (item1==0)) then (item1 + item2) else item2
 addSchema2Vals {schema = (y .|. z)} (i1l,i1r) (i2l,i2r) = ( addSchema2Vals i1l i2l, addSchema2Vals i1r i2r)
+
 
 
 public export -- semigroup operation
