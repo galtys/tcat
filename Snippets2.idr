@@ -532,11 +532,11 @@ namespace tab_widget
    get_composite_id : {a:KV} -> String -> (m:(ModelSchema a) ) -> (ModelDataList a m ) -> String
    get_composite_id p_id m y = get_composite_id_mdl_name p_id (name y) --(p_id ++ "__composite__" ++ (name y))
 
-
+{-
    public export 
    get_amendments_id : {a:KV} -> String -> (m:ModelSchema a) -> (ModelDataList a m) -> String
    get_amendments_id p_id m y = "amendments" -- (p_id ++ "__amendments__" ++ (name y))
-      
+  -}    
       
    public export
    get_table_id : String ->  String  --this is to reference the table body
@@ -920,7 +920,7 @@ namespace tab_widget
    on_table_set_whs_route: String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
    on_table_set_whs_route parent_tag_id m mdl = do
       let _composite_id = get_composite_id parent_tag_id m mdl
-      let _amendments_id = get_amendments_id parent_tag_id m mdl            
+--      let _amendments_id = get_amendments_id parent_tag_id m mdl            
       let _composite_table_id = get_table_id _composite_id      
       console_log "updating whs route"
       row_ids <- get_table_row_ids _composite_table_id []
@@ -952,7 +952,7 @@ namespace tab_widget
    on_table_whs_done: String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
    on_table_whs_done parent_tag_id m mdl = do
       let _composite_id = get_composite_id parent_tag_id m mdl
-      let _amendments_id = get_amendments_id parent_tag_id m mdl            
+--      let _amendments_id = get_amendments_id parent_tag_id m mdl            
       let _composite_table_id = get_table_id _composite_id      
       console_log "updating whs done"
   
