@@ -90,26 +90,26 @@ main = do
    tab_widget.add_whs_button "order1" Items_ModelSchema items_ModelDataList
 
    tab_widget.table_composite "Order1 Subtotals" "subtotal" Subtotal_ModelSchema subtotal_ModelDataList
-   tab_widget.insert_rows "subtotal" Subtotal_ModelSchema subtotal_ModelDataList
+   tab_widget.insert_rows_calc "subtotal" Subtotal_ModelSchema subtotal_ModelDataList
 
    tab_widget.table_composite "WHS Routing" "warehouse" Items_ModelSchema items_ModelDataList   
-   tab_widget.insert_rows "warehouse" Items_ModelSchema whs_ModelDataList
+   tab_widget.insert_rows_calc "warehouse" Items_ModelSchema whs_ModelDataList
    
          
    tab_widget.table_composite "WHS Done" "warehouse_done" Items_ModelSchema items_ModelDataList   
-   tab_widget.insert_rows "warehouse_done" Items_ModelSchema whs_ModelDataList
+   tab_widget.insert_rows_x "warehouse_done" Items_ModelSchema whs_ModelDataList
    tab_widget.add_whs_done_button "warehouse_done" Items_ModelSchema items_ModelDataList
 
 
    tab_widget.table_composite "WHS Backorders" "warehouse_backorders" Items_ModelSchema items_ModelDataList   
-   tab_widget.insert_rows "warehouse_backorders" Items_ModelSchema whs_ModelDataList
+   tab_widget.insert_rows_calc "warehouse_backorders" Items_ModelSchema whs_ModelDataList
       
                   
 --   tab_widget.insert_rows "warehouse_done" Items_ModelSchema warehouse_ModelDataList
                   
-   tab_widget.insert_rows "pricelist" Pricelist_ModelSchema pricelist_ModelDataList'
-   tab_widget.insert_rows "order1" Items_ModelSchema items_ModelDataList'
-   tab_widget.insert_rows "order1" Items_ModelSchema items_ModelDataList''
+   tab_widget.insert_rows_x "pricelist" Pricelist_ModelSchema pricelist_ModelDataList'
+   tab_widget.insert_rows_x "order1" Items_ModelSchema items_ModelDataList'
+   tab_widget.insert_rows_x "order1" Items_ModelSchema items_ModelDataList''
    
    tab_widget.table_composite "Order Total" "order_total" Total_ModelSchema t_ModelDataList
       

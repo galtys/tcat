@@ -679,14 +679,14 @@ namespace tab_widget
    table_amendments title parent_tag_id m mdl = do
    
       -- Amendments
-      let _amendments_id = get_amendments_id parent_tag_id m mdl      
-      let _amendments_html = ( printf _amendments _amendments_id )
+      let _amendments_id = parent_tag_id --get_amendments_id parent_tag_id m mdl      
+--      let _amendments_html = ( printf _amendments _amendments_id )
 --      insert_beforeend parent_tag_id _amendments_html
 --      insert_beforeend _amendments_id (printf "<h2>%s</h2>" title)
-      insert_afterbegin parent_tag_id _amendments_html
-      insert_afterbegin _amendments_id (printf "<h2>%s</h2>" title)
+--      insert_afterbegin parent_tag_id _amendments_html
 
       insert_table_wo_ids _amendments_id m mdl      
+      insert_afterbegin _amendments_id (printf "<h2>%s</h2>" title)
 
                            
 
@@ -710,15 +710,25 @@ namespace tab_widget
       insert_beforeend _composite_id _th_html  --(table_card table_composite_id THeader) 
       insert_rows2 _composite_table_id m mdl
 
-                  
+
    public export
-   insert_rows : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
-   insert_rows parent_tag_id m mdl = do   
+   insert_rows_x : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   insert_rows_x parent_tag_id m mdl = do   
       let _composite_id = get_composite_id parent_tag_id m mdl
       let _composite_table_id = get_table_id _composite_id
       insert_rows2 _composite_table_id m mdl
-
+      
       tab_widget.table_amendments (printf "Amendment:%s" parent_tag_id) "amendments" m mdl
+      
+   public export
+   insert_rows_calc : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   insert_rows_calc parent_tag_id m mdl = do   
+      let _composite_id = get_composite_id parent_tag_id m mdl
+      let _composite_table_id = get_table_id _composite_id
+      insert_rows2 _composite_table_id m mdl
+      
+      tab_widget.table_amendments (printf "AmendmentC:%s" parent_tag_id) "amendments_calc" m mdl
+      
 
    calc_order_t : (m_sub:ModelSchema Val) -> (t_sub:ModelSchema Val) -> JS_IO ()
    calc_order_t m_sub m_t = do
@@ -743,7 +753,7 @@ namespace tab_widget
       let amend = MkMDList "order_total" (t_k ++ xx )
                                          (t_inv ++  ss)
       
-      insert_rows "order_total" m_t amend
+      insert_rows_calc "order_total" m_t amend
       
       pure ()      
                   
@@ -787,7 +797,7 @@ namespace tab_widget
       let amend = MkMDList "subtotal" (subtotal_k ++ subtotal_k )
                                       (subtotal_inv ++ new_sub )
       
-      insert_rows "subtotal" m_sub amend
+      insert_rows_calc "subtotal" m_sub amend
       
       calc_order_t Subtotal_ModelSchema Total_ModelSchema
       pure ()
@@ -827,7 +837,7 @@ namespace tab_widget
       let amend = MkMDList (name mdl) rowk df3v
       if (length df3v) > 0 then
          --insert_table_wo_ids _amendments_id m amend
-         table_amendments (printf "Amendment:%s" parent_tag_id) "amendments" m amend
+         table_amendments (printf "Amendment:%s" parent_tag_id) "amendments" m amend   --1
       else
          pure ()
 
@@ -900,7 +910,7 @@ namespace tab_widget
       let amendb = MkMDList (name mdl) ( whsb_row_cells_k   ++ whs2_row_cells_k       ++ whs3_row_cells_k  )  
                                        ( whsb_inv    ++ whs2_row_cells_attr_v ++ whs3_inv)
                                        
-      insert_rows "warehouse_backorders" m amendb
+      insert_rows_calc "warehouse_backorders" m amendb
             
       pure ()
 
@@ -933,7 +943,7 @@ namespace tab_widget
       
       let amend = MkMDList (name mdl) (row_cells_k ++ whs_row_cells_k)  (row_cells_attr_v ++ whs_inv )
 
-      insert_rows "warehouse" m amend
+      insert_rows_calc "warehouse" m amend
       on_set_backorders parent_tag_id m mdl
 
 
