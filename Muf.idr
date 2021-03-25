@@ -84,28 +84,28 @@ main = do
    console_log new_row_sha1
    console_log new_row_sha256
    
-   tab_widget.table_composite "Pricelist" "pricelist" Pricelist_ModelSchema pricelist_ModelDataList   
+   tab_widget.table_composite False "Pricelist" "pricelist" Pricelist_ModelSchema pricelist_ModelDataList   
    
-   tab_widget.table_composite "Order1 Items" "order1" Items_ModelSchema items_ModelDataList
+   tab_widget.table_composite True "Order1 Items" "order1" Items_ModelSchema items_ModelDataList
    tab_widget.add_whs_button "order1" Items_ModelSchema items_ModelDataList
 
-   tab_widget.table_composite "Order1 Subtotals" "subtotal" Subtotal_ModelSchema subtotal_ModelDataList
+   tab_widget.table_composite False "Order1 Subtotals" "subtotal" Subtotal_ModelSchema subtotal_ModelDataList
    tab_widget.insert_rows_calc "subtotal" Subtotal_ModelSchema subtotal_ModelDataList
 
-   tab_widget.table_composite "Invoice1 Subtotals" "invoice_subtotal" Subtotal_ModelSchema subtotal_ModelDataList
+   tab_widget.table_composite False "Invoice1 Subtotals" "invoice_subtotal" Subtotal_ModelSchema subtotal_ModelDataList
    tab_widget.insert_rows_calc "invoice_subtotal" Subtotal_ModelSchema subtotal_ModelDataList
 
 
-   tab_widget.table_composite "WHS Routing" "warehouse" Items_ModelSchema items_ModelDataList   
+   tab_widget.table_composite False "WHS Routing" "warehouse" Items_ModelSchema items_ModelDataList   
    tab_widget.insert_rows_calc "warehouse" Items_ModelSchema whs_ModelDataList
    
          
-   tab_widget.table_composite "WHS Done" "warehouse_done" Items_ModelSchema items_ModelDataList   
+   tab_widget.table_composite True "WHS Done" "warehouse_done" Items_ModelSchema items_ModelDataList   
    tab_widget.insert_rows_x "warehouse_done" Items_ModelSchema whs_ModelDataList
    tab_widget.add_whs_done_button "warehouse_done" Items_ModelSchema items_ModelDataList
 
 
-   tab_widget.table_composite "WHS Backorders" "warehouse_backorders" Items_ModelSchema items_ModelDataList   
+   tab_widget.table_composite False "WHS Backorders" "warehouse_backorders" Items_ModelSchema items_ModelDataList   
    tab_widget.insert_rows_calc "warehouse_backorders" Items_ModelSchema whs_ModelDataList
       
                   
@@ -115,11 +115,11 @@ main = do
    tab_widget.insert_rows_x "order1" Items_ModelSchema items_ModelDataList'
    tab_widget.insert_rows_x "order1" Items_ModelSchema items_ModelDataList''
    
-   tab_widget.table_composite "Order Total" "order_total" Total_ModelSchema t_ModelDataList
+   tab_widget.table_composite False "Order Total" "order_total" Total_ModelSchema t_ModelDataList
    
-   tab_widget.table_composite "Invoice Total" "invoice_total" Total_ModelSchema t_ModelDataList
+   tab_widget.table_composite False "Invoice Total" "invoice_total" Total_ModelSchema t_ModelDataList
          
-   tab_widget.table_composite "Payment Received" "payment_received" Total_ModelSchema t_ModelDataList
+   tab_widget.table_composite True "Payment Received" "payment_received" Total_ModelSchema t_ModelDataList
    
    calc_order_subtotals "order1" "subtotal" "order_total" Items_ModelSchema Pricelist_ModelSchema Subtotal_ModelSchema   
 --   tab_widget.table_composite 

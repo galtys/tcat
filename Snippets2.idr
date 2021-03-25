@@ -6,6 +6,10 @@ import JSIO
 
 %access public export
 
+(>>) : Monad m => m a -> m b -> m b
+(>>) x y = x >>= (\_ => y)
+
+
 keyItems : Schema2 Key
 keyItems = (EField "sku1" "asset") .|. (EField "sku2" "asset")
 
@@ -844,8 +848,8 @@ namespace tab_widget
       calc_order_subtotals "order1" "subtotal" "order_total" Items_ModelSchema Pricelist_ModelSchema Subtotal_ModelSchema
       
    public export  --main init
-   table_composite : String -> String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
-   table_composite title parent_tag_id m mdl = do
+   table_composite : Bool -> String -> String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   table_composite show_edit title parent_tag_id m mdl = do
       
       -- Composite
       let _composite_id = get_composite_id parent_tag_id m mdl      
@@ -862,16 +866,17 @@ namespace tab_widget
       insert_table _composite_id (id_att _footer_id) m mdl                 
       
       
-      insert_beforeend _footer_id (printf _button _edit_button "Edit")
-      insert_beforeend _footer_id (printf _button _commit_button "Commit")
-
       
-      onClick ("#" ++ _edit_button) (on_table_edit parent_tag_id m mdl)
-      onClick ("#" ++ _commit_button) (on_table_commit parent_tag_id m mdl)
- --     onClick ("#" ++ _whs_route_button) (on_table_set_whs_route parent_tag_id m mdl)
-      toggle_hide_show_element (_commit_button)
+      
 
-
+      if show_edit then
+        ( (insert_beforeend _footer_id (printf _button _edit_button "Edit")) >>
+          (insert_beforeend _footer_id (printf _button _commit_button "Commit")) >>
+          (onClick ("#" ++ _edit_button) (on_table_edit parent_tag_id m mdl)) >> 
+          (onClick ("#" ++ _commit_button) (on_table_commit parent_tag_id m mdl)) >>
+          (toggle_hide_show_element (_commit_button)) )
+      else
+         pure ()
 
    public export
    on_set_backorders: String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
@@ -977,7 +982,7 @@ namespace tab_widget
       let _composite_id = get_composite_id parent_tag_id m mdl      
       let _footer_id = get_card_footer_id _composite_id
       let _whs_done_button = get_whs_done_button_id _composite_id      
-      insert_beforeend _footer_id (printf _button _whs_done_button "Set Done")      
+      insert_beforeend _footer_id (printf _button _whs_done_button "Done & Invoice")      
       
       onClick ("#" ++ _whs_done_button) (on_table_whs_done parent_tag_id m mdl)
 
