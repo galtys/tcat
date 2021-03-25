@@ -671,8 +671,9 @@ namespace tab_widget
       let x = render_rows_wo_ids m mdl
       let head_m = printf "<tr>%s %s</tr>" (schema2thead2 (key m)) (schema2thead2 (val m))
       let th_html = printf _tf_wo_ids (name mdl) head_m x
-      insert_beforeend p_id th_html
-
+--      insert_beforeend p_id th_html
+      insert_afterbegin p_id th_html
+      
    public export  --main init
    table_amendments : String -> String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
    table_amendments title parent_tag_id m mdl = do
@@ -680,8 +681,10 @@ namespace tab_widget
       -- Amendments
       let _amendments_id = get_amendments_id parent_tag_id m mdl      
       let _amendments_html = ( printf _amendments _amendments_id )
-      insert_beforeend parent_tag_id _amendments_html
-      insert_beforeend _amendments_id (printf "<h2>%s</h2>" title)
+--      insert_beforeend parent_tag_id _amendments_html
+--      insert_beforeend _amendments_id (printf "<h2>%s</h2>" title)
+      insert_afterbegin parent_tag_id _amendments_html
+      insert_afterbegin _amendments_id (printf "<h2>%s</h2>" title)
 
       insert_table_wo_ids _amendments_id m mdl      
 

@@ -50,7 +50,7 @@ whs_ModelDataList = MkMDList "items" [ (1,100), (2,100), (3,100), (4,100) ]
                           ( Tt 0 0 ),
                           ( Tt 0 0 ),
                           ( Tt 0 0 )]
-                                                                                                                                                                                                                
+
 items_ModelDataList'' : (ModelDataList Val) Items_ModelSchema
 items_ModelDataList'' = MkMDList "items" [ (1,100), (2,100), (3,100) ] 
                         [ ( Tt 0 1 ),
