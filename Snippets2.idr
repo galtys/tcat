@@ -21,11 +21,13 @@ drop_key c ( x@(EField n1 ns1) .|. y@(EField n2 ns2)) = case (c==n1) of
 drop_key c ( x .|. y ) = (drop_key c x) .|. (drop_key c y)
 drop_key c f = f
 
+{-
 convert_s2 : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
 convert_s2 (IField namex FBool) {si = (IField name FBool) } item = item
 convert_s2 (IField namex FString) {si = (IField name FString) } item = item
 convert_s2 (EField namex ns) {si = (EField name ns2) } item = item
 convert_s2 sb {si = (y .|. z)} it = convert_s2 sb it
+-}
 
 convert_s3 : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
 convert_s3 (IField namex FBool) {si = (IField name FBool) } item = item
