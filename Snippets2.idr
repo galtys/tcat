@@ -730,10 +730,10 @@ namespace tab_widget
       tab_widget.table_amendments (printf "Calculation:%s" parent_tag_id) "amendments_calc" m mdl
       
 
-   calc_order_t : (m_sub:ModelSchema Val) -> (t_sub:ModelSchema Val) -> JS_IO ()
-   calc_order_t m_sub m_t = do
-      let subtotal_id = get_table_id (get_composite_id_mdl_name "subtotal" "subtotal")
-      let t_id = get_table_id (get_composite_id_mdl_name "order_total" "order_total")
+   calc_order_t : String -> String -> (m_sub:ModelSchema Val) -> (t_sub:ModelSchema Val) -> JS_IO ()
+   calc_order_t sub_id tot_id m_sub m_t = do
+      let subtotal_id = get_table_id (get_composite_id_mdl_name sub_id "subtotal")  --tag id , mdl
+      let t_id = get_table_id (get_composite_id_mdl_name tot_id "order_total")
       
       subtotal_ids <- get_table_row_ids subtotal_id []
       t_ids <-get_table_row_ids t_id []
@@ -753,17 +753,17 @@ namespace tab_widget
       let amend = MkMDList "order_total" (t_k ++ xx )
                                          (t_inv ++  ss)
       
-      insert_rows_calc "order_total" m_t amend
+      insert_rows_calc tot_id m_t amend
       
       pure ()      
                   
    public export 
-   calc_order_subtotals : (m_items:ModelSchema Val) -> (m_price:ModelSchema Val) -> (m_sub:ModelSchema Val) -> JS_IO ()
-   calc_order_subtotals m_items m_price m_sub = do
-      let order1_id = get_table_id (get_composite_id_mdl_name "order1" "items")
+   calc_order_subtotals : String -> String -> String -> (m_items:ModelSchema Val) -> (m_price:ModelSchema Val) -> (m_sub:ModelSchema Val) -> JS_IO ()
+   calc_order_subtotals items_id sub_id tot_id m_items m_price m_sub = do
+      let order1_id = get_table_id (get_composite_id_mdl_name items_id "items")   -- tag id, mdl order1
       let pricelist_id = get_table_id (get_composite_id_mdl_name "pricelist" "pricelist")
-      let subtotal_id = get_table_id (get_composite_id_mdl_name "subtotal" "subtotal")
-
+      let subtotal_id = get_table_id (get_composite_id_mdl_name sub_id "subtotal")  -- subtotal
+      -- tot_id "order_total"
       items_ids <- get_table_row_ids order1_id []
       pricelist_ids <- get_table_row_ids pricelist_id []
       subtotal_ids <- get_table_row_ids subtotal_id []
@@ -797,9 +797,9 @@ namespace tab_widget
       let amend = MkMDList "subtotal" (subtotal_k ++ subtotal_k )
                                       (subtotal_inv ++ new_sub )
       
-      insert_rows_calc "subtotal" m_sub amend
+      insert_rows_calc sub_id m_sub amend
       
-      calc_order_t Subtotal_ModelSchema Total_ModelSchema
+      calc_order_t sub_id tot_id Subtotal_ModelSchema Total_ModelSchema
       pure ()
 
    public export
@@ -841,7 +841,7 @@ namespace tab_widget
       else
          pure ()
 
-      calc_order_subtotals Items_ModelSchema Pricelist_ModelSchema Subtotal_ModelSchema
+      calc_order_subtotals "order1" "subtotal" "order_total" Items_ModelSchema Pricelist_ModelSchema Subtotal_ModelSchema
       
    public export  --main init
    table_composite : String -> String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
@@ -957,7 +957,7 @@ namespace tab_widget
       console_log "updating whs done"
   
       on_set_backorders parent_tag_id m mdl 
-  
+      calc_order_subtotals "warehouse_done" "invoice_subtotal" "invoice_total" Items_ModelSchema Pricelist_ModelSchema Subtotal_ModelSchema     
     
 
    public export
