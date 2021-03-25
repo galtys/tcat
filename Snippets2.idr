@@ -727,7 +727,7 @@ namespace tab_widget
       let _composite_table_id = get_table_id _composite_id
       insert_rows2 _composite_table_id m mdl
       
-      tab_widget.table_amendments (printf "AmendmentC:%s" parent_tag_id) "amendments_calc" m mdl
+      tab_widget.table_amendments (printf "Calculation:%s" parent_tag_id) "amendments_calc" m mdl
       
 
    calc_order_t : (m_sub:ModelSchema Val) -> (t_sub:ModelSchema Val) -> JS_IO ()
