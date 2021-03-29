@@ -81,6 +81,7 @@ stdenv.mkDerivation {
   buildInputs = [
     (idrisPackages.with-packages (with idrisPackages; [ contrib pruviloj bytes array base containers my_free rationals lightyear idris_xml idris_commons]))
     gmp
+    nodejs
      (with nodePackages; [
                     #babel
                     #replem
