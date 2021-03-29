@@ -18,7 +18,7 @@ client.onopen = function() {
         if (client.readyState === client.OPEN) {
             var number = Math.round(Math.random() * 0xFFFFFF);
             client.send(number.toString());
-            setTimeout(sendNumber, 1000);
+            setTimeout(sendNumber, 1000); //
         }
     }
 
