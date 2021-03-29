@@ -21,8 +21,6 @@ client.onopen = function() {
             setTimeout(sendNumber, 1000); //
         }
     }
-
-
     
     sendNumber();
 };
