@@ -54,11 +54,31 @@ var gameState = (function () {
     writeHealth : function (health) {
       state.health = health;
     },
-    
+
+    echoWS2 : function (on_request) {
+	wsServer.on('request', on_request);
+    },
+     
     writeEnemy : function (enemy) {
       state.enemy = enemy;
     },
 
+    setConn : function (req) {
+	var conn = req.accept('echo-protocol',req.origin);
+	state.conn = conn
+        //return c;
+    },
+
+    set_on_msg : function (fc) {
+          state.conn.on('message', fc);
+    },
+    on_msg_fc : function (msg) {
+        if (msg.type==='utf8') {
+	    console.log("Msg recv: " + msg.utf8Data);
+            state.conn.sendUTF( msg.utf8Data );
+	}
+    },
+      
     echoWS : function (callback) {
         console.log("setting up echoWS  " )
   
