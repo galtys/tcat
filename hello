@@ -1,3 +1,72 @@
+#!/usr/bin/env node
+"use strict";
+
+(function(){
+
+const $JSRTS = {
+    throw: function (x) {
+        throw x;
+    },
+    Lazy: function (e) {
+        this.js_idris_lazy_calc = e;
+        this.js_idris_lazy_val = void 0;
+    },
+    force: function (x) {
+        if (x === undefined || x.js_idris_lazy_calc === undefined) {
+            return x
+        } else {
+            if (x.js_idris_lazy_val === undefined) {
+                x.js_idris_lazy_val = x.js_idris_lazy_calc()
+            }
+            return x.js_idris_lazy_val
+        }
+    },
+    prim_strSubstr: function (offset, len, str) {
+        return str.substr(Math.max(0, offset), Math.max(0, len))
+    }
+};
+$JSRTS.os = require('os');
+
+$JSRTS.fs = require('fs');
+
+$JSRTS.prim_systemInfo = function (index) {
+    switch (index) {
+        case 0:
+            return "node";
+        case 1:
+            return $JSRTS.os.platform();
+    }
+    return "";
+};
+
+$JSRTS.prim_writeStr = function (x) { return process.stdout.write(x) };
+
+$JSRTS.prim_readStr = function () {
+    var ret = '';
+    var b = Buffer.alloc(1024);
+    var i = 0;
+    while (true) {
+        $JSRTS.fs.readSync(0, b, i, 1)
+        if (b[i] == 10) {
+            ret = b.toString('utf8', 0, i);
+            break;
+        }
+        i++;
+        if (i == b.length) {
+            var nb = Buffer.alloc(b.length * 2);
+            b.copy(nb)
+            b = nb;
+        }
+    }
+    return ret;
+};
+
+$JSRTS.die = function (message) {
+    console.error(message);
+    process.exit(-1);
+};
+
+
 var WebSocketServer = require('websocket').server;
 var http = require('http');
 
@@ -187,3 +256,86 @@ wsServer.on('request', function(request) {
 });
 
 */
+
+
+function $partial_1_3$$_3__123_runMain_95_0_125__95_lam(x1){
+    return (function(x2){
+        return (function(x3){
+            return $_3__123_runMain_95_0_125__95_lam(x1, x2, x3);
+        });
+    });
+}
+
+function $partial_0_2$$_4__123_runMain_95_0_125__95_lam(){
+    return (function(x1){
+        return (function(x2){
+            return $_4__123_runMain_95_0_125__95_lam(x1, x2);
+        });
+    });
+}
+
+const $HC_0_0$TheWorld = ({type: 0});
+// Main.acceptConnection
+
+function Main__acceptConnection($_0_arg, $_1_w){
+    return (gameState.acceptConnection(($_0_arg)));
+}
+
+// Main.console_log
+
+function Main__console_95_log($_0_x, $_1_w){
+    return (console.log(($_0_x)));
+}
+
+// Main.getUtf8Data
+
+function Main__getUtf8Data($_0_arg, $_1_w){
+    return (gameState.getUtf8Data(($_0_arg)));
+}
+
+// Main.sendUTF
+
+function Main__sendUTF($_0_arg, $_1_arg, $_2_w){
+    return (gameState.sendUTF(($_0_arg),($_1_arg)));
+}
+
+// Main.setOnMsgHandler
+
+function Main__setOnMsgHandler($_0_arg, $_1_arg, $_2_w){
+    return (gameState.setOnMsgHandler(($_0_arg),((function(x){
+        return $_1_arg(x)(null);
+    }))));
+}
+
+// Main.wsServerOnRequest
+
+function Main__wsServerOnRequest($_0_arg, $_1_w){
+    return (gameState.wsServerOnRequest(((function(x){
+        return $_0_arg(x)(null);
+    }))));
+}
+
+// {runMain_0}
+
+function $_0_runMain(){
+    const $_16_in = Main__console_95_log("Starting ws", $HC_0_0$TheWorld);
+    return $JSRTS.force(Main__wsServerOnRequest($partial_0_2$$_4__123_runMain_95_0_125__95_lam(), $HC_0_0$TheWorld));
+}
+
+// {{runMain_0}_lam_3}
+
+function $_3__123_runMain_95_0_125__95_lam($_0_lift, $_1_lift, $_2_lift){
+    const $_22_in = Main__getUtf8Data($_1_lift, $_2_lift);
+    return Main__sendUTF($_0_lift, ($_22_in + "+X back"), $_2_lift);
+}
+
+// {{runMain_0}_lam_4}
+
+function $_4__123_runMain_95_0_125__95_lam($_0_lift, $_1_lift){
+    const $_19_in = Main__acceptConnection($_0_lift, $_1_lift);
+    return Main__setOnMsgHandler($_19_in, $partial_1_3$$_3__123_runMain_95_0_125__95_lam($_19_in), $_1_lift);
+}
+
+
+$_0_runMain();
+}.call(this))
