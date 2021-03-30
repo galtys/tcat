@@ -65,12 +65,15 @@ var gameState = (function () {
 
     getConn : function (req) {
 	var conn = req.accept('echo-protocol',req.origin);
-	state.conn = conn
+	state.conn = conn;
         return conn;
     },
 
     set_on_msg : function (fc) {
           state.conn.on('message', fc);
+    },
+    set_on_msg2 : function (c,fc) {
+          c.on('message', fc);
     },
 
     get_msg : function (msg) {
@@ -83,6 +86,10 @@ var gameState = (function () {
     send_msg : function (a) {
 	  state.conn.sendUTF( a );
     },
+    send_msg2 : function (c,a) {
+	  c.sendUTF( a ); //connection.sendUTF
+    },
+    
     on_msg_fc : function (msg) {
         if (msg.type==='utf8') {
 	    console.log("Msg recv: " + msg.utf8Data);
