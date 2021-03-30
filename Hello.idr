@@ -6,8 +6,8 @@ console_log : String -> JS_IO ()
 console_log = foreign FFI_JS "console.log(%0)" (String -> JS_IO () )
 
 
-setConn : Ptr -> JS_IO Ptr
-setConn request = foreign FFI_JS "gameState.setConn(%0)"
+getConn : Ptr -> JS_IO Ptr
+getConn request = foreign FFI_JS "gameState.getConn(%0)"
                              (Ptr -> JS_IO Ptr)
                              request
 
@@ -56,7 +56,7 @@ clb x = x ++"muf "
 
 on_req : Ptr -> JS_IO ()
 on_req req = do
-    setConn req
+    conn <- getConn req
     set_on_msg on_msg_recv
     
 main : JS_IO ()

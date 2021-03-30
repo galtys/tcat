@@ -63,10 +63,10 @@ var gameState = (function () {
       state.enemy = enemy;
     },
 
-    setConn : function (req) {
+    getConn : function (req) {
 	var conn = req.accept('echo-protocol',req.origin);
 	state.conn = conn
-        //return c;
+        return conn;
     },
 
     set_on_msg : function (fc) {
