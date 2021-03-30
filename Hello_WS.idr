@@ -37,12 +37,12 @@ sendUTF : Ptr -> String -> JS_IO ()
 sendUTF conn a = foreign FFI_JS "nodeAppState.sendUTF(%0,%1)"
                             (Ptr -> String -> JS_IO ())
                             conn a
-
+{-
 echoWS : (String -> String) -> JS_IO ()
 echoWS callback = foreign FFI_JS "nodeAppState.echoWS(%0)"
                                  (JsFn (String->String) -> JS_IO ())
                                  (MkJsFn callback)
-
+-}
 on_close_handle : Ptr -> Int -> String -> JS_IO ()
 on_close_handle conn  reasonCode description = do
         console_log ( "connection closed: " ++ description)
