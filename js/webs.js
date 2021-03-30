@@ -72,6 +72,17 @@ var gameState = (function () {
     set_on_msg : function (fc) {
           state.conn.on('message', fc);
     },
+
+    get_msg : function (msg) {
+        if (msg.type==='utf8') {
+	    return msg.utf8Data;
+	} else {
+	    return "";
+	}	    
+    },
+    send_msg : function (a) {
+	  state.conn.sendUTF( a );
+    },
     on_msg_fc : function (msg) {
         if (msg.type==='utf8') {
 	    console.log("Msg recv: " + msg.utf8Data);
