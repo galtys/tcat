@@ -6,7 +6,7 @@ function originIsAllowed(origin) {
 }
 
 
-var gameState = (function () {
+var nodeAppState = (function () {
 
   /* The object that holds the game state */
   var state = {};
