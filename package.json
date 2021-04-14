@@ -1,0 +1,14 @@
+{
+  "name": "tcat",
+  "version": "2.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:galtys/tcat.git",
+  "author": "Jan Troler <jan.troler@galtys.com>",
+  "license": "GPL-3.0-only",
+  "dependencies": {
+    "browserify": "^17.0.0",
+    "nodejs": "^0.0.0",
+    "pg": "^8.6.0",
+    "puppeteer": "^8.0.0"
+  }
+}

@@ -8,5 +8,9 @@ node: Hello_WS.idr
 outjs: js/w3c.js
 	browserify js/w3c.js -o js/out.js
 
+yarn: package.json yarn.lock
+	../yarn2nix/result-bin/bin/yarn2nix > npm-deps.nix
+	../yarn2nix/result-bin/bin/yarn2nix --template package.json  > npm-package.nix
+
 clean:
 	rm -f *ibc

@@ -81,13 +81,15 @@ stdenv.mkDerivation {
   buildInputs = [
     (idrisPackages.with-packages (with idrisPackages; [ contrib pruviloj bytes array base containers my_free rationals lightyear idris_xml idris_commons]))
     gmp
+    (import "/home/jan/github.com/tcat/y.nix")
+    yarn
     nodejs
      (with nodePackages; [
                     #babel
                     #replem
                     browserify
-                    yarn
-                    yarn2nix
+      #              yarn
+                    #yarn2nix
 #                    postgres
 #                    puppeteer
                     #npm2nix
