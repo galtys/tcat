@@ -203,6 +203,7 @@ record ModelSchema (a:KV) where
      constructor MkModelSchema
      key : Schema2 Key
      val : Schema2 a
+     name : String
 --     rw : Schema2 kv -> Bool
 
 

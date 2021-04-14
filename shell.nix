@@ -88,6 +88,8 @@ stdenv.mkDerivation {
                     browserify
                     yarn
                     yarn2nix
+#                    postgres
+#                    puppeteer
                     #npm2nix
                     #coffee-script
                     #jsonlint

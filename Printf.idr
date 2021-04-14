@@ -4,7 +4,11 @@ module Printf
 
 %access public export
 
+-- google-chrome-stable --headless --disable-gpu --no-margins --print-to-pdf Downloads/Partner\ Ledger\ Webkit\ \(75\).html
+-- google-chrome-stable --headless --disable-gpu --no-margins --print-to-pdf --print-to-pdf-no-header http:192.168.1.149:8000
+
 -- Formatting AST.
+
 data Format
   = FInt Format
   | FString Format

@@ -86,16 +86,16 @@ _items_rw (EField name ns) = False
 _items_rw (s1 .|. s2) = False
 
 Items_ModelSchema : ModelSchema Val
-Items_ModelSchema = MkModelSchema keyItems valItems
+Items_ModelSchema = MkModelSchema keyItems valItems "items"
 
 Pricelist_ModelSchema : ModelSchema Val
-Pricelist_ModelSchema = MkModelSchema keyItems priceItems
+Pricelist_ModelSchema = MkModelSchema keyItems priceItems "pricelist"
 
 Subtotal_ModelSchema : ModelSchema Val
-Subtotal_ModelSchema = MkModelSchema keyItems subtotalItems
+Subtotal_ModelSchema = MkModelSchema keyItems subtotalItems "subtotal"
 
 Total_ModelSchema : ModelSchema Val
-Total_ModelSchema = MkModelSchema keyTotal subtotalItems
+Total_ModelSchema = MkModelSchema keyTotal subtotalItems "total"
 
 
 _unit_dropdown : String
@@ -594,8 +594,8 @@ namespace tab_widget
          runjsio () [insert_beforeend p_id x | x <- rows_tr]
       else 
          pure ()        
--}         
-         
+-}
+
    public export
    update_cells_ke1 : String -> (sv:Schema2 Val) -> (SchemaType2 sv) -> JS_IO ()
    update_cells_ke1 rid sv x_val = do
