@@ -10,6 +10,7 @@
     "nodejs": "^0.0.0",
     "pg": "^8.6.0",
     "pg-cursor": "^2.6.0",
-    "puppeteer": "^8.0.0"
+    "puppeteer": "^8.0.0",
+    "websocket": "^1.0.34"
   }
 }

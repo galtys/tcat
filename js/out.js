@@ -1,7 +1,7 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 var W3CWebSocket = require('websocket').w3cwebsocket;
 
-var client = new W3CWebSocket('ws://localhost:8080/', 'echo-protocol');
+var client = new W3CWebSocket('ws://192.168.1.149:8080/', 'echo-protocol');
 
 client.onerror = function() {
     console.log('Connection Error');
@@ -75,12 +75,16 @@ module.exports = (function () {
 
 },{}],3:[function(require,module,exports){
 var _globalThis;
-try {
-	_globalThis = require('es5-ext/global');
-} catch (error) {
-} finally {
-	if (!_globalThis && typeof window !== 'undefined') { _globalThis = window; }
-	if (!_globalThis) { throw new Error('Could not determine global this'); }
+if (typeof globalThis === 'object') {
+	_globalThis = globalThis;
+} else {
+	try {
+		_globalThis = require('es5-ext/global');
+	} catch (error) {
+	} finally {
+		if (!_globalThis && typeof window !== 'undefined') { _globalThis = window; }
+		if (!_globalThis) { throw new Error('Could not determine global this'); }
+	}
 }
 
 var NativeWebSocket = _globalThis.WebSocket || _globalThis.MozWebSocket;
@@ -130,75 +134,8 @@ module.exports = require('../package.json').version;
 
 },{"../package.json":5}],5:[function(require,module,exports){
 module.exports={
-  "_from": "websocket",
-  "_id": "websocket@1.0.33",
-  "_inBundle": false,
-  "_integrity": "sha512-XwNqM2rN5eh3G2CUQE3OHZj+0xfdH42+OFK6LdC2yqiC0YU8e5UK0nYre220T0IyyN031V/XOvtHvXozvJYFWA==",
-  "_location": "/websocket",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "tag",
-    "registry": true,
-    "raw": "websocket",
-    "name": "websocket",
-    "escapedName": "websocket",
-    "rawSpec": "",
-    "saveSpec": null,
-    "fetchSpec": "latest"
-  },
-  "_requiredBy": [
-    "#USER",
-    "/"
-  ],
-  "_resolved": "https://registry.npmjs.org/websocket/-/websocket-1.0.33.tgz",
-  "_shasum": "407f763fc58e74a3fa41ca3ae5d78d3f5e3b82a5",
-  "_spec": "websocket",
-  "_where": "/home/jan/github.com/tcat",
-  "author": {
-    "name": "Brian McKelvey",
-    "email": "theturtle32@gmail.com",
-    "url": "https://github.com/theturtle32"
-  },
-  "browser": "lib/browser.js",
-  "bugs": {
-    "url": "https://github.com/theturtle32/WebSocket-Node/issues"
-  },
-  "bundleDependencies": false,
-  "config": {
-    "verbose": false
-  },
-  "contributors": [
-    {
-      "name": "Iñaki Baz Castillo",
-      "email": "ibc@aliax.net",
-      "url": "http://dev.sipdoc.net"
-    }
-  ],
-  "dependencies": {
-    "bufferutil": "^4.0.1",
-    "debug": "^2.2.0",
-    "es5-ext": "^0.10.50",
-    "typedarray-to-buffer": "^3.1.5",
-    "utf-8-validate": "^5.0.2",
-    "yaeti": "^0.0.6"
-  },
-  "deprecated": false,
+  "name": "websocket",
   "description": "Websocket Client & Server Library implementing the WebSocket protocol as specified in RFC 6455.",
-  "devDependencies": {
-    "buffer-equal": "^1.0.0",
-    "gulp": "^4.0.2",
-    "gulp-jshint": "^2.0.4",
-    "jshint": "^2.0.0",
-    "jshint-stylish": "^2.2.1",
-    "tape": "^4.9.1"
-  },
-  "directories": {
-    "lib": "./lib"
-  },
-  "engines": {
-    "node": ">=4.0.0"
-  },
-  "homepage": "https://github.com/theturtle32/WebSocket-Node",
   "keywords": [
     "websocket",
     "websockets",
@@ -211,18 +148,48 @@ module.exports={
     "server",
     "client"
   ],
-  "license": "Apache-2.0",
-  "main": "index",
-  "name": "websocket",
+  "author": "Brian McKelvey <theturtle32@gmail.com> (https://github.com/theturtle32)",
+  "contributors": [
+    "Iñaki Baz Castillo <ibc@aliax.net> (http://dev.sipdoc.net)"
+  ],
+  "version": "1.0.34",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/theturtle32/WebSocket-Node.git"
+    "url": "https://github.com/theturtle32/WebSocket-Node.git"
+  },
+  "homepage": "https://github.com/theturtle32/WebSocket-Node",
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "dependencies": {
+    "bufferutil": "^4.0.1",
+    "debug": "^2.2.0",
+    "es5-ext": "^0.10.50",
+    "typedarray-to-buffer": "^3.1.5",
+    "utf-8-validate": "^5.0.2",
+    "yaeti": "^0.0.6"
+  },
+  "devDependencies": {
+    "buffer-equal": "^1.0.0",
+    "gulp": "^4.0.2",
+    "gulp-jshint": "^2.0.4",
+    "jshint-stylish": "^2.2.1",
+    "jshint": "^2.0.0",
+    "tape": "^4.9.1"
+  },
+  "config": {
+    "verbose": false
   },
   "scripts": {
-    "gulp": "gulp",
-    "test": "tape test/unit/*.js"
+    "test": "tape test/unit/*.js",
+    "gulp": "gulp"
   },
-  "version": "1.0.33"
+  "main": "index",
+  "directories": {
+    "lib": "./lib"
+  },
+  "browser": "lib/browser.js",
+  "license": "Apache-2.0"
 }
 
 },{}]},{},[1]);

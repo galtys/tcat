@@ -1,4 +1,5 @@
 const { Pool, Client } = require('pg')
+const Cursor = require('pg-cursor')
 
 /*
 const pool = new Pool({

@@ -259,6 +259,10 @@
         "buffer@^5.2.1" = s."buffer@5.7.1";
         "buffer@^5.5.0" = s."buffer@5.7.1";
         "buffer@~5.2.1" = s."buffer@5.2.1";
+        "bufferutil@4.0.3" = f "bufferutil" "4.0.3" y "66724b756bed23cd7c28c4d306d7994f9943cc6b" [
+          (s."node-gyp-build@^4.2.0")
+          ];
+        "bufferutil@^4.0.1" = s."bufferutil@4.0.3";
         "builtin-status-codes@3.0.0" = f "builtin-status-codes" "3.0.0" y "85982878e21b98e1c66425e03d0174788f569ee8" [];
         "builtin-status-codes@^3.0.0" = s."builtin-status-codes@3.0.0";
         "cached-path-relative@1.0.2" = f "cached-path-relative" "1.0.2" y "a13df4196d26776220cc3356eb147a52dba2c6db" [];
@@ -345,12 +349,21 @@
           (s."randomfill@^1.0.3")
           ];
         "crypto-browserify@^3.0.0" = s."crypto-browserify@3.12.0";
+        "d@1" = s."d@1.0.1";
+        "d@1.0.1" = f "d" "1.0.1" y "8698095372d58dbee346ffd0c7093f99f8f9eb5a" [
+          (s."type@^1.0.1")
+          ];
+        "d@^1.0.1" = s."d@1.0.1";
         "dash-ast@1.0.0" = f "dash-ast" "1.0.0" y "12029ba5fb2f8aa6f0a861795b23c1b4b6c27d37" [];
         "dash-ast@^1.0.0" = s."dash-ast@1.0.0";
+        "debug@2.6.9" = f "debug" "2.6.9" y "5d128515df134ff327e90a4c93f4e077a536341f" [
+          (s."ms@2.0.0")
+          ];
         "debug@4" = s."debug@4.3.1";
         "debug@4.3.1" = f "debug" "4.3.1" y "f0d229c505e0c6d8c49ac553d1b13dc183f6b2ee" [
           (s."ms@2.1.2")
           ];
+        "debug@^2.2.0" = s."debug@2.6.9";
         "debug@^4.1.0" = s."debug@4.3.1";
         "debug@^4.1.1" = s."debug@4.3.1";
         "define-properties@1.1.3" = f "define-properties" "1.1.3" y "cf88da6cbee26fe6db7094f61d870cbd84cee9f1" [
@@ -433,6 +446,23 @@
           (s."is-symbol@^1.0.2")
           ];
         "es-to-primitive@^1.2.1" = s."es-to-primitive@1.2.1";
+        "es5-ext@0.10.53" = f "es5-ext" "0.10.53" y "93c5a3acfdbef275220ad72644ad02ee18368de1" [
+          (s."es6-symbol@~3.1.3")
+          (s."next-tick@~1.0.0")
+          ];
+        "es5-ext@^0.10.35" = s."es5-ext@0.10.53";
+        "es5-ext@^0.10.50" = s."es5-ext@0.10.53";
+        "es6-iterator@2.0.3" = f "es6-iterator" "2.0.3" y "a7de889141a05a94b0854403b2d0a0fbfa98f3b7" [
+          (s."es5-ext@^0.10.35")
+          (s."es6-symbol@^3.1.1")
+          ];
+        "es6-iterator@~2.0.3" = s."es6-iterator@2.0.3";
+        "es6-symbol@3.1.3" = f "es6-symbol" "3.1.3" y "bad5d3c1bcdac28269f4cb331e431c78ac705d18" [
+          (s."d@^1.0.1")
+          (s."ext@^1.1.2")
+          ];
+        "es6-symbol@^3.1.1" = s."es6-symbol@3.1.3";
+        "es6-symbol@~3.1.3" = s."es6-symbol@3.1.3";
         "events@3.3.0" = f "events" "3.3.0" y "31a95ad0a924e2d2c419a813aeb2c4e878ea7400" [];
         "events@^3.0.0" = s."events@3.3.0";
         "evp_bytestokey@1.0.3" = f "evp_bytestokey" "1.0.3" y "7fcbdb198dc71959432efe13842684e0525acb02" [
@@ -441,6 +471,10 @@
           ];
         "evp_bytestokey@^1.0.0" = s."evp_bytestokey@1.0.3";
         "evp_bytestokey@^1.0.3" = s."evp_bytestokey@1.0.3";
+        "ext@1.4.0" = f "ext" "1.4.0" y "89ae7a07158f79d35517882904324077e4379244" [
+          (s."type@^2.0.0")
+          ];
+        "ext@^1.1.2" = s."ext@1.4.0";
         "extract-zip@2.0.1" = f "extract-zip" "2.0.1" y "663dca56fe46df890d5f131ef4a06d22bb8ba13a" [
           (s."debug@^4.1.1")
           (s."get-stream@^5.1.0")
@@ -608,6 +642,8 @@
           (s."has-symbols@^1.0.1")
           ];
         "is-typed-array@^1.1.3" = s."is-typed-array@1.1.5";
+        "is-typedarray@1.0.0" = f "is-typedarray" "1.0.0" y "e479c80858df0c1b11ddda6940f96011fcda4a9a" [];
+        "is-typedarray@^1.0.0" = s."is-typedarray@1.0.0";
         "isarray@1.0.0" = f "isarray" "1.0.0" y "bb935d48582cba168c06834957a54a3e07124f11" [];
         "isarray@~1.0.0" = s."isarray@1.0.0";
         "jsonparse@1.3.1" = f "jsonparse" "1.3.1" y "3f4dae4a91fac315f71062f8521cc239f1366280" [];
@@ -666,9 +702,14 @@
           (s."xtend@^4.0.0")
           ];
         "module-deps@^6.2.3" = s."module-deps@6.2.3";
+        "ms@2.0.0" = f "ms" "2.0.0" y "5608aeadfc00be6c2901df5f9861788de0d597c8" [];
         "ms@2.1.2" = f "ms" "2.1.2" y "d09d1f357b443f493382a8eb3ccd183872ae6009" [];
+        "next-tick@1.0.0" = f "next-tick" "1.0.0" y "ca86d1fe8828169b0120208e3dc8424b9db8342c" [];
+        "next-tick@~1.0.0" = s."next-tick@1.0.0";
         "node-fetch@2.6.1" = f "node-fetch" "2.6.1" y "045bd323631f76ed2e2b55573394416b639a0052" [];
         "node-fetch@^2.6.1" = s."node-fetch@2.6.1";
+        "node-gyp-build@4.2.3" = f "node-gyp-build" "4.2.3" y "ce6277f853835f718829efb47db20f3e4d9c4739" [];
+        "node-gyp-build@^4.2.0" = s."node-gyp-build@4.2.3";
         "nodejs@0.0.0" = f "nodejs" "0.0.0" y "4722fa2e18ac4eb73a42ae16d01e3584a12b7531" [];
         "nodejs@^0.0.0" = s."nodejs@0.0.0";
         "object-assign@4.1.1" = f "object-assign" "4.1.1" y "2109adc7965887cfc05cbbd442cac8bfbb360863" [];
@@ -991,6 +1032,14 @@
           ];
         "timers-browserify@^1.0.1" = s."timers-browserify@1.4.2";
         "tty-browserify@0.0.1" = f "tty-browserify" "0.0.1" y "3f05251ee17904dfd0677546670db9651682b811" [];
+        "type@1.2.0" = f "type" "1.2.0" y "848dd7698dafa3e54a6c479e759c4bc3f18847a0" [];
+        "type@2.5.0" = f "type" "2.5.0" y "0a2e78c2e77907b252abe5f298c1b01c63f0db3d" [];
+        "type@^1.0.1" = s."type@1.2.0";
+        "type@^2.0.0" = s."type@2.5.0";
+        "typedarray-to-buffer@3.1.5" = f "typedarray-to-buffer" "3.1.5" y "a97ee7a9ff42691b9f783ff1bc5112fe3fca9080" [
+          (s."is-typedarray@^1.0.0")
+          ];
+        "typedarray-to-buffer@^3.1.5" = s."typedarray-to-buffer@3.1.5";
         "typedarray@0.0.6" = f "typedarray" "0.0.6" y "867ac74e3864187b1d3d47d996a78ec5c8830777" [];
         "typedarray@^0.0.6" = s."typedarray@0.0.6";
         "umd@3.0.3" = f "umd" "3.0.3" y "aa9fe653c42b9097678489c01000acb69f0b26cf" [];
@@ -1020,6 +1069,10 @@
           (s."querystring@0.2.0")
           ];
         "url@~0.11.0" = s."url@0.11.0";
+        "utf-8-validate@5.0.4" = f "utf-8-validate" "5.0.4" y "72a1735983ddf7a05a43a9c6b67c5ce1c910f9b8" [
+          (s."node-gyp-build@^4.2.0")
+          ];
+        "utf-8-validate@^5.0.2" = s."utf-8-validate@5.0.4";
         "util-deprecate@1.0.2" = f "util-deprecate" "1.0.2" y "450d4dc9fa70de732762fbd2d4a28981419a0ccf" [];
         "util-deprecate@^1.0.1" = s."util-deprecate@1.0.2";
         "util-deprecate@~1.0.1" = s."util-deprecate@1.0.2";
@@ -1037,6 +1090,15 @@
         "util@~0.12.0" = s."util@0.12.3";
         "vm-browserify@1.1.2" = f "vm-browserify" "1.1.2" y "78641c488b8e6ca91a75f511e7a3b32a86e5dda0" [];
         "vm-browserify@^1.0.0" = s."vm-browserify@1.1.2";
+        "websocket@1.0.34" = f "websocket" "1.0.34" y "2bdc2602c08bf2c82253b730655c0ef7dcab3111" [
+          (s."bufferutil@^4.0.1")
+          (s."debug@^2.2.0")
+          (s."es5-ext@^0.10.50")
+          (s."typedarray-to-buffer@^3.1.5")
+          (s."utf-8-validate@^5.0.2")
+          (s."yaeti@^0.0.6")
+          ];
+        "websocket@^1.0.34" = s."websocket@1.0.34";
         "which-boxed-primitive@1.0.2" = f "which-boxed-primitive" "1.0.2" y "13757bc89b209b049fe5d86430e21cf40a89a8e6" [
           (s."is-bigint@^1.0.1")
           (s."is-boolean-object@^1.1.0")
@@ -1064,6 +1126,8 @@
         "xtend@^4.0.1" = s."xtend@4.0.2";
         "xtend@^4.0.2" = s."xtend@4.0.2";
         "xtend@~4.0.1" = s."xtend@4.0.2";
+        "yaeti@0.0.6" = f "yaeti" "0.0.6" y "f26f484d72684cf42bedfb76970aa1608fbf9577" [];
+        "yaeti@^0.0.6" = s."yaeti@0.0.6";
         "yauzl@2.10.0" = f "yauzl" "2.10.0" y "c7eb17c93e112cb1086fa6d8e51fb0667b79a5f9" [
           (s."buffer-crc32@~0.2.3")
           (s."fd-slicer@~1.1.0")

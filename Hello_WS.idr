@@ -22,9 +22,9 @@ setOnMsgHandler conn handle_msg = foreign FFI_JS "nodeAppState.setOnMsgHandler(%
                               conn (MkJsFn handle_msg)
 
 
-setOnCloseHandler : Ptr -> (Int -> String -> JS_IO ()) -> JS_IO ()
+setOnCloseHandler : Ptr -> (String -> JS_IO ()) -> JS_IO ()
 setOnCloseHandler conn handle_close = foreign FFI_JS "nodeAppState.setOnCloseHandler(%0,%1)"
-                              (Ptr -> JsFn (Int -> String -> JS_IO ()) -> JS_IO () )
+                              (Ptr -> JsFn (String -> JS_IO ()) -> JS_IO () )
                               conn (MkJsFn handle_close)
 
 
@@ -47,9 +47,9 @@ on_close_handle : Ptr -> Int -> String -> JS_IO ()
 on_close_handle conn  reasonCode description = do
         console_log ( "connection closed: " ++ description)
 
-on_close_handle2 : Int -> String -> JS_IO ()
-on_close_handle2 reasonCode description = do
-        console_log ( "connection closed: " ++ description)
+on_close_handle2 : String ->  JS_IO ()
+on_close_handle2 reasonCode  = do --description should be 2nd arg
+        console_log ( "connection closed: " ++ reasonCode)
 
 on_msg_recv2 : Ptr -> Ptr -> JS_IO ()
 on_msg_recv2 conn msg = do
@@ -60,8 +60,8 @@ on_req : Ptr -> JS_IO ()
 on_req req = do
     conn <- acceptConnection req
     setOnMsgHandler conn (on_msg_recv2 conn)
-    
---    setOnCloseHandler conn on_close_handle2
+    setOnCloseHandler conn on_close_handle2    
+
 
 main : JS_IO ()
 main = do
