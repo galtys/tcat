@@ -1073,6 +1073,11 @@ pg-connection-string@^2.5.0:
   resolved "https://registry.yarnpkg.com/pg-connection-string/-/pg-connection-string-2.5.0.tgz#538cadd0f7e603fc09a12590f3b8a452c2c0cf34"
   integrity sha512-r5o/V/ORTA6TmUnyWZR9nCj1klXCO2CEKNRlVuJptZe85QuhFayC7WeMic7ndayT5IRIR0S0xFxFi2ousartlQ==
 
+pg-cursor@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/pg-cursor/-/pg-cursor-2.6.0.tgz#a85df1bd1389c75ffa443ee94073da0a1be360ba"
+  integrity sha512-BFLg40CTgBJ+LX9EwqjztUYaKxpxLffMmDTmlQNMCustX/JxMTYimxRkdhZvPYZGp++/2LjuqkKtO5DVVq0FNg==
+
 pg-int8@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/pg-int8/-/pg-int8-1.0.1.tgz#943bd463bf5b71b4170115f80f8efc9a0c0eb78c"

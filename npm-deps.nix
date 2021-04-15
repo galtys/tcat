@@ -743,6 +743,8 @@
         "pend@~1.2.0" = s."pend@1.2.0";
         "pg-connection-string@2.5.0" = f "pg-connection-string" "2.5.0" y "538cadd0f7e603fc09a12590f3b8a452c2c0cf34" [];
         "pg-connection-string@^2.5.0" = s."pg-connection-string@2.5.0";
+        "pg-cursor@2.6.0" = f "pg-cursor" "2.6.0" y "a85df1bd1389c75ffa443ee94073da0a1be360ba" [];
+        "pg-cursor@^2.6.0" = s."pg-cursor@2.6.0";
         "pg-int8@1.0.1" = f "pg-int8" "1.0.1" y "943bd463bf5b71b4170115f80f8efc9a0c0eb78c" [];
         "pg-pool@3.3.0" = f "pg-pool" "3.3.0" y "12d5c7f65ea18a6e99ca9811bd18129071e562fc" [];
         "pg-pool@^3.3.0" = s."pg-pool@3.3.0";
