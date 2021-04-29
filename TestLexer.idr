@@ -142,34 +142,39 @@ opC s = ((op s) <* commentSpace) <|> (op s)
 addInt : Integer -> Integer -> Integer
 addInt a b = a+b
 
+{-
 export
 add : Grammar tok c1 Integer ->
       Grammar tok c2 Integer ->
       Grammar tok c3 Integer ->
       Grammar tok ((c1 || c2) || c3) Integer
 add x y z = map addInt (x *> y) <*> z
-
+-}
 
 subInt : Integer -> Integer -> Integer
 subInt a b = a-b
 
+{-
 export
 sub : Grammar tok c1 Integer ->
       Grammar tok c2 Integer ->
       Grammar tok c3 Integer ->
       Grammar tok ((c1 || c2) || c3) Integer
 sub x y z = map subInt (x *> y) <*> z
+-}
 
 multInt : Integer -> Integer -> Integer
 multInt a b = a*b
 
+
+{-
 export
 mult : Grammar tok c1 Integer ->
        Grammar tok c2 Integer ->
        Grammar tok c3 Integer ->
        Grammar tok ((c1 || c2) || c3) Integer
 mult x y z = map multInt (x *> y) <*> z
-
+-}
 
 
 
@@ -193,13 +198,14 @@ term = map multInt factor <*> (
 expr = map addInt term <*> (
         (opC "+")
         *> term)
+        
      <|> map subInt term <*> (
         (opC "-")
         *> term)
      <|> term
 
 calc : String -> Either (ParseError (TokenData ExpressionToken))
-                      (Integer, List (TokenData ExpressionToken))
+                        (Integer, List (TokenData ExpressionToken))
 calc s = parse expr (fst (lex expressionTokens s))
 
 lft : (ParseError (TokenData ExpressionToken)) -> IO ()

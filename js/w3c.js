@@ -1,6 +1,6 @@
 var W3CWebSocket = require('websocket').w3cwebsocket;
 
-var client = new W3CWebSocket('ws://192.168.1.149:8080/', 'echo-protocol');
+var client = new W3CWebSocket('ws://192.168.1.149:8080/muf', 'echo-protocol');
 
 client.onerror = function() {
     console.log('Connection Error');

@@ -11,7 +11,7 @@ var nodeAppState = (function () {
   console.log("wsServer1----");
   */
 
-  var server = http.createServer(function(request, response) {
+  var server = http.createServer( function(request, response) {
     console.log((new Date()) + ' Received request for ' + request.url);
     response.writeHead(404);
     response.end();
@@ -59,10 +59,13 @@ var nodeAppState = (function () {
 	wsServer.on('request', on_request);
     },
     acceptConnection : function (req) {
+    	console.log(req.origin, req.url);
 	var conn = req.accept('echo-protocol',req.origin);
 	//state.conn = conn;
+
         return conn;
-    },    
+    },
+    
     setOnMsgHandler : function (c,fc) {
           c.on('message', fc);
     },
