@@ -33,30 +33,33 @@ convert_s2 (EField namex ns) {si = (EField name ns2) } item = item
 convert_s2 sb {si = (y .|. z)} it = convert_s2 sb it
 -}
 
-convert_s3 : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
-convert_s3 (IField namex FBool) {si = (IField name FBool) } item = item
-convert_s3 (IField namex FString) {si = (IField name FString) } item = item
-convert_s3 (EField namex ns) {si = (EField name ns2) } item = item
-convert_s3 sb {si = (y .|. z)} it = convert_s3 sb it
-
-convert_sL : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
-convert_sL (IField namex FBool) {si = (IField name FBool) } item = item
-convert_sL (IField namex FString) {si = (IField name FString) } item = item
-convert_sL (EField namex ns) {si = (EField name ns2) } item = item
-convert_sL sb {si = (y .|. z)} (iL,iR) = convert_sL sb iR
-
-convert_sR : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
-convert_sR (IField namex FBool) {si = (IField name FBool) } item = item
-convert_sR (IField namex FString) {si = (IField name FString) } item = item
-convert_sR (EField namex ns) {si = (EField name ns2) } item = item
-convert_sR sb {si = (y .|. z)} (iL,iR) = convert_sR sb iL
 
 drop_col : (sb: Schema2 Key) -> (c:String) -> (SchemaType2 sk) -> (SchemaType2 sb )
-drop_col  sb c {sk= (y@(EField n1 ns1) .|. z@(EField n2 ns2) ) } item  = case (c==n1) of
-                                                                 True => convert_sL sb item
-                                                                 False => case (c==n2) of
-                                                                      True => convert_sR sb item
-                                                                      False => convert_s3 sb item --(il,ir)
+drop_col  sb c {sk= (y@(EField n1 ns1) .|. z@(EField n2 ns2) ) } item  = ret where 
+
+  convert_s3 : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
+  convert_s3 (IField namex FBool) {si = (IField name FBool) } item = item
+  convert_s3 (IField namex FString) {si = (IField name FString) } item = item
+  convert_s3 (EField namex ns) {si = (EField name ns2) } item = item
+  convert_s3 sb {si = (y .|. z)} it = convert_s3 sb it
+
+  convert_sL : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
+  convert_sL (IField namex FBool) {si = (IField name FBool) } item = item
+  convert_sL (IField namex FString) {si = (IField name FString) } item = item
+  convert_sL (EField namex ns) {si = (EField name ns2) } item = item
+  convert_sL sb {si = (y .|. z)} (iL,iR) = convert_sL sb iR
+
+  convert_sR : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
+  convert_sR (IField namex FBool) {si = (IField name FBool) } item = item
+  convert_sR (IField namex FString) {si = (IField name FString) } item = item
+  convert_sR (EField namex ns) {si = (EField name ns2) } item = item
+  convert_sR sb {si = (y .|. z)} (iL,iR) = convert_sR sb iL
+     
+  ret = case (c==n1) of
+        True => convert_sL sb item
+        False => case (c==n2) of
+            True => convert_sR sb item
+            False => convert_s3 sb item --(il,ir)
 --drop_col item = item
 
 
