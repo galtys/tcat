@@ -60,16 +60,9 @@ drop_col  sb c {sk= (y@(EField n1 ns1) .|. z@(EField n2 ns2) ) } item  = ret whe
         False => case (c==n2) of
             True => convert_sR sb item
             False => convert_s3 sb item --(il,ir)
---drop_col item = item
 
 
---                                                              True => (snd item)
---                                                              False => ?ret --case (c==n2) of 
---                                                                        True => (drop_col c i1)
-  --                                                                      False => (i1,i2)
-
---drop_col c {sk = (x .|. y) } item = drop_col c item
-
+----------- schema
 
 valItems : Schema2 Val
 valItems = (IFieldV "qty" FTtermV)
@@ -81,12 +74,13 @@ subtotalItems : Schema2 Val
 subtotalItems = (IFieldV "subtotal" FTtermV)
 
 
-
+{-
 
 _items_rw : Schema2 kv-> Bool
 _items_rw (IField name ft) = True
 _items_rw (EField name ns) = False
 _items_rw (s1 .|. s2) = False
+-}
 
 Items_ModelSchema : ModelSchema Val
 Items_ModelSchema = MkModelSchema keyItems valItems "items"
@@ -100,7 +94,7 @@ Subtotal_ModelSchema = MkModelSchema keyItems subtotalItems "subtotal"
 Total_ModelSchema : ModelSchema Val
 Total_ModelSchema = MkModelSchema keyTotal subtotalItems "total"
 
-
+{-
 _unit_dropdown : String
 _unit_dropdown = """
    <div class="dropdown">
@@ -111,6 +105,7 @@ _unit_dropdown = """
        </div>  
    </div>
 """
+-}
 
 public export
 schema2thead2 : Schema2 kv-> String
@@ -127,6 +122,7 @@ schema2thead2 sch = ret where
   ths : String
   ths = concat $ schema2th sch
   ret = printf "%s" ths
+
 
 public export
 render_number_input : String -> Integer ->  String
