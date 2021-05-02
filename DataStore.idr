@@ -107,21 +107,36 @@ record FieldArgs where
   rw : Bool
 -}
 
+data SymbolType : Type where  -- symbol type
+     NSInt : String -> SymbolType
+     NSNat : String -> SymbolType
+     NSCode : String -> SymbolType  --asset, owner, location, address
+
+
 data FieldDefKey : Type where
      FBool :  FieldDefKey
      FString : FieldDefKey
+     --FInt
+     --FUUID
+     -- FM2O : (ns : NS) -> FieldDefKey -- abstraction
+     
+     ---FM2M  -- abstraction and modeling
+     
 --     FTterm :  FieldDefKey
      
-data FieldDefVal : Type where
+data FieldDefVal : Type where  --Algebra Carriers 
      FTtermV :  FieldDefVal
      FSop    :  FieldDefVal
-
+     -- Date
+     -- DateTime
+     
 data KV = Key | Val
 
 data Schema2 : KV -> Type where
      IField : (name:String) -> (ft: FieldDefKey) -> Schema2 Key
-     IFieldV : (name:String) -> (ft: FieldDefVal) -> Schema2 Val
-     EField : (name:String) -> (ns :String)-> Schema2 Key --col name, type name, ?add type of index?
+     EField : (name:String) -> (ns :String)-> Schema2 Key -- id implementation
+     IFieldV : (name:String) -> (ft: FieldDefVal) -> Schema2 Val  -- algebra -- vector name's
+     --EFieldUser : (name:String) -> (ns :String)-> Schema2 Key -- code implementation
      (.|.) : (s1 : Schema2 Key) -> (s2 :Schema2 Key) -> Schema2 Key 
      (.+.) : (s1 : Schema2 Val) -> (s2 :Schema2 Val) -> Schema2 Val
 
