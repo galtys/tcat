@@ -11,10 +11,10 @@ import JSIO
 
 
 keyItems : Schema2 Key
-keyItems = (EField "sku1" (NSInteger "asset") ) .|. (EField "sku2" (NSInteger "asset"))
+keyItems = (EField "sku1" (NSCode "asset") ) .|. (EField "currency" (NSCode "asset"))
 
 keyTotal : Schema2 Key
-keyTotal = (EField "sku2" (NSInteger "asset"))
+keyTotal = (EField "currency" (NSCode "asset"))
 
 drop_key : (c:String) -> (Schema2 Key) -> (Schema2 Key)
 drop_key c ( x@(EField n1 ns1) .|. y@(EField n2 ns2)) = case (c==n1) of 
@@ -32,17 +32,12 @@ convert_s2 (IField namex FString) {si = (IField name FString) } item = item
 convert_s2 (EField namex ns) {si = (EField name ns2) } item = item
 convert_s2 sb {si = (y .|. z)} it = convert_s2 sb it
 -}
-
-
-drop_col : (sb: Schema2 Key) -> (c:String) -> (SchemaType2 sk) -> (SchemaType2 sb )
-drop_col  sb c {sk= (y@(EField n1 (NSInteger ns1)) .|. z@(EField n2 (NSInteger ns2) ) ) } item  = ret where 
-
+namespace convert_s3LR_drop_col
   convert_s3 : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
   convert_s3 (IField namex FBool) {si = (IField name FBool) } item = item
   convert_s3 (IField namex FString) {si = (IField name FString) } item = item
   convert_s3 (EField namex (NSInteger ns)) {si = (EField name (NSInteger ns2) ) } item = item
   convert_s3 (EField namex (NSCode ns)) {si = (EField name (NSCode ns2) ) } item = item
-    
   convert_s3 sb {si = (y .|. z)} it = convert_s3 sb it
 
   convert_sL : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
@@ -58,13 +53,24 @@ drop_col  sb c {sk= (y@(EField n1 (NSInteger ns1)) .|. z@(EField n2 (NSInteger n
   convert_sR (EField namex (NSInteger ns)  ) {si = (EField name (NSInteger ns2) ) } item = item
   convert_sR (EField namex (NSCode ns)  ) {si = (EField name (NSCode ns2) ) } item = item  
   convert_sR sb {si = (y .|. z)} (iL,iR) = convert_sR sb iL
+
+  drop_col : (sb: Schema2 Key) -> (c:String) -> (SchemaType2 sk) -> (SchemaType2 sb )
+  drop_col  sb c {sk= (y@(EField n1 ns1) .|. z@(EField n2 ns2 ) ) } item  = ret where 
      
-  ret = case (c==n1) of
+    ret = case (c==n1) of
         True => convert_sL sb item
         False => case (c==n2) of
             True => convert_sR sb item
             False => convert_s3 sb item --(il,ir)
-
+{-            
+  drop_col  sb c {sk= (y@(EField n1 (NSCode ns1)) .|. z@(EField n2 (NSCode ns2) ) ) } item  = ret where 
+     
+    ret = case (c==n1) of
+        True => convert_sL sb item
+        False => case (c==n2) of
+            True => convert_sR sb item
+            False => convert_s3 sb item --(il,ir)
+-}
 
 ----------- schema
 
@@ -121,6 +127,7 @@ schema2thead2 sch = ret where
   schema2th (IFieldV name FTtermV ) = [printf "<th>%s</th>" name ]     --SchemaType2 (IField name FTterm ) = Tterm  
   schema2th (IFieldV name FSop ) = [printf "<th>%s</th>" name ]
   schema2th (EField name (NSInteger ns) ) = [printf "<th>%s[%s]</th>" name ns]
+  schema2th (EField name (NSCode ns) ) = [printf "<th>%s[%s]</th>" name ns]
   schema2th (s1 .|. s2) = (schema2th s1) ++ (schema2th s2)
   schema2th (s1 .+. s2) = (schema2th s1) ++ (schema2th s2)
   ths : String

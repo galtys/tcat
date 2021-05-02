@@ -36,7 +36,7 @@ items_ModelDataList = MkMDList "items" [] []
 
                                                                               
 items_ModelDataList' : (ModelDataList Val) Items_ModelSchema
-items_ModelDataList' = MkMDList "items" [ (1,100), (2,100), (3,100), (4,100) ] 
+items_ModelDataList' = MkMDList "items" [ ("a1","£"), ("a2","£"), ("a3","£"), ("a4","£") ] 
                         [ ( Tt 3 0 ),
                           ( Tt 6 0 ),
                           ( Tt 9 0 ),
@@ -45,14 +45,14 @@ items_ModelDataList' = MkMDList "items" [ (1,100), (2,100), (3,100), (4,100) ]
 --warehouse_ModelDataList : (ModelDataList Val) Items_ModelSchema
 --warehouse_ModelDataList = MkMDList "warehouse" [(1,100), (2,100), (3,100), (4,100)] [(Tt 0 0),(Tt 0 0),(Tt 0 0),(Tt 0 0)]
 whs_ModelDataList : (ModelDataList Val) Items_ModelSchema
-whs_ModelDataList = MkMDList "items" [ (1,100), (2,100), (3,100), (4,100) ] 
+whs_ModelDataList = MkMDList "items" [ ("a1","£"), ("a2","£"), ("a3","£"), ("a4","£") ] 
                         [ ( Tt 0 0 ),
                           ( Tt 0 0 ),
                           ( Tt 0 0 ),
                           ( Tt 0 0 )]
 
 items_ModelDataList'' : (ModelDataList Val) Items_ModelSchema
-items_ModelDataList'' = MkMDList "items" [ (1,100), (2,100), (3,100) ] 
+items_ModelDataList'' = MkMDList "items" [ ("a1","£"), ("a2","£"), ("a3","£") ] 
                         [ ( Tt 0 1 ),
                           ( Tt 0 2 ),
                           ( Tt 0 1 )]
@@ -61,21 +61,21 @@ pricelist_ModelDataList : (ModelDataList Val) Pricelist_ModelSchema
 pricelist_ModelDataList = MkMDList "pricelist" [] []
 
 pricelist_ModelDataList' : (ModelDataList Val) Pricelist_ModelSchema
-pricelist_ModelDataList' = MkMDList "pricelist" [ (1,100), (2,100), (3,100), (4,100) ]
+pricelist_ModelDataList' = MkMDList "pricelist" [ ("a1","£"), ("a2","£"), ("a3","£"), ("a4","£") ]
                         [ ( Tt 3 0 ),
                           ( Tt 7 0 ),
                           ( Tt 1 0 ),
                           ( Tt 2 0 )]
 
 subtotal_ModelDataList : (ModelDataList Val) Subtotal_ModelSchema
-subtotal_ModelDataList = MkMDList "subtotal" [ (1,100), (2,100), (3,100), (4,100) ] 
+subtotal_ModelDataList = MkMDList "subtotal" [ ("a1","£"), ("a2","£"), ("a3","£"), ("a4","£") ] 
                         [ ( Tt 0 0 ),
                           ( Tt 0 0 ),
                           ( Tt 0 0 ),
                           ( Tt 0 0 )]
 
 t_ModelDataList : (ModelDataList Val) Total_ModelSchema
-t_ModelDataList = MkMDList "order_total" [ 100 ] [ (Tt 0 0) ]
+t_ModelDataList = MkMDList "order_total" [ "£" ] [ (Tt 0 0) ]
 
 partial main : JS_IO ()
 main = do      
