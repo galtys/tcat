@@ -110,7 +110,7 @@ record FieldArgs where
 data FieldDefKey : Type where
      FBool :  FieldDefKey
      FString : FieldDefKey
-     FTterm :  FieldDefKey
+--     FTterm :  FieldDefKey
      
 data FieldDefVal : Type where
      FTtermV :  FieldDefVal
@@ -133,7 +133,7 @@ data Schema2 : KV -> Type where
 SchemaType2 : Schema2 kv-> Type
 SchemaType2 (IField name FBool)= Bool
 SchemaType2 (IField name FString )= String
-SchemaType2 (IField name FTterm ) = Tterm
+--SchemaType2 (IField name FTterm ) = Tterm
 SchemaType2 (IFieldV name FTtermV) = Tterm
 SchemaType2 (IFieldV name FSop) = SymbolOP
 SchemaType2 (EField name ns ) = Integer
@@ -147,7 +147,7 @@ SchemaTypeVal (s1 .+. s2) = (SchemaTypeVal s1, SchemaTypeVal s2)
 
 schema2ZeroVal : (s:Schema2 kv) -> (SchemaType2 s)
 schema2ZeroVal (IField name FBool) = False
-schema2ZeroVal (IField name FTterm ) = (Tt 0 0)
+--schema2ZeroVal (IField name FTterm ) = (Tt 0 0)
 schema2ZeroVal (IField name FString ) =  ""
 schema2ZeroVal (IFieldV name FTtermV ) = (Tt 0 0)
 schema2ZeroVal (IFieldV name FSop ) = Empty
@@ -159,7 +159,7 @@ public export
 eqSchema2 : (SchemaType2 schema) -> (SchemaType2 schema) -> Bool
 eqSchema2 {schema = (IField name FBool)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IField name FString)} item1 item2 = (item1 == item2)
-eqSchema2 {schema = (IField name FTterm)} item1 item2 = (item1 == item2)
+--eqSchema2 {schema = (IField name FTterm)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IFieldV name FTtermV)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IFieldV name FSop)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (EField name ns)} item1 item2 = (item1 == item2)
@@ -176,7 +176,7 @@ public export -- semigroup operation
 addSchema2Vals : (SchemaType2 schema) -> (SchemaType2 schema) -> (SchemaType2 schema)
 addSchema2Vals {schema = (IField name FBool)} item1 item2 = (item1 || item2)
 addSchema2Vals {schema = (IField name FString)} item1 item2 = item1 <+> item2
-addSchema2Vals {schema = (IField name FTterm)} item1 item2 = item1 <+> item2  -- For Tterm, add
+--addSchema2Vals {schema = (IField name FTterm)} item1 item2 = item1 <+> item2  -- For Tterm, add
 addSchema2Vals {schema = (IFieldV name FTtermV)} item1 item2 = item1 <+> item2  -- For Tterm, add
 addSchema2Vals {schema = (IFieldV name FSop)} item1 item2 = item1 <+> item2  -- For Tterm, add
 addSchema2Vals {schema = (EField name ns)} item1 item2 = if ((item2== 0) || (item1==0)) then (item1 + item2) else item2
@@ -187,7 +187,7 @@ addSchema2Vals {schema = (y .|. z)} (i1l,i1r) (i2l,i2r) = ( addSchema2Vals i1l i
 public export -- semigroup operation
 mulSchema2Vals : (SchemaType2 schema) -> (SchemaType2 schema) -> (SchemaType2 schema)
 
-mulSchema2Vals {schema = (IField name FTterm)} item1 item2 =   tmul item1 item2  -- For Tterm, add
+--mulSchema2Vals {schema = (IField name FTterm)} item1 item2 =   tmul item1 item2  -- For Tterm, add
 mulSchema2Vals {schema = (IFieldV name FTtermV)} item1 item2 = tmul item1 item2  -- For Tterm, add
 
 
