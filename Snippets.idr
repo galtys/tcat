@@ -22,8 +22,11 @@ renderSchemaDataAsJsonP {schema = (IFieldV name FTtermV)} item = printf """ {"%s
 renderSchemaDataAsJsonP {schema = (IField name FBool)} item = printf """ {"%s":%s} """ name val where
                       val = if (item == True) then "true" else "false"
 renderSchemaDataAsJsonP {schema = (IField name FString)} item = printf """ {"%s":"%s"} """ name item 
-renderSchemaDataAsJsonP {schema = (EField name ns)} item
+renderSchemaDataAsJsonP {schema = (EField name (NSInteger ns))} item
                  = let ret = printf """ {"%s":%d} """ name item in
+                       ret
+renderSchemaDataAsJsonP {schema = (EField name (NSCode ns))} item
+                 = let ret = printf """ {"%s":%s} """ name item in
                        ret
 renderSchemaDataAsJsonP {schema = (y .|. z)} (iteml,itemr) = (renderSchemaDataAsJsonP iteml)++
                                                            "," ++
@@ -34,8 +37,11 @@ renderSchemaDataAsJsonP1 {schema = (IFieldV name FTtermV)} item = printf """ %s 
 renderSchemaDataAsJsonP1 {schema = (IField name FBool)} item = printf """ %s """ val where
                       val = if (item == True) then "true" else "false"
 renderSchemaDataAsJsonP1 {schema = (IField name FString)} item = printf """ "%s" """ item 
-renderSchemaDataAsJsonP1 {schema = (EField name ns)} item
+renderSchemaDataAsJsonP1 {schema = (EField name (NSInteger ns))} item
                  = let ret = printf """ %d """ item in
+                       ret
+renderSchemaDataAsJsonP1 {schema = (EField name (NSCode ns))} item
+                 = let ret = printf """ %s """ item in
                        ret
 renderSchemaDataAsJsonP1 {schema = (y .|. z)} (iteml,itemr) = (renderSchemaDataAsJsonP1 iteml)++
                                                            "," ++
@@ -90,7 +96,8 @@ json2Schema2Data : (s:Schema2 kv) -> List JSON -> (SchemaType2 s)
 json2Schema2Data (IField name FBool) x = list_json_to_bool x
 json2Schema2Data (IField name FString) x = list_json_to_str x
 json2Schema2Data (IFieldV name FTtermV) x = list_json_to_tterm x
-json2Schema2Data (EField name ns) x = list_json_to_num x
+json2Schema2Data (EField name (NSInteger ns)) x = list_json_to_num x
+json2Schema2Data (EField name (NSCode ns)) x = list_json_to_str x
 --json2Schema2Data (s1 .|. s2) (JArray []) = ()
 json2Schema2Data (s1 .|. s2) (x :: xs) = ( json2Schema2Data s1 [x] , json2Schema2Data s2 xs)
 
