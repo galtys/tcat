@@ -125,7 +125,7 @@ schema2thead2 sch = ret where
   schema2th (IField name FString) = [printf "<th>%s</th>" name ]
 --  schema2th (IField name FTterm ) = [printf "<th>%s</th>" name ]     --SchemaType2 (IField name FTterm ) = Tterm
   schema2th (IFieldV name FTtermV ) = [printf "<th>%s</th>" name ]     --SchemaType2 (IField name FTterm ) = Tterm  
-  schema2th (IFieldV name FSop ) = [printf "<th>%s</th>" name ]
+  schema2th (IFieldV name FOPcarrier ) = [printf "<th>%s</th>" name ]
   schema2th (EField name (NSInteger ns) ) = [printf "<th>%s[%s]</th>" name ns]
   schema2th (EField name (NSCode ns) ) = [printf "<th>%s[%s]</th>" name ns]
   schema2th (s1 .|. s2) = (schema2th s1) ++ (schema2th s2)
@@ -173,7 +173,7 @@ namespace render_with_ids
   renderDataWithSchema2 p_id {schema = (IField name FString)} item  = [render_text_in_td_tag2   (cell_id p_id name) item]
 --  renderDataWithSchema2 p_id {schema = (IField name FTterm)}  item  = [render_tterm_in_td_tag2  (cell_id p_id name) item]
   renderDataWithSchema2 p_id {schema = (IFieldV name FTtermV)}  item  = [render_tterm_in_td_tag2  (cell_id p_id name) item]
-  renderDataWithSchema2 p_id {schema = (IFieldV name FSop)}  item  = [render_text_in_td_tag2  (cell_id p_id name) (show item)]    
+  renderDataWithSchema2 p_id {schema = (IFieldV name FOPcarrier)}  item  = [render_text_in_td_tag2  (cell_id p_id name) (show item)]    
   renderDataWithSchema2 p_id {schema = (EField name (NSInteger ns))}      item  = [render_number_in_td_tag2 (cell_id p_id name) item]
   renderDataWithSchema2 p_id {schema = (EField name (NSCode ns))}      item  = [render_text_in_td_tag2 (cell_id p_id name) item]
     
@@ -207,7 +207,7 @@ namespace render_wo_ids
   renderDataWithSchema2 {schema = (IField name FString)} item  = [render_text_in_td_tag2 item]
 --  renderDataWithSchema2 {schema = (IField name FTterm)}  item  = [render_tterm_in_td_tag2 item]
   renderDataWithSchema2 {schema = (IFieldV name FTtermV)}  item  = [render_tterm_in_td_tag2 item]
-  renderDataWithSchema2 {schema = (IFieldV name FSop)}  item  = [render_text_in_td_tag2 (show item)]
+  renderDataWithSchema2 {schema = (IFieldV name FOPcarrier)}  item  = [render_text_in_td_tag2 (show item)]
   renderDataWithSchema2 {schema = (EField name (NSInteger ns) )}      item  = [render_number_in_td_tag2 item]
   renderDataWithSchema2 {schema = (EField name (NSCode ns) )}      item  = [render_text_in_td_tag2 item]  
   renderDataWithSchema2 {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2 iteml) ++ (renderDataWithSchema2 itemr)
@@ -475,7 +475,7 @@ renderDataAsKey {schema = (IField name FBool)}   False = "False"
 renderDataAsKey {schema = (IField name FString)} item = item
 --renderDataAsKey {schema = (IField name FTterm)}  item = the String (cast (t2integer item))
 renderDataAsKey {schema = (IFieldV name FTtermV)}  item = the String (cast (t2integer item))
-renderDataAsKey {schema = (IFieldV name FSop)}  item = show item
+renderDataAsKey {schema = (IFieldV name FOPcarrier)}  item = show item
 renderDataAsKey {schema = (EField name (NSInteger ns))}      item = the String (cast item)
 renderDataAsKey {schema = (EField name (NSCode ns))}      item = item
 renderDataAsKey {schema = (y .|. z)} (iteml, itemr) = (renderDataAsKey iteml) ++ (renderDataAsKey itemr)

@@ -1,4 +1,4 @@
-module Main
+module DataStore
 
 import Data.Vect
 import Printf
@@ -122,17 +122,17 @@ Eq SymbolType where
 data FieldDefKey : Type where
      FBool :  FieldDefKey
      FString : FieldDefKey
+     --Fm2o : (ns : SymbolType) -> FieldDefKey -- abstraction     
      --FInt
      --FUUID
-     -- FM2O : (ns : NS) -> FieldDefKey -- abstraction
+
      
      ---FM2M  -- abstraction and modeling
-     
 --     FTterm :  FieldDefKey
      
 data AlgebraCarriers : Type where  --Algebra Carriers 
      FTtermV :  AlgebraCarriers
-     FSop    :  AlgebraCarriers
+     FOPcarrier    :  AlgebraCarriers
      -- Date
      -- DateTime
      
@@ -157,7 +157,7 @@ SchemaType2 (IField name FBool)= Bool
 SchemaType2 (IField name FString )= String
 --SchemaType2 (IField name FTterm ) = Tterm
 SchemaType2 (IFieldV name FTtermV) = Tterm
-SchemaType2 (IFieldV name FSop) = SymbolOP
+SchemaType2 (IFieldV name FOPcarrier) = SymbolOP
 SchemaType2 (EField name (NSInteger ns) ) = Integer
 SchemaType2 (EField name (NSCode ns) ) = String
 --SchemaType2 (EField name ns ) = Integer
@@ -166,7 +166,7 @@ SchemaType2 (x .+. y) = (SchemaType2 x, SchemaType2 y)
 
 SchemaTypeVal : Schema2 Val -> Type
 SchemaTypeVal (IFieldV name FTtermV) = Tterm
-SchemaTypeVal (IFieldV name FSop) = SymbolOP
+SchemaTypeVal (IFieldV name FOPcarrier) = SymbolOP
 SchemaTypeVal (s1 .+. s2) = (SchemaTypeVal s1, SchemaTypeVal s2)
 
 schema2ZeroVal : (s:Schema2 Val) -> (SchemaType2 s)
@@ -174,7 +174,7 @@ schema2ZeroVal : (s:Schema2 Val) -> (SchemaType2 s)
 --schema2ZeroVal (IField name FTterm ) = (Tt 0 0)
 --schema2ZeroVal (IField name FString ) =  ""
 schema2ZeroVal (IFieldV name FTtermV ) = (Tt 0 0)
-schema2ZeroVal (IFieldV name FSop ) = Empty
+schema2ZeroVal (IFieldV name FOPcarrier ) = Empty
 --schema2ZeroVal (EField name (NSInteger ns) ) = 0
 --schema2ZeroVal (EField name (NSCode ns) ) = ""
 --schema2ZeroVal (x .|. y) = (schema2ZeroVal x,schema2ZeroVal y)
@@ -186,7 +186,7 @@ eqSchema2 {schema = (IField name FBool)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IField name FString)} item1 item2 = (item1 == item2)
 --eqSchema2 {schema = (IField name FTterm)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IFieldV name FTtermV)} item1 item2 = (item1 == item2)
-eqSchema2 {schema = (IFieldV name FSop)} item1 item2 = (item1 == item2)
+eqSchema2 {schema = (IFieldV name FOPcarrier)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (EField name (NSInteger ns))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (EField name (NSCode ns))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (y .|. z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqSchema2  i1r i2r)
@@ -195,7 +195,7 @@ eqSchema2 {schema = (y .+. z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqS
 public export
 invSchema2 : (SchemaType2 schema) -> (SchemaType2 schema)
 invSchema2 {schema = (IFieldV name FTtermV)} item1 = tinv (item1)
-invSchema2 {schema = (IFieldV name FSop)} item1 = inv (item1)
+invSchema2 {schema = (IFieldV name FOPcarrier)} item1 = inv (item1)
 invSchema2 {schema = (y .+. z)} (iteml,itemr) = (invSchema2 iteml, invSchema2 itemr)
 
 public export -- semigroup operation
@@ -204,7 +204,7 @@ addSchema2Vals : {schema : Schema2 Val} -> (SchemaType2 schema) -> (SchemaType2 
 --addSchema2Vals {schema = (IField name FString)} item1 item2 = item1 <+> item2
 --addSchema2Vals {schema = (IField name FTterm)} item1 item2 = item1 <+> item2  -- For Tterm, add
 addSchema2Vals {schema = (IFieldV name FTtermV)} item1 item2 = item1 <+> item2  -- For Tterm, add
-addSchema2Vals {schema = (IFieldV name FSop)} item1 item2 = item1 <+> item2  -- For Tterm, add
+addSchema2Vals {schema = (IFieldV name FOPcarrier)} item1 item2 = item1 <+> item2  -- For Tterm, add
 --addSchema2Vals {schema = (EField name ns)} item1 item2 = if ((item2== 0) || (item1==0)) then (item1 + item2) else item2
 addSchema2Vals {schema = (y .+. z)} (i1l,i1r) (i2l,i2r) = ( addSchema2Vals i1l i2l, addSchema2Vals i1r i2r)
 
@@ -219,7 +219,7 @@ mulSchema2Vals {schema = (IFieldV name FTtermV)} item1 item2 = tmul item1 item2 
 
 --mulSchema2Vals {schema = (IField name FBool)} item1 item2 = (item1 && item2)
 --mulSchema2Vals {schema = (IField name FString)} item1 item2 = item1 <+> item2
-mulSchema2Vals {schema = (IFieldV name FSop)} item1 item2 = item1 <+> item2  -- For Tterm, add
+mulSchema2Vals {schema = (IFieldV name FOPcarrier)} item1 item2 = item1 <+> item2  -- For Tterm, add
 --mulSchema2Vals {schema = (EField name ns)} item1 item2 = if ((item2== 0) && (item1==0)) then (item1 * item2) else item2
 
 mulSchema2Vals {schema = (y .+. z)} (i1l,i1r) (i2l,i2r) = ( mulSchema2Vals i1l i2l, mulSchema2Vals i1r i2r)
