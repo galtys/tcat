@@ -122,7 +122,7 @@ Eq SymbolType where
 data FieldDefKey : Type where
      FBool :  FieldDefKey
      FString : FieldDefKey
-     --Fm2o : (ns : SymbolType) -> FieldDefKey -- abstraction     
+     Fm2o : (ns : SymbolType) -> FieldDefKey -- abstraction     
      --FInt
      --FUUID
 
@@ -155,6 +155,8 @@ data Schema2 : KV -> Type where
 SchemaType2 : Schema2 kv-> Type
 SchemaType2 (IField name FBool)= Bool
 SchemaType2 (IField name FString )= String
+SchemaType2 (IField name (Fm2o (NSInteger ns) ) )= Integer
+SchemaType2 (IField name (Fm2o (NSCode ns) ) )= String
 --SchemaType2 (IField name FTterm ) = Tterm
 SchemaType2 (IFieldV name FTtermV) = Tterm
 SchemaType2 (IFieldV name FOPcarrier) = SymbolOP
@@ -184,6 +186,8 @@ public export
 eqSchema2 : (SchemaType2 schema) -> (SchemaType2 schema) -> Bool
 eqSchema2 {schema = (IField name FBool)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IField name FString)} item1 item2 = (item1 == item2)
+eqSchema2 {schema = (IField name (Fm2o (NSInteger ns) ))} item1 item2 = (item1 == item2)
+eqSchema2 {schema = (IField name (Fm2o (NSCode ns) ))} item1 item2 = (item1 == item2)
 --eqSchema2 {schema = (IField name FTterm)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IFieldV name FTtermV)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IFieldV name FOPcarrier)} item1 item2 = (item1 == item2)
