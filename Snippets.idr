@@ -114,8 +114,8 @@ json2Schema2Data (EField name (NSInteger ns)) x = list_json_to_num x
 json2Schema2Data (EField name (NSInt ns)) x = integer_to_int (list_json_to_num x)
 json2Schema2Data (EField name (NSCode ns)) x = list_json_to_str x
 --json2Schema2Data (s1 .|. s2) (JArray []) = ()
-json2Schema2Data (KeyName1 name s1) (xs) = json2Schema2Data s1 xs
-json2Schema2Data (KeyName2 name s1 s2) (x :: xs) = ( json2Schema2Data s1 [x] , json2Schema2Data s2 xs)
+--json2Schema2Data (KeyName1 name s1) (xs) = json2Schema2Data s1 xs
+--json2Schema2Data (KeyName2 name s1 s2) (x :: xs) = ( json2Schema2Data s1 [x] , json2Schema2Data s2 xs)
 json2Schema2Data (s1 .|. s2) (x :: xs) = ( json2Schema2Data s1 [x] , json2Schema2Data s2 xs)
 
 

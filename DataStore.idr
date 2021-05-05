@@ -120,11 +120,12 @@ Eq SymbolType where
 data FieldDefKey : Type where
      FBool :  FieldDefKey
      FString : FieldDefKey
+     FDateTime : FieldDefKey
      Fm2o : (ns : SymbolType) -> FieldDefKey -- abstraction     
      -- FInt
      -- FUUID
      ---FM2M  -- abstraction and modeling
-     -- DateTime
+     
 
 data AlgebraCarriers : Type where  --Algebra Carriers 
      FTtermCarrier :  AlgebraCarriers
@@ -136,16 +137,19 @@ data KV = Key | Val
 data Schema2 : KV -> Type where
      IField : (name:String) -> (ft: FieldDefKey) -> Schema2 Key
      EField : (name:String) -> (ns :SymbolType)-> Schema2 Key -- id implementation
-     (.|.) : (s1 : Schema2 Key) -> (s2 :Schema2 Key) -> Schema2 Key
-     KeyName1 : (name:String) -> (s1 : Schema2 Key) -> Schema2 Key
-     KeyName2 : (name:String) -> (s1 : Schema2 Key) -> (s1 : Schema2 Key) -> Schema2 Key
-          
+     (.|.) : (s1 : Schema2 Key) -> (s2 :Schema2 Key) -> Schema2 Key         
      IFieldAlg : (name:String) -> (ft: AlgebraCarriers) -> Schema2 Val  -- algebra carrier          
      (.+.) : (s1 : Schema2 Val) -> (s2 :Schema2 Val) -> Schema2 Val
+
+data Schema2Tree : Type where
+     S2Nil : Schema2Tree
+     (::) : (s1 : Schema2 Key) -> (s2 : Schema2 Key) -> Schema2Tree
+     S2Name : (name :String) -> (s1 : Schema2 Key) -> (s2 : Schema2 Key) -> Schema2Tree
 
 SchemaType2 : Schema2 kv-> Type
 SchemaType2 (IField name FBool)= Bool
 SchemaType2 (IField name FString )= String
+SchemaType2 (IField name FDateTime )= Int
 SchemaType2 (IField name (Fm2o (NSInteger ns) ) )= Integer
 SchemaType2 (IField name (Fm2o (NSInt ns) ) )= Int
 SchemaType2 (IField name (Fm2o (NSCode ns) ) )= String
@@ -157,8 +161,8 @@ SchemaType2 (EField name (NSInt ns) ) = Int
 SchemaType2 (EField name (NSCode ns) ) = String
 SchemaType2 (x .|. y) = (SchemaType2 x, SchemaType2 y)
 SchemaType2 (x .+. y) = (SchemaType2 x, SchemaType2 y)
-SchemaType2 (KeyName1 name s1) = SchemaType2 s1
-SchemaType2 (KeyName2 name s1 s2) = (SchemaType2 s1, SchemaType2 s2)
+--SchemaType2 (KeyName1 name s1) = SchemaType2 s1
+--SchemaType2 (KeyName2 name s1 s2) = (SchemaType2 s1, SchemaType2 s2)
 
 schema2ZeroVal : (s:Schema2 Val) -> (SchemaType2 s)
 schema2ZeroVal (IFieldAlg name FTtermCarrier ) = (Tt 0 0)
@@ -170,6 +174,7 @@ public export
 eqSchema2 : (SchemaType2 schema) -> (SchemaType2 schema) -> Bool
 eqSchema2 {schema = (IField name FBool)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IField name FString)} item1 item2 = (item1 == item2)
+eqSchema2 {schema = (IField name FDateTime)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IField name (Fm2o (NSInteger ns) ))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IField name (Fm2o (NSInt ns) ))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IField name (Fm2o (NSCode ns) ))} item1 item2 = (item1 == item2)
@@ -180,8 +185,8 @@ eqSchema2 {schema = (EField name (NSInteger ns))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (EField name (NSInt ns))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (EField name (NSCode ns))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (y .|. z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqSchema2  i1r i2r)
-eqSchema2 {schema = (KeyName1 name y)} item1 item2 = (eqSchema2  item1 item2)
-eqSchema2 {schema = (KeyName2 name y z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqSchema2  i1r i2r)
+--eqSchema2 {schema = (KeyName1 name y)} item1 item2 = (eqSchema2  item1 item2)
+--eqSchema2 {schema = (KeyName2 name y z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqSchema2  i1r i2r)
 eqSchema2 {schema = (y .+. z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqSchema2  i1r i2r)
 
 public export
