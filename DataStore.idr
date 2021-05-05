@@ -33,6 +33,9 @@ trep xt@(Tt dr cr) = (Tt dr1 cr1 ) where
 integer_to_int : Integer -> Int
 integer_to_int x = the Int (cast (the Nat (cast x)))
 
+int2integer : Int -> Integer
+int2integer x = the Integer (cast x)
+
 t2integer : Tterm -> Integer
 t2integer (Tt dr cr) = subs dr cr
 
@@ -102,13 +105,14 @@ infixr 5 .|.
 infixr 5 .+.
 
 data SymbolType : Type where  -- symbol type
-     --NSInt : String -> SymbolType
+     NSInt : String -> SymbolType
      NSInteger : String -> SymbolType
 --     NSNat : String -> SymbolType
      NSCode : String -> SymbolType  --asset, owner, location, address
 
 Eq SymbolType where
      (==) (NSInteger x) (NSInteger y) = (x==y)
+     (==) (NSInt x) (NSInt y) = (x==y)
      (==) (NSCode x) (NSCode y) = (x==y)
      (==) _ _ =False
      (/=) x y = not (x==y)
@@ -139,10 +143,12 @@ SchemaType2 : Schema2 kv-> Type
 SchemaType2 (IField name FBool)= Bool
 SchemaType2 (IField name FString )= String
 SchemaType2 (IField name (Fm2o (NSInteger ns) ) )= Integer
+SchemaType2 (IField name (Fm2o (NSInt ns) ) )= Int
 SchemaType2 (IField name (Fm2o (NSCode ns) ) )= String
 SchemaType2 (IFieldV name FTtermV) = Tterm
 SchemaType2 (IFieldV name FOPcarrier) = SymbolOP
 SchemaType2 (EField name (NSInteger ns) ) = Integer
+SchemaType2 (EField name (NSInt ns) ) = Int
 SchemaType2 (EField name (NSCode ns) ) = String
 SchemaType2 (x .|. y) = (SchemaType2 x, SchemaType2 y)
 SchemaType2 (x .+. y) = (SchemaType2 x, SchemaType2 y)
@@ -157,10 +163,12 @@ eqSchema2 : (SchemaType2 schema) -> (SchemaType2 schema) -> Bool
 eqSchema2 {schema = (IField name FBool)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IField name FString)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IField name (Fm2o (NSInteger ns) ))} item1 item2 = (item1 == item2)
+eqSchema2 {schema = (IField name (Fm2o (NSInt ns) ))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IField name (Fm2o (NSCode ns) ))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IFieldV name FTtermV)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IFieldV name FOPcarrier)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (EField name (NSInteger ns))} item1 item2 = (item1 == item2)
+eqSchema2 {schema = (EField name (NSInt ns))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (EField name (NSCode ns))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (y .|. z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqSchema2  i1r i2r)
 eqSchema2 {schema = (y .+. z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqSchema2  i1r i2r)

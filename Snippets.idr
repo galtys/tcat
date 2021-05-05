@@ -25,6 +25,10 @@ renderSchemaDataAsJsonP {schema = (IField name FString)} item = printf """ {"%s"
 renderSchemaDataAsJsonP {schema = (EField name (NSInteger ns))} item
                  = let ret = printf """ {"%s":%d} """ name item in
                        ret
+renderSchemaDataAsJsonP {schema = (EField name (NSInt ns))} item
+                 = let ret = printf """ {"%s":%d} """ name (int2integer item) in
+                       ret
+                       
 renderSchemaDataAsJsonP {schema = (EField name (NSCode ns))} item
                  = let ret = printf """ {"%s":%s} """ name item in
                        ret
@@ -40,6 +44,10 @@ renderSchemaDataAsJsonP1 {schema = (IField name FString)} item = printf """ "%s"
 renderSchemaDataAsJsonP1 {schema = (EField name (NSInteger ns))} item
                  = let ret = printf """ %d """ item in
                        ret
+renderSchemaDataAsJsonP1 {schema = (EField name (NSInt ns))} item
+                 = let ret = printf """ %d """ (int2integer item) in
+                       ret
+                       
 renderSchemaDataAsJsonP1 {schema = (EField name (NSCode ns))} item
                  = let ret = printf """ %s """ item in
                        ret
@@ -97,6 +105,7 @@ json2Schema2Data (IField name FBool) x = list_json_to_bool x
 json2Schema2Data (IField name FString) x = list_json_to_str x
 json2Schema2Data (IFieldV name FTtermV) x = list_json_to_tterm x
 json2Schema2Data (EField name (NSInteger ns)) x = list_json_to_num x
+json2Schema2Data (EField name (NSInt ns)) x = integer_to_int (list_json_to_num x)
 json2Schema2Data (EField name (NSCode ns)) x = list_json_to_str x
 --json2Schema2Data (s1 .|. s2) (JArray []) = ()
 json2Schema2Data (s1 .|. s2) (x :: xs) = ( json2Schema2Data s1 [x] , json2Schema2Data s2 xs)
