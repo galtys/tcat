@@ -205,22 +205,22 @@ record VectorKey  where
      key : Schema2 Key
      name : String
      
-record ModelSchema (a:KV) where
+record ModelSchema where
      constructor MkModelSchema
      key : Schema2 Key --- key,hom key
-     val : Schema2 a   -- vector carriers
+     val : Schema2 Val   -- vector carriers
      key_name : String
 
      
 --     rw : Schema2 kv -> Bool
 
-record ModelData (a:KV) (m: (ModelSchema a))  where
+record ModelData (m: ModelSchema)  where
      constructor MkMD
      size : Nat
      data_key : Vect size (SchemaType2 (key m ) )
      data_val : Vect size (SchemaType2 (val m ) )
 
-record ModelDataList (a:KV) (m:ModelSchema a) where
+record ModelDataList (m:ModelSchema) where
      constructor MkMDList
      name : String
      keyL : List (SchemaType2 (key m))

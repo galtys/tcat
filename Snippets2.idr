@@ -84,16 +84,16 @@ priceItems = (IFieldAlg "price" FTtermCarrier)
 subtotalItems : Schema2 Val
 subtotalItems = (IFieldAlg "subtotal" FTtermCarrier)
 
-Items_ModelSchema : ModelSchema Val
+Items_ModelSchema : ModelSchema
 Items_ModelSchema = MkModelSchema keyItems valItems "items"
 
-Pricelist_ModelSchema : ModelSchema Val
+Pricelist_ModelSchema : ModelSchema
 Pricelist_ModelSchema = MkModelSchema keyItems priceItems "pricelist"
 
-Subtotal_ModelSchema : ModelSchema Val
+Subtotal_ModelSchema : ModelSchema
 Subtotal_ModelSchema = MkModelSchema keyItems subtotalItems "subtotal"
 
-Total_ModelSchema : ModelSchema Val
+Total_ModelSchema : ModelSchema
 Total_ModelSchema = MkModelSchema keyTotal subtotalItems "total"
 
 
@@ -581,7 +581,7 @@ namespace tab_widget
    get_composite_id_mdl_name p_id mdl_name = (p_id ++ "__composite__" ++ mdl_name)
          
    public export 
-   get_composite_id : {a:KV} -> String -> (m:(ModelSchema a) ) -> (ModelDataList a m ) -> String
+   get_composite_id : String -> (m:ModelSchema) -> (ModelDataList m) -> String
    get_composite_id p_id m y = get_composite_id_mdl_name p_id (name y) --(p_id ++ "__composite__" ++ (name y))
 
    public export
@@ -619,7 +619,7 @@ namespace tab_widget
           update_cells rid (addSchema2Vals current x_val)
           
    public export  -- with ids
-   insert_rows2 : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   insert_rows2 : String -> (m:ModelSchema) -> (ModelDataList m) -> JS_IO ()
    insert_rows2 p_id m mdl = do
       
       let muf = do
@@ -638,7 +638,7 @@ namespace tab_widget
       runjsio () muf
 
    public export  -- wo ids
-   render_rows_wo_ids : {a:KV} -> (m:ModelSchema a) -> ModelDataList a m -> String
+   render_rows_wo_ids : (m:ModelSchema) -> ModelDataList m -> String
    render_rows_wo_ids m mdl 
      = let row_k = [ concat (render_wo_ids.renderDataWithSchema2 x)  | x <-(keyL mdl)]
            row_v = [ concat (render_wo_ids.renderDataWithSchema2 x)  | x <-(valL mdl)]
@@ -669,7 +669,7 @@ namespace tab_widget
          get_table_row_ids table_id ([r_id,x]++xs)
    
    public export
-   on_table_edit: {a:KV} -> String -> (m:ModelSchema a) -> ModelDataList a m -> JS_IO ()
+   on_table_edit: String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
    on_table_edit parent_tag_id m mdl = do
       let _composite_id = get_composite_id parent_tag_id m mdl
       let _composite_table_id = get_table_id _composite_id      
@@ -682,7 +682,7 @@ namespace tab_widget
       toggle_hide_show_element (get_commit_button_id _composite_id)
       
    public export
-   insert_table_wo_ids : {a:KV} -> String -> (m:ModelSchema a) -> ModelDataList a m -> JS_IO ()
+   insert_table_wo_ids : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
    insert_table_wo_ids p_id m mdl = do
       let x = render_rows_wo_ids m mdl
       let head_m = printf "<tr>%s %s</tr>" (schema2thead2 (key m)) (schema2thead2 (val m))
@@ -691,7 +691,7 @@ namespace tab_widget
       insert_afterbegin p_id th_html
       
    public export  --main init
-   table_amendments : String -> String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   table_amendments : String -> String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
    table_amendments title parent_tag_id m mdl = do
    
       -- Amendments
@@ -712,7 +712,7 @@ namespace tab_widget
    convert_2sub sb {si = (y .|. z)} it = convert_2sub sb it --(convert_items2sub sb it1, convert_items2sub sb it2)
 
    public export
-   insert_table : String -> String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   insert_table : String -> String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
    insert_table _composite_id _footer_id m mdl = do
 
       let _composite_table_id = get_table_id _composite_id
@@ -723,7 +723,7 @@ namespace tab_widget
       insert_rows2 _composite_table_id m mdl
 
    public export
-   insert_rows_x : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   insert_rows_x : String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
    insert_rows_x parent_tag_id m mdl = do   
       let _composite_id = get_composite_id parent_tag_id m mdl
       let _composite_table_id = get_table_id _composite_id
@@ -732,7 +732,7 @@ namespace tab_widget
       tab_widget.table_amendments (printf "Amendment:%s" parent_tag_id) "amendments" m mdl
       
    public export
-   insert_rows_calc : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   insert_rows_calc : String -> (m:ModelSchema ) -> ModelDataList m -> JS_IO ()
    insert_rows_calc parent_tag_id m mdl = do   
       let _composite_id = get_composite_id parent_tag_id m mdl
       let _composite_table_id = get_table_id _composite_id
@@ -741,7 +741,7 @@ namespace tab_widget
       tab_widget.table_amendments (printf "Calculation:%s" parent_tag_id) "amendments_calc" m mdl
       
 
-   calc_order_t : String -> String -> (m_sub:ModelSchema Val) -> (t_sub:ModelSchema Val) -> JS_IO ()
+   calc_order_t : String -> String -> (m_sub:ModelSchema ) -> (t_sub:ModelSchema ) -> JS_IO ()
    calc_order_t sub_id tot_id m_sub m_t = do
       let subtotal_id = get_table_id (get_composite_id_mdl_name sub_id "subtotal")  --tag id , mdl
       let t_id = get_table_id (get_composite_id_mdl_name tot_id "order_total")
@@ -769,7 +769,7 @@ namespace tab_widget
       pure ()      
                   
    public export 
-   calc_order_subtotals : String -> String -> String -> (m_items:ModelSchema Val) -> (m_price:ModelSchema Val) -> (m_sub:ModelSchema Val) -> JS_IO ()
+   calc_order_subtotals : String -> String -> String -> (m_items:ModelSchema ) -> (m_price:ModelSchema ) -> (m_sub:ModelSchema ) -> JS_IO ()
    calc_order_subtotals items_id sub_id tot_id m_items m_price m_sub = do
       let order1_id = get_table_id (get_composite_id_mdl_name items_id "items")   -- tag id, mdl order1
       let pricelist_id = get_table_id (get_composite_id_mdl_name "pricelist" "pricelist")
@@ -810,7 +810,7 @@ namespace tab_widget
       pure ()
 
    public export
-   on_table_commit: String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   on_table_commit: String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()
    on_table_commit parent_tag_id m mdl = do
       let _composite_id = get_composite_id parent_tag_id m mdl
 --      let _amendments_id = get_amendments_id parent_tag_id m mdl            
@@ -851,7 +851,7 @@ namespace tab_widget
       calc_order_subtotals "order1" "subtotal" "order_total" Items_ModelSchema Pricelist_ModelSchema Subtotal_ModelSchema
       
    public export  --main init
-   table_composite : Bool -> String -> String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   table_composite : Bool -> String -> String -> (m:ModelSchema ) -> ModelDataList m -> JS_IO ()
    table_composite show_edit title parent_tag_id m mdl = do
       
       -- Composite
@@ -877,7 +877,7 @@ namespace tab_widget
          pure ()
 
    public export
-   on_set_backorders: String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   on_set_backorders: String -> (m:ModelSchema ) -> ModelDataList m -> JS_IO ()
    on_set_backorders parent_tag_id m mdl = do
       -- backorders      
       let whsb_tab_id = get_table_id (get_composite_id "warehouse_backorders" m mdl)
@@ -915,7 +915,7 @@ namespace tab_widget
       pure ()
 
    public export
-   on_table_set_whs_route: String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   on_table_set_whs_route: String -> (m:ModelSchema ) -> ModelDataList m -> JS_IO ()
    on_table_set_whs_route parent_tag_id m mdl = do
       let _composite_id = get_composite_id parent_tag_id m mdl
 --      let _amendments_id = get_amendments_id parent_tag_id m mdl            
@@ -942,7 +942,7 @@ namespace tab_widget
       on_set_backorders parent_tag_id m mdl
 
    public export
-   on_table_whs_done: String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   on_table_whs_done: String -> (m:ModelSchema ) -> ModelDataList  m -> JS_IO ()
    on_table_whs_done parent_tag_id m mdl = do
       let _composite_id = get_composite_id parent_tag_id m mdl
 --      let _amendments_id = get_amendments_id parent_tag_id m mdl            
@@ -954,7 +954,7 @@ namespace tab_widget
     
 
    public export
-   add_whs_button : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   add_whs_button : String -> (m:ModelSchema ) -> ModelDataList m -> JS_IO ()
    add_whs_button parent_tag_id m mdl = do
       let _composite_id = get_composite_id parent_tag_id m mdl      
       let _footer_id = get_card_footer_id _composite_id
@@ -965,7 +965,7 @@ namespace tab_widget
       
    
    public export
-   add_whs_done_button : String -> (m:ModelSchema Val) -> ModelDataList Val m -> JS_IO ()
+   add_whs_done_button : String -> (m:ModelSchema ) -> ModelDataList m -> JS_IO ()
    add_whs_done_button parent_tag_id m mdl = do
       let _composite_id = get_composite_id parent_tag_id m mdl      
       let _footer_id = get_card_footer_id _composite_id
