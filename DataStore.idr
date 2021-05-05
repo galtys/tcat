@@ -9,8 +9,6 @@ import Language.JSON.Data
 
 %access public export
 
---data Tterm = Tt Integer Integer
-
 record Tterm where
   constructor Tt
   dr : Integer
@@ -60,6 +58,14 @@ Semigroup Tterm where
 Show Tterm where
      show (Tt x y) = show(x) ++ "//" ++ show(y)
 
+Eq Tterm where
+     (==) (Tt dr1 cr1) (Tt dr2 cr2) = ( (dr1+cr2)==(cr1+dr2) )
+
+tinv: Tterm -> Tterm
+tinv (Tt dr cr) = Tt cr dr
+
+------------------------------------
+
 data SymbolOP = Create | Delete | Empty
 
 implementation Show SymbolOP where
@@ -73,12 +79,6 @@ Eq SymbolOP where
      (==) Empty Empty = True
      (==)     _     _ = False
      (/=) x y = not (x==y)
-
-Eq Tterm where
-     (==) (Tt dr1 cr1) (Tt dr2 cr2) = ( (dr1+cr2)==(cr1+dr2) )
-
-tinv: Tterm -> Tterm
-tinv (Tt dr cr) = Tt cr dr
 
 inv: SymbolOP -> SymbolOP
 inv Create = Delete
@@ -96,16 +96,10 @@ Semigroup SymbolOP where
   (<+>) Empty Delete =  Delete
   (<+>) Empty Empty =   Empty
 
+--------------------------------------
 
 infixr 5 .|.
 infixr 5 .+.
-
-{-
-record FieldArgs where
-  constructor FA
-  name : String
-  rw : Bool
--}
 
 data SymbolType : Type where  -- symbol type
      --NSInt : String -> SymbolType
@@ -123,18 +117,14 @@ data FieldDefKey : Type where
      FBool :  FieldDefKey
      FString : FieldDefKey
      Fm2o : (ns : SymbolType) -> FieldDefKey -- abstraction     
-     --FInt
-     --FUUID
-
-
+     -- FInt
+     -- FUUID
      ---FM2M  -- abstraction and modeling
---     FTterm :  FieldDefKey
+     -- DateTime
 
 data AlgebraCarriers : Type where  --Algebra Carriers 
      FTtermV :  AlgebraCarriers
      FOPcarrier    :  AlgebraCarriers
-     -- Date
-     -- DateTime
 
 data KV = Key | Val
 
@@ -142,43 +132,24 @@ data Schema2 : KV -> Type where
      IField : (name:String) -> (ft: FieldDefKey) -> Schema2 Key
      EField : (name:String) -> (ns :SymbolType)-> Schema2 Key -- id implementation
      IFieldV : (name:String) -> (ft: AlgebraCarriers) -> Schema2 Val  -- algebra carrier
-
      (.|.) : (s1 : Schema2 Key) -> (s2 :Schema2 Key) -> Schema2 Key 
      (.+.) : (s1 : Schema2 Val) -> (s2 :Schema2 Val) -> Schema2 Val
-
---Eq (Schema2 Key) where
---     (==) x y = ?reteq
-
-
 
 SchemaType2 : Schema2 kv-> Type
 SchemaType2 (IField name FBool)= Bool
 SchemaType2 (IField name FString )= String
 SchemaType2 (IField name (Fm2o (NSInteger ns) ) )= Integer
 SchemaType2 (IField name (Fm2o (NSCode ns) ) )= String
---SchemaType2 (IField name FTterm ) = Tterm
 SchemaType2 (IFieldV name FTtermV) = Tterm
 SchemaType2 (IFieldV name FOPcarrier) = SymbolOP
 SchemaType2 (EField name (NSInteger ns) ) = Integer
 SchemaType2 (EField name (NSCode ns) ) = String
---SchemaType2 (EField name ns ) = Integer
 SchemaType2 (x .|. y) = (SchemaType2 x, SchemaType2 y)
 SchemaType2 (x .+. y) = (SchemaType2 x, SchemaType2 y)
 
-SchemaTypeVal : Schema2 Val -> Type
-SchemaTypeVal (IFieldV name FTtermV) = Tterm
-SchemaTypeVal (IFieldV name FOPcarrier) = SymbolOP
-SchemaTypeVal (s1 .+. s2) = (SchemaTypeVal s1, SchemaTypeVal s2)
-
 schema2ZeroVal : (s:Schema2 Val) -> (SchemaType2 s)
---schema2ZeroVal (IField name FBool) = False
---schema2ZeroVal (IField name FTterm ) = (Tt 0 0)
---schema2ZeroVal (IField name FString ) =  ""
 schema2ZeroVal (IFieldV name FTtermV ) = (Tt 0 0)
 schema2ZeroVal (IFieldV name FOPcarrier ) = Empty
---schema2ZeroVal (EField name (NSInteger ns) ) = 0
---schema2ZeroVal (EField name (NSCode ns) ) = ""
---schema2ZeroVal (x .|. y) = (schema2ZeroVal x,schema2ZeroVal y)
 schema2ZeroVal (x .+. y) = (schema2ZeroVal x,schema2ZeroVal y)
 
 public export 
@@ -187,7 +158,6 @@ eqSchema2 {schema = (IField name FBool)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IField name FString)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IField name (Fm2o (NSInteger ns) ))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IField name (Fm2o (NSCode ns) ))} item1 item2 = (item1 == item2)
---eqSchema2 {schema = (IField name FTterm)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IFieldV name FTtermV)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IFieldV name FOPcarrier)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (EField name (NSInteger ns))} item1 item2 = (item1 == item2)
@@ -203,30 +173,15 @@ invSchema2 {schema = (y .+. z)} (iteml,itemr) = (invSchema2 iteml, invSchema2 it
 
 public export -- semigroup operation
 addSchema2Vals : {schema : Schema2 Val} -> (SchemaType2 schema) -> (SchemaType2 schema) -> (SchemaType2 schema)
---addSchema2Vals {schema = (IField name FBool)} item1 item2 = (item1 || item2)
---addSchema2Vals {schema = (IField name FString)} item1 item2 = item1 <+> item2
---addSchema2Vals {schema = (IField name FTterm)} item1 item2 = item1 <+> item2  -- For Tterm, add
 addSchema2Vals {schema = (IFieldV name FTtermV)} item1 item2 = item1 <+> item2  -- For Tterm, add
 addSchema2Vals {schema = (IFieldV name FOPcarrier)} item1 item2 = item1 <+> item2  -- For Tterm, add
---addSchema2Vals {schema = (EField name ns)} item1 item2 = if ((item2== 0) || (item1==0)) then (item1 + item2) else item2
 addSchema2Vals {schema = (y .+. z)} (i1l,i1r) (i2l,i2r) = ( addSchema2Vals i1l i2l, addSchema2Vals i1r i2r)
-
-
 
 public export -- semigroup operation
 mulSchema2Vals : {schema : Schema2 Val}->(SchemaType2 schema) -> (SchemaType2 schema) -> (SchemaType2 schema)
-
---mulSchema2Vals {schema = (IField name FTterm)} item1 item2 =   tmul item1 item2  -- For Tterm, add
 mulSchema2Vals {schema = (IFieldV name FTtermV)} item1 item2 = tmul item1 item2  -- For Tterm, add
-
-
---mulSchema2Vals {schema = (IField name FBool)} item1 item2 = (item1 && item2)
---mulSchema2Vals {schema = (IField name FString)} item1 item2 = item1 <+> item2
 mulSchema2Vals {schema = (IFieldV name FOPcarrier)} item1 item2 = item1 <+> item2  -- For Tterm, add
---mulSchema2Vals {schema = (EField name ns)} item1 item2 = if ((item2== 0) && (item1==0)) then (item1 * item2) else item2
-
 mulSchema2Vals {schema = (y .+. z)} (i1l,i1r) (i2l,i2r) = ( mulSchema2Vals i1l i2l, mulSchema2Vals i1r i2r)
-
 
 record ModelSchema (a:KV) where
      constructor MkModelSchema
@@ -235,26 +190,20 @@ record ModelSchema (a:KV) where
      name : String
 --     rw : Schema2 kv -> Bool
 
-
 record ModelData (a:KV) (m: (ModelSchema a))  where
      constructor MkMD
      size : Nat
      data_key : Vect size (SchemaType2 (key m ) )
      data_val : Vect size (SchemaType2 (val m ) )
 
-
---record Pokus (m:ModelSchema) where
---     constructor MkPokus
-     -- rwk : (key m) -> Bool
-
 record ModelDataList (a:KV) (m:ModelSchema a) where
      constructor MkMDList
      name : String
-     --default_key : (SchemaType2 (key m))    -- as ZERO element?
-     --default_value : (SchemaType2 (val m)) -- Acting as ZERO element?
---     zero_val : (SchemaType2 (val m)) can be calculated from m
      keyL : List (SchemaType2 (key m))
      valL : List (SchemaType2 (val m))
+
+
+------------------------------------------------
 
 _f_val : String -> Tterm 
 _f_val "p1" = Tt 4 0
