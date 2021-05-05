@@ -16,77 +16,129 @@ import JSIO
 keyItems : Schema2 Key
 keyItems = (EField "sku" (NSCode "asset") ) .|. (EField "currency" (NSCode "asset"))
 
-
 keyTotal : Schema2 Key
 keyTotal = (EField "currency" (NSCode "asset"))
 
 msgType : Schema2 Key
-msgType = (EField "uid" (NSCode "user") ) .|. (EField "msgt" (NSCode "msgt")).|. (IField "t" FDateTime)
+msgType = (EField "uid" (NSCode "user") ) .|. (EField "msgt" (NSCode "msgt")) .|. (IField "t" FDateTime) 
+
+versionType : Schema2 Key
+versionType = (EField "version" (NSSeq "version"))
+
 
 fxType : Schema2 Key
 fxType = (EField "p1" (NSCode "partner") ) .|. (EField "p2" (NSCode "partner"))
 
-msgNode : Schema2Tree
+versionNode : Schema2Tree Key
+versionNode = S2Name "version" (S2Node versionType)
+
+msgNode : Schema2Tree Key
 msgNode = S2Name "msg" (S2Node msgType)
 
-fxNode : Schema2Tree
+fxNode : Schema2Tree Key
 fxNode =  S2Name "fx" (S2Node fxType)
 
-itemsNode : Schema2Tree
+itemsNode : Schema2Tree Key
 itemsNode = S2Name "items" (S2Node keyItems)
 
-deliveryNode : Schema2Tree
+deliveryNode : Schema2Tree Key
 deliveryNode = S2Name "delivery" (S2Node (EField "l1" (NSCode "location") ))
 
-billingNode : Schema2Tree
+billingNode : Schema2Tree Key
 billingNode = S2Name "billing" (S2Node (EField "l2" (NSCode "location") ))
 
-exNode : Schema2Tree
+exNode : Schema2Tree Key
 exNode = S2Name "exchange" (fxNode :: itemsNode)
 
 
-moveNode : Schema2Tree
+moveNode : Schema2Tree Key
 moveNode = S2Name "move" (fxNode :: (S2Node (EField "sku" (NSCode "asset") )) )
 
-payNode : Schema2Tree
+payNode : Schema2Tree Key
 payNode = S2Name "pay" (fxNode :: (S2Node (EField "currency" (NSCode "asset") )) )
 
 
-orderNode : Schema2Tree
+orderNode : Schema2Tree Key
 orderNode = S2Name "order" (exNode :: deliveryNode :: billingNode)
 
-invoiceNode : Schema2Tree
+invoiceNode : Schema2Tree Key
 invoiceNode = S2Name "invoice" (exNode :: deliveryNode :: billingNode)
 
 
-pickingNode : Schema2Tree
+pickingNode : Schema2Tree Key
 pickingNode = S2Name "picking" ( moveNode :: deliveryNode)
 
-paymentNode : Schema2Tree
+paymentNode : Schema2Tree Key
 paymentNode = S2Name "payment" ( payNode :: billingNode)
 
 
-
 --- Messages
-orderMsgNode : Schema2Tree
+orderMsgNode : Schema2Tree Key
 orderMsgNode = S2Name "order_msg" (msgNode :: orderNode)
 
-invoiceMsgNode : Schema2Tree
+orderVersionMsgNode : Schema2Tree Key
+orderVersionMsgNode = S2Name "order_msg_v" (orderMsgNode :: versionNode)
+
+
+
+invoiceMsgNode : Schema2Tree Key
 invoiceMsgNode = S2Name "invoice_msg" (msgNode :: invoiceNode)
 
-pickingMsgNode : Schema2Tree
+pickingMsgNode : Schema2Tree Key
 pickingMsgNode = S2Name "picking" (msgNode :: pickingNode)
 
-paymentMsgNode : Schema2Tree
+paymentMsgNode : Schema2Tree Key
 paymentMsgNode = S2Name "payment" (msgNode :: paymentNode)
 
+qtyType : Schema2 Val
+qtyType = IFieldAlg "qty" FIntCarrier
+
+priceUnitType : Schema2 Val
+--priceUnitType = IFieldAlg "price_unit <- pricelist[order/exchange/items].price_unit" FIntCarrier
+priceUnitType = IFieldAlg "price_unit" FIntCarrier
+
+priceType : Schema2 Val
+priceType = IFieldAlg "price=qty*price_unit" FIntCarrier
 
 
+qtyNode : Schema2Tree Val
+qtyNode = S2Name "qty" (S2Node qtyType)
 
+priceUnitNode : Schema2Tree Val
+priceUnitNode = S2Name "price_unit" (S2Node priceUnitType)
 
+--priceUnitNode : Schema2Tree Val
+--priceUnitNode = S2Name "price_unit" (S2Node priceUnitType)
 
+priceNode : Schema2Tree Val
+priceNode = S2Name "price" (S2Node priceType)
 
+orderValNode : Schema2Tree Val
+orderValNode = S2Name "order" (qtyNode :: priceUnitNode :: priceNode)
 
+orderVersionMsgVector : Vector
+orderVersionMsgVector = MkVector orderVersionMsgNode orderValNode
+
+orderMsgVector : Vector
+orderMsgVector = MkVector orderMsgNode orderValNode
+
+data MachineCmd : Type -> Vector -> Vector -> Type where
+    InitVector : MachineCmd () v1 v2
+    EditVector : MachineCmd () v1 v2
+    CommitVector : MachineCmd () v1 v2
+    Display : String -> MachineCmd () v1 v1    
+    Pure : ty -> MachineCmd ty v1 v1
+    (>>=) : MachineCmd a v1 v2 ->
+            (a -> MachineCmd b v2 v3) ->
+            MachineCmd b v1 v3
+data MachineIO : Vector -> Type where
+    Do : MachineCmd a v1 v2 ->
+         (a -> Inf (MachineIO v2)) -> MachineIO v1
+         
+namespace MachineDo
+    (>>=) : MachineCmd a v1 v2 ->
+          (a -> Inf (MachineIO v2)) -> MachineIO v1
+    (>>=) = Do
 
 drop_key : (c:String) -> (Schema2 Key) -> (Schema2 Key)
 drop_key c ( x@(EField n1 ns1) .|. y@(EField n2 ns2)) = case (c==n1) of 

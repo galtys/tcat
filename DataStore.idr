@@ -104,6 +104,8 @@ Semigroup SymbolOP where
 infixr 5 .|.
 infixr 5 .+.
 
+
+
 data SymbolType : Type where  -- symbol type
      NSInt : String -> SymbolType
      NSSeq : String -> SymbolType     
@@ -137,16 +139,16 @@ data AlgebraCarriers : Type where  --Algebra Carriers
 data KV = Key | Val
 
 data Schema2 : KV -> Type where
-     IField : (name:String) -> (ft: FieldDefKey) -> Schema2 Key
+     IField : (name:String) -> (ft: FieldDefKey) -> Schema2 Key    
      EField : (name:String) -> (ns :SymbolType)-> Schema2 Key -- id implementation
      (.|.) : (s1 : Schema2 Key) -> (s2 :Schema2 Key) -> Schema2 Key         
      IFieldAlg : (name:String) -> (ft: AlgebraCarriers) -> Schema2 Val  -- algebra carrier          
      (.+.) : (s1 : Schema2 Val) -> (s2 :Schema2 Val) -> Schema2 Val
 
-data Schema2Tree : Type where
-     S2Node : (s1 : Schema2 Key) -> Schema2Tree
-     (::) : (s1 : Schema2Tree) -> (s2 : Schema2Tree) -> Schema2Tree
-     S2Name : (name :String) -> (s1 : Schema2Tree)  -> Schema2Tree
+data Schema2Tree : (kv:KV)  -> Type where
+     S2Node : (s1 : Schema2 kv) -> Schema2Tree kv
+     (::) : (s1 : Schema2Tree kv) -> (s2 : Schema2Tree kv) -> Schema2Tree kv
+     S2Name : (name :String) -> (s1 : Schema2Tree kv)  -> Schema2Tree kv
 
 SchemaType2 : Schema2 kv-> Type
 SchemaType2 (IField name FBool)= Bool
@@ -217,7 +219,12 @@ mulSchema2Vals {schema = (IFieldAlg name FOPcarrier)} item1 item2 = item1 <+> it
 mulSchema2Vals {schema = (y .+. z)} (i1l,i1r) (i2l,i2r) = ( mulSchema2Vals i1l i2l, mulSchema2Vals i1r i2r)
 
 
+record Vector where
+    constructor MkVector
+    key : Schema2Tree Key
+    val : Schema2Tree Val
      
+               
 record ModelSchema where
      constructor MkModelSchema
      key : Schema2 Key --- key,hom key
