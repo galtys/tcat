@@ -17,6 +17,7 @@ tterm2json : Tterm -> String
 tterm2json (Tt dr cr) = printf """[%d,%d]""" dr cr
 
 -- assumption: column(field) names are unique
+{--
 renderSchemaDataAsJsonP : (SchemaType2 schema) -> String
 renderSchemaDataAsJsonP {schema = (IFieldAlg name FTtermCarrier)} item = printf """ {"%s":%s} """ name (tterm2json item)
 renderSchemaDataAsJsonP {schema = (IFieldAlg name FIntCarrier)} item = printf """ {"%s":%d} """ name (int2integer item)
@@ -37,6 +38,7 @@ renderSchemaDataAsJsonP {schema = (EField name (NSCode ns))} item
 renderSchemaDataAsJsonP {schema = (y .|. z)} (iteml,itemr) = (renderSchemaDataAsJsonP iteml)++
                                                            "," ++
                                                            (renderSchemaDataAsJsonP itemr)
+--}                                                           
 
 renderSchemaDataAsJsonP1 : (SchemaType2 schema) -> String
 renderSchemaDataAsJsonP1 {schema = (IFieldAlg name FTtermCarrier)} item = printf """ %s """ (tterm2json item)

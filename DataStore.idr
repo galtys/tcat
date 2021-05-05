@@ -137,6 +137,7 @@ data Schema2 : KV -> Type where
      IField : (name:String) -> (ft: FieldDefKey) -> Schema2 Key
      EField : (name:String) -> (ns :SymbolType)-> Schema2 Key -- id implementation
      IFieldAlg : (name:String) -> (ft: AlgebraCarriers) -> Schema2 Val  -- algebra carrier
+     
      (.|.) : (s1 : Schema2 Key) -> (s2 :Schema2 Key) -> Schema2 Key 
      (.+.) : (s1 : Schema2 Val) -> (s2 :Schema2 Val) -> Schema2 Val
 
@@ -198,11 +199,19 @@ mulSchema2Vals {schema = (IFieldAlg name FIntCarrier)} item1 item2 = item1 * ite
 mulSchema2Vals {schema = (IFieldAlg name FOPcarrier)} item1 item2 = item1 <+> item2  -- For Tterm, add
 mulSchema2Vals {schema = (y .+. z)} (i1l,i1r) (i2l,i2r) = ( mulSchema2Vals i1l i2l, mulSchema2Vals i1r i2r)
 
+
+record VectorKey  where
+     constructor MkVectorKey
+     key : Schema2 Key
+     name : String
+     
 record ModelSchema (a:KV) where
      constructor MkModelSchema
-     key : Schema2 Key
-     val : Schema2 a
-     name : String
+     key : Schema2 Key --- key,hom key
+     val : Schema2 a   -- vector carriers
+     key_name : String
+
+     
 --     rw : Schema2 kv -> Bool
 
 record ModelData (a:KV) (m: (ModelSchema a))  where
@@ -216,6 +225,30 @@ record ModelDataList (a:KV) (m:ModelSchema a) where
      name : String
      keyL : List (SchemaType2 (key m))
      valL : List (SchemaType2 (val m))
+
+
+---------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ------------------------------------------------
