@@ -9,6 +9,7 @@ import JSIO
 (>>) : Monad m => m a -> m b -> m b
 (>>) x y = x >>= (\_ => y)
 
+
 keyItems : Schema2 Key
 keyItems = (EField "sku1" (NSCode "asset") ) .|. (EField "currency" (NSCode "asset"))
 
@@ -42,7 +43,10 @@ namespace convert_s3LR_drop_col
   convert_s3 (EField namex (NSInt ns)) {si = (EField name (NSInt ns2) ) } item = item  
   convert_s3 (EField namex (NSCode ns)) {si = (EField name (NSCode ns2) ) } item = item
   convert_s3 sb {si = (y .|. z)} it = convert_s3 sb it
+  convert_s3 sb {si = (KeyName1 name y)} it = convert_s3 sb it
+  convert_s3 sb {si = (KeyName2 name y z)} it = convert_s3 sb it    
 
+    
   convert_sL : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
   convert_sL (IField namex FBool) {si = (IField name FBool) } item = item
   convert_sL (IField namex FString) {si = (IField name FString) } item = item
@@ -52,6 +56,8 @@ namespace convert_s3LR_drop_col
   convert_sL (EField namex (NSInteger ns) ) {si = (EField name (NSInteger ns2) )} item = item
   convert_sL (EField namex (NSInt ns) ) {si = (EField name (NSInt ns2) )} item = item  
   convert_sL (EField namex (NSCode ns)) {si = (EField name (NSCode ns2)) } item = item  
+  convert_sL sb {si = (KeyName1 name y)} iR = convert_sL sb iR
+  convert_sL sb {si = (KeyName2 name y z)} (iL,iR) = convert_sL sb iR
   convert_sL sb {si = (y .|. z)} (iL,iR) = convert_sL sb iR
 
   convert_sR : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
@@ -63,8 +69,10 @@ namespace convert_s3LR_drop_col
   convert_sR (EField namex (NSInteger ns)  ) {si = (EField name (NSInteger ns2) ) } item = item
   convert_sR (EField namex (NSInt ns)  ) {si = (EField name (NSInt ns2) ) } item = item  
   convert_sR (EField namex (NSCode ns)  ) {si = (EField name (NSCode ns2) ) } item = item  
+  convert_sR sb {si = (KeyName1 name y)} iL = convert_sR sb iL
+  convert_sR sb {si = (KeyName2 name y z)} (iL,iR) = convert_sR sb iL
   convert_sR sb {si = (y .|. z)} (iL,iR) = convert_sR sb iL
-
+      
   drop_col : (sb: Schema2 Key) -> (c:String) -> (SchemaType2 sk) -> (SchemaType2 sb )
   drop_col  sb c {sk= (y@(EField n1 ns1) .|. z@(EField n2 ns2 ) ) } item  = ret where 
     ret = case (c==n1) of
