@@ -10,21 +10,81 @@ import JSIO
 (>>) x y = x >>= (\_ => y)
 
 
+--msgTypes : Schema2 Key
 
 
 keyItems : Schema2 Key
-keyItems = (EField "sku1" (NSCode "asset") ) .|. (EField "currency" (NSCode "asset"))
+keyItems = (EField "sku" (NSCode "asset") ) .|. (EField "currency" (NSCode "asset"))
+
 
 keyTotal : Schema2 Key
 keyTotal = (EField "currency" (NSCode "asset"))
 
+msgType : Schema2 Key
+msgType = (EField "uid" (NSCode "user") ) .|. (EField "msgt" (NSCode "msgt")).|. (IField "t" FDateTime)
+
+fxType : Schema2 Key
+fxType = (EField "p1" (NSCode "partner") ) .|. (EField "p2" (NSCode "partner"))
+
+msgNode : Schema2Tree
+msgNode = S2Name "msg" (S2Node msgType)
+
+fxNode : Schema2Tree
+fxNode =  S2Name "fx" (S2Node fxType)
+
+itemsNode : Schema2Tree
+itemsNode = S2Name "items" (S2Node keyItems)
+
+deliveryNode : Schema2Tree
+deliveryNode = S2Name "delivery" (S2Node (EField "l1" (NSCode "location") ))
+
+billingNode : Schema2Tree
+billingNode = S2Name "billing" (S2Node (EField "l2" (NSCode "location") ))
+
+exNode : Schema2Tree
+exNode = S2Name "exchange" (fxNode :: itemsNode)
+
+
+moveNode : Schema2Tree
+moveNode = S2Name "move" (fxNode :: (S2Node (EField "sku" (NSCode "asset") )) )
+
+payNode : Schema2Tree
+payNode = S2Name "pay" (fxNode :: (S2Node (EField "currency" (NSCode "asset") )) )
+
+
+orderNode : Schema2Tree
+orderNode = S2Name "order" (exNode :: deliveryNode :: billingNode)
+
+invoiceNode : Schema2Tree
+invoiceNode = S2Name "invoice" (exNode :: deliveryNode :: billingNode)
+
+
+pickingNode : Schema2Tree
+pickingNode = S2Name "picking" ( moveNode :: deliveryNode)
+
+paymentNode : Schema2Tree
+paymentNode = S2Name "payment" ( payNode :: billingNode)
+
+
+
+--- Messages
+orderMsgNode : Schema2Tree
+orderMsgNode = S2Name "order_msg" (msgNode :: orderNode)
+
+invoiceMsgNode : Schema2Tree
+invoiceMsgNode = S2Name "invoice_msg" (msgNode :: invoiceNode)
+
+pickingMsgNode : Schema2Tree
+pickingMsgNode = S2Name "picking" (msgNode :: pickingNode)
+
+paymentMsgNode : Schema2Tree
+paymentMsgNode = S2Name "payment" (msgNode :: paymentNode)
 
 
 
 
 
---keyTree : Schema2Tree
---keyTree : 
+
 
 
 

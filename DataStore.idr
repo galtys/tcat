@@ -142,9 +142,9 @@ data Schema2 : KV -> Type where
      (.+.) : (s1 : Schema2 Val) -> (s2 :Schema2 Val) -> Schema2 Val
 
 data Schema2Tree : Type where
-     S2Nil : Schema2Tree
-     (::) : (s1 : Schema2 Key) -> (s2 : Schema2 Key) -> Schema2Tree
-     S2Name : (name :String) -> (s1 : Schema2 Key) -> (s2 : Schema2 Key) -> Schema2Tree
+     S2Node : (s1 : Schema2 Key) -> Schema2Tree
+     (::) : (s1 : Schema2Tree) -> (s2 : Schema2Tree) -> Schema2Tree
+     S2Name : (name :String) -> (s1 : Schema2Tree)  -> Schema2Tree
 
 SchemaType2 : Schema2 kv-> Type
 SchemaType2 (IField name FBool)= Bool
