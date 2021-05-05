@@ -126,24 +126,23 @@ data FieldDefKey : Type where
      --FInt
      --FUUID
 
-     
+
      ---FM2M  -- abstraction and modeling
 --     FTterm :  FieldDefKey
-     
+
 data AlgebraCarriers : Type where  --Algebra Carriers 
      FTtermV :  AlgebraCarriers
      FOPcarrier    :  AlgebraCarriers
      -- Date
      -- DateTime
-     
+
 data KV = Key | Val
 
 data Schema2 : KV -> Type where
      IField : (name:String) -> (ft: FieldDefKey) -> Schema2 Key
      EField : (name:String) -> (ns :SymbolType)-> Schema2 Key -- id implementation
-     
      IFieldV : (name:String) -> (ft: AlgebraCarriers) -> Schema2 Val  -- algebra carrier
-     --EFieldUser : (name:String) -> (ns :String)-> Schema2 Key -- code implementation
+
      (.|.) : (s1 : Schema2 Key) -> (s2 :Schema2 Key) -> Schema2 Key 
      (.+.) : (s1 : Schema2 Val) -> (s2 :Schema2 Val) -> Schema2 Val
 
