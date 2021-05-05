@@ -19,6 +19,8 @@ tterm2json (Tt dr cr) = printf """[%d,%d]""" dr cr
 -- assumption: column(field) names are unique
 renderSchemaDataAsJsonP : (SchemaType2 schema) -> String
 renderSchemaDataAsJsonP {schema = (IFieldV name FTtermCarrier)} item = printf """ {"%s":%s} """ name (tterm2json item)
+renderSchemaDataAsJsonP {schema = (IFieldV name FIntCarrier)} item = printf """ {"%s":%d} """ name (int2integer item)
+
 renderSchemaDataAsJsonP {schema = (IField name FBool)} item = printf """ {"%s":%s} """ name val where
                       val = if (item == True) then "true" else "false"
 renderSchemaDataAsJsonP {schema = (IField name FString)} item = printf """ {"%s":"%s"} """ name item 
@@ -38,6 +40,7 @@ renderSchemaDataAsJsonP {schema = (y .|. z)} (iteml,itemr) = (renderSchemaDataAs
 
 renderSchemaDataAsJsonP1 : (SchemaType2 schema) -> String
 renderSchemaDataAsJsonP1 {schema = (IFieldV name FTtermCarrier)} item = printf """ %s """ (tterm2json item)
+renderSchemaDataAsJsonP1 {schema = (IFieldV name FIntCarrier)} item = printf """ %d """  (int2integer item)
 renderSchemaDataAsJsonP1 {schema = (IField name FBool)} item = printf """ %s """ val where
                       val = if (item == True) then "true" else "false"
 renderSchemaDataAsJsonP1 {schema = (IField name FString)} item = printf """ "%s" """ item 
@@ -104,6 +107,7 @@ json2Schema2Data : (s:Schema2 kv) -> List JSON -> (SchemaType2 s)
 json2Schema2Data (IField name FBool) x = list_json_to_bool x
 json2Schema2Data (IField name FString) x = list_json_to_str x
 json2Schema2Data (IFieldV name FTtermCarrier) x = list_json_to_tterm x
+json2Schema2Data (IFieldV name FIntCarrier) x = integer_to_int (list_json_to_num x)
 json2Schema2Data (EField name (NSInteger ns)) x = list_json_to_num x
 json2Schema2Data (EField name (NSInt ns)) x = integer_to_int (list_json_to_num x)
 json2Schema2Data (EField name (NSCode ns)) x = list_json_to_str x
