@@ -111,9 +111,11 @@ namespace convert_s3LR_drop_col
   convert_s3 (IField namex FDateTime) {si = (IField name FDateTime) } item = item
   convert_s3 (IField namex (Fm2o  (NSInteger ns) ) ) {si = (IField name (Fm2o (NSInteger ns2))) } item = item
   convert_s3 (IField namex (Fm2o  (NSInt ns) ) ) {si = (IField name (Fm2o (NSInt ns2))) } item = item  
+  convert_s3 (IField namex (Fm2o  (NSSeq ns) ) ) {si = (IField name (Fm2o (NSSeq ns2))) } item = item    
   convert_s3 (IField namex (Fm2o (NSCode ns)) ) {si = (IField name (Fm2o (NSCode ns2))) } item = item 
   convert_s3 (EField namex (NSInteger ns)) {si = (EField name (NSInteger ns2) ) } item = item
   convert_s3 (EField namex (NSInt ns)) {si = (EField name (NSInt ns2) ) } item = item  
+  convert_s3 (EField namex (NSSeq ns)) {si = (EField name (NSSeq ns2) ) } item = item    
   convert_s3 (EField namex (NSCode ns)) {si = (EField name (NSCode ns2) ) } item = item
   convert_s3 sb {si = (y .|. z)} it = convert_s3 sb it
 --  convert_s3 sb {si = (KeyName1 name y)} it = convert_s3 sb it
@@ -126,9 +128,11 @@ namespace convert_s3LR_drop_col
   convert_sL (IField namex FDateTime) {si = (IField name FDateTime) } item = item  
   convert_sL (IField namex (Fm2o (NSInteger ns)) ) {si = (IField name (Fm2o (NSInteger ns2))) } item = item 
   convert_sL (IField namex (Fm2o (NSInt ns)) ) {si = (IField name (Fm2o (NSInt ns2))) } item = item   
+  convert_sL (IField namex (Fm2o (NSSeq ns)) ) {si = (IField name (Fm2o (NSSeq ns2))) } item = item     
   convert_sL (IField namex (Fm2o (NSCode ns)) ) {si = (IField name (Fm2o (NSCode ns2))) } item = item  
   convert_sL (EField namex (NSInteger ns) ) {si = (EField name (NSInteger ns2) )} item = item
   convert_sL (EField namex (NSInt ns) ) {si = (EField name (NSInt ns2) )} item = item  
+  convert_sL (EField namex (NSSeq ns) ) {si = (EField name (NSSeq ns2) )} item = item    
   convert_sL (EField namex (NSCode ns)) {si = (EField name (NSCode ns2)) } item = item  
 --  convert_sL sb {si = (KeyName1 name y)} iR = convert_sL sb iR
 --  convert_sL sb {si = (KeyName2 name y z)} (iL,iR) = convert_sL sb iR
@@ -143,6 +147,7 @@ namespace convert_s3LR_drop_col
   convert_sR (IField namex (Fm2o (NSCode ns)  ) ) {si = (IField name (Fm2o (NSCode ns2) )) } item = item   
   convert_sR (EField namex (NSInteger ns)  ) {si = (EField name (NSInteger ns2) ) } item = item
   convert_sR (EField namex (NSInt ns)  ) {si = (EField name (NSInt ns2) ) } item = item  
+  convert_sR (EField namex (NSSeq ns)  ) {si = (EField name (NSSeq ns2) ) } item = item    
   convert_sR (EField namex (NSCode ns)  ) {si = (EField name (NSCode ns2) ) } item = item  
 --  convert_sR sb {si = (KeyName1 name y)} iL = convert_sR sb iL
 --  convert_sR sb {si = (KeyName2 name y z)} (iL,iR) = convert_sR sb iL
@@ -219,6 +224,8 @@ namespace render_with_ids
   renderDataWithSchema2 p_id {schema = (IField name FDateTime)} item  = [render_number_in_td_tag2   (cell_id p_id name) (int2integer item)]    
   renderDataWithSchema2 p_id {schema = (IField name (Fm2o (NSInteger ns) ))} item  = [render_number_in_td_tag2   (cell_id p_id name) item]
   renderDataWithSchema2 p_id {schema = (IField name (Fm2o (NSInt ns) ))} item  = [render_number_in_td_tag2   (cell_id p_id name) (int2integer item)]  
+  renderDataWithSchema2 p_id {schema = (IField name (Fm2o (NSSeq ns) ))} item  = [render_number_in_td_tag2   (cell_id p_id name) (int2integer item)]  
+  
   renderDataWithSchema2 p_id {schema = (IField name (Fm2o (NSCode ns) ))} item  = [render_text_in_td_tag2   (cell_id p_id name) item]  
 --  renderDataWithSchema2 p_id {schema = (IField name FTterm)}  item  = [render_tterm_in_td_tag2  (cell_id p_id name) item]
   renderDataWithSchema2 p_id {schema = (IFieldAlg name FTtermCarrier)}  item  = [render_tterm_in_td_tag2  (cell_id p_id name) item]
@@ -226,6 +233,8 @@ namespace render_with_ids
   renderDataWithSchema2 p_id {schema = (IFieldAlg name FOPcarrier)}  item  = [render_text_in_td_tag2  (cell_id p_id name) (show item)]    
   renderDataWithSchema2 p_id {schema = (EField name (NSInteger ns))}      item  = [render_number_in_td_tag2 (cell_id p_id name) item]
   renderDataWithSchema2 p_id {schema = (EField name (NSInt ns))}      item  = [render_number_in_td_tag2 (cell_id p_id name) (int2integer item)]  
+  renderDataWithSchema2 p_id {schema = (EField name (NSSeq ns))}      item  = [render_number_in_td_tag2 (cell_id p_id name) (int2integer item)]  
+  
   renderDataWithSchema2 p_id {schema = (EField name (NSCode ns))}      item  = [render_text_in_td_tag2 (cell_id p_id name) item]
     
   renderDataWithSchema2 p_id {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2 p_id iteml) ++ (renderDataWithSchema2 p_id itemr)
@@ -259,6 +268,7 @@ namespace render_wo_ids
   renderDataWithSchema2 {schema = (IField name FDateTime)} item  = [render_number_in_td_tag2 (int2integer item)]  
   renderDataWithSchema2 {schema = (IField name (Fm2o (NSInteger ns) ))} item  = [render_number_in_td_tag2 item]
   renderDataWithSchema2 {schema = (IField name (Fm2o (NSInt ns) ))} item  = [render_number_in_td_tag2 (int2integer item)]  
+  renderDataWithSchema2 {schema = (IField name (Fm2o (NSSeq ns) ))} item  = [render_number_in_td_tag2 (int2integer item)]    
   renderDataWithSchema2 {schema = (IField name (Fm2o (NSCode ns) ))} item  = [render_text_in_td_tag2 item]  
 --  renderDataWithSchema2 {schema = (IField name FTterm)}  item  = [render_tterm_in_td_tag2 item]
   renderDataWithSchema2 {schema = (IFieldAlg name FTtermCarrier)}  item  = [render_tterm_in_td_tag2 item]
@@ -266,6 +276,7 @@ namespace render_wo_ids
   renderDataWithSchema2 {schema = (IFieldAlg name FOPcarrier)}  item  = [render_text_in_td_tag2 (show item)]
   renderDataWithSchema2 {schema = (EField name (NSInteger ns) )}      item  = [render_number_in_td_tag2 item]
   renderDataWithSchema2 {schema = (EField name (NSInt ns) )}      item  = [render_number_in_td_tag2 (int2integer item)]  
+  renderDataWithSchema2 {schema = (EField name (NSSeq ns) )}      item  = [render_number_in_td_tag2 (int2integer item)]    
   renderDataWithSchema2 {schema = (EField name (NSCode ns) )}      item  = [render_text_in_td_tag2 item]  
   renderDataWithSchema2 {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2 iteml) ++ (renderDataWithSchema2 itemr)
   renderDataWithSchema2 {schema = (y .+. z)} (iteml, itemr) = (renderDataWithSchema2 iteml) ++ (renderDataWithSchema2 itemr)
@@ -366,6 +377,10 @@ read_cells p_id (EField name (NSInt ns) )  = do
                    let _cell_id = cell_id p_id name
                    v <- get_qty_int _cell_id
                    pure v
+read_cells p_id (EField name (NSSeq ns) )  = do
+                   let _cell_id = cell_id p_id name
+                   v <- get_qty_int _cell_id
+                   pure v
                    --let qty_integer = the Integer (cast v)                   
                    --pure qty_integer
 read_cells p_id (EField name (NSCode ns) )  = do
@@ -432,6 +447,10 @@ read_cells_attr p_id (EField name (NSInt ns) )  = do
                    let _cell_id = cell_id p_id name
                    v <- get_qty_int_dataval _cell_id
                    pure v
+read_cells_attr p_id (EField name (NSSeq ns) )  = do
+                   let _cell_id = cell_id p_id name
+                   v <- get_qty_int_dataval _cell_id
+                   pure v
                    --let qty_integer = the Integer (cast v)                   
                    --pure qty_integer
                    
@@ -489,6 +508,9 @@ set_cells_attr p_id {schema=(EField name (NSInteger ns) )} item = do
 set_cells_attr p_id {schema=(EField name (NSInt ns) )} item = do
                    let _cell_id = cell_id p_id name
                    set_qty_int_dataval _cell_id ( item)
+set_cells_attr p_id {schema=(EField name (NSSeq ns) )} item = do
+                   let _cell_id = cell_id p_id name
+                   set_qty_int_dataval _cell_id ( item)
 
                                       
 set_cells_attr p_id {schema=(EField name (NSCode ns) )} item = do
@@ -537,6 +559,9 @@ update_cells_td p_id {schema=(EField name (NSInteger ns) )} item = do
 update_cells_td p_id {schema=(EField name (NSInt ns) )} item = do
                    let _cell_id = cell_id p_id name
                    set_qty_int_dataval p_id item
+update_cells_td p_id {schema=(EField name (NSSeq ns) )} item = do
+                   let _cell_id = cell_id p_id name
+                   set_qty_int_dataval p_id item
 
 update_cells_td p_id {schema=(y .|. z)} (il,ir) = do
                    set_cells_attr p_id il
@@ -568,6 +593,7 @@ schema2thead2 sch = ret where
   schema2th (IFieldAlg name FOPcarrier ) = [printf "<th>%s</th>" name ]
   schema2th (EField name (NSInteger ns) ) = [printf "<th>%s[%s]</th>" name ns]
   schema2th (EField name (NSInt ns) ) = [printf "<th>%s[%s]</th>" name ns]  
+  schema2th (EField name (NSSeq ns) ) = [printf "<th>%s[%s]</th>" name ns]  
   schema2th (EField name (NSCode ns) ) = [printf "<th>%s[%s]</th>" name ns]
   schema2th (s1 .|. s2) = (schema2th s1) ++ (schema2th s2)
   schema2th (s1 .+. s2) = (schema2th s1) ++ (schema2th s2)
@@ -584,6 +610,7 @@ renderDataAsKey {schema = (IField name FBool)}   False = "False"
 renderDataAsKey {schema = (IField name FString)} item = item
 renderDataAsKey {schema = (IField name (Fm2o (NSInteger ns)) )} item = the String (cast item)
 renderDataAsKey {schema = (IField name (Fm2o (NSInt ns)) )} item = the String (cast item)
+renderDataAsKey {schema = (IField name (Fm2o (NSSeq ns)) )} item = the String (cast item)
 renderDataAsKey {schema = (IField name (Fm2o (NSCode ns)) )} item = item
 --renderDataAsKey {schema = (IField name FTterm)}  item = the String (cast (t2integer item))
 renderDataAsKey {schema = (IFieldAlg name FTtermCarrier)}  item = the String (cast (t2integer item))
@@ -592,6 +619,7 @@ renderDataAsKey {schema = (IField name FDateTime)}  item = the String (cast item
 renderDataAsKey {schema = (IFieldAlg name FOPcarrier)}  item = show item
 renderDataAsKey {schema = (EField name (NSInteger ns) )}      item = the String (cast item)
 renderDataAsKey {schema = (EField name (NSInt ns) )}      item = the String (cast item)
+renderDataAsKey {schema = (EField name (NSSeq ns) )}      item = the String (cast item)
 renderDataAsKey {schema = (EField name (NSCode ns))}      item = item
 renderDataAsKey {schema = (y .|. z)} (iteml, itemr) = (renderDataAsKey iteml) ++ (renderDataAsKey itemr)
 

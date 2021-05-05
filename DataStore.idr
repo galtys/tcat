@@ -106,6 +106,7 @@ infixr 5 .+.
 
 data SymbolType : Type where  -- symbol type
      NSInt : String -> SymbolType
+     NSSeq : String -> SymbolType     
      NSInteger : String -> SymbolType
 --     NSNat : String -> SymbolType
      NSCode : String -> SymbolType  --asset, owner, location, address
@@ -113,6 +114,7 @@ data SymbolType : Type where  -- symbol type
 Eq SymbolType where
      (==) (NSInteger x) (NSInteger y) = (x==y)
      (==) (NSInt x) (NSInt y) = (x==y)
+     (==) (NSSeq x) (NSSeq y) = (x==y)     
      (==) (NSCode x) (NSCode y) = (x==y)
      (==) _ _ =False
      (/=) x y = not (x==y)
@@ -152,12 +154,14 @@ SchemaType2 (IField name FString )= String
 SchemaType2 (IField name FDateTime )= Int
 SchemaType2 (IField name (Fm2o (NSInteger ns) ) )= Integer
 SchemaType2 (IField name (Fm2o (NSInt ns) ) )= Int
+SchemaType2 (IField name (Fm2o (NSSeq ns) ) )= Int
 SchemaType2 (IField name (Fm2o (NSCode ns) ) )= String
 SchemaType2 (IFieldAlg name FTtermCarrier) = Tterm
 SchemaType2 (IFieldAlg name FIntCarrier) = Int
 SchemaType2 (IFieldAlg name FOPcarrier) = SymbolOP
 SchemaType2 (EField name (NSInteger ns) ) = Integer
 SchemaType2 (EField name (NSInt ns) ) = Int
+SchemaType2 (EField name (NSSeq ns) ) = Int
 SchemaType2 (EField name (NSCode ns) ) = String
 SchemaType2 (x .|. y) = (SchemaType2 x, SchemaType2 y)
 SchemaType2 (x .+. y) = (SchemaType2 x, SchemaType2 y)
@@ -177,12 +181,14 @@ eqSchema2 {schema = (IField name FString)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IField name FDateTime)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IField name (Fm2o (NSInteger ns) ))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IField name (Fm2o (NSInt ns) ))} item1 item2 = (item1 == item2)
+eqSchema2 {schema = (IField name (Fm2o (NSSeq ns) ))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IField name (Fm2o (NSCode ns) ))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IFieldAlg name FTtermCarrier)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IFieldAlg name FIntCarrier)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IFieldAlg name FOPcarrier)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (EField name (NSInteger ns))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (EField name (NSInt ns))} item1 item2 = (item1 == item2)
+eqSchema2 {schema = (EField name (NSSeq ns))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (EField name (NSCode ns))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (y .|. z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqSchema2  i1r i2r)
 --eqSchema2 {schema = (KeyName1 name y)} item1 item2 = (eqSchema2  item1 item2)

@@ -52,6 +52,9 @@ renderSchemaDataAsJsonP1 {schema = (EField name (NSInteger ns))} item
 renderSchemaDataAsJsonP1 {schema = (EField name (NSInt ns))} item
                  = let ret = printf """ %d """ (int2integer item) in
                        ret
+renderSchemaDataAsJsonP1 {schema = (EField name (NSSeq ns))} item
+                 = let ret = printf """ %d """ (int2integer item) in
+                       ret
                        
 renderSchemaDataAsJsonP1 {schema = (EField name (NSCode ns))} item
                  = let ret = printf """ %s """ item in
@@ -112,6 +115,7 @@ json2Schema2Data (IFieldAlg name FTtermCarrier) x = list_json_to_tterm x
 json2Schema2Data (IFieldAlg name FIntCarrier) x = integer_to_int (list_json_to_num x)
 json2Schema2Data (EField name (NSInteger ns)) x = list_json_to_num x
 json2Schema2Data (EField name (NSInt ns)) x = integer_to_int (list_json_to_num x)
+json2Schema2Data (EField name (NSSeq ns)) x = integer_to_int (list_json_to_num x)
 json2Schema2Data (EField name (NSCode ns)) x = list_json_to_str x
 --json2Schema2Data (s1 .|. s2) (JArray []) = ()
 --json2Schema2Data (KeyName1 name s1) (xs) = json2Schema2Data s1 xs
