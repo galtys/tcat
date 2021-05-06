@@ -14,7 +14,7 @@ import JSIO
 
 
 keyItems : Schema2 Key
-keyItems = (EField "sku" (NSCode "asset") ) .|. (EField "currency" (NSCode "asset"))
+keyItems = (EField "sku1" (NSCode "asset") ) .|. (EField "currency" (NSCode "asset"))
 
 keyTotal : Schema2 Key
 keyTotal = (EField "currency" (NSCode "asset"))

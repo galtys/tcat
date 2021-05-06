@@ -83,6 +83,7 @@ stdenv.mkDerivation {
     gmp
     (import "/home/jan/github.com/tcat/y.nix")
     yarn
+    sass
     nodejs
      (with nodePackages; [
                     #babel
