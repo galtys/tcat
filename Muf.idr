@@ -92,6 +92,8 @@ main = do
    tab_widget.table_composite False "Order1 Subtotals" "subtotal" Subtotal_ModelSchema subtotal_ModelDataList
    tab_widget.insert_rows_calc "subtotal" Subtotal_ModelSchema subtotal_ModelDataList
 
+
+
    tab_widget.table_composite False "Invoice1 Subtotals" "invoice_subtotal" Subtotal_ModelSchema subtotal_ModelDataList
    tab_widget.insert_rows_calc "invoice_subtotal" Subtotal_ModelSchema subtotal_ModelDataList
 
@@ -109,7 +111,7 @@ main = do
    tab_widget.insert_rows_calc "warehouse_backorders" Items_ModelSchema whs_ModelDataList
       
                   
---   tab_widget.insert_rows "warehouse_done" Items_ModelSchema warehouse_ModelDataList
+
                   
    tab_widget.insert_rows_x "pricelist" Pricelist_ModelSchema pricelist_ModelDataList'
    tab_widget.insert_rows_x "order1" Items_ModelSchema items_ModelDataList'
@@ -122,6 +124,10 @@ main = do
    tab_widget.table_composite True "Payment Received" "payment_received" Total_ModelSchema t_ModelDataList
    
    calc_order_subtotals "order1" "subtotal" "order_total" Items_ModelSchema Pricelist_ModelSchema Subtotal_ModelSchema   
+   
+   
+
+   
 --   tab_widget.table_composite 
 
 --   tab_widget.table_amendments "Pricelist" "pricelist" Pricelist_ModelSchema pricelist_ModelDataList   
