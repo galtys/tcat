@@ -48,16 +48,44 @@
       box-sizing: inherit;
     }
 
+    /* styles for tables */
+.customers {
+/*  font-family: Arial, Helvetica, sans-serif; */
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.customers td, .customers th {
+  border-bottom: 1px solid #ddd;
+  padding: 0.2em;
+}
+
+/*.customers tr:nth-child(even){background-color: #f2f2f2;}*/
+
+.customers tr:hover {background-color: #ddd;}
+
+.customers th {
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  text-align: left;
+  background-color:#EEEEEE; /* #4CAF50; */
+/*  color: black; */
+}    
+
+    
     body {
       
-      font-family: Helvetica, Arial, sans-serif;
+	/*font-family: Helvetica, Arial, sans-serif;*/
+	font-family: "Lucida Grande", Helvetica, Verdana, Arial, sans-serif;
+	color: #404040;
     }
 
     .portfolio > .vect {
       display: inline-block;
 /*      max-width: 300px; */
-      background-color: #709b90;
-      margin: 0;
+/*      background-color: #709b90;
+*/
+      margin: 1;
       
     }
 
@@ -76,23 +104,42 @@
     @supports (display: grid) {
       .portfolio {
         display: grid;
-        grid-template-columns: 2fr 2fr 2fr 1fr; /*repeat(auto-fill, minmax(200px,1fr) ); */
+        grid-template-columns: 3fr 1fr 2fr 2fr; /*repeat(auto-fill, minmax(200px,1fr) ); */
         grid-template-rows: 1fr 1fr 1fr;
         grid-gap: 1em;
         grid-auto-flow: dense;
       }
 
+      .portfolio > .vectcollection {
+        display: flex;
+        flex-direction: row;
+        padding: 0.3em 0.8em;
+	border:0.1em;
+      }
+
+      .portfolio > .vectcollection-reverse {
+          display: flex;
+          flex-direction: row-reverse;
+      }
+      
+      
+      .vect {
+          display: flex;
+	  margin-left:0.4em;	  
+          flex-direction: column;
+      }
+      
       .portfolio > .vect {
         display: flex;
 	  
         flex-direction: column;
 
       }
-
+/*      
       .portfolio img {
         flex: 1;
       }
-
+*/
       .portfolio .featured {
         grid-row: span 2;
         grid-column: span 2;
@@ -121,10 +168,10 @@
     <div class="portfolio">
   
 
-
+        <div class="vectcollection" id="order_collection">
 
         <div class="vect" id="order1">	  
-        </div>
+        </div>	
         <div class="vect" id="pricelist">	  
         </div>
         <div class="vect" id="subtotal">	  
@@ -132,32 +179,52 @@
         <div class="vect" id="order_total">	  
         </div>
 
+        </div>
+	
+	<div class="vect"></div>
+
+	
+        <div class="vectcollection" >
+           <div class="vect" id="warehouse">
+           </div>
+	  
+        </div>
+	
+        <div class="vectcollection" >
+        </div>
+
+	
+        <div class="vectcollection-reverse" id="invoice_collection">
 	
 	<div class="vect">
 	  </div>
 	<div class="vect">
 	  </div>
-        <div class="vect" id="invoice_subtotal">	  
-        </div>
         <div class="vect" id="invoice_total">	  
         </div>
+        <div class="vect" id="invoice_subtotal">	  
+        </div>
 	
+        </div>
 
+
+	
 	<div class="vect">
-	  </div>
-	<div class="vect">
-	  </div>
-	<div class="vect">
-	  </div>
+	</div>
+
+        <div class="vect" id="warehouse_done">
+        </div>	
         <div class="vect" id="payment_received">
         </div>	
 
 	
+	<div class="vect">
+	  </div>
+	<div class="vect">
+	  </div>
 
-        <div class="vect" id="warehouse">
-        </div>
-        <div class="vect" id="warehouse_done">
-        </div>	
+	
+
         <div class="vect" id="warehouse_backorders">
         </div>	
 	<div class="vect">

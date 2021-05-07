@@ -14,10 +14,10 @@ import JSIO
 
 
 keyItems : Schema2 Key
-keyItems = (EField "sku1" (NSCode "asset") ) .|. (EField "currency" (NSCode "asset"))
+keyItems = (EField "sku" (NSCode "asset") ) .|. (EField "cy" (NSCode "asset"))
 
 keyTotal : Schema2 Key
-keyTotal = (EField "currency" (NSCode "asset"))
+keyTotal = (EField "cy" (NSCode "asset"))
 
 msgType : Schema2 Key
 msgType = (EField "uid" (NSCode "user") ) .|. (EField "msgt" (NSCode "msgt")) .|. (IField "t" FDateTime) 
@@ -55,7 +55,7 @@ moveNode : Schema2Tree Key
 moveNode = S2Name "move" (fxNode :: (S2Node (EField "sku" (NSCode "asset") )) )
 
 payNode : Schema2Tree Key
-payNode = S2Name "pay" (fxNode :: (S2Node (EField "currency" (NSCode "asset") )) )
+payNode = S2Name "pay" (fxNode :: (S2Node (EField "cy" (NSCode "asset") )) )
 
 
 orderNode : Schema2Tree Key
@@ -717,7 +717,7 @@ namespace tab_widget
               <h4>%s</h4>
               </div>
             <div class="card-body">
-              <table class="table table-sm table-hover">
+              <table class="customers">
                 <thead>
                     %s
                 </thead>
@@ -742,7 +742,7 @@ namespace tab_widget
               <h4>%s</h4>
               </div>
             <div class="card-body">
-              <table class="table table-sm table-hover">
+              <table class="customers">
                 <thead>
                     %s
                 </thead>
@@ -941,7 +941,7 @@ namespace tab_widget
       t_k <- read_cells_row t_ids (key m_t)
       t_v <- read_cells_attr_row t_ids (val m_t)
       
-      let xx = [ (drop_col (key m_t) "sku1" i) | i <- subtotal_k]
+      let xx = [ (drop_col (key m_t) "sku" i) | i <- subtotal_k]
       
       let t_inv = [ (invSchema2 av) | av <- t_v ]
       
