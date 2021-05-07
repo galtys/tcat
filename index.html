@@ -18,7 +18,7 @@
     <meta name="theme-color" content="#ffffff">
     -->
     
-    <title>EX-LANG</title>
+    <title>Order's state per partner</title>
 
     <!--
     ####################################################
@@ -104,8 +104,9 @@
     @supports (display: grid) {
       .vectorspace {
         display: grid;
-        grid-template-columns: 3fr 1fr 2fr 2fr; /*repeat(auto-fill, minmax(200px,1fr) ); */
-        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 5em 3fr 1fr 2fr 2fr; /*repeat(auto-fill, minmax(200px,1fr) ); */
+	
+        grid-template-rows: 5em 1fr 1fr 1fr;
         grid-gap: 1em;
         grid-auto-flow: dense;
 	background-color: #EEEEEE; /*709b90;*/
@@ -127,7 +128,14 @@
 	box-shadow: 2px 2px 2px 1px #404040;
       }
 
-      
+      .grid-header-writing--x {
+          writing-mode: vertical-lr;
+	  text-orientation: mixed;
+      }
+      .grid-header--center {
+	  text-align: center;
+      }
+
       
       .vect {
           display: flex;
@@ -174,7 +182,12 @@
       -->
     <div class="vectorspace">
   
+      <h2></h2> <h2 class="grid-header--center">Ownership change (goods for currency)</h2>  <h2></h2>
+      <h2 class="grid-header--center">Location change (goods)</h2>
+       <h2 class="grid-header--center">Location change (currency) </h2>
 
+
+      <h2 class="grid-header-writing--x grid-header--center">Target</h2>
         <div class="vectcollection" id="order_collection">
           <div class="vect" id="order1">	  
           </div>	
@@ -193,11 +206,11 @@
            </div>
 	  
         </div>
-	
         <div class="vectcollection" >
         </div>
 
-	
+
+      <h2 class="grid-header-writing--x grid-header--center">Actual</h2>
         <div class="vectcollection-reverse" id="invoice_collection">
           <div class="vect" id="invoice_total">	  
           </div>
@@ -219,7 +232,7 @@
           <div class="vect" id="payment_received">
           </div>	
         </div>
-	
+      <h2 class="grid-header-writing--x grid-header--center"> Diff </h2>
 	<div class="vect">
 	  </div>
 	<div class="vect">
@@ -230,12 +243,12 @@
         <div class="vect" id="warehouse_backorders">
         </div>	
 	<div class="vect">
-	  </div>      
+	</div>      
 
 	
 	
      
-
+     <h2 class="grid-header-writing--x">Messages </h2>
      
 	<div class="vect " id="amendments">
 	   
