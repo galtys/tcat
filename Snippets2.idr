@@ -888,7 +888,7 @@ namespace tab_widget
 --      insert_afterbegin parent_tag_id _amendments_html
 
       insert_table_wo_ids _amendments_id m mdl      
-      insert_afterbegin _amendments_id (printf "<h2>%s</h2>" title)
+      insert_afterbegin _amendments_id (printf "<h4>%s</h4>" title)
                           
 
    public export
@@ -1044,7 +1044,7 @@ namespace tab_widget
       let _composite_id = get_composite_id parent_tag_id m mdl      
       let _composite_html = ( printf _composite _composite_id )      
       insert_beforeend parent_tag_id _composite_html
-      insert_beforeend _composite_id (printf "<h2>%s</h2>" title)
+      insert_beforeend _composite_id (printf "<h4>%s</h4>" title)
 
       let _edit_button =    get_edit_button_id _composite_id
       let _commit_button =  get_commit_button_id _composite_id      

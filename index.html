@@ -80,7 +80,7 @@
 	color: #404040;
     }
 
-    .portfolio > .vect {
+    .vectorspace > .vect {
       display: inline-block;
 /*      max-width: 300px; */
 /*      background-color: #709b90;
@@ -88,13 +88,13 @@
       margin: 1;
       
     }
-
-    .portfolio img {
+/*
+    .vectorspace img {
       width: 100%; /* UPDATED to fix layout in Chrome 76+ */
       object-fit: cover;
     }
 
-    .portfolio figcaption {
+    .vectorspace figcaption {
       padding: 0.3em 0.8em;
       background-color: rgba(0, 0, 0, 0.5);
       color: #fff;
@@ -102,45 +102,52 @@
     }
 
     @supports (display: grid) {
-      .portfolio {
+      .vectorspace {
         display: grid;
         grid-template-columns: 3fr 1fr 2fr 2fr; /*repeat(auto-fill, minmax(200px,1fr) ); */
         grid-template-rows: 1fr 1fr 1fr;
         grid-gap: 1em;
         grid-auto-flow: dense;
+	background-color: #EEEEEE; /*709b90;*/
       }
 
-      .portfolio > .vectcollection {
+      .vectorspace > .vectcollection {
         display: flex;
         flex-direction: row;
-        padding: 0.3em 0.8em;
 	border:0.1em;
+	background-color: white;
+	/*      	border: 2px solid #404040; */
+	box-shadow: 2px 2px 2px 1px #404040;
       }
-
-      .portfolio > .vectcollection-reverse {
+      .vectorspace > .vectcollection-reverse {
           display: flex;
           flex-direction: row-reverse;
+	  background-color: white;
+/*      	  border: 2px solid #404040;*/
+	box-shadow: 2px 2px 2px 1px #404040;
       }
+
       
       
       .vect {
           display: flex;
 	  margin-left:0.4em;	  
           flex-direction: column;
+	  background-color: white;
       }
-      
-      .portfolio > .vect {
+/*      
+      .vectorspace > .vect {
         display: flex;
 	  
         flex-direction: column;
 
       }
-/*      
-      .portfolio img {
+      
+      .vectorspace img {
         flex: 1;
       }
 */
-      .portfolio .featured {
+      .vectorspace .featured {
         grid-row: span 2;
         grid-column: span 2;
       }
@@ -165,25 +172,22 @@
     B O D Y
     ####################################################
       -->
-    <div class="portfolio">
+    <div class="vectorspace">
   
 
         <div class="vectcollection" id="order_collection">
-
-        <div class="vect" id="order1">	  
-        </div>	
-        <div class="vect" id="pricelist">	  
-        </div>
-        <div class="vect" id="subtotal">	  
-        </div>
-        <div class="vect" id="order_total">	  
-        </div>
-
+          <div class="vect" id="order1">	  
+          </div>	
+          <div class="vect" id="pricelist">	  
+          </div>
+          <div class="vect" id="subtotal">	  
+          </div>
+          <div class="vect" id="order_total">	  
+          </div>
         </div>
 	
 	<div class="vect"></div>
 
-	
         <div class="vectcollection" >
            <div class="vect" id="warehouse">
            </div>
@@ -195,16 +199,10 @@
 
 	
         <div class="vectcollection-reverse" id="invoice_collection">
-	
-	<div class="vect">
-	  </div>
-	<div class="vect">
-	  </div>
-        <div class="vect" id="invoice_total">	  
-        </div>
-        <div class="vect" id="invoice_subtotal">	  
-        </div>
-	
+          <div class="vect" id="invoice_total">	  
+          </div>
+          <div class="vect" id="invoice_subtotal">	  
+          </div>
         </div>
 
 
@@ -212,11 +210,15 @@
 	<div class="vect">
 	</div>
 
-        <div class="vect" id="warehouse_done">
-        </div>	
-        <div class="vect" id="payment_received">
-        </div>	
+ 	<div class="vectcollection">
+          <div class="vect" id="warehouse_done">
+          </div>
+        </div>
 
+ 	<div class="vectcollection">	
+          <div class="vect" id="payment_received">
+          </div>	
+        </div>
 	
 	<div class="vect">
 	  </div>
@@ -235,11 +237,12 @@
      
 
      
-	<div class="vect featured" id="amendments">
+	<div class="vect " id="amendments">
+	   
 	</div>
 
 	     
-        <div class="vect featured" id="amendments_calc">
+        <div class="vect " id="amendments_calc">
 	</div>
 		  
      
