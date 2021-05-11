@@ -1,5 +1,7 @@
 module Main
 
+import JSIO.SHA
+
 %include Node "js/ws_server.js"
 
 console_log : String -> JS_IO ()
@@ -54,7 +56,8 @@ on_close_handle2 reasonCode  = do --description should be 2nd arg
 on_msg_recv2 : Ptr -> Ptr -> JS_IO ()
 on_msg_recv2 conn msg = do
         x <- getUtf8Data msg
-        sendUTF conn (x ++ "+X back")
+        x_sha1 <- calc_sha1 x
+        sendUTF conn (x ++ " "++x_sha1)
 
 on_req : Ptr -> JS_IO ()
 on_req req = do

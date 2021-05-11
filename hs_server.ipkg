@@ -6,7 +6,7 @@ modules = DataStore,
           Printf,
 	  Snippets2,
 	  Snippets,
-	  JSIO.JSIO,
+	  JSIO.SHA,
 	  Hello_WS
 	  
 
