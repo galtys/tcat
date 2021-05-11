@@ -50,7 +50,56 @@ let
   };
 
 
+  idris_sdl = pkgs.idrisPackages.build-idris-package rec {
+    name = "sdl";
+    version = "2017-03-24";
 
+    idrisDeps = [ pkgs.idrisPackages.effects ];
+
+    extraBuildInputs = [ pkgs.SDL pkgs.SDL_gfx pkgs.pkgconfig ];
+
+    src = fetchFromGitHub {
+      owner = "beefyhalo";
+      repo = "SDL-idris";
+      rev = "9891fead51139eba11ffce9c0e52e10a0923777b";
+      sha256 = "0gdw6km3s4vc5cn9qd4jg2bp52kxm18bls8gdgv839cpcwpmhs4h";
+    };
+
+    meta = {
+      description = "SDL-idris framework for Idris";
+      homepage = "https://github.com/edwinb/SDL-idris";
+      maintainers = [ lib.maintainers.brainrape ];
+      # Can't find file sdlrun.o
+      #broken = true;
+    };    
+  };
+
+
+
+
+
+  
+  idris_sdl2 = pkgs.idrisPackages.build-idris-package rec {
+    name = "idris_sdl2";
+    version = "v4";
+
+    ipkgName = "sdl2";
+    idrisDeps = [pkgs.idrisPackages.contrib pkgs.idrisPackages.containers];
+    src = fetchFromGitHub {
+      owner = "corazza";
+      repo = "idris-sdl2";
+      rev = "f4ce327bda93cfb0832399c9b75e3f5a71cf31c4";
+
+      sha256 = "1s3y19z0d5w0wrwxcmbjkc2py70vih6yz7cah15kbmsh0cmh4kj7";
+    };
+    extraBuildInputs = [pkgs.SDL2 pkgs.SDL2_gfx pkgs.SDL2_mixer pkgs.SDL2_image pkgs.SDL2_ttf pkgs.pkgconfig];
+    meta = {
+      description = "sdl2";
+      homepage = "https://github.com/corazza/idris-sdl2";
+      license = lib.licenses.bsd2;
+      maintainers = [];
+    };
+  };
   
 
   idris_xml = pkgs.idrisPackages.build-idris-package rec {
@@ -73,13 +122,19 @@ let
       maintainers = [  ];
     };
   };
+
+
+
+
+
+
   
 in 
 
 stdenv.mkDerivation {
   name = "idris-env";
   buildInputs = [
-    (idrisPackages.with-packages (with idrisPackages; [ contrib pruviloj bytes array base containers my_free rationals lightyear idris_xml idris_commons]))
+    (idrisPackages.with-packages (with idrisPackages; [ contrib pruviloj bytes array base containers my_free rationals lightyear idris_xml idris_commons idris_sdl2 idris_sdl]))
     gmp
     (import "/home/jan/github.com/tcat/y.nix")
     yarn
