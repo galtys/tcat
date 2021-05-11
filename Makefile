@@ -1,7 +1,8 @@
 all: tcat
 
-tcat: Muf.idr
-	idris -p contrib --codegen javascript -o js/main.js Muf.idr
+tcat: hs.ipkg #Muf.idr 
+	idris --build hs.ipkg  #--codegen javascript -o js/main.js Muf.idr 
+
 node: Hello_WS.idr
 	idris -p contrib --codegen node Hello_WS.idr -o hello
 

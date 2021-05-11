@@ -1,9 +1,18 @@
 package hs
 
-modules = DataStore,Printf,Snippets,Muf
+sourcedir = src
 
-main = Muf
+modules = DataStore,
+          Printf,
+	  Snippets2,
+	  Snippets,
+	  JSIO.JSIO,
+	  Main
 
+opts = "--codegen javascript -o jsout/main.js"
+
+main = Main
+--executable = test.js
 --makefile = Makefile
 
-pkgs = containers,idris_free,rationals,lightyear,contrib,xml,commons
+pkgs = contrib --containers,idris_free,rationals,lightyear,contrib,xml,commons

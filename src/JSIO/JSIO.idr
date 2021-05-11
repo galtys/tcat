@@ -1,9 +1,12 @@
-module JSIO
+module JSIO.JSIO
 
 %access public export
 
 %include JavaScript "js/admin.js"
 %include JavaScript "lib/forge/forge.min.js"
+
+%include JavaScript "js/w3c.js"
+
 
 {--
 function update_qty(key, value) {
