@@ -3,8 +3,6 @@ module JSIO.JSIO
 %access public export
 
 %include JavaScript "js/admin.js"
-%include JavaScript "lib/forge/forge.min.js"
-
 %include JavaScript "js/w3c.js"
 
 
@@ -198,12 +196,6 @@ insert_beforeend key row = insert_adjancent_html key "beforeend" row
 
 insert_afterbegin : String -> String -> JS_IO ()
 insert_afterbegin key row = insert_adjancent_html key "afterbegin" row
-
-calc_sha1 : String -> JS_IO String
-calc_sha1 = foreign FFI_JS "calc_sha1(%0)" (String -> JS_IO String)
-
-calc_sha256 : String -> JS_IO String
-calc_sha256 = foreign FFI_JS "calc_sha256(%0)" (String -> JS_IO String)
 
 -------------------------------
 firstElementChild : String -> JS_IO String

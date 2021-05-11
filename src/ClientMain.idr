@@ -12,8 +12,8 @@ import Data.SortedMap
 import Control.Monad.State
 
 --import OrderLine
-import JSIO
-
+import JSIO.JSIO
+import JSIO.SHA
 
 {-
    console_log test_json   
@@ -79,6 +79,7 @@ t_ModelDataList = MkMDList "order_total" [ "£" ] [ (Tt 0 0) ]
 
 partial main : JS_IO ()
 main = do      
+   
    new_row_sha1 <- calc_sha1 "abc"
    new_row_sha256 <- calc_sha256 "abc"
    console_log new_row_sha1
