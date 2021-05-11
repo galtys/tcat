@@ -2,7 +2,7 @@ module Snippets2
 
 import Printf
 import DataStore
-import JSIO
+import JSIO.JSIO
 
 %access public export
 
