@@ -1,0 +1,17 @@
+package hs_server
+
+sourcedir = src
+
+modules = DataStore,
+          Printf,
+	  Snippets2,
+	  Snippets,
+	  JSIO.JSIO,
+	  Hello_WS
+	  
+
+opts = "--codegen node -o jsout/ws_server"
+
+main = Hello_WS
+
+pkgs = contrib --containers,idris_free,rationals,lightyear,contrib,xml,commons
