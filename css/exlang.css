@@ -1,0 +1,124 @@
+:root {
+      box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+    box-sizing: inherit;
+}
+
+
+
+
+ /* styles for tables */
+.customers {
+/*  font-family: Arial, Helvetica, sans-serif; */
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.customers td, .customers th {
+  border-bottom: 1px solid #ddd;
+  padding: 0.2em;
+}
+
+/*.customers tr:nth-child(even){background-color: #f2f2f2;}*/
+
+.customers tr:hover {background-color: #ddd;}
+
+.customers th {
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  text-align: left;
+  background-color:#EEEEEE; /* #4CAF50; */
+/*  color: black; */
+}    
+
+
+body {
+   font-family: "Lucida Grande", Helvetica, Verdana, Arial, sans-serif;
+   color: #404040;
+}
+
+.vectorspace > .vect {
+      display: inline-block;
+      margin: 1;
+      
+}
+
+    @supports (display: grid) {
+      .vectorspace {
+        display: grid;
+        grid-template-columns: 5em 3fr 1fr 2fr 2fr; /*repeat(auto-fill, minmax(200px,1fr) ); */
+	
+        grid-template-rows: 5em 1fr 1fr 1fr;
+        grid-gap: 1em;
+        grid-auto-flow: dense;
+	background-color: #EEEEEE; /*709b90;*/
+	grid-template-areas:
+	    ".               header_owner  . header_location_goods   header_location_currency"
+	    "header_target   order_state   . location_target_goods   location_target_currency"
+	    "header_done   invoice_state   . location_deliveries     location_payments"
+	    "header_diff   inv_order_diff  . backorders              location_debt"
+	    "header_msg    msg             . msg_calc                .";
+      }
+
+      .vectorspace > .vectcollection {
+        display: flex;
+        flex-direction: row;
+	border:0.1em;
+	background-color: white;
+	background: #EDE7F6;
+        padding: 0.4em 0.4em;	
+	border-radius: 0.5rem;
+	/*      	border: 2px solid #404040; */
+	box-shadow: 2px 2px 2px 1px #404040;
+      }
+      .vectorspace > .vectcollection-reverse {
+          display: flex;
+          flex-direction: row-reverse;
+	  background-color: white;
+	  background: #EDE7F6;
+          padding: 0.4em 0.4em;	  
+  	  border-radius: 0.5rem;
+/*      	  border: 2px solid #404040;*/
+	box-shadow: 2px 2px 2px 1px #404040;
+      }
+
+
+
+      
+      .grid-header-writing--x {
+          writing-mode: vertical-lr;
+	  text-orientation: mixed;
+      }
+      .grid-header--center {
+	  text-align: center;
+      }
+
+      
+      .vect {
+          display: flex;
+	  margin-left:0.4em;	  
+          flex-direction: column;
+	  background-color: white;
+      }
+/*      
+      .vectorspace > .vect {
+        display: flex;
+	  
+        flex-direction: column;
+
+      }
+      
+      .vectorspace img {
+        flex: 1;
+      }
+
+      .vectorspace .featured {
+        grid-row: span 2;
+        grid-column: span 2;
+      }
+*/
+    }

@@ -2,6 +2,9 @@ module JSIO
 
 %access public export
 
+%include JavaScript "js/admin.js"
+%include JavaScript "lib/forge/forge.min.js"
+
 {--
 function update_qty(key, value) {
   document.getElementById(key).innerText=value;
