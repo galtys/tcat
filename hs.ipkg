@@ -7,11 +7,11 @@ modules = DataStore,
 	  Snippets2,
 	  Snippets,
 	  JSIO.JSIO,
-	  Main
+	  ClientMain
 
 opts = "--codegen javascript -o jsout/main.js"
 
-main = Main
+main = ClientMain
 --executable = test.js
 --makefile = Makefile
 
