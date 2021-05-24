@@ -51,6 +51,49 @@ let
 
 
 
+  idris_bifunctors = pkgs.idrisPackages.build-idris-package rec {
+    name = "idris_bifunctors";
+    version = "v4";
+
+    ipkgName = "bifunctors";
+    idrisDeps = [pkgs.idrisPackages.contrib pkgs.idrisPackages.containers];
+    src = fetchFromGitHub {
+      owner = "japesinator";
+      repo = "Idris-Bifunctors";
+      rev = "be7b8bde88331ad3af87e5c0a23fc0f3d52f3868";
+      sha256 = "0cfp58lhm2g0g1vrpb0mh71qb44n2yvg5sil9ndyf2sqd5ria6yq";
+    };
+    #extraBuildInputs = [pkgs.idrisPackages.contrib];
+    meta = {
+      description = "bifunctors";
+      homepage = "https://github.com/japesinator/Idris-Bifunctors";
+      license = lib.licenses.bsd2;
+      maintainers = [  ];
+    };
+  };
+
+  idris_profunctors = pkgs.idrisPackages.build-idris-package rec {
+    name = "idris_profunctors";
+    version = "v4";
+
+    ipkgName = "profunctors";
+    idrisDeps = [pkgs.idrisPackages.contrib idris_bifunctors];
+    src = fetchFromGitHub {
+      owner = "Ptival";
+      repo = "Idris-Profunctors";
+      rev = "89ebf3f13a8e58280c08a378e94e8a505b53f2fc";
+      sha256 = "13r7550rq0cn6rmj2x05ybla6spw24yfs7ydw15h4x8c83ahca76";
+    };
+    #extraBuildInputs = [pkgs.idrisPackages.contrib];
+    meta = {
+      description = "bifunctors";
+      homepage = "https://github.com/Ptival/Idris-Profunctors.git";
+      license = lib.licenses.bsd2;
+      maintainers = [  ];
+    };
+  };
+
+  
   
 
   idris_xml = pkgs.idrisPackages.build-idris-package rec {
@@ -79,7 +122,7 @@ in
 stdenv.mkDerivation {
   name = "idris-env";
   buildInputs = [
-    (idrisPackages.with-packages (with idrisPackages; [ contrib pruviloj bytes array base containers my_free rationals lightyear idris_xml idris_commons]))
+    (idrisPackages.with-packages (with idrisPackages; [ contrib pruviloj bytes array base containers my_free rationals lightyear idris_xml idris_commons idris_bifunctors idris_profunctors]))
     gmp
     (import "/home/jan/github.com/tcat/y.nix")
     yarn

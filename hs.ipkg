@@ -7,6 +7,7 @@ modules = DataStore,
 	  Snippets2,
 	  Snippets,
 	  JSIO.JSIO,
+	  JSIO.SHA,	  
 	  ClientMain
 
 opts = "--codegen javascript -o jsout/main.js"
