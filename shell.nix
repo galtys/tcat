@@ -166,6 +166,26 @@ let
     };
   };
 
+  idris_lens = pkgs.idrisPackages.build-idris-package rec {
+    name = "idris_lens";
+    version = "v4";
+
+    ipkgName = "lens";
+    idrisDeps = [pkgs.idrisPackages.contrib idris_bifunctors];
+    src = fetchFromGitHub {
+      owner = "HuwCampbell";
+      repo = "idris-lens";
+      rev = "421aa76c19607693ac2f23003dc0fe82c1a3760a";
+      sha256 = "1q6lmhrwd1qg18s253sim4hg2a2wk5439p3izy1f9ygi6pv4a6mk";
+    };
+    #extraBuildInputs = [pkgs.idrisPackages.contrib];
+    meta = {
+      description = "lens";
+      homepage = "https://github.com/HuwCampbell/idris-lens";
+      license = lib.licenses.bsd2;
+      maintainers = [  ];
+    };
+  };
 
 
 
@@ -178,7 +198,7 @@ stdenv.mkDerivation {
   name = "idris-env";
   buildInputs = [
 
-    (idrisPackages.with-packages (with idrisPackages; [ contrib pruviloj bytes array base containers my_free rationals lightyear idris_xml idris_commons idris_bifunctors idris_profunctors]))
+    (idrisPackages.with-packages (with idrisPackages; [ contrib pruviloj bytes array base containers my_free rationals lightyear idris_xml idris_commons idris_bifunctors idris_profunctors idris_lens]))
 
     gmp
     (import "/home/jan/github.com/tcat/y.nix")
