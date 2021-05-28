@@ -15,6 +15,24 @@ import Control.Monad.State
 import JSIO.JSIO
 import JSIO.SHA
 
+data T: Type -> Type where
+  Dr : a -> T a
+  Cr : a -> T a
+--  Pure : (res : ty) -> T ty
+  (>>=) : T a -> (a-> T b) -> T b
+
+
+
+doorProg : T Int
+doorProg = do Dr 4
+              Cr 9
+              Dr 98
+              Cr 34
+              
+
+--Functor T where
+--  map f (Dr x) = Dr (f x)
+--  map f (Cr x) = Cr (f x)  
 {-
    console_log test_json   
    case (parse test_json) of
@@ -37,10 +55,10 @@ items_ModelDataList = MkMDList "items" [] []
                                                                               
 items_ModelDataList' : ModelDataList Items_ModelSchema
 items_ModelDataList' = MkMDList "items" [ ("a1","£"), ("a2","£"), ("a3","£"), ("a4","£") ] 
-                        [ ( Tt 3 0 ),
-                          ( Tt 6 0 ),
-                          ( Tt 9 0 ),
-                          ( Tt 5 0 )]
+                        [ ( Tt 0 0 ),
+                          ( Tt 0 0 ),
+                          ( Tt 0 0 ),
+                          ( Tt 0 0 )]
 
 --warehouse_ModelDataList : (ModelDataList Val) Items_ModelSchema
 --warehouse_ModelDataList = MkMDList "warehouse" [(1,100), (2,100), (3,100), (4,100)] [(Tt 0 0),(Tt 0 0),(Tt 0 0),(Tt 0 0)]
@@ -115,8 +133,8 @@ main = do
 
                   
    tab_widget.insert_rows_x "pricelist" Pricelist_ModelSchema pricelist_ModelDataList'
-   tab_widget.insert_rows_x "order1" Items_ModelSchema items_ModelDataList'
-   tab_widget.insert_rows_x "order1" Items_ModelSchema items_ModelDataList''
+   --tab_widget.insert_rows_x "order1" Items_ModelSchema items_ModelDataList'
+   --tab_widget.insert_rows_x "order1" Items_ModelSchema items_ModelDataList''
    
    tab_widget.table_composite False "Order Total" "order_total" Total_ModelSchema t_ModelDataList
    
