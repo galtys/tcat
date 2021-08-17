@@ -1805,9 +1805,9 @@ function $partial_2_3$Prelude__Show__protectEsc(x1, x2){
     });
 }
 
-function $partial_3_4$Snippets2__read_95_cells_95_row(x1, x2, x3){
-    return (function(x4){
-        return Snippets2__read_95_cells_95_row(x1, x2, x3, x4);
+function $partial_2_3$Snippets2__read_95_cells_95_row(x1, x2){
+    return (function(x3){
+        return Snippets2__read_95_cells_95_row(x1, x2, x3);
     });
 }
 
@@ -2306,7 +2306,6 @@ function $HC_1_1$Prelude__Maybe__Just($1){
     this.$1 = $1;
 }
 
-const $HC_0_0$DataStore__Key = ({type: 0});
 function $HC_3_0$DataStore__MkMDList($1, $2, $3){
     this.type = 0;
     this.$1 = $1;
@@ -2348,7 +2347,6 @@ function $HC_2_0$DataStore__Tt($1, $2){
     this.$2 = $2;
 }
 
-const $HC_0_1$DataStore__Val = ({type: 1});
 const $HC_0_0$Prelude__Basics__Yes = ({type: 0});
 function $HC_2_0$Prelude__Applicative__Alternative_95_ictor($1, $2){
     this.type = 0;
@@ -2395,10 +2393,18 @@ function Prelude__List___43__43_($_0_arg, $_1_arg, $_2_arg){
 
 function DataStore__addSchema2Vals($_0_arg, $_1_arg, $_2_arg){
     
-    
-    
-    
-    return new $HC_2_0$DataStore__Tt($_1_arg.$1.add($_2_arg.$1), $_1_arg.$2.add($_2_arg.$2));
+    if(($_0_arg.type === 3)) {
+        
+        if(($_0_arg.$2.type === 0)) {
+            
+            
+            return new $HC_2_0$DataStore__Tt($_1_arg.$1.add($_2_arg.$1), $_1_arg.$2.add($_2_arg.$2));
+        } else {
+            $JSRTS.die("*** DataStore.idr:212:1-86:unmatched case in DataStore.addSchema2Vals ***");
+        }
+    } else {
+        $JSRTS.die("*** DataStore.idr:212:1-86:unmatched case in DataStore.addSchema2Vals ***");
+    }
 }
 
 // Snippets2.tab_widget.add_whs_button
@@ -2431,24 +2437,24 @@ function Snippets2__tab_95_widget__calc_95_order_95_subtotals($_0_arg, $_1_arg, 
     const $_17_in = JSIO__JSIO__console_95_log(("[" + (Prelude__Show__Prelude__Show___64_Prelude__Show__Show_36_List_32_a_58__33_show_58_0_58_show_39__58_0(null, null, $partial_0_1$Snippets2__tab_95_widget___123_calc_95_order_95_subtotals_95_2_125_(), "", $_8_in) + "]")), $_6_in);
     let $cg$1 = null;
     $cg$1 = $_3_arg.$1;
-    const $_20_in = Snippets2__read_95_cells_95_row($HC_0_0$DataStore__Key, $_7_in, $cg$1, $_6_in);
+    const $_20_in = Snippets2__read_95_cells_95_row($_7_in, $cg$1, $_6_in);
     let $cg$2 = null;
     $cg$2 = $_3_arg.$2;
-    const $_23_in = Snippets2__read_95_cells_95_attr_95_row($HC_0_1$DataStore__Val, $_7_in, $cg$2, $_6_in);
+    const $_23_in = Snippets2__read_95_cells_95_attr_95_row($_7_in, $cg$2, $_6_in);
     let $cg$3 = null;
     $cg$3 = $_4_arg.$1;
-    const $_26_in = Snippets2__read_95_cells_95_row($HC_0_0$DataStore__Key, $_8_in, $cg$3, $_6_in);
+    const $_26_in = Snippets2__read_95_cells_95_row($_8_in, $cg$3, $_6_in);
     let $cg$4 = null;
     $cg$4 = $_4_arg.$2;
-    const $_29_in = Snippets2__read_95_cells_95_attr_95_row($HC_0_1$DataStore__Val, $_8_in, $cg$4, $_6_in);
+    const $_29_in = Snippets2__read_95_cells_95_attr_95_row($_8_in, $cg$4, $_6_in);
     const $_30_in = Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_1_3$Snippets2__tab_95_widget___123_calc_95_order_95_subtotals_95_4_125_($_5_arg), $HC_0_0$Prelude__List__Nil, Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Snippets2__tab_95_widget___123_calc_95_order_95_subtotals_95_5_125_(), $HC_0_0$Prelude__List__Nil, Prelude__List__zipWith(null, null, null, $partial_0_2$Snippets2__tab_95_widget___123_calc_95_order_95_subtotals_95_6_125_(), Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_2_4$Snippets2__tab_95_widget___123_calc_95_order_95_subtotals_95_7_125_($_3_arg, $_5_arg), $HC_0_0$Prelude__List__Nil, $_23_in), Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_2_4$Snippets2__tab_95_widget___123_calc_95_order_95_subtotals_95_8_125_($_4_arg, $_5_arg), $HC_0_0$Prelude__List__Nil, $_29_in))));
     const $_55_in = JSIO__JSIO__console_95_log(Prelude__Show__primNumShow(null, $partial_0_1$prim_95__95_toStrBigInt(), $HC_0_0$Prelude__Show__Open, Prelude__List__length(null, $_30_in)), $_6_in);
     let $cg$5 = null;
     $cg$5 = $_5_arg.$1;
-    const $_58_in = Snippets2__read_95_cells_95_row($HC_0_0$DataStore__Key, $_9_in, $cg$5, $_6_in);
+    const $_58_in = Snippets2__read_95_cells_95_row($_9_in, $cg$5, $_6_in);
     let $cg$6 = null;
     $cg$6 = $_5_arg.$2;
-    const $_61_in = Snippets2__read_95_cells_95_attr_95_row($HC_0_1$DataStore__Val, $_9_in, $cg$6, $_6_in);
+    const $_61_in = Snippets2__read_95_cells_95_attr_95_row($_9_in, $cg$6, $_6_in);
     const $_66_in = Snippets2__tab_95_widget__insert_95_rows_95_calc($_1_arg, $_5_arg, new $HC_3_0$DataStore__MkMDList("subtotal", Prelude__List___43__43_(null, $_58_in, $_58_in), Prelude__List___43__43_(null, Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_1_3$Snippets2__tab_95_widget___123_calc_95_order_95_subtotals_95_9_125_($_5_arg), $HC_0_0$Prelude__List__Nil, $_61_in), $_30_in)), $_6_in);
     const $_67_in = Snippets2__tab_95_widget__calc_95_order_95_t($_1_arg, $_2_arg, new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_3$DataStore__IFieldAlg("subtotal", $HC_0_0$DataStore__FTtermCarrier)), new $HC_2_0$DataStore__MkModelSchema(new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_3$DataStore__IFieldAlg("subtotal", $HC_0_0$DataStore__FTtermCarrier)), $_6_in);
     return $HC_0_0$MkUnit;
@@ -2461,16 +2467,16 @@ function Snippets2__tab_95_widget__calc_95_order_95_t($_0_arg, $_1_arg, $_2_arg,
     const $_6_in = Snippets2__tab_95_widget__get_95_table_95_row_95_ids((($_1_arg + "__composite__order_total") + "__table"), $HC_0_0$Prelude__List__Nil, $_4_in);
     let $cg$1 = null;
     $cg$1 = $_2_arg.$1;
-    const $_9_in = Snippets2__read_95_cells_95_row($HC_0_0$DataStore__Key, $_5_in, $cg$1, $_4_in);
+    const $_9_in = Snippets2__read_95_cells_95_row($_5_in, $cg$1, $_4_in);
     let $cg$2 = null;
     $cg$2 = $_2_arg.$2;
-    const $_12_in = Snippets2__read_95_cells_95_attr_95_row($HC_0_1$DataStore__Val, $_5_in, $cg$2, $_4_in);
+    const $_12_in = Snippets2__read_95_cells_95_attr_95_row($_5_in, $cg$2, $_4_in);
     let $cg$3 = null;
     $cg$3 = $_3_arg.$1;
-    const $_15_in = Snippets2__read_95_cells_95_row($HC_0_0$DataStore__Key, $_6_in, $cg$3, $_4_in);
+    const $_15_in = Snippets2__read_95_cells_95_row($_6_in, $cg$3, $_4_in);
     let $cg$4 = null;
     $cg$4 = $_3_arg.$2;
-    const $_18_in = Snippets2__read_95_cells_95_attr_95_row($HC_0_1$DataStore__Val, $_6_in, $cg$4, $_4_in);
+    const $_18_in = Snippets2__read_95_cells_95_attr_95_row($_6_in, $cg$4, $_4_in);
     const $_45_in = Snippets2__tab_95_widget__insert_95_rows_95_calc($_1_arg, $_3_arg, new $HC_3_0$DataStore__MkMDList("order_total", Prelude__List___43__43_(null, $_15_in, Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_2_4$Snippets2__tab_95_widget___123_calc_95_order_95_t_95_10_125_($_2_arg, $_3_arg), $HC_0_0$Prelude__List__Nil, $_9_in)), Prelude__List___43__43_(null, Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_1_3$Snippets2__tab_95_widget___123_calc_95_order_95_t_95_11_125_($_3_arg), $HC_0_0$Prelude__List__Nil, $_18_in), Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_2_4$Snippets2__tab_95_widget___123_calc_95_order_95_t_95_12_125_($_2_arg, $_3_arg), $HC_0_0$Prelude__List__Nil, $_12_in))), $_4_in);
     return $HC_0_0$MkUnit;
 }
@@ -2495,66 +2501,43 @@ function JSIO__JSIO__console_95_log($_0_x, $_1_w){
 
 // Snippets2.tab_widget.convert_2sub
 
-function Snippets2__tab_95_widget__convert_95_2sub($_0_arg, $_1_arg, $_2_arg, $_3_arg){
+function Snippets2__tab_95_widget__convert_95_2sub($_0_arg, $_1_arg, $_2_arg){
     for(;;) {
         
-        if(($_2_arg.type === 3)) {
+        if(($_1_arg.type === 3)) {
             
-            if(($_2_arg.$2.type === 0)) {
+            if(($_1_arg.$2.type === 0)) {
                 
-                if(($_1_arg.type === 3)) {
+                if(($_0_arg.type === 3)) {
                     
-                    if(($_1_arg.$2.type === 0)) {
-                        
-                        if(($_0_arg.type === 1)) {
-                            return $_3_arg;
-                        } else {
-                            $JSRTS.die("*** Snippets2.idr:899:4-98:unmatched case in Snippets2.tab_widget.convert_2sub ***");
-                        }
+                    if(($_0_arg.$2.type === 0)) {
+                        return $_2_arg;
                     } else {
                         $JSRTS.die("*** Snippets2.idr:899:4-98:unmatched case in Snippets2.tab_widget.convert_2sub ***");
                     }
-                } else if(($_1_arg.type === 2)) {
-                    
-                    if(($_0_arg.type === 0)) {
-                        $_0_arg = $HC_0_0$DataStore__Key;
-                        $_1_arg = $_1_arg;
-                        $_2_arg = $_2_arg;
-                        $_3_arg = $_3_arg;
-                    } else {
-                        $JSRTS.die("*** Snippets2.idr:899:4-98:unmatched case in Snippets2.tab_widget.convert_2sub ***");
-                    }
+                } else if(($_0_arg.type === 2)) {
+                    $_0_arg = $_0_arg;
+                    $_1_arg = $_1_arg;
+                    $_2_arg = $_2_arg;
                 } else {
                     $JSRTS.die("*** Snippets2.idr:899:4-98:unmatched case in Snippets2.tab_widget.convert_2sub ***");
                 }
             } else {
                 
-                if(($_1_arg.type === 2)) {
-                    
-                    if(($_0_arg.type === 0)) {
-                        $_0_arg = $HC_0_0$DataStore__Key;
-                        $_1_arg = $_1_arg;
-                        $_2_arg = $_2_arg;
-                        $_3_arg = $_3_arg;
-                    } else {
-                        $JSRTS.die("*** Snippets2.idr:899:4-98:unmatched case in Snippets2.tab_widget.convert_2sub ***");
-                    }
+                if(($_0_arg.type === 2)) {
+                    $_0_arg = $_0_arg;
+                    $_1_arg = $_1_arg;
+                    $_2_arg = $_2_arg;
                 } else {
                     $JSRTS.die("*** Snippets2.idr:899:4-98:unmatched case in Snippets2.tab_widget.convert_2sub ***");
                 }
             }
         } else {
             
-            if(($_1_arg.type === 2)) {
-                
-                if(($_0_arg.type === 0)) {
-                    $_0_arg = $HC_0_0$DataStore__Key;
-                    $_1_arg = $_1_arg;
-                    $_2_arg = $_2_arg;
-                    $_3_arg = $_3_arg;
-                } else {
-                    $JSRTS.die("*** Snippets2.idr:899:4-98:unmatched case in Snippets2.tab_widget.convert_2sub ***");
-                }
+            if(($_0_arg.type === 2)) {
+                $_0_arg = $_0_arg;
+                $_1_arg = $_1_arg;
+                $_2_arg = $_2_arg;
             } else {
                 $JSRTS.die("*** Snippets2.idr:899:4-98:unmatched case in Snippets2.tab_widget.convert_2sub ***");
             }
@@ -2564,66 +2547,43 @@ function Snippets2__tab_95_widget__convert_95_2sub($_0_arg, $_1_arg, $_2_arg, $_
 
 // Snippets2.convert_s3LR_drop_col.convert_s3
 
-function Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_s3($_0_arg, $_1_arg, $_2_arg, $_3_arg){
+function Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_s3($_0_arg, $_1_arg, $_2_arg){
     for(;;) {
         
-        if(($_2_arg.type === 1)) {
-            const $cg$5 = $_2_arg.$2;
-            if(($cg$5.type === 3)) {
+        if(($_1_arg.type === 1)) {
+            const $cg$4 = $_1_arg.$2;
+            if(($cg$4.type === 3)) {
                 
-                if(($_1_arg.type === 1)) {
-                    const $cg$11 = $_1_arg.$2;
-                    if(($cg$11.type === 3)) {
-                        
-                        if(($_0_arg.type === 0)) {
-                            return $_3_arg;
-                        } else {
-                            $JSRTS.die("*** Snippets2.idr:164:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_s3 ***");
-                        }
+                if(($_0_arg.type === 1)) {
+                    const $cg$8 = $_0_arg.$2;
+                    if(($cg$8.type === 3)) {
+                        return $_2_arg;
                     } else {
                         $JSRTS.die("*** Snippets2.idr:164:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_s3 ***");
                     }
-                } else if(($_1_arg.type === 2)) {
-                    
-                    if(($_0_arg.type === 0)) {
-                        $_0_arg = $HC_0_0$DataStore__Key;
-                        $_1_arg = $_1_arg;
-                        $_2_arg = $_2_arg;
-                        $_3_arg = $_3_arg;
-                    } else {
-                        $JSRTS.die("*** Snippets2.idr:164:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_s3 ***");
-                    }
+                } else if(($_0_arg.type === 2)) {
+                    $_0_arg = $_0_arg;
+                    $_1_arg = $_1_arg;
+                    $_2_arg = $_2_arg;
                 } else {
                     $JSRTS.die("*** Snippets2.idr:164:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_s3 ***");
                 }
             } else {
                 
-                if(($_1_arg.type === 2)) {
-                    
-                    if(($_0_arg.type === 0)) {
-                        $_0_arg = $HC_0_0$DataStore__Key;
-                        $_1_arg = $_1_arg;
-                        $_2_arg = $_2_arg;
-                        $_3_arg = $_3_arg;
-                    } else {
-                        $JSRTS.die("*** Snippets2.idr:164:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_s3 ***");
-                    }
+                if(($_0_arg.type === 2)) {
+                    $_0_arg = $_0_arg;
+                    $_1_arg = $_1_arg;
+                    $_2_arg = $_2_arg;
                 } else {
                     $JSRTS.die("*** Snippets2.idr:164:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_s3 ***");
                 }
             }
         } else {
             
-            if(($_1_arg.type === 2)) {
-                
-                if(($_0_arg.type === 0)) {
-                    $_0_arg = $HC_0_0$DataStore__Key;
-                    $_1_arg = $_1_arg;
-                    $_2_arg = $_2_arg;
-                    $_3_arg = $_3_arg;
-                } else {
-                    $JSRTS.die("*** Snippets2.idr:164:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_s3 ***");
-                }
+            if(($_0_arg.type === 2)) {
+                $_0_arg = $_0_arg;
+                $_1_arg = $_1_arg;
+                $_2_arg = $_2_arg;
             } else {
                 $JSRTS.die("*** Snippets2.idr:164:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_s3 ***");
             }
@@ -2633,69 +2593,46 @@ function Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_s3($_0_arg, $_1_a
 
 // Snippets2.convert_s3LR_drop_col.convert_sL
 
-function Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_sL($_0_arg, $_1_arg, $_2_arg, $_3_arg){
+function Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_sL($_0_arg, $_1_arg, $_2_arg){
     for(;;) {
         
-        if(($_2_arg.type === 1)) {
-            const $cg$6 = $_2_arg.$2;
-            if(($cg$6.type === 3)) {
+        if(($_1_arg.type === 1)) {
+            const $cg$5 = $_1_arg.$2;
+            if(($cg$5.type === 3)) {
                 
-                if(($_1_arg.type === 1)) {
-                    const $cg$14 = $_1_arg.$2;
-                    if(($cg$14.type === 3)) {
-                        
-                        if(($_0_arg.type === 0)) {
-                            return $_3_arg;
-                        } else {
-                            $JSRTS.die("*** Snippets2.idr:181:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sL ***");
-                        }
+                if(($_0_arg.type === 1)) {
+                    const $cg$11 = $_0_arg.$2;
+                    if(($cg$11.type === 3)) {
+                        return $_2_arg;
                     } else {
                         $JSRTS.die("*** Snippets2.idr:181:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sL ***");
                     }
-                } else if(($_1_arg.type === 2)) {
+                } else if(($_0_arg.type === 2)) {
                     
-                    if(($_0_arg.type === 0)) {
-                        
-                        $_0_arg = $HC_0_0$DataStore__Key;
-                        $_1_arg = $_1_arg.$2;
-                        $_2_arg = $_2_arg;
-                        $_3_arg = $_3_arg.$2;
-                    } else {
-                        $JSRTS.die("*** Snippets2.idr:181:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sL ***");
-                    }
+                    $_0_arg = $_0_arg.$2;
+                    $_1_arg = $_1_arg;
+                    $_2_arg = $_2_arg.$2;
                 } else {
                     $JSRTS.die("*** Snippets2.idr:181:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sL ***");
                 }
             } else {
                 
-                if(($_1_arg.type === 2)) {
+                if(($_0_arg.type === 2)) {
                     
-                    if(($_0_arg.type === 0)) {
-                        
-                        $_0_arg = $HC_0_0$DataStore__Key;
-                        $_1_arg = $_1_arg.$2;
-                        $_2_arg = $_2_arg;
-                        $_3_arg = $_3_arg.$2;
-                    } else {
-                        $JSRTS.die("*** Snippets2.idr:181:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sL ***");
-                    }
+                    $_0_arg = $_0_arg.$2;
+                    $_1_arg = $_1_arg;
+                    $_2_arg = $_2_arg.$2;
                 } else {
                     $JSRTS.die("*** Snippets2.idr:181:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sL ***");
                 }
             }
         } else {
             
-            if(($_1_arg.type === 2)) {
+            if(($_0_arg.type === 2)) {
                 
-                if(($_0_arg.type === 0)) {
-                    
-                    $_0_arg = $HC_0_0$DataStore__Key;
-                    $_1_arg = $_1_arg.$2;
-                    $_2_arg = $_2_arg;
-                    $_3_arg = $_3_arg.$2;
-                } else {
-                    $JSRTS.die("*** Snippets2.idr:181:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sL ***");
-                }
+                $_0_arg = $_0_arg.$2;
+                $_1_arg = $_1_arg;
+                $_2_arg = $_2_arg.$2;
             } else {
                 $JSRTS.die("*** Snippets2.idr:181:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sL ***");
             }
@@ -2705,69 +2642,46 @@ function Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_sL($_0_arg, $_1_a
 
 // Snippets2.convert_s3LR_drop_col.convert_sR
 
-function Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_sR($_0_arg, $_1_arg, $_2_arg, $_3_arg){
+function Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_sR($_0_arg, $_1_arg, $_2_arg){
     for(;;) {
         
-        if(($_2_arg.type === 1)) {
-            const $cg$6 = $_2_arg.$2;
-            if(($cg$6.type === 3)) {
+        if(($_1_arg.type === 1)) {
+            const $cg$5 = $_1_arg.$2;
+            if(($cg$5.type === 3)) {
                 
-                if(($_1_arg.type === 1)) {
-                    const $cg$14 = $_1_arg.$2;
-                    if(($cg$14.type === 3)) {
-                        
-                        if(($_0_arg.type === 0)) {
-                            return $_3_arg;
-                        } else {
-                            $JSRTS.die("*** Snippets2.idr:197:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sR ***");
-                        }
+                if(($_0_arg.type === 1)) {
+                    const $cg$11 = $_0_arg.$2;
+                    if(($cg$11.type === 3)) {
+                        return $_2_arg;
                     } else {
                         $JSRTS.die("*** Snippets2.idr:197:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sR ***");
                     }
-                } else if(($_1_arg.type === 2)) {
+                } else if(($_0_arg.type === 2)) {
                     
-                    if(($_0_arg.type === 0)) {
-                        
-                        $_0_arg = $HC_0_0$DataStore__Key;
-                        $_1_arg = $_1_arg.$1;
-                        $_2_arg = $_2_arg;
-                        $_3_arg = $_3_arg.$1;
-                    } else {
-                        $JSRTS.die("*** Snippets2.idr:197:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sR ***");
-                    }
+                    $_0_arg = $_0_arg.$1;
+                    $_1_arg = $_1_arg;
+                    $_2_arg = $_2_arg.$1;
                 } else {
                     $JSRTS.die("*** Snippets2.idr:197:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sR ***");
                 }
             } else {
                 
-                if(($_1_arg.type === 2)) {
+                if(($_0_arg.type === 2)) {
                     
-                    if(($_0_arg.type === 0)) {
-                        
-                        $_0_arg = $HC_0_0$DataStore__Key;
-                        $_1_arg = $_1_arg.$1;
-                        $_2_arg = $_2_arg;
-                        $_3_arg = $_3_arg.$1;
-                    } else {
-                        $JSRTS.die("*** Snippets2.idr:197:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sR ***");
-                    }
+                    $_0_arg = $_0_arg.$1;
+                    $_1_arg = $_1_arg;
+                    $_2_arg = $_2_arg.$1;
                 } else {
                     $JSRTS.die("*** Snippets2.idr:197:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sR ***");
                 }
             }
         } else {
             
-            if(($_1_arg.type === 2)) {
+            if(($_0_arg.type === 2)) {
                 
-                if(($_0_arg.type === 0)) {
-                    
-                    $_0_arg = $HC_0_0$DataStore__Key;
-                    $_1_arg = $_1_arg.$1;
-                    $_2_arg = $_2_arg;
-                    $_3_arg = $_3_arg.$1;
-                } else {
-                    $JSRTS.die("*** Snippets2.idr:197:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sR ***");
-                }
+                $_0_arg = $_0_arg.$1;
+                $_1_arg = $_1_arg;
+                $_2_arg = $_2_arg.$1;
             } else {
                 $JSRTS.die("*** Snippets2.idr:197:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sR ***");
             }
@@ -2777,29 +2691,28 @@ function Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_sR($_0_arg, $_1_a
 
 // DataStore.eqSchema2
 
-function DataStore__eqSchema2($_0_arg, $_1_arg, $_2_arg, $_3_arg){
+function DataStore__eqSchema2($_0_arg, $_1_arg, $_2_arg){
     for(;;) {
         
-        if(($_1_arg.type === 2)) {
+        if(($_0_arg.type === 2)) {
             
             
             
-            if(DataStore__eqSchema2(null, $_1_arg.$1, $_2_arg.$1, $_3_arg.$1)) {
-                $_0_arg = null;
+            if(DataStore__eqSchema2($_0_arg.$1, $_1_arg.$1, $_2_arg.$1)) {
+                $_0_arg = $_0_arg.$2;
                 $_1_arg = $_1_arg.$2;
                 $_2_arg = $_2_arg.$2;
-                $_3_arg = $_3_arg.$2;
             } else {
                 return false;
             }
-        } else if(($_1_arg.type === 1)) {
-            const $cg$6 = $_1_arg.$2;
-            return ($_2_arg == $_3_arg);
+        } else if(($_0_arg.type === 1)) {
+            const $cg$6 = $_0_arg.$2;
+            return ($_1_arg == $_2_arg);
         } else {
             
             
             
-            return $_2_arg.$1.add($_3_arg.$2).equals($_2_arg.$2.add($_3_arg.$1));
+            return $_1_arg.$1.add($_2_arg.$2).equals($_1_arg.$2.add($_2_arg.$1));
         }
     }
 }
@@ -3045,7 +2958,7 @@ function Snippets2__tab_95_widget__insert_95_table_95_wo_95_ids($_0_arg, $_1_arg
     $cg$8 = $_1_arg.$1;
     let $cg$9 = null;
     $cg$9 = $_1_arg.$2;
-    return $partial_3_4$JSIO__JSIO__insert_95_adjancent_95_html($_0_arg, "afterbegin", Printf__toFunction(Printf__format($cg$1), "")($cg$4)(Printf__toFunction(Printf__format($cg$5), "")(Snippets2__schema2thead2_58_ret_58_0(null, $cg$8))(Snippets2__schema2thead2_58_ret_58_0(null, $cg$9)))(Snippets2__tab_95_widget__render_95_rows_95_wo_95_ids($_1_arg, $_2_arg)));
+    return $partial_3_4$JSIO__JSIO__insert_95_adjancent_95_html($_0_arg, "afterbegin", Printf__toFunction(Printf__format($cg$1), "")($cg$4)(Printf__toFunction(Printf__format($cg$5), "")(Snippets2__schema2thead2_58_ret_58_0($cg$8))(Snippets2__schema2thead2_58_ret_58_0($cg$9)))(Snippets2__tab_95_widget__render_95_rows_95_wo_95_ids($_1_arg, $_2_arg)));
 }
 
 // DataStore.integer2t
@@ -3075,9 +2988,17 @@ function DataStore__integer2t($_0_arg){
 
 function DataStore__invSchema2($_0_arg, $_1_arg){
     
-    
-    
-    return new $HC_2_0$DataStore__Tt($_1_arg.$2, $_1_arg.$1);
+    if(($_0_arg.type === 3)) {
+        
+        if(($_0_arg.$2.type === 0)) {
+            
+            return new $HC_2_0$DataStore__Tt($_1_arg.$2, $_1_arg.$1);
+        } else {
+            $JSRTS.die("*** DataStore.idr:205:1-73:unmatched case in DataStore.invSchema2 ***");
+        }
+    } else {
+        $JSRTS.die("*** DataStore.idr:205:1-73:unmatched case in DataStore.invSchema2 ***");
+    }
 }
 
 // Prelude.Chars.isDigit
@@ -3170,32 +3091,17 @@ function Main__main($_0_in){
 
 // Snippets2.make_cells_editable
 
-function Snippets2__make_95_cells_95_editable($_0_arg, $_1_arg, $_2_arg){
+function Snippets2__make_95_cells_95_editable($_0_arg, $_1_arg){
     
-    if(($_2_arg.type === 2)) {
+    if(($_1_arg.type === 2)) {
+        return $partial_3_4$Snippets2___123_make_95_cells_95_editable_95_19_125_($_0_arg, $_1_arg.$1, $_1_arg.$2);
+    } else if(($_1_arg.type === 1)) {
+        return $partial_0_1$Snippets2___123_make_95_cells_95_editable_95_21_125_();
+    } else if(($_1_arg.type === 3)) {
         
-        if(($_0_arg.type === 0)) {
-            return $partial_3_4$Snippets2___123_make_95_cells_95_editable_95_19_125_($_1_arg, $_2_arg.$1, $_2_arg.$2);
-        } else {
-            $JSRTS.die("*** Snippets2.idr:349:1-356:58:unmatched case in Snippets2.make_cells_editable ***");
-        }
-    } else if(($_2_arg.type === 1)) {
-        
-        if(($_0_arg.type === 0)) {
-            return $partial_0_1$Snippets2___123_make_95_cells_95_editable_95_21_125_();
-        } else {
-            $JSRTS.die("*** Snippets2.idr:349:1-356:58:unmatched case in Snippets2.make_cells_editable ***");
-        }
-    } else if(($_2_arg.type === 3)) {
-        
-        if(($_2_arg.$2.type === 0)) {
-            
-            if(($_0_arg.type === 1)) {
-                const $_25_in = ($_1_arg + ("_" + $_2_arg.$1));
-                return $partial_3_4$Snippets2___123_make_95_cells_95_editable_95_24_125_($_25_in, $_1_arg, $_2_arg.$1);
-            } else {
-                $JSRTS.die("*** Snippets2.idr:349:1-356:58:unmatched case in Snippets2.make_cells_editable ***");
-            }
+        if(($_1_arg.$2.type === 0)) {
+            const $_24_in = ($_0_arg + ("_" + $_1_arg.$1));
+            return $partial_3_4$Snippets2___123_make_95_cells_95_editable_95_24_125_($_24_in, $_0_arg, $_1_arg.$1);
         } else {
             $JSRTS.die("*** Snippets2.idr:349:1-356:58:unmatched case in Snippets2.make_cells_editable ***");
         }
@@ -3206,31 +3112,16 @@ function Snippets2__make_95_cells_95_editable($_0_arg, $_1_arg, $_2_arg){
 
 // Snippets2.make_cells_ro
 
-function Snippets2__make_95_cells_95_ro($_0_arg, $_1_arg, $_2_arg){
+function Snippets2__make_95_cells_95_ro($_0_arg, $_1_arg){
     
-    if(($_2_arg.type === 2)) {
+    if(($_1_arg.type === 2)) {
+        return $partial_3_4$Snippets2___123_make_95_cells_95_ro_95_25_125_($_0_arg, $_1_arg.$1, $_1_arg.$2);
+    } else if(($_1_arg.type === 1)) {
+        return $partial_0_1$Snippets2___123_make_95_cells_95_editable_95_21_125_();
+    } else if(($_1_arg.type === 3)) {
         
-        if(($_0_arg.type === 0)) {
-            return $partial_3_4$Snippets2___123_make_95_cells_95_ro_95_25_125_($_1_arg, $_2_arg.$1, $_2_arg.$2);
-        } else {
-            $JSRTS.die("*** Snippets2.idr:377:1-383:69:unmatched case in Snippets2.make_cells_ro ***");
-        }
-    } else if(($_2_arg.type === 1)) {
-        
-        if(($_0_arg.type === 0)) {
-            return $partial_0_1$Snippets2___123_make_95_cells_95_editable_95_21_125_();
-        } else {
-            $JSRTS.die("*** Snippets2.idr:377:1-383:69:unmatched case in Snippets2.make_cells_ro ***");
-        }
-    } else if(($_2_arg.type === 3)) {
-        
-        if(($_2_arg.$2.type === 0)) {
-            
-            if(($_0_arg.type === 1)) {
-                return $partial_2_3$Snippets2___123_make_95_cells_95_ro_95_29_125_($_1_arg, $_2_arg.$1);
-            } else {
-                $JSRTS.die("*** Snippets2.idr:377:1-383:69:unmatched case in Snippets2.make_cells_ro ***");
-            }
+        if(($_1_arg.$2.type === 0)) {
+            return $partial_2_3$Snippets2___123_make_95_cells_95_ro_95_29_125_($_0_arg, $_1_arg.$1);
         } else {
             $JSRTS.die("*** Snippets2.idr:377:1-383:69:unmatched case in Snippets2.make_cells_ro ***");
         }
@@ -3243,12 +3134,20 @@ function Snippets2__make_95_cells_95_ro($_0_arg, $_1_arg, $_2_arg){
 
 function DataStore__mulSchema2Vals($_0_arg, $_1_arg, $_2_arg){
     
-    
-    let $cg$3 = null;
-    $cg$3 = $_1_arg.$1.subtract($_1_arg.$2);
-    let $cg$4 = null;
-    $cg$4 = $_2_arg.$1.subtract($_2_arg.$2);
-    return DataStore__integer2t($cg$3.multiply($cg$4));
+    if(($_0_arg.type === 3)) {
+        
+        if(($_0_arg.$2.type === 0)) {
+            let $cg$3 = null;
+            $cg$3 = $_1_arg.$1.subtract($_1_arg.$2);
+            let $cg$4 = null;
+            $cg$4 = $_2_arg.$1.subtract($_2_arg.$2);
+            return DataStore__integer2t($cg$3.multiply($cg$4));
+        } else {
+            $JSRTS.die("*** DataStore.idr:219:1-87:unmatched case in DataStore.mulSchema2Vals ***");
+        }
+    } else {
+        $JSRTS.die("*** DataStore.idr:219:1-87:unmatched case in DataStore.mulSchema2Vals ***");
+    }
 }
 
 // JSIO.JSIO.nextElementSibling
@@ -3273,28 +3172,28 @@ function Snippets2__tab_95_widget__on_95_set_95_backorders($_0_arg, $_1_arg, $_2
     const $_7_in = Snippets2__tab_95_widget__get_95_table_95_row_95_ids((("warehouse_backorders" + ("__composite__" + $cg$1)) + "__table"), $HC_0_0$Prelude__List__Nil, $_3_in);
     let $cg$2 = null;
     $cg$2 = $_1_arg.$1;
-    const $_10_in = Snippets2__read_95_cells_95_row($HC_0_0$DataStore__Key, $_7_in, $cg$2, $_3_in);
+    const $_10_in = Snippets2__read_95_cells_95_row($_7_in, $cg$2, $_3_in);
     let $cg$3 = null;
     $cg$3 = $_1_arg.$2;
-    const $_13_in = Snippets2__read_95_cells_95_attr_95_row($HC_0_1$DataStore__Val, $_7_in, $cg$3, $_3_in);
+    const $_13_in = Snippets2__read_95_cells_95_attr_95_row($_7_in, $cg$3, $_3_in);
     let $cg$4 = null;
     $cg$4 = $_2_arg.$1;
     const $_17_in = Snippets2__tab_95_widget__get_95_table_95_row_95_ids((("warehouse" + ("__composite__" + $cg$4)) + "__table"), $HC_0_0$Prelude__List__Nil, $_3_in);
     let $cg$5 = null;
     $cg$5 = $_1_arg.$1;
-    const $_20_in = Snippets2__read_95_cells_95_row($HC_0_0$DataStore__Key, $_17_in, $cg$5, $_3_in);
+    const $_20_in = Snippets2__read_95_cells_95_row($_17_in, $cg$5, $_3_in);
     let $cg$6 = null;
     $cg$6 = $_1_arg.$2;
-    const $_23_in = Snippets2__read_95_cells_95_attr_95_row($HC_0_1$DataStore__Val, $_17_in, $cg$6, $_3_in);
+    const $_23_in = Snippets2__read_95_cells_95_attr_95_row($_17_in, $cg$6, $_3_in);
     let $cg$7 = null;
     $cg$7 = $_2_arg.$1;
     const $_27_in = Snippets2__tab_95_widget__get_95_table_95_row_95_ids((("warehouse_done" + ("__composite__" + $cg$7)) + "__table"), $HC_0_0$Prelude__List__Nil, $_3_in);
     let $cg$8 = null;
     $cg$8 = $_1_arg.$1;
-    const $_30_in = Snippets2__read_95_cells_95_row($HC_0_0$DataStore__Key, $_27_in, $cg$8, $_3_in);
+    const $_30_in = Snippets2__read_95_cells_95_row($_27_in, $cg$8, $_3_in);
     let $cg$9 = null;
     $cg$9 = $_1_arg.$2;
-    const $_33_in = Snippets2__read_95_cells_95_attr_95_row($HC_0_1$DataStore__Val, $_27_in, $cg$9, $_3_in);
+    const $_33_in = Snippets2__read_95_cells_95_attr_95_row($_27_in, $cg$9, $_3_in);
     let $cg$10 = null;
     $cg$10 = $_2_arg.$1;
     const $_45_in = Snippets2__tab_95_widget__insert_95_rows_95_calc("warehouse_backorders", $_1_arg, new $HC_3_0$DataStore__MkMDList($cg$10, Prelude__List___43__43_(null, $_10_in, Prelude__List___43__43_(null, $_20_in, $_30_in)), Prelude__List___43__43_(null, Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_1_3$Snippets2__tab_95_widget___123_on_95_set_95_backorders_95_31_125_($_1_arg), $HC_0_0$Prelude__List__Nil, $_13_in), Prelude__List___43__43_(null, $_23_in, Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_1_3$Snippets2__tab_95_widget___123_on_95_set_95_backorders_95_32_125_($_1_arg), $HC_0_0$Prelude__List__Nil, $_33_in)))), $_3_in);
@@ -3329,19 +3228,19 @@ function Snippets2__tab_95_widget__on_95_table_95_set_95_whs_95_route($_0_arg, $
     const $_8_in = Snippets2__tab_95_widget__get_95_table_95_row_95_ids((($_0_arg + ("__composite__" + $cg$1)) + "__table"), $HC_0_0$Prelude__List__Nil, $_3_in);
     let $cg$2 = null;
     $cg$2 = $_1_arg.$1;
-    const $_11_in = Snippets2__read_95_cells_95_row($HC_0_0$DataStore__Key, $_8_in, $cg$2, $_3_in);
+    const $_11_in = Snippets2__read_95_cells_95_row($_8_in, $cg$2, $_3_in);
     let $cg$3 = null;
     $cg$3 = $_1_arg.$2;
-    const $_14_in = Snippets2__read_95_cells_95_attr_95_row($HC_0_1$DataStore__Val, $_8_in, $cg$3, $_3_in);
+    const $_14_in = Snippets2__read_95_cells_95_attr_95_row($_8_in, $cg$3, $_3_in);
     let $cg$4 = null;
     $cg$4 = $_2_arg.$1;
     const $_18_in = Snippets2__tab_95_widget__get_95_table_95_row_95_ids((("warehouse" + ("__composite__" + $cg$4)) + "__table"), $HC_0_0$Prelude__List__Nil, $_3_in);
     let $cg$5 = null;
     $cg$5 = $_1_arg.$1;
-    const $_21_in = Snippets2__read_95_cells_95_row($HC_0_0$DataStore__Key, $_18_in, $cg$5, $_3_in);
+    const $_21_in = Snippets2__read_95_cells_95_row($_18_in, $cg$5, $_3_in);
     let $cg$6 = null;
     $cg$6 = $_1_arg.$2;
-    const $_24_in = Snippets2__read_95_cells_95_attr_95_row($HC_0_1$DataStore__Val, $_18_in, $cg$6, $_3_in);
+    const $_24_in = Snippets2__read_95_cells_95_attr_95_row($_18_in, $cg$6, $_3_in);
     let $cg$7 = null;
     $cg$7 = $_2_arg.$1;
     const $_32_in = Snippets2__tab_95_widget__insert_95_rows_95_calc("warehouse", $_1_arg, new $HC_3_0$DataStore__MkMDList($cg$7, Prelude__List___43__43_(null, $_11_in, $_21_in), Prelude__List___43__43_(null, $_14_in, Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_1_3$Snippets2__tab_95_widget___123_on_95_table_95_set_95_whs_95_route_95_48_125_($_1_arg), $HC_0_0$Prelude__List__Nil, $_24_in))), $_3_in);
@@ -3439,36 +3338,21 @@ function Prelude__Show__protectEsc($_0_arg, $_1_arg, $_2_arg){
 
 // Snippets2.read_cells
 
-function Snippets2__read_95_cells($_0_arg, $_1_arg, $_2_arg){
+function Snippets2__read_95_cells($_0_arg, $_1_arg){
     
-    if(($_2_arg.type === 2)) {
-        
-        if(($_0_arg.type === 0)) {
-            return $partial_3_4$Snippets2___123_read_95_cells_95_49_125_($_1_arg, $_2_arg.$1, $_2_arg.$2);
+    if(($_1_arg.type === 2)) {
+        return $partial_3_4$Snippets2___123_read_95_cells_95_49_125_($_0_arg, $_1_arg.$1, $_1_arg.$2);
+    } else if(($_1_arg.type === 1)) {
+        const $cg$4 = $_1_arg.$2;
+        if(($cg$4.type === 3)) {
+            return $partial_2_3$Snippets2___123_read_95_cells_95_50_125_($_0_arg, $_1_arg.$1);
         } else {
             $JSRTS.die("*** Snippets2.idr:402:1-405:61:unmatched case in Snippets2.read_cells ***");
         }
-    } else if(($_2_arg.type === 1)) {
-        const $cg$5 = $_2_arg.$2;
-        if(($cg$5.type === 3)) {
-            
-            if(($_0_arg.type === 0)) {
-                return $partial_2_3$Snippets2___123_read_95_cells_95_50_125_($_1_arg, $_2_arg.$1);
-            } else {
-                $JSRTS.die("*** Snippets2.idr:402:1-405:61:unmatched case in Snippets2.read_cells ***");
-            }
-        } else {
-            $JSRTS.die("*** Snippets2.idr:402:1-405:61:unmatched case in Snippets2.read_cells ***");
-        }
-    } else if(($_2_arg.type === 3)) {
+    } else if(($_1_arg.type === 3)) {
         
-        if(($_2_arg.$2.type === 0)) {
-            
-            if(($_0_arg.type === 1)) {
-                return $partial_2_3$Snippets2___123_read_95_cells_95_58_125_($_1_arg, $_2_arg.$1);
-            } else {
-                $JSRTS.die("*** Snippets2.idr:402:1-405:61:unmatched case in Snippets2.read_cells ***");
-            }
+        if(($_1_arg.$2.type === 0)) {
+            return $partial_2_3$Snippets2___123_read_95_cells_95_58_125_($_0_arg, $_1_arg.$1);
         } else {
             $JSRTS.die("*** Snippets2.idr:402:1-405:61:unmatched case in Snippets2.read_cells ***");
         }
@@ -3479,37 +3363,22 @@ function Snippets2__read_95_cells($_0_arg, $_1_arg, $_2_arg){
 
 // Snippets2.read_cells_attr
 
-function Snippets2__read_95_cells_95_attr($_0_arg, $_1_arg, $_2_arg){
+function Snippets2__read_95_cells_95_attr($_0_arg, $_1_arg){
     
-    if(($_2_arg.type === 2)) {
-        
-        if(($_0_arg.type === 0)) {
-            return $partial_3_4$Snippets2___123_read_95_cells_95_attr_95_59_125_($_1_arg, $_2_arg.$1, $_2_arg.$2);
+    if(($_1_arg.type === 2)) {
+        return $partial_3_4$Snippets2___123_read_95_cells_95_attr_95_59_125_($_0_arg, $_1_arg.$1, $_1_arg.$2);
+    } else if(($_1_arg.type === 1)) {
+        const $cg$4 = $_1_arg.$2;
+        if(($cg$4.type === 3)) {
+            return $partial_2_3$Snippets2___123_read_95_cells_95_attr_95_61_125_($_0_arg, $_1_arg.$1);
         } else {
             $JSRTS.die("*** Snippets2.idr:462:1-465:61:unmatched case in Snippets2.read_cells_attr ***");
         }
-    } else if(($_2_arg.type === 1)) {
-        const $cg$5 = $_2_arg.$2;
-        if(($cg$5.type === 3)) {
-            
-            if(($_0_arg.type === 0)) {
-                return $partial_2_3$Snippets2___123_read_95_cells_95_attr_95_61_125_($_1_arg, $_2_arg.$1);
-            } else {
-                $JSRTS.die("*** Snippets2.idr:462:1-465:61:unmatched case in Snippets2.read_cells_attr ***");
-            }
-        } else {
-            $JSRTS.die("*** Snippets2.idr:462:1-465:61:unmatched case in Snippets2.read_cells_attr ***");
-        }
-    } else if(($_2_arg.type === 3)) {
+    } else if(($_1_arg.type === 3)) {
         
-        if(($_2_arg.$2.type === 0)) {
-            
-            if(($_0_arg.type === 1)) {
-                const $_39_in = ($_1_arg + ("_" + $_2_arg.$1));
-                return $partial_1_2$Snippets2___123_read_95_cells_95_attr_95_69_125_($_39_in);
-            } else {
-                $JSRTS.die("*** Snippets2.idr:462:1-465:61:unmatched case in Snippets2.read_cells_attr ***");
-            }
+        if(($_1_arg.$2.type === 0)) {
+            const $_38_in = ($_0_arg + ("_" + $_1_arg.$1));
+            return $partial_1_2$Snippets2___123_read_95_cells_95_attr_95_69_125_($_38_in);
         } else {
             $JSRTS.die("*** Snippets2.idr:462:1-465:61:unmatched case in Snippets2.read_cells_attr ***");
         }
@@ -3520,65 +3389,50 @@ function Snippets2__read_95_cells_95_attr($_0_arg, $_1_arg, $_2_arg){
 
 // Snippets2.read_cells_attr_row
 
-function Snippets2__read_95_cells_95_attr_95_row($_0_arg, $_1_arg, $_2_arg, $_5_in){
+function Snippets2__read_95_cells_95_attr_95_row($_0_arg, $_1_arg, $_4_in){
     
-    if(($_1_arg.type === 1)) {
-        const $_9_in = Snippets2__read_95_cells_95_attr($_0_arg, $_1_arg.$1, $_2_arg)($_5_in);
-        const $_10_in = Snippets2__read_95_cells_95_attr_95_row($_0_arg, $_1_arg.$2, $_2_arg, $_5_in);
-        return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_($_9_in, $HC_0_0$Prelude__List__Nil), $_10_in);
+    if(($_0_arg.type === 1)) {
+        const $_8_in = Snippets2__read_95_cells_95_attr($_0_arg.$1, $_1_arg)($_4_in);
+        const $_9_in = Snippets2__read_95_cells_95_attr_95_row($_0_arg.$2, $_1_arg, $_4_in);
+        return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_($_8_in, $HC_0_0$Prelude__List__Nil), $_9_in);
     } else {
-        return $_1_arg;
+        return $_0_arg;
     }
 }
 
 // Snippets2.read_cells_row
 
-function Snippets2__read_95_cells_95_row($_0_arg, $_1_arg, $_2_arg, $_5_in){
+function Snippets2__read_95_cells_95_row($_0_arg, $_1_arg, $_4_in){
     
-    if(($_1_arg.type === 1)) {
-        const $_9_in = Snippets2__read_95_cells($_0_arg, $_1_arg.$1, $_2_arg)($_5_in);
-        const $_10_in = Snippets2__read_95_cells_95_row($_0_arg, $_1_arg.$2, $_2_arg, $_5_in);
-        return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_($_9_in, $HC_0_0$Prelude__List__Nil), $_10_in);
+    if(($_0_arg.type === 1)) {
+        const $_8_in = Snippets2__read_95_cells($_0_arg.$1, $_1_arg)($_4_in);
+        const $_9_in = Snippets2__read_95_cells_95_row($_0_arg.$2, $_1_arg, $_4_in);
+        return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_($_8_in, $HC_0_0$Prelude__List__Nil), $_9_in);
     } else {
-        return $_1_arg;
+        return $_0_arg;
     }
 }
 
 // Snippets2.renderDataAsKey
 
-function Snippets2__renderDataAsKey($_0_arg, $_1_arg, $_2_arg){
+function Snippets2__renderDataAsKey($_0_arg, $_1_arg){
     
-    if(($_1_arg.type === 2)) {
+    if(($_0_arg.type === 2)) {
         
-        if(($_0_arg.type === 0)) {
-            
-            return (Snippets2__renderDataAsKey($HC_0_0$DataStore__Key, $_1_arg.$1, $_2_arg.$1) + Snippets2__renderDataAsKey($HC_0_0$DataStore__Key, $_1_arg.$2, $_2_arg.$2));
+        return (Snippets2__renderDataAsKey($_0_arg.$1, $_1_arg.$1) + Snippets2__renderDataAsKey($_0_arg.$2, $_1_arg.$2));
+    } else if(($_0_arg.type === 1)) {
+        const $cg$5 = $_0_arg.$2;
+        if(($cg$5.type === 3)) {
+            return $_1_arg;
         } else {
             $JSRTS.die("*** Snippets2.idr:663:1-62:unmatched case in Snippets2.renderDataAsKey ***");
         }
-    } else if(($_1_arg.type === 1)) {
-        const $cg$6 = $_1_arg.$2;
-        if(($cg$6.type === 3)) {
-            
-            if(($_0_arg.type === 0)) {
-                return $_2_arg;
-            } else {
-                $JSRTS.die("*** Snippets2.idr:663:1-62:unmatched case in Snippets2.renderDataAsKey ***");
-            }
-        } else {
-            $JSRTS.die("*** Snippets2.idr:663:1-62:unmatched case in Snippets2.renderDataAsKey ***");
-        }
-    } else if(($_1_arg.type === 3)) {
+    } else if(($_0_arg.type === 3)) {
         
-        if(($_1_arg.$2.type === 0)) {
-            
-            if(($_0_arg.type === 1)) {
-                let $cg$4 = null;
-                $cg$4 = $_2_arg.$1.subtract($_2_arg.$2);
-                return (($cg$4).toString());
-            } else {
-                $JSRTS.die("*** Snippets2.idr:663:1-62:unmatched case in Snippets2.renderDataAsKey ***");
-            }
+        if(($_0_arg.$2.type === 0)) {
+            let $cg$3 = null;
+            $cg$3 = $_1_arg.$1.subtract($_1_arg.$2);
+            return (($cg$3).toString());
         } else {
             $JSRTS.die("*** Snippets2.idr:663:1-62:unmatched case in Snippets2.renderDataAsKey ***");
         }
@@ -3589,13 +3443,13 @@ function Snippets2__renderDataAsKey($_0_arg, $_1_arg, $_2_arg){
 
 // Snippets2.render_with_ids.renderDataWithSchema2
 
-function Snippets2__render_95_with_95_ids__renderDataWithSchema2($_0_arg, $_1_arg, $_2_arg, $_3_arg){
+function Snippets2__render_95_with_95_ids__renderDataWithSchema2($_0_arg, $_1_arg, $_2_arg){
     
-    if(($_1_arg.type === 2)) {
+    if(($_0_arg.type === 2)) {
         
-        return Prelude__List___43__43_(null, Snippets2__render_95_with_95_ids__renderDataWithSchema2(null, $_1_arg.$1, $_2_arg, $_3_arg.$1), Snippets2__render_95_with_95_ids__renderDataWithSchema2(null, $_1_arg.$2, $_2_arg, $_3_arg.$2));
-    } else if(($_1_arg.type === 1)) {
-        const $cg$10 = $_1_arg.$2;
+        return Prelude__List___43__43_(null, Snippets2__render_95_with_95_ids__renderDataWithSchema2($_0_arg.$1, $_1_arg, $_2_arg.$1), Snippets2__render_95_with_95_ids__renderDataWithSchema2($_0_arg.$2, $_1_arg, $_2_arg.$2));
+    } else if(($_0_arg.type === 1)) {
+        const $cg$10 = $_0_arg.$2;
         let $cg$11 = null;
         if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
             $cg$11 = $HC_0_0$Prelude__List__Nil;
@@ -3617,7 +3471,7 @@ function Snippets2__render_95_with_95_ids__renderDataWithSchema2($_0_arg, $_1_ar
             $cg$11 = new $HC_2_1$Prelude__List___58__58_("<td id=\"%s\" dataval=\"%s\">%s</td>"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$13));
         }
         
-        return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$11), "")(($_2_arg + ("_" + $_1_arg.$1)))($_3_arg)($_3_arg), $HC_0_0$Prelude__List__Nil);
+        return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$11), "")(($_1_arg + ("_" + $_0_arg.$1)))($_2_arg)($_2_arg), $HC_0_0$Prelude__List__Nil);
     } else {
         
         let $cg$3 = null;
@@ -3642,24 +3496,24 @@ function Snippets2__render_95_with_95_ids__renderDataWithSchema2($_0_arg, $_1_ar
         }
         
         let $cg$6 = null;
-        $cg$6 = $_3_arg.$1;
+        $cg$6 = $_2_arg.$1;
         let $cg$7 = null;
-        $cg$7 = $_3_arg.$2;
+        $cg$7 = $_2_arg.$2;
         let $cg$8 = null;
-        $cg$8 = $_3_arg.$1.subtract($_3_arg.$2);
-        return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$3), "")(($_2_arg + ("_" + $_1_arg.$1)))($cg$6)($cg$7)($cg$8), $HC_0_0$Prelude__List__Nil);
+        $cg$8 = $_2_arg.$1.subtract($_2_arg.$2);
+        return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$3), "")(($_1_arg + ("_" + $_0_arg.$1)))($cg$6)($cg$7)($cg$8), $HC_0_0$Prelude__List__Nil);
     }
 }
 
 // Snippets2.render_wo_ids.renderDataWithSchema2
 
-function Snippets2__render_95_wo_95_ids__renderDataWithSchema2($_0_arg, $_1_arg, $_2_arg){
+function Snippets2__render_95_wo_95_ids__renderDataWithSchema2($_0_arg, $_1_arg){
     
-    if(($_1_arg.type === 2)) {
+    if(($_0_arg.type === 2)) {
         
-        return Prelude__List___43__43_(null, Snippets2__render_95_wo_95_ids__renderDataWithSchema2(null, $_1_arg.$1, $_2_arg.$1), Snippets2__render_95_wo_95_ids__renderDataWithSchema2(null, $_1_arg.$2, $_2_arg.$2));
-    } else if(($_1_arg.type === 1)) {
-        const $cg$8 = $_1_arg.$2;
+        return Prelude__List___43__43_(null, Snippets2__render_95_wo_95_ids__renderDataWithSchema2($_0_arg.$1, $_1_arg.$1), Snippets2__render_95_wo_95_ids__renderDataWithSchema2($_0_arg.$2, $_1_arg.$2));
+    } else if(($_0_arg.type === 1)) {
+        const $cg$8 = $_0_arg.$2;
         let $cg$9 = null;
         if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
             $cg$9 = $HC_0_0$Prelude__List__Nil;
@@ -3681,7 +3535,7 @@ function Snippets2__render_95_wo_95_ids__renderDataWithSchema2($_0_arg, $_1_arg,
             $cg$9 = new $HC_2_1$Prelude__List___58__58_("<td>%s</td>"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$11));
         }
         
-        return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$9), "")($_2_arg), $HC_0_0$Prelude__List__Nil);
+        return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$9), "")($_1_arg), $HC_0_0$Prelude__List__Nil);
     } else {
         
         let $cg$3 = null;
@@ -3706,7 +3560,7 @@ function Snippets2__render_95_wo_95_ids__renderDataWithSchema2($_0_arg, $_1_arg,
         }
         
         let $cg$6 = null;
-        $cg$6 = $_2_arg.$1.subtract($_2_arg.$2);
+        $cg$6 = $_1_arg.$1.subtract($_1_arg.$2);
         return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$3), "")($cg$6), $HC_0_0$Prelude__List__Nil);
     }
 }
@@ -3756,43 +3610,36 @@ function Snippets2__runjsio($_0_arg, $_1_arg, $_2_arg, $_5_in){
 
 function DataStore__schema2ZeroVal($_0_arg){
     
-    
-    return new $HC_2_0$DataStore__Tt((new $JSRTS.jsbn.BigInteger(("0"))), (new $JSRTS.jsbn.BigInteger(("0"))));
+    if(($_0_arg.type === 3)) {
+        
+        if(($_0_arg.$2.type === 0)) {
+            return new $HC_2_0$DataStore__Tt((new $JSRTS.jsbn.BigInteger(("0"))), (new $JSRTS.jsbn.BigInteger(("0"))));
+        } else {
+            $JSRTS.die("*** DataStore.idr:177:1-57:unmatched case in DataStore.schema2ZeroVal ***");
+        }
+    } else {
+        $JSRTS.die("*** DataStore.idr:177:1-57:unmatched case in DataStore.schema2ZeroVal ***");
+    }
 }
 
 // Snippets2.set_cells_attr
 
-function Snippets2__set_95_cells_95_attr($_0_arg, $_1_arg, $_2_arg, $_3_arg){
+function Snippets2__set_95_cells_95_attr($_0_arg, $_1_arg, $_2_arg){
     
-    if(($_1_arg.type === 2)) {
-        
-        if(($_0_arg.type === 0)) {
-            return $partial_4_5$Snippets2___123_set_95_cells_95_attr_95_77_125_($_3_arg, $_1_arg.$1, $_2_arg, $_1_arg.$2);
+    if(($_0_arg.type === 2)) {
+        return $partial_4_5$Snippets2___123_set_95_cells_95_attr_95_77_125_($_2_arg, $_0_arg.$1, $_1_arg, $_0_arg.$2);
+    } else if(($_0_arg.type === 1)) {
+        const $cg$4 = $_0_arg.$2;
+        if(($cg$4.type === 3)) {
+            return $partial_2_3$JSIO__JSIO__set_95_text_95_dataval(($_1_arg + ("_" + $_0_arg.$1)), $_2_arg);
         } else {
             $JSRTS.die("*** Snippets2.idr:536:1-538:51:unmatched case in Snippets2.set_cells_attr ***");
         }
-    } else if(($_1_arg.type === 1)) {
-        const $cg$5 = $_1_arg.$2;
-        if(($cg$5.type === 3)) {
-            
-            if(($_0_arg.type === 0)) {
-                return $partial_2_3$JSIO__JSIO__set_95_text_95_dataval(($_2_arg + ("_" + $_1_arg.$1)), $_3_arg);
-            } else {
-                $JSRTS.die("*** Snippets2.idr:536:1-538:51:unmatched case in Snippets2.set_cells_attr ***");
-            }
-        } else {
-            $JSRTS.die("*** Snippets2.idr:536:1-538:51:unmatched case in Snippets2.set_cells_attr ***");
-        }
-    } else if(($_1_arg.type === 3)) {
+    } else if(($_0_arg.type === 3)) {
         
-        if(($_1_arg.$2.type === 0)) {
-            
-            if(($_0_arg.type === 1)) {
-                const $_28_in = ($_2_arg + ("_" + $_1_arg.$1));
-                return $partial_2_3$Snippets2___123_set_95_cells_95_attr_95_79_125_($_28_in, $_3_arg);
-            } else {
-                $JSRTS.die("*** Snippets2.idr:536:1-538:51:unmatched case in Snippets2.set_cells_attr ***");
-            }
+        if(($_0_arg.$2.type === 0)) {
+            const $_27_in = ($_1_arg + ("_" + $_0_arg.$1));
+            return $partial_2_3$Snippets2___123_set_95_cells_95_attr_95_79_125_($_27_in, $_2_arg);
         } else {
             $JSRTS.die("*** Snippets2.idr:536:1-538:51:unmatched case in Snippets2.set_cells_attr ***");
         }
@@ -3944,57 +3791,47 @@ function Prelude__List__unzip($_0_arg, $_1_arg, $_2_arg){
 // Snippets2.tab_widget.update_cells_ke1
 
 function Snippets2__tab_95_widget__update_95_cells_95_ke1($_0_arg, $_1_arg, $_2_arg, $_3_in){
-    const $_4_in = Snippets2__read_95_cells($HC_0_1$DataStore__Val, $_0_arg, $_1_arg)($_3_in);
-    const $_5_in = Snippets2__update_95_cells_95_td($HC_0_1$DataStore__Val, $_1_arg, $_0_arg, DataStore__addSchema2Vals($_1_arg, $_4_in, $_2_arg))($_3_in);
-    return Snippets2__set_95_cells_95_attr($HC_0_1$DataStore__Val, $_1_arg, $_0_arg, DataStore__addSchema2Vals($_1_arg, $_4_in, $_2_arg))($_3_in);
+    const $_4_in = Snippets2__read_95_cells($_0_arg, $_1_arg)($_3_in);
+    const $_5_in = Snippets2__update_95_cells_95_td($_1_arg, $_0_arg, DataStore__addSchema2Vals($_1_arg, $_4_in, $_2_arg))($_3_in);
+    return Snippets2__set_95_cells_95_attr($_1_arg, $_0_arg, DataStore__addSchema2Vals($_1_arg, $_4_in, $_2_arg))($_3_in);
 }
 
 // Snippets2.update_cells_td
 
-function Snippets2__update_95_cells_95_td($_0_arg, $_1_arg, $_2_arg, $_3_arg){
+function Snippets2__update_95_cells_95_td($_0_arg, $_1_arg, $_2_arg){
     
-    if(($_1_arg.type === 2)) {
-        
-        if(($_0_arg.type === 0)) {
-            return $partial_4_5$Snippets2___123_set_95_cells_95_attr_95_77_125_($_3_arg, $_1_arg.$1, $_2_arg, $_1_arg.$2);
-        } else {
-            $JSRTS.die("*** Snippets2.idr:591:1-593:54:unmatched case in Snippets2.update_cells_td ***");
-        }
-    } else if(($_1_arg.type === 1)) {
+    if(($_0_arg.type === 2)) {
+        return $partial_4_5$Snippets2___123_set_95_cells_95_attr_95_77_125_($_2_arg, $_0_arg.$1, $_1_arg, $_0_arg.$2);
+    } else if(($_0_arg.type === 1)) {
         
         $JSRTS.die("*** Snippets2.idr:591:1-593:54:unmatched case in Snippets2.update_cells_td ***");
-    } else if(($_1_arg.type === 3)) {
+    } else if(($_0_arg.type === 3)) {
         
-        if(($_1_arg.$2.type === 0)) {
-            
-            if(($_0_arg.type === 1)) {
+        if(($_0_arg.$2.type === 0)) {
+            let $cg$3 = null;
+            if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
+                $cg$3 = $HC_0_0$Prelude__List__Nil;
+            } else {
                 let $cg$4 = null;
-                if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
-                    $cg$4 = $HC_0_0$Prelude__List__Nil;
+                if((((("%d".slice(1) == "")) ? 1|0 : 0|0) === 0)) {
+                    $cg$4 = true;
                 } else {
-                    let $cg$5 = null;
-                    if((((("%d".slice(1) == "")) ? 1|0 : 0|0) === 0)) {
-                        $cg$5 = true;
-                    } else {
-                        $cg$5 = false;
-                    }
-                    
-                    let $cg$6 = null;
-                    if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0($cg$5, true).type === 1)) {
-                        $cg$6 = $HC_0_0$Prelude__Strings__StrNil;
-                    } else {
-                        $cg$6 = new $HC_2_1$Prelude__Strings__StrCons("%d".slice(1)[0], "%d".slice(1).slice(1));
-                    }
-                    
-                    $cg$4 = new $HC_2_1$Prelude__List___58__58_("%d"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$6));
+                    $cg$4 = false;
                 }
                 
-                let $cg$7 = null;
-                $cg$7 = $_3_arg.$1.subtract($_3_arg.$2);
-                return $partial_2_3$JSIO__JSIO__update_95_element_95_text(($_2_arg + ("_" + $_1_arg.$1)), Printf__toFunction(Printf__format($cg$4), "")($cg$7));
-            } else {
-                $JSRTS.die("*** Snippets2.idr:591:1-593:54:unmatched case in Snippets2.update_cells_td ***");
+                let $cg$5 = null;
+                if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0($cg$4, true).type === 1)) {
+                    $cg$5 = $HC_0_0$Prelude__Strings__StrNil;
+                } else {
+                    $cg$5 = new $HC_2_1$Prelude__Strings__StrCons("%d".slice(1)[0], "%d".slice(1).slice(1));
+                }
+                
+                $cg$3 = new $HC_2_1$Prelude__List___58__58_("%d"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$5));
             }
+            
+            let $cg$6 = null;
+            $cg$6 = $_2_arg.$1.subtract($_2_arg.$2);
+            return $partial_2_3$JSIO__JSIO__update_95_element_95_text(($_1_arg + ("_" + $_0_arg.$1)), Printf__toFunction(Printf__format($cg$3), "")($cg$6));
         } else {
             $JSRTS.die("*** Snippets2.idr:591:1-593:54:unmatched case in Snippets2.update_cells_td ***");
         }
@@ -4157,7 +3994,7 @@ function Snippets2__tab_95_widget___123_calc_95_order_95_subtotals_95_7_125_($_0
     $cg$1 = $_0_lift.$2;
     let $cg$2 = null;
     $cg$2 = $_1_lift.$2;
-    return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_(Snippets2__tab_95_widget__convert_95_2sub($HC_0_1$DataStore__Val, $cg$1, $cg$2, $_2_lift), $HC_0_0$Prelude__List__Nil), $_3_lift);
+    return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_(Snippets2__tab_95_widget__convert_95_2sub($cg$1, $cg$2, $_2_lift), $HC_0_0$Prelude__List__Nil), $_3_lift);
 }
 
 // Snippets2.tab_widget.{calc_order_subtotals_8}
@@ -4167,7 +4004,7 @@ function Snippets2__tab_95_widget___123_calc_95_order_95_subtotals_95_8_125_($_0
     $cg$1 = $_0_lift.$2;
     let $cg$2 = null;
     $cg$2 = $_1_lift.$2;
-    return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_(Snippets2__tab_95_widget__convert_95_2sub($HC_0_1$DataStore__Val, $cg$1, $cg$2, $_2_lift), $HC_0_0$Prelude__List__Nil), $_3_lift);
+    return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_(Snippets2__tab_95_widget__convert_95_2sub($cg$1, $cg$2, $_2_lift), $HC_0_0$Prelude__List__Nil), $_3_lift);
 }
 
 // Snippets2.tab_widget.{calc_order_subtotals_9}
@@ -4219,7 +4056,7 @@ function Snippets2__tab_95_widget___123_calc_95_order_95_t_95_12_125_($_0_lift, 
     $cg$1 = $_0_lift.$2;
     let $cg$2 = null;
     $cg$2 = $_1_lift.$2;
-    return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_(Snippets2__tab_95_widget__convert_95_2sub($HC_0_1$DataStore__Val, $cg$1, $cg$2, $_2_lift), $HC_0_0$Prelude__List__Nil), $_3_lift);
+    return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_(Snippets2__tab_95_widget__convert_95_2sub($cg$1, $cg$2, $_2_lift), $HC_0_0$Prelude__List__Nil), $_3_lift);
 }
 
 // Snippets2.tab_widget.{insert_rows2_13}
@@ -4259,7 +4096,7 @@ function Snippets2__tab_95_widget___123_insert_95_rows2_95_15_125_($_0_lift, $_1
         $cg$5 = $_2_lift.$1;
         let $cg$6 = null;
         $cg$6 = $_2_lift.$2;
-        return JSIO__JSIO__insert_95_adjancent_95_html($_1_lift, "beforeend", Printf__toFunction(Printf__format($cg$2), "")($_0_lift)(Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows2_95_13_125_(), "", Snippets2__render_95_with_95_ids__renderDataWithSchema2(null, $cg$5, $_0_lift, $_3_lift)))(Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows2_95_13_125_(), "", Snippets2__render_95_with_95_ids__renderDataWithSchema2(null, $cg$6, $_0_lift, $_4_lift))), $_5_lift);
+        return JSIO__JSIO__insert_95_adjancent_95_html($_1_lift, "beforeend", Printf__toFunction(Printf__format($cg$2), "")($_0_lift)(Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows2_95_13_125_(), "", Snippets2__render_95_with_95_ids__renderDataWithSchema2($cg$5, $_0_lift, $_3_lift)))(Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows2_95_13_125_(), "", Snippets2__render_95_with_95_ids__renderDataWithSchema2($cg$6, $_0_lift, $_4_lift))), $_5_lift);
     } else {
         let $cg$7 = null;
         $cg$7 = $_2_lift.$2;
@@ -4276,7 +4113,7 @@ function Snippets2__tab_95_widget___123_insert_95_rows2_95_16_125_($_0_lift, $_1
     $_8_in = $_2_lift.$2;
     let $cg$3 = null;
     $cg$3 = $_1_lift.$1;
-    const $_11_in = ($_0_lift + ("_row" + Snippets2__renderDataAsKey($HC_0_0$DataStore__Key, $cg$3, $_5_in)));
+    const $_11_in = ($_0_lift + ("_row" + Snippets2__renderDataAsKey($cg$3, $_5_in)));
     return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_($partial_5_6$Snippets2__tab_95_widget___123_insert_95_rows2_95_15_125_($_11_in, $_0_lift, $_1_lift, $_5_in, $_8_in), $HC_0_0$Prelude__List__Nil), $_3_lift);
 }
 
@@ -4352,15 +4189,15 @@ function Snippets2__tab_95_widget___123_insert_95_table_95_18_125_($_0_lift, $_1
         $cg$10 = new $HC_2_1$Prelude__List___58__58_(" id=\"%s\" "[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$12));
     }
     
-    const $_19_in = JSIO__JSIO__insert_95_adjancent_95_html($_0_lift, "beforeend", Printf__toFunction(Printf__format($cg$1), "")($cg$4)(Printf__toFunction(Printf__format($cg$5), "")(Snippets2__schema2thead2_58_ret_58_0(null, $cg$8))(Snippets2__schema2thead2_58_ret_58_0(null, $cg$9)))(Printf__toFunction(Printf__format($cg$10), "")($_3_lift))($_4_lift), $_5_lift);
+    const $_19_in = JSIO__JSIO__insert_95_adjancent_95_html($_0_lift, "beforeend", Printf__toFunction(Printf__format($cg$1), "")($cg$4)(Printf__toFunction(Printf__format($cg$5), "")(Snippets2__schema2thead2_58_ret_58_0($cg$8))(Snippets2__schema2thead2_58_ret_58_0($cg$9)))(Printf__toFunction(Printf__format($cg$10), "")($_3_lift))($_4_lift), $_5_lift);
     return Snippets2__tab_95_widget__insert_95_rows2($_3_lift, $_2_lift, $_1_lift)($_5_lift);
 }
 
 // Snippets2.{make_cells_editable_19}
 
 function Snippets2___123_make_95_cells_95_editable_95_19_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift){
-    const $_6_in = Snippets2__make_95_cells_95_editable($HC_0_0$DataStore__Key, $_0_lift, $_1_lift)($_3_lift);
-    return Snippets2__make_95_cells_95_editable($HC_0_0$DataStore__Key, $_0_lift, $_2_lift)($_3_lift);
+    const $_5_in = Snippets2__make_95_cells_95_editable($_0_lift, $_1_lift)($_3_lift);
+    return Snippets2__make_95_cells_95_editable($_0_lift, $_2_lift)($_3_lift);
 }
 
 // Snippets2.{make_cells_editable_21}
@@ -4372,8 +4209,8 @@ function Snippets2___123_make_95_cells_95_editable_95_21_125_($_0_lift){
 // Snippets2.{make_cells_editable_24}
 
 function Snippets2___123_make_95_cells_95_editable_95_24_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift){
-    const $_27_in = JSIO__JSIO__get_95_qty_95_int($_0_lift, $_3_lift);
-    const $_28_in = JSIO__JSIO__update_95_element_95_text(($_1_lift + ("_" + $_2_lift)), "", $_3_lift);
+    const $_26_in = JSIO__JSIO__get_95_qty_95_int($_0_lift, $_3_lift);
+    const $_27_in = JSIO__JSIO__update_95_element_95_text(($_1_lift + ("_" + $_2_lift)), "", $_3_lift);
     let $cg$1 = null;
     if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
         $cg$1 = $HC_0_0$Prelude__List__Nil;
@@ -4395,21 +4232,21 @@ function Snippets2___123_make_95_cells_95_editable_95_24_125_($_0_lift, $_1_lift
         $cg$1 = new $HC_2_1$Prelude__List___58__58_("<input type=\"number\" class=\"form-control\" value=\"%d\" id=\"%s\">"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$3));
     }
     
-    return JSIO__JSIO__insert_95_adjancent_95_html($_0_lift, "beforeend", Printf__toFunction(Printf__format($cg$1), "")((new $JSRTS.jsbn.BigInteger(''+($_27_in))))((($_1_lift + ("_" + $_2_lift)) + "_input_tag")), $_3_lift);
+    return JSIO__JSIO__insert_95_adjancent_95_html($_0_lift, "beforeend", Printf__toFunction(Printf__format($cg$1), "")((new $JSRTS.jsbn.BigInteger(''+($_26_in))))((($_1_lift + ("_" + $_2_lift)) + "_input_tag")), $_3_lift);
 }
 
 // Snippets2.{make_cells_ro_25}
 
 function Snippets2___123_make_95_cells_95_ro_95_25_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift){
-    const $_6_in = Snippets2__make_95_cells_95_ro($HC_0_0$DataStore__Key, $_0_lift, $_1_lift)($_3_lift);
-    return Snippets2__make_95_cells_95_ro($HC_0_0$DataStore__Key, $_0_lift, $_2_lift)($_3_lift);
+    const $_5_in = Snippets2__make_95_cells_95_ro($_0_lift, $_1_lift)($_3_lift);
+    return Snippets2__make_95_cells_95_ro($_0_lift, $_2_lift)($_3_lift);
 }
 
 // Snippets2.{make_cells_ro_29}
 
 function Snippets2___123_make_95_cells_95_ro_95_29_125_($_0_lift, $_1_lift, $_2_lift){
-    const $_18_in = JSIO__JSIO__get_95_qty_95_int_95_value2((($_0_lift + ("_" + $_1_lift)) + "_input_tag"), $_2_lift);
-    return JSIO__JSIO__update_95_element_95_text(($_0_lift + ("_" + $_1_lift)), (''+($_18_in)), $_2_lift);
+    const $_17_in = JSIO__JSIO__get_95_qty_95_int_95_value2((($_0_lift + ("_" + $_1_lift)) + "_input_tag"), $_2_lift);
+    return JSIO__JSIO__update_95_element_95_text(($_0_lift + ("_" + $_1_lift)), (''+($_17_in)), $_2_lift);
 }
 
 // JSIO.JSIO.{onClick_30}
@@ -4439,7 +4276,7 @@ function Snippets2__tab_95_widget___123_on_95_set_95_backorders_95_32_125_($_0_l
 function Snippets2__tab_95_widget___123_on_95_table_95_commit_95_33_125_($_0_lift, $_1_lift, $_2_lift){
     let $cg$1 = null;
     $cg$1 = $_0_lift.$2;
-    return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_(Snippets2__make_95_cells_95_ro($HC_0_1$DataStore__Val, $_1_lift, $cg$1), $HC_0_0$Prelude__List__Nil), $_2_lift);
+    return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_(Snippets2__make_95_cells_95_ro($_1_lift, $cg$1), $HC_0_0$Prelude__List__Nil), $_2_lift);
 }
 
 // Snippets2.tab_widget.{on_table_commit_34}
@@ -4451,7 +4288,7 @@ function Snippets2__tab_95_widget___123_on_95_table_95_commit_95_34_125_($_0_lif
     $cg$2 = $_1_lift.$2;
     let $cg$3 = null;
     $cg$3 = $_1_lift.$1;
-    return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_(Snippets2__set_95_cells_95_attr($HC_0_1$DataStore__Val, $cg$1, $cg$2, $cg$3), $HC_0_0$Prelude__List__Nil), $_2_lift);
+    return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_(Snippets2__set_95_cells_95_attr($cg$1, $cg$2, $cg$3), $HC_0_0$Prelude__List__Nil), $_2_lift);
 }
 
 // Snippets2.tab_widget.{on_table_commit_36}
@@ -4491,7 +4328,7 @@ function Snippets2__tab_95_widget___123_on_95_table_95_commit_95_43_125_($_0_lif
     $cg$1 = $_0_lift.$2;
     let $cg$2 = null;
     $cg$2 = $_2_lift.$2;
-    return Prelude__List___43__43_(null, Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_1_3$Snippets2__tab_95_widget___123_on_95_table_95_commit_95_40_125_($_2_lift), $HC_0_0$Prelude__List__Nil, Prelude__Applicative__guard(null, new $HC_2_0$Prelude__Applicative__Alternative_95_ictor($partial_0_2$Snippets2__tab_95_widget___123_on_95_table_95_commit_95_41_125_(), $partial_0_1$Snippets2__tab_95_widget___123_on_95_table_95_commit_95_42_125_()), (!(!(!DataStore__eqSchema2(null, $cg$1, $cg$2, $_1_lift)))))), $_3_lift);
+    return Prelude__List___43__43_(null, Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_1_3$Snippets2__tab_95_widget___123_on_95_table_95_commit_95_40_125_($_2_lift), $HC_0_0$Prelude__List__Nil, Prelude__Applicative__guard(null, new $HC_2_0$Prelude__Applicative__Alternative_95_ictor($partial_0_2$Snippets2__tab_95_widget___123_on_95_table_95_commit_95_41_125_(), $partial_0_1$Snippets2__tab_95_widget___123_on_95_table_95_commit_95_42_125_()), (!(!(!DataStore__eqSchema2($cg$1, $cg$2, $_1_lift)))))), $_3_lift);
 }
 
 // Snippets2.tab_widget.{on_table_commit_44}
@@ -4567,13 +4404,13 @@ function Snippets2__tab_95_widget___123_on_95_table_95_commit_95_45_125_($_0_lif
     const $_16_in = Snippets2__runjsio(null, $HC_0_0$MkUnit, Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_1_3$Snippets2__tab_95_widget___123_on_95_table_95_commit_95_33_125_($_2_lift), $HC_0_0$Prelude__List__Nil, $_11_in), $_5_lift);
     let $cg$1 = null;
     $cg$1 = $_2_lift.$1;
-    const $_19_in = Snippets2__read_95_cells_95_row($HC_0_0$DataStore__Key, $_11_in, $cg$1, $_5_lift);
+    const $_19_in = Snippets2__read_95_cells_95_row($_11_in, $cg$1, $_5_lift);
     let $cg$2 = null;
     $cg$2 = $_2_lift.$2;
-    const $_22_in = Snippets2__read_95_cells_95_row($HC_0_1$DataStore__Val, $_11_in, $cg$2, $_5_lift);
+    const $_22_in = Snippets2__read_95_cells_95_row($_11_in, $cg$2, $_5_lift);
     let $cg$3 = null;
     $cg$3 = $_2_lift.$2;
-    const $_25_in = Snippets2__read_95_cells_95_attr_95_row($HC_0_1$DataStore__Val, $_11_in, $cg$3, $_5_lift);
+    const $_25_in = Snippets2__read_95_cells_95_attr_95_row($_11_in, $cg$3, $_5_lift);
     let $cg$4 = null;
     $cg$4 = $_2_lift.$2;
     const $_26_in = DataStore__schema2ZeroVal($cg$4);
@@ -4585,7 +4422,7 @@ function Snippets2__tab_95_widget___123_on_95_table_95_commit_95_45_125_($_0_lif
     const $cg$6 = Prelude__List__unzip(null, null, $_57_in);
     let $cg$7 = null;
     $cg$7 = $_2_lift.$1;
-    return io_95_bind(null, null, null, $partial_3_4$Snippets2__read_95_cells_95_row($HC_0_0$DataStore__Key, $cg$6.$1, $cg$7), $partial_4_6$Snippets2__tab_95_widget___123_on_95_table_95_commit_95_44_125_($cg$6.$2, $_3_lift, $_2_lift, $_4_lift), $_5_lift);
+    return io_95_bind(null, null, null, $partial_2_3$Snippets2__read_95_cells_95_row($cg$6.$1, $cg$7), $partial_4_6$Snippets2__tab_95_widget___123_on_95_table_95_commit_95_44_125_($cg$6.$2, $_3_lift, $_2_lift, $_4_lift), $_5_lift);
 }
 
 // Snippets2.tab_widget.{on_table_edit_46}
@@ -4593,7 +4430,7 @@ function Snippets2__tab_95_widget___123_on_95_table_95_commit_95_45_125_($_0_lif
 function Snippets2__tab_95_widget___123_on_95_table_95_edit_95_46_125_($_0_lift, $_1_lift, $_2_lift){
     let $cg$1 = null;
     $cg$1 = $_0_lift.$2;
-    return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_(Snippets2__make_95_cells_95_editable($HC_0_1$DataStore__Val, $_1_lift, $cg$1), $HC_0_0$Prelude__List__Nil), $_2_lift);
+    return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_(Snippets2__make_95_cells_95_editable($_1_lift, $cg$1), $HC_0_0$Prelude__List__Nil), $_2_lift);
 }
 
 // Snippets2.tab_widget.{on_table_edit_47}
@@ -4616,46 +4453,46 @@ function Snippets2__tab_95_widget___123_on_95_table_95_set_95_whs_95_route_95_48
 // Snippets2.{read_cells_49}
 
 function Snippets2___123_read_95_cells_95_49_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift){
-    const $_6_in = Snippets2__read_95_cells($HC_0_0$DataStore__Key, $_0_lift, $_1_lift)($_3_lift);
-    const $_7_in = Snippets2__read_95_cells($HC_0_0$DataStore__Key, $_0_lift, $_2_lift)($_3_lift);
-    return new $HC_2_0$Builtins__MkPair($_6_in, $_7_in);
+    const $_5_in = Snippets2__read_95_cells($_0_lift, $_1_lift)($_3_lift);
+    const $_6_in = Snippets2__read_95_cells($_0_lift, $_2_lift)($_3_lift);
+    return new $HC_2_0$Builtins__MkPair($_5_in, $_6_in);
 }
 
 // Snippets2.{read_cells_50}
 
 function Snippets2___123_read_95_cells_95_50_125_($_0_lift, $_1_lift, $_2_lift){
-    const $_12_in = JSIO__JSIO__get_95_element_95_text(($_0_lift + ("_" + $_1_lift)), $_2_lift);
-    return $_12_in;
+    const $_11_in = JSIO__JSIO__get_95_element_95_text(($_0_lift + ("_" + $_1_lift)), $_2_lift);
+    return $_11_in;
 }
 
 // Snippets2.{read_cells_58}
 
 function Snippets2___123_read_95_cells_95_58_125_($_0_lift, $_1_lift, $_2_lift){
-    const $_35_in = JSIO__JSIO__get_95_qty_95_int(($_0_lift + ("_" + $_1_lift)), $_2_lift);
-    return DataStore__integer2t((new $JSRTS.jsbn.BigInteger(''+($_35_in))));
+    const $_34_in = JSIO__JSIO__get_95_qty_95_int(($_0_lift + ("_" + $_1_lift)), $_2_lift);
+    return DataStore__integer2t((new $JSRTS.jsbn.BigInteger(''+($_34_in))));
 }
 
 // Snippets2.{read_cells_attr_59}
 
 function Snippets2___123_read_95_cells_95_attr_95_59_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift){
-    const $_6_in = Snippets2__read_95_cells_95_attr($HC_0_0$DataStore__Key, $_0_lift, $_1_lift)($_3_lift);
-    const $_7_in = Snippets2__read_95_cells_95_attr($HC_0_0$DataStore__Key, $_0_lift, $_2_lift)($_3_lift);
-    return new $HC_2_0$Builtins__MkPair($_6_in, $_7_in);
+    const $_5_in = Snippets2__read_95_cells_95_attr($_0_lift, $_1_lift)($_3_lift);
+    const $_6_in = Snippets2__read_95_cells_95_attr($_0_lift, $_2_lift)($_3_lift);
+    return new $HC_2_0$Builtins__MkPair($_5_in, $_6_in);
 }
 
 // Snippets2.{read_cells_attr_61}
 
 function Snippets2___123_read_95_cells_95_attr_95_61_125_($_0_lift, $_1_lift, $_2_lift){
-    const $_17_in = JSIO__JSIO__get_95_text_95_dataval(($_0_lift + ("_" + $_1_lift)), $_2_lift);
-    return $_17_in;
+    const $_16_in = JSIO__JSIO__get_95_text_95_dataval(($_0_lift + ("_" + $_1_lift)), $_2_lift);
+    return $_16_in;
 }
 
 // Snippets2.{read_cells_attr_69}
 
 function Snippets2___123_read_95_cells_95_attr_95_69_125_($_0_lift, $_1_lift){
-    const $_41_in = JSIO__JSIO__get_95_qty_95_int_95_datadr($_0_lift, $_1_lift);
-    const $_42_in = JSIO__JSIO__get_95_qty_95_int_95_datacr($_0_lift, $_1_lift);
-    return new $HC_2_0$DataStore__Tt((new $JSRTS.jsbn.BigInteger(''+($_41_in))), (new $JSRTS.jsbn.BigInteger(''+($_42_in))));
+    const $_40_in = JSIO__JSIO__get_95_qty_95_int_95_datadr($_0_lift, $_1_lift);
+    const $_41_in = JSIO__JSIO__get_95_qty_95_int_95_datacr($_0_lift, $_1_lift);
+    return new $HC_2_0$DataStore__Tt((new $JSRTS.jsbn.BigInteger(''+($_40_in))), (new $JSRTS.jsbn.BigInteger(''+($_41_in))));
 }
 
 // Snippets2.tab_widget.{render_rows_wo_ids_71}
@@ -4663,7 +4500,7 @@ function Snippets2___123_read_95_cells_95_attr_95_69_125_($_0_lift, $_1_lift){
 function Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_71_125_($_0_lift, $_1_lift, $_2_lift){
     let $cg$1 = null;
     $cg$1 = $_0_lift.$1;
-    return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_(Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows2_95_13_125_(), "", Snippets2__render_95_wo_95_ids__renderDataWithSchema2(null, $cg$1, $_1_lift)), $HC_0_0$Prelude__List__Nil), $_2_lift);
+    return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_(Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows2_95_13_125_(), "", Snippets2__render_95_wo_95_ids__renderDataWithSchema2($cg$1, $_1_lift)), $HC_0_0$Prelude__List__Nil), $_2_lift);
 }
 
 // Snippets2.tab_widget.{render_rows_wo_ids_73}
@@ -4671,7 +4508,7 @@ function Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_71_125_($
 function Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_73_125_($_0_lift, $_1_lift, $_2_lift){
     let $cg$1 = null;
     $cg$1 = $_0_lift.$2;
-    return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_(Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows2_95_13_125_(), "", Snippets2__render_95_wo_95_ids__renderDataWithSchema2(null, $cg$1, $_1_lift)), $HC_0_0$Prelude__List__Nil), $_2_lift);
+    return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_(Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows2_95_13_125_(), "", Snippets2__render_95_wo_95_ids__renderDataWithSchema2($cg$1, $_1_lift)), $HC_0_0$Prelude__List__Nil), $_2_lift);
 }
 
 // Snippets2.tab_widget.{render_rows_wo_ids_76}
@@ -4707,8 +4544,8 @@ function Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_76_125_($
 
 function Snippets2___123_set_95_cells_95_attr_95_77_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift, $_4_lift){
     
-    const $_10_in = Snippets2__set_95_cells_95_attr($HC_0_0$DataStore__Key, $_1_lift, $_2_lift, $_0_lift.$1)($_4_lift);
-    return Snippets2__set_95_cells_95_attr($HC_0_0$DataStore__Key, $_3_lift, $_2_lift, $_0_lift.$2)($_4_lift);
+    const $_9_in = Snippets2__set_95_cells_95_attr($_1_lift, $_2_lift, $_0_lift.$1)($_4_lift);
+    return Snippets2__set_95_cells_95_attr($_3_lift, $_2_lift, $_0_lift.$2)($_4_lift);
 }
 
 // Snippets2.{set_cells_attr_79}
@@ -4716,7 +4553,7 @@ function Snippets2___123_set_95_cells_95_attr_95_77_125_($_0_lift, $_1_lift, $_2
 function Snippets2___123_set_95_cells_95_attr_95_79_125_($_0_lift, $_1_lift, $_2_lift){
     let $cg$1 = null;
     $cg$1 = $_1_lift.$1;
-    const $_32_in = JSIO__JSIO__set_95_qty_95_int_95_datadr($_0_lift, (($cg$1).intValue()|0), $_2_lift);
+    const $_31_in = JSIO__JSIO__set_95_qty_95_int_95_datadr($_0_lift, (($cg$1).intValue()|0), $_2_lift);
     let $cg$2 = null;
     $cg$2 = $_1_lift.$2;
     return JSIO__JSIO__set_95_qty_95_int_95_datacr($_0_lift, (($cg$2).intValue()|0), $_2_lift);
@@ -5064,18 +4901,18 @@ function Snippets2__convert_95_s3LR_95_drop_95_col__drop_95_col_58_ret_58_0($_0_
     if((((($_5_arg == $_0_arg)) ? 1|0 : 0|0) === 0)) {
         
         if((((($_5_arg == $_2_arg)) ? 1|0 : 0|0) === 0)) {
-            return Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_s3($HC_0_0$DataStore__Key, new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField($_0_arg, $_1_arg), new $HC_2_1$DataStore__EField($_2_arg, $_3_arg)), $_4_arg, $_6_arg);
+            return Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_s3(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField($_0_arg, $_1_arg), new $HC_2_1$DataStore__EField($_2_arg, $_3_arg)), $_4_arg, $_6_arg);
         } else {
-            return Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_sR($HC_0_0$DataStore__Key, new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField($_0_arg, $_1_arg), new $HC_2_1$DataStore__EField($_2_arg, $_3_arg)), $_4_arg, $_6_arg);
+            return Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_sR(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField($_0_arg, $_1_arg), new $HC_2_1$DataStore__EField($_2_arg, $_3_arg)), $_4_arg, $_6_arg);
         }
     } else {
-        return Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_sL($HC_0_0$DataStore__Key, new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField($_0_arg, $_1_arg), new $HC_2_1$DataStore__EField($_2_arg, $_3_arg)), $_4_arg, $_6_arg);
+        return Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_sL(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField($_0_arg, $_1_arg), new $HC_2_1$DataStore__EField($_2_arg, $_3_arg)), $_4_arg, $_6_arg);
     }
 }
 
 // Snippets2.schema2thead2, ret
 
-function Snippets2__schema2thead2_58_ret_58_0($_0_arg, $_1_arg){
+function Snippets2__schema2thead2_58_ret_58_0($_0_arg){
     let $cg$1 = null;
     if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
         $cg$1 = $HC_0_0$Prelude__List__Nil;
@@ -5097,17 +4934,17 @@ function Snippets2__schema2thead2_58_ret_58_0($_0_arg, $_1_arg){
         $cg$1 = new $HC_2_1$Prelude__List___58__58_("%s"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$3));
     }
     
-    return Printf__toFunction(Printf__format($cg$1), "")(Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows2_95_13_125_(), "", Snippets2__schema2thead2_58_schema2th_58_0(null, null, null, $_1_arg)));
+    return Printf__toFunction(Printf__format($cg$1), "")(Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows2_95_13_125_(), "", Snippets2__schema2thead2_58_schema2th_58_0(null, $_0_arg)));
 }
 
 // Snippets2.schema2thead2, schema2th
 
-function Snippets2__schema2thead2_58_schema2th_58_0($_0_arg, $_1_arg, $_2_arg, $_3_arg){
+function Snippets2__schema2thead2_58_schema2th_58_0($_0_arg, $_1_arg){
     
-    if(($_3_arg.type === 2)) {
-        return Prelude__List___43__43_(null, Snippets2__schema2thead2_58_schema2th_58_0(null, null, null, $_3_arg.$1), Snippets2__schema2thead2_58_schema2th_58_0(null, null, null, $_3_arg.$2));
-    } else if(($_3_arg.type === 1)) {
-        const $cg$7 = $_3_arg.$2;
+    if(($_1_arg.type === 2)) {
+        return Prelude__List___43__43_(null, Snippets2__schema2thead2_58_schema2th_58_0(null, $_1_arg.$1), Snippets2__schema2thead2_58_schema2th_58_0(null, $_1_arg.$2));
+    } else if(($_1_arg.type === 1)) {
+        const $cg$7 = $_1_arg.$2;
         let $cg$8 = null;
         if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
             $cg$8 = $HC_0_0$Prelude__List__Nil;
@@ -5129,7 +4966,7 @@ function Snippets2__schema2thead2_58_schema2th_58_0($_0_arg, $_1_arg, $_2_arg, $
             $cg$8 = new $HC_2_1$Prelude__List___58__58_("<th>%s[%s]</th>"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$10));
         }
         
-        return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$8), "")($_3_arg.$1)($cg$7.$1), $HC_0_0$Prelude__List__Nil);
+        return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$8), "")($_1_arg.$1)($cg$7.$1), $HC_0_0$Prelude__List__Nil);
     } else {
         
         let $cg$3 = null;
@@ -5153,7 +4990,7 @@ function Snippets2__schema2thead2_58_schema2th_58_0($_0_arg, $_1_arg, $_2_arg, $
             $cg$3 = new $HC_2_1$Prelude__List___58__58_("<th>%s</th>"[0], _95_Prelude__Strings__unpack_95_with_95_36(null, $cg$5));
         }
         
-        return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$3), "")($_3_arg.$1), $HC_0_0$Prelude__List__Nil);
+        return new $HC_2_1$Prelude__List___58__58_(Printf__toFunction(Printf__format($cg$3), "")($_1_arg.$1), $HC_0_0$Prelude__List__Nil);
     }
 }
 

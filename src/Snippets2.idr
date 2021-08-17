@@ -13,20 +13,20 @@ import JSIO.JSIO
 --msgTypes : Schema2 Key
 
 
-keyItems : Schema2 Key
+keyItems : Schema2 
 keyItems = (EField "sku" (NSCode "asset") ) .*. (EField "cy" (NSCode "asset"))
 
-keyTotal : Schema2 Key
+keyTotal : Schema2 
 keyTotal = (EField "cy" (NSCode "asset"))
 
-msgType : Schema2 Key
+msgType : Schema2 
 msgType = (EField "uid" (NSCode "user") ) .*. (EField "msgt" (NSCode "msgt")) .*. (IField "t" FDateTime) 
 
-versionType : Schema2 Key
+versionType : Schema2 
 versionType = (EField "version" (NSSeq "version"))
 
 
-fxType : Schema2 Key
+fxType : Schema2 
 fxType = (EField "p1" (NSCode "partner") ) .*. (EField "p2" (NSCode "partner"))
 
 {-
@@ -91,14 +91,14 @@ pickingMsgNode = S2Name "picking" (msgNode :: pickingNode)
 paymentMsgNode : Schema2Tree Key
 paymentMsgNode = S2Name "payment" (msgNode :: paymentNode)
 -}
-qtyType : Schema2 Val
+qtyType : Schema2 
 qtyType = IFieldAlg "qty" FIntCarrier
 
-priceUnitType : Schema2 Val
+priceUnitType : Schema2 
 --priceUnitType = IFieldAlg "price_unit <- pricelist[order/exchange/items].price_unit" FIntCarrier
 priceUnitType = IFieldAlg "price_unit" FIntCarrier
 
-priceType : Schema2 Val
+priceType : Schema2 
 priceType = IFieldAlg "price=qty*price_unit" FIntCarrier
 
 {-
@@ -143,7 +143,7 @@ namespace MachineDo
           (a -> Inf (MachineIO v2)) -> MachineIO v1
     (>>=) = Do
 -}
-drop_key : (c:String) -> (Schema2 Key) -> (Schema2 Key)
+drop_key : (c:String) -> (Schema2 ) -> (Schema2 )
 drop_key c ( x@(EField n1 ns1) .*. y@(EField n2 ns2)) = case (c==n1) of 
                                                               True => y
                                                               False => case (c==n2) of 
@@ -153,14 +153,14 @@ drop_key c ( x .*. y ) = (drop_key c x) .*. (drop_key c y)
 drop_key c f = f
 
 {-
-convert_s2 : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
+convert_s2 : (sb: Schema2 ) -> (SchemaType2 si) -> (SchemaType2 sb)
 convert_s2 (IField namex FBool) {si = (IField name FBool) } item = item
 convert_s2 (IField namex FString) {si = (IField name FString) } item = item
 convert_s2 (EField namex ns) {si = (EField name ns2) } item = item
 convert_s2 sb {si = (y .*. z)} it = convert_s2 sb it
 -}
 namespace convert_s3LR_drop_col
-  convert_s3 : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
+  convert_s3 : (sb: Schema2 ) -> (SchemaType2 si) -> (SchemaType2 sb)
   convert_s3 (IField namex FBool) {si = (IField name FBool) } item = item
   convert_s3 (IField namex FString) {si = (IField name FString) } item = item
   convert_s3 (IField namex FDateTime) {si = (IField name FDateTime) } item = item
@@ -177,7 +177,7 @@ namespace convert_s3LR_drop_col
 --  convert_s3 sb {si = (KeyName2 name y z)} it = convert_s3 sb it    
 
     
-  convert_sL : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
+  convert_sL : (sb: Schema2 ) -> (SchemaType2 si) -> (SchemaType2 sb)
   convert_sL (IField namex FBool) {si = (IField name FBool) } item = item
   convert_sL (IField namex FString) {si = (IField name FString) } item = item
   convert_sL (IField namex FDateTime) {si = (IField name FDateTime) } item = item  
@@ -193,7 +193,7 @@ namespace convert_s3LR_drop_col
 --  convert_sL sb {si = (KeyName2 name y z)} (iL,iR) = convert_sL sb iR
   convert_sL sb {si = (y .*. z)} (iL,iR) = convert_sL sb iR
 
-  convert_sR : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
+  convert_sR : (sb: Schema2 ) -> (SchemaType2 si) -> (SchemaType2 sb)
   convert_sR (IField namex FBool) {si = (IField name FBool) } item = item
   convert_sR (IField namex FString) {si = (IField name FString) } item = item
   convert_sR (IField namex FDateTime) {si = (IField name FDateTime) } item = item  
@@ -208,7 +208,7 @@ namespace convert_s3LR_drop_col
 --  convert_sR sb {si = (KeyName2 name y z)} (iL,iR) = convert_sR sb iL
   convert_sR sb {si = (y .*. z)} (iL,iR) = convert_sR sb iL
       
-  drop_col : (sb: Schema2 Key) -> (c:String) -> (SchemaType2 sk) -> (SchemaType2 sb )
+  drop_col : (sb: Schema2 ) -> (c:String) -> (SchemaType2 sk) -> (SchemaType2 sb )
   drop_col  sb c {sk= (y@(EField n1 ns1) .*. z@(EField n2 ns2 ) ) } item  = ret where 
     ret = case (c==n1) of
         True => convert_sL sb item
@@ -218,13 +218,13 @@ namespace convert_s3LR_drop_col
 
 ----------- schema
 
-valItems : Schema2 Val
+valItems : Schema2 
 valItems = (IFieldAlg "qty" FTtermCarrier)
 
-priceItems : Schema2 Val
+priceItems : Schema2 
 priceItems = (IFieldAlg "price" FTtermCarrier)
 
-subtotalItems : Schema2 Val
+subtotalItems : Schema2 
 subtotalItems = (IFieldAlg "subtotal" FTtermCarrier)
 
 Items_ModelSchema : ModelSchema
@@ -337,7 +337,7 @@ namespace render_wo_ids
   renderDataWithSchema2 {schema = (y .+. z)} (iteml, itemr) = (renderDataWithSchema2 iteml) ++ (renderDataWithSchema2 itemr)
   
 public export
-get_cell_keys : String -> (s:Schema2 kv) -> List String
+get_cell_keys : String -> (s:Schema2 ) -> List String
 get_cell_keys p_id (IField name fd)  = [cell_id p_id name]
 get_cell_keys p_id (IFieldAlg name fd)  = [cell_id p_id name]
 get_cell_keys p_id (EField name ns)  = [cell_id p_id name]
@@ -345,7 +345,7 @@ get_cell_keys p_id (y .*. z)  = (get_cell_keys p_id y) ++ (get_cell_keys p_id z)
 get_cell_keys p_id (y .+. z)  = (get_cell_keys p_id y) ++ (get_cell_keys p_id z)
 
 public export
-make_cells_editable : String -> (s:Schema2 kv) -> JS_IO ()
+make_cells_editable : String -> (s:Schema2 ) -> JS_IO ()
 make_cells_editable p_id (IFieldAlg name FTtermCarrier)  = do
                    let _cell_id = cell_id p_id name
                    let _cell_input_id = cell_input_id p_id name
@@ -373,7 +373,7 @@ make_cells_editable p_id (y .+. z)  = do
                                     make_cells_editable p_id z
 
 public export
-make_cells_ro : String -> (s:Schema2 kv) -> JS_IO ()
+make_cells_ro : String -> (s:Schema2 ) -> JS_IO ()
 make_cells_ro p_id (IFieldAlg name FTtermCarrier)  = do
                    let _cell_id = cell_id p_id name
                    let _cell_input_id = cell_input_id p_id name
@@ -398,7 +398,7 @@ make_cells_ro p_id (y .*. z)  = do
 
 
 public export  -- read <td>%s</td> when cells are read-only
-read_cells : String -> (s:Schema2 kv) -> JS_IO (SchemaType2 s)
+read_cells : String -> (s:Schema2 ) -> JS_IO (SchemaType2 s)
 read_cells p_id (IField name FBool) = do
                    let _cell_id = cell_id p_id name
                    v <- get_element_text _cell_id
@@ -450,7 +450,7 @@ read_cells p_id (y .*. z)  =  do
                    pure (r_y,r_z)
 
 public export
-read_cells_row : List String -> (s:Schema2 kv) -> JS_IO (List (SchemaType2 s))
+read_cells_row : List String -> (s:Schema2 ) -> JS_IO (List (SchemaType2 s))
 read_cells_row [] s = pure []
 read_cells_row (x :: xs) s_kv = do
        row <- read_cells x s_kv
@@ -458,7 +458,7 @@ read_cells_row (x :: xs) s_kv = do
        pure ([row] ++ ret)
 
 public export
-read_cells_attr : String -> (s:Schema2 kv) -> JS_IO (SchemaType2 s)
+read_cells_attr : String -> (s:Schema2 ) -> JS_IO (SchemaType2 s)
 read_cells_attr p_id (IField name FBool) = do
                    let _cell_id = cell_id p_id name
                    v <- get_text_dataval _cell_id
@@ -524,7 +524,7 @@ read_cells_attr p_id (y .+. z)  =  do
                    pure (r_y,r_z)
 
 public export
-read_cells_attr_row : List String -> (s:Schema2 kv) -> JS_IO (List (SchemaType2 s))
+read_cells_attr_row : List String -> (s:Schema2 ) -> JS_IO (List (SchemaType2 s))
 read_cells_attr_row [] s = pure []
 read_cells_attr_row (x :: xs) s_kv = do
        row <- read_cells_attr x s_kv
@@ -635,9 +635,9 @@ update_cells p_id item = do
 
 -------------------- render
 public export
-schema2thead2 : Schema2 kv-> String
+schema2thead2 : Schema2 -> String
 schema2thead2 sch = ret where
-  schema2th : Schema2 kv -> List String
+  schema2th : Schema2  -> List String
   schema2th (IField name FBool)  =  [printf "<th>%s</th>" name ]
   schema2th (IField name FString) = [printf "<th>%s</th>" name ]
   schema2th (IField name (Fm2o rel)) = [printf "<th>%s</th>" name ]  
@@ -802,7 +802,7 @@ namespace tab_widget
    get_row_id p_id  item = p_id++ "_row"++(renderDataAsKey item)
 
    public export
-   update_cells_ke1 : String -> (sv:Schema2 Val) -> (SchemaType2 sv) -> JS_IO ()
+   update_cells_ke1 : String -> (sv:Schema2 ) -> (SchemaType2 sv) -> JS_IO ()
    update_cells_ke1 rid sv x_val = do
           current <- read_cells rid sv
           update_cells rid (addSchema2Vals current x_val)
@@ -836,7 +836,7 @@ namespace tab_widget
         ret
         
    public export
-   _read_cells : (s:Schema2 Key) -> List String -> JS_IO (Maybe (List (SchemaType2 s)) )
+   _read_cells : (s:Schema2 ) -> List String -> JS_IO (Maybe (List (SchemaType2 s)) )
    _read_cells s [] = pure Nothing
    _read_cells s (p_id::xs) = do
               c <- read_cells p_id s
@@ -895,7 +895,7 @@ namespace tab_widget
                           
 
    public export
-   convert_2sub : (sb: Schema2 Val) -> (SchemaType2 si) -> (SchemaType2 sb)
+   convert_2sub : (sb: Schema2 ) -> (SchemaType2 si) -> (SchemaType2 sb)
    convert_2sub (IFieldAlg namex FTtermCarrier) {si = (IFieldAlg name FTtermCarrier) } item = item
    convert_2sub (IFieldAlg namex FIntCarrier) {si = (IFieldAlg name FIntCarrier) } item = item   
    convert_2sub sb {si = (y .*. z)} it = convert_2sub sb it --(convert_items2sub sb it1, convert_items2sub sb it2)

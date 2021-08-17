@@ -136,21 +136,24 @@ data AlgebraCarriers : Type where  --Algebra Carriers
      FIntCarrier :  AlgebraCarriers     
      FOPcarrier    :  AlgebraCarriers
 
-data KV = Key | Val
+--data KV = Key | Val
 
-data Schema2 : KV -> Type where
-     IField : (name:String) -> (ft: FieldDefKey) -> Schema2 Key    
-     EField : (name:String) -> (ns :SymbolType)-> Schema2 Key -- id implementation
-     (.*.) : (s1 : Schema2 Key) -> (s2 :Schema2 Key) -> Schema2 Key         
-     IFieldAlg : (name:String) -> (ft: AlgebraCarriers) -> Schema2 Val  -- algebra carrier          
-     (.+.) : (s1 : Schema2 Val) -> (s2 :Schema2 Val) -> Schema2 Val
+data Schema2 : Type where
+     IField : (name:String) -> (ft: FieldDefKey) -> Schema2
+     EField : (name:String) -> (ns :SymbolType)-> Schema2 -- id implementation
+     --Sum 
+     --From
+     --To
+     (.*.) : (s1 : Schema2 ) -> (s2 :Schema2 ) -> Schema2 
+     IFieldAlg : (name:String) -> (ft: AlgebraCarriers) -> Schema2  -- algebra carrier          
+     (.+.) : (s1 : Schema2 ) -> (s2 :Schema2 ) -> Schema2 
 {-
 data Schema2Tree : (kv:KV)  -> Type where
      S2Node : (s1 : Schema2 kv) -> Schema2Tree kv
      (::) : (s1 : Schema2Tree kv) -> (s2 : Schema2Tree kv) -> Schema2Tree kv
      S2Name : (name :String) -> (s1 : Schema2Tree kv)  -> Schema2Tree kv
 -}
-SchemaType2 : Schema2 kv-> Type
+SchemaType2 : Schema2 -> Type
 SchemaType2 (IField name FBool)= Bool
 SchemaType2 (IField name FString )= String
 SchemaType2 (IField name FDateTime )= Int
@@ -170,7 +173,7 @@ SchemaType2 (x .+. y) = (SchemaType2 x, SchemaType2 y)
 --SchemaType2 (KeyName1 name s1) = SchemaType2 s1
 --SchemaType2 (KeyName2 name s1 s2) = (SchemaType2 s1, SchemaType2 s2)
 
-schema2ZeroVal : (s:Schema2 Val) -> (SchemaType2 s)
+schema2ZeroVal : (s:Schema2 ) -> (SchemaType2 s)
 schema2ZeroVal (IFieldAlg name FTtermCarrier ) = (Tt 0 0)
 schema2ZeroVal (IFieldAlg name FIntCarrier ) = 0
 schema2ZeroVal (IFieldAlg name FOPcarrier ) = Empty
@@ -198,21 +201,21 @@ eqSchema2 {schema = (y .*. z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqS
 eqSchema2 {schema = (y .+. z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqSchema2  i1r i2r)
 
 public export
-invSchema2 : {schema : Schema2 Val} -> (SchemaType2 schema) -> (SchemaType2 schema)
+invSchema2 : {schema : Schema2 } -> (SchemaType2 schema) -> (SchemaType2 schema)
 invSchema2 {schema = (IFieldAlg name FTtermCarrier)} item1 = tinv (item1)
 invSchema2 {schema = (IFieldAlg name FIntCarrier)} item1 = (-1)* (item1)
 invSchema2 {schema = (IFieldAlg name FOPcarrier)} item1 = inv (item1)
 invSchema2 {schema = (y .+. z)} (iteml,itemr) = (invSchema2 iteml, invSchema2 itemr)
 
 public export -- semigroup operation
-addSchema2Vals : {schema : Schema2 Val} -> (SchemaType2 schema) -> (SchemaType2 schema) -> (SchemaType2 schema)
+addSchema2Vals : {schema : Schema2 } -> (SchemaType2 schema) -> (SchemaType2 schema) -> (SchemaType2 schema)
 addSchema2Vals {schema = (IFieldAlg name FTtermCarrier)} item1 item2 = item1 <+> item2  -- For Tterm, add
 addSchema2Vals {schema = (IFieldAlg name FIntCarrier)} item1 item2 = item1 + item2  
 addSchema2Vals {schema = (IFieldAlg name FOPcarrier)} item1 item2 = item1 <+> item2  
 addSchema2Vals {schema = (y .+. z)} (i1l,i1r) (i2l,i2r) = ( addSchema2Vals i1l i2l, addSchema2Vals i1r i2r)
 
 public export -- semigroup operation
-mulSchema2Vals : {schema : Schema2 Val}->(SchemaType2 schema) -> (SchemaType2 schema) -> (SchemaType2 schema)
+mulSchema2Vals : {schema : Schema2 }->(SchemaType2 schema) -> (SchemaType2 schema) -> (SchemaType2 schema)
 mulSchema2Vals {schema = (IFieldAlg name FTtermCarrier)} item1 item2 = tmul item1 item2  -- For Tterm, add
 mulSchema2Vals {schema = (IFieldAlg name FIntCarrier)} item1 item2 = item1 * item2
 mulSchema2Vals {schema = (IFieldAlg name FOPcarrier)} item1 item2 = item1 <+> item2  -- For Tterm, add
@@ -221,14 +224,14 @@ mulSchema2Vals {schema = (y .+. z)} (i1l,i1r) (i2l,i2r) = ( mulSchema2Vals i1l i
 {-
 record Vector where
     constructor MkVector
-    key : Schema2Tree Key
-    val : Schema2Tree Val
+    key : Schema2Tree 
+    val : Schema2Tree 
 -}     
                
 record ModelSchema where
      constructor MkModelSchema
-     key : Schema2 Key --- key,hom key
-     val : Schema2 Val   -- vector carriers
+     key : Schema2  --- key,hom key
+     val : Schema2    -- vector carriers
      name : String
 
      
