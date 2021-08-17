@@ -125,19 +125,15 @@ data FieldDefKey : Type where
      FBool :  FieldDefKey
      FString : FieldDefKey
      FDateTime : FieldDefKey
-     FTtermCarrier :  FieldDefKey
-     FIntCarrier :  FieldDefKey
-     FOPcarrier    :  FieldDefKey
+     FTterm :  FieldDefKey
+     FInt :  FieldDefKey
+--     FOP    :  FieldDefKey
      
      --Fm2o : (ns : SymbolType) -> FieldDefKey -- abstraction     
      -- FInt
      -- FUUID
      ---FM2M  -- abstraction and modeling
      
-
---data AlgebraCarriers : Type where  --Algebra Carriers 
-
---data KV = Key | Val
 
 data Schema2 : Type where
      IField : (name:String) -> (ft: FieldDefKey) -> Schema2
@@ -149,7 +145,7 @@ data Schema2 : Type where
      -- Decl: (List Schema2) -> Schema2   --list of schema declarations
      (.*.) : (s1 : Schema2 ) -> (s2 :Schema2 ) -> Schema2 
      
---     IFieldAlg : (name:String) -> (ft: AlgebraCarriers) -> Schema2  -- algebra carrier          
+--     IFieldAlg : (name:String) -> (ft: Algebras) -> Schema2  -- algebra           
      
      (.+.) : (s1 : Schema2 ) -> (s2 :Schema2 ) -> Schema2 
      
@@ -157,9 +153,9 @@ SchemaType2 : Schema2 -> Type
 SchemaType2 (IField name FBool)= Bool
 SchemaType2 (IField name FString )= String
 SchemaType2 (IField name FDateTime )= Int
-SchemaType2 (IField name FTtermCarrier) = Tterm
-SchemaType2 (IField name FIntCarrier) = Int
-SchemaType2 (IField name FOPcarrier) = SymbolOP
+SchemaType2 (IField name FTterm) = Tterm
+SchemaType2 (IField name FInt) = Int
+--SchemaType2 (IField name FOP) = SymbolOP
 SchemaType2 (EField name (NSInteger ns) ) = Integer
 SchemaType2 (EField name (NSInt ns) ) = Int
 SchemaType2 (EField name (NSSeq ns) ) = Int
@@ -170,9 +166,9 @@ SchemaType2 (x .+. y) = (SchemaType2 x, SchemaType2 y)
 --SchemaType2 (KeyName2 name s1 s2) = (SchemaType2 s1, SchemaType2 s2)
 
 schema2ZeroVal : (s:Schema2 ) -> (SchemaType2 s)
-schema2ZeroVal (IField name FTtermCarrier ) = (Tt 0 0)
-schema2ZeroVal (IField name FIntCarrier ) = 0
-schema2ZeroVal (IField name FOPcarrier ) = Empty
+schema2ZeroVal (IField name FTterm ) = (Tt 0 0)
+schema2ZeroVal (IField name FInt ) = 0
+--schema2ZeroVal (IField name FOP ) = Empty
 schema2ZeroVal (x .+. y) = (schema2ZeroVal x,schema2ZeroVal y)
 
 public export 
@@ -180,9 +176,9 @@ eqSchema2 : (SchemaType2 schema) -> (SchemaType2 schema) -> Bool
 eqSchema2 {schema = (IField name FBool)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IField name FString)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (IField name FDateTime)} item1 item2 = (item1 == item2)
-eqSchema2 {schema = (IField name FTtermCarrier)} item1 item2 = (item1 == item2)
-eqSchema2 {schema = (IField name FIntCarrier)} item1 item2 = (item1 == item2)
-eqSchema2 {schema = (IField name FOPcarrier)} item1 item2 = (item1 == item2)
+eqSchema2 {schema = (IField name FTterm)} item1 item2 = (item1 == item2)
+eqSchema2 {schema = (IField name FInt)} item1 item2 = (item1 == item2)
+--eqSchema2 {schema = (IField name FOP)} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (EField name (NSInteger ns))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (EField name (NSInt ns))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (EField name (NSSeq ns))} item1 item2 = (item1 == item2)
@@ -194,23 +190,23 @@ eqSchema2 {schema = (y .+. z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqS
 
 public export
 invSchema2 : {schema : Schema2 } -> (SchemaType2 schema) -> (SchemaType2 schema)
-invSchema2 {schema = (IField name FTtermCarrier)} item1 = tinv (item1)
-invSchema2 {schema = (IField name FIntCarrier)} item1 = (-1)* (item1)
-invSchema2 {schema = (IField name FOPcarrier)} item1 = inv (item1)
+invSchema2 {schema = (IField name FTterm)} item1 = tinv (item1)
+invSchema2 {schema = (IField name FInt)} item1 = (-1)* (item1)
+--invSchema2 {schema = (IField name FOP)} item1 = inv (item1)
 invSchema2 {schema = (y .+. z)} (iteml,itemr) = (invSchema2 iteml, invSchema2 itemr)
 
 public export -- semigroup operation
 addSchema2Vals : {schema : Schema2 } -> (SchemaType2 schema) -> (SchemaType2 schema) -> (SchemaType2 schema)
-addSchema2Vals {schema = (IField name FTtermCarrier)} item1 item2 = item1 <+> item2  -- For Tterm, add
-addSchema2Vals {schema = (IField name FIntCarrier)} item1 item2 = item1 + item2  
-addSchema2Vals {schema = (IField name FOPcarrier)} item1 item2 = item1 <+> item2  
+addSchema2Vals {schema = (IField name FTterm)} item1 item2 = item1 <+> item2  -- For Tterm, add
+addSchema2Vals {schema = (IField name FInt)} item1 item2 = item1 + item2  
+--addSchema2Vals {schema = (IField name FOP)} item1 item2 = item1 <+> item2  
 addSchema2Vals {schema = (y .+. z)} (i1l,i1r) (i2l,i2r) = ( addSchema2Vals i1l i2l, addSchema2Vals i1r i2r)
 
 public export -- semigroup operation
 mulSchema2Vals : {schema : Schema2 }->(SchemaType2 schema) -> (SchemaType2 schema) -> (SchemaType2 schema)
-mulSchema2Vals {schema = (IField name FTtermCarrier)} item1 item2 = tmul item1 item2  -- For Tterm, add
-mulSchema2Vals {schema = (IField name FIntCarrier)} item1 item2 = item1 * item2
-mulSchema2Vals {schema = (IField name FOPcarrier)} item1 item2 = item1 <+> item2  -- For Tterm, add
+mulSchema2Vals {schema = (IField name FTterm)} item1 item2 = tmul item1 item2  -- For Tterm, add
+mulSchema2Vals {schema = (IField name FInt)} item1 item2 = item1 * item2
+--mulSchema2Vals {schema = (IField name FOP)} item1 item2 = item1 <+> item2  -- For Tterm, add
 mulSchema2Vals {schema = (y .+. z)} (i1l,i1r) (i2l,i2r) = ( mulSchema2Vals i1l i2l, mulSchema2Vals i1r i2r)
 
 {-
@@ -223,7 +219,7 @@ record Vector where
 record ModelSchema where
      constructor MkModelSchema
      key : Schema2  --- key,hom key
-     val : Schema2    -- vector carriers
+     val : Schema2    -- vector s
      name : String
 
      

@@ -2101,153 +2101,135 @@ function $partial_2_3$Snippets2___123_read_95_cells_95_50_125_(x1, x2){
     });
 }
 
-function $partial_3_4$Snippets2___123_read_95_cells_95_attr_95_51_125_(x1, x2, x3){
-    return (function(x4){
-        return Snippets2___123_read_95_cells_95_attr_95_51_125_(x1, x2, x3, x4);
-    });
-}
-
-function $partial_2_3$Snippets2___123_read_95_cells_95_attr_95_53_125_(x1, x2){
-    return (function(x3){
-        return Snippets2___123_read_95_cells_95_attr_95_53_125_(x1, x2, x3);
-    });
-}
-
-function $partial_1_2$Snippets2___123_read_95_cells_95_attr_95_61_125_(x1){
-    return (function(x2){
-        return Snippets2___123_read_95_cells_95_attr_95_61_125_(x1, x2);
-    });
-}
-
-function $partial_1_3$Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_63_125_(x1){
+function $partial_1_3$Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_52_125_(x1){
     return (function(x2){
         return (function(x3){
-            return Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_63_125_(x1, x2, x3);
+            return Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_52_125_(x1, x2, x3);
         });
     });
 }
 
-function $partial_1_3$Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_65_125_(x1){
+function $partial_1_3$Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_54_125_(x1){
     return (function(x2){
         return (function(x3){
-            return Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_65_125_(x1, x2, x3);
+            return Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_54_125_(x1, x2, x3);
         });
     });
 }
 
-function $partial_0_2$Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_68_125_(){
+function $partial_0_2$Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_57_125_(){
     return (function(x1){
         return (function(x2){
-            return Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_68_125_(x1, x2);
+            return Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_57_125_(x1, x2);
         });
     });
 }
 
-function $partial_4_5$Snippets2___123_set_95_cells_95_attr_95_69_125_(x1, x2, x3, x4){
+function $partial_4_5$Snippets2___123_set_95_cells_95_attr_95_58_125_(x1, x2, x3, x4){
     return (function(x5){
-        return Snippets2___123_set_95_cells_95_attr_95_69_125_(x1, x2, x3, x4, x5);
+        return Snippets2___123_set_95_cells_95_attr_95_58_125_(x1, x2, x3, x4, x5);
     });
 }
 
-function $partial_2_3$Snippets2___123_set_95_cells_95_attr_95_71_125_(x1, x2){
+function $partial_2_3$Snippets2___123_set_95_cells_95_attr_95_60_125_(x1, x2){
     return (function(x3){
-        return Snippets2___123_set_95_cells_95_attr_95_71_125_(x1, x2, x3);
+        return Snippets2___123_set_95_cells_95_attr_95_60_125_(x1, x2, x3);
     });
 }
 
-function $partial_0_1$Prelude__Show___123_showLitChar_95_72_125_(){
+function $partial_0_1$Prelude__Show___123_showLitChar_95_61_125_(){
     return (function(x1){
-        return Prelude__Show___123_showLitChar_95_72_125_(x1);
+        return Prelude__Show___123_showLitChar_95_61_125_(x1);
     });
 }
 
-function $partial_0_1$Prelude__Show___123_showLitChar_95_73_125_(){
+function $partial_0_1$Prelude__Show___123_showLitChar_95_62_125_(){
     return (function(x1){
-        return Prelude__Show___123_showLitChar_95_73_125_(x1);
+        return Prelude__Show___123_showLitChar_95_62_125_(x1);
     });
 }
 
-function $partial_0_1$Prelude__Show___123_showLitChar_95_74_125_(){
+function $partial_0_1$Prelude__Show___123_showLitChar_95_63_125_(){
     return (function(x1){
-        return Prelude__Show___123_showLitChar_95_74_125_(x1);
+        return Prelude__Show___123_showLitChar_95_63_125_(x1);
     });
 }
 
-function $partial_0_1$Prelude__Show___123_showLitChar_95_75_125_(){
+function $partial_0_1$Prelude__Show___123_showLitChar_95_64_125_(){
     return (function(x1){
-        return Prelude__Show___123_showLitChar_95_75_125_(x1);
+        return Prelude__Show___123_showLitChar_95_64_125_(x1);
     });
 }
 
-function $partial_0_1$Prelude__Show___123_showLitChar_95_76_125_(){
+function $partial_0_1$Prelude__Show___123_showLitChar_95_65_125_(){
     return (function(x1){
-        return Prelude__Show___123_showLitChar_95_76_125_(x1);
+        return Prelude__Show___123_showLitChar_95_65_125_(x1);
     });
 }
 
-function $partial_0_1$Prelude__Show___123_showLitChar_95_77_125_(){
+function $partial_0_1$Prelude__Show___123_showLitChar_95_66_125_(){
     return (function(x1){
-        return Prelude__Show___123_showLitChar_95_77_125_(x1);
+        return Prelude__Show___123_showLitChar_95_66_125_(x1);
     });
 }
 
-function $partial_0_1$Prelude__Show___123_showLitChar_95_78_125_(){
+function $partial_0_1$Prelude__Show___123_showLitChar_95_67_125_(){
     return (function(x1){
-        return Prelude__Show___123_showLitChar_95_78_125_(x1);
+        return Prelude__Show___123_showLitChar_95_67_125_(x1);
     });
 }
 
-function $partial_0_1$Prelude__Show___123_showLitChar_95_79_125_(){
+function $partial_0_1$Prelude__Show___123_showLitChar_95_68_125_(){
     return (function(x1){
-        return Prelude__Show___123_showLitChar_95_79_125_(x1);
+        return Prelude__Show___123_showLitChar_95_68_125_(x1);
     });
 }
 
-function $partial_0_1$Prelude__Show___123_showLitChar_95_80_125_(){
+function $partial_0_1$Prelude__Show___123_showLitChar_95_69_125_(){
     return (function(x1){
-        return Prelude__Show___123_showLitChar_95_80_125_(x1);
+        return Prelude__Show___123_showLitChar_95_69_125_(x1);
     });
 }
 
-function $partial_0_1$Prelude__Show___123_showLitChar_95_81_125_(){
+function $partial_0_1$Prelude__Show___123_showLitChar_95_70_125_(){
     return (function(x1){
-        return Prelude__Show___123_showLitChar_95_81_125_(x1);
+        return Prelude__Show___123_showLitChar_95_70_125_(x1);
     });
 }
 
-function $partial_1_2$Prelude__Show___123_showLitChar_95_82_125_(x1){
+function $partial_1_2$Prelude__Show___123_showLitChar_95_71_125_(x1){
     return (function(x2){
-        return Prelude__Show___123_showLitChar_95_82_125_(x1, x2);
+        return Prelude__Show___123_showLitChar_95_71_125_(x1, x2);
     });
 }
 
-function $partial_1_2$Prelude__Show___123_showLitChar_95_83_125_(x1){
+function $partial_1_2$Prelude__Show___123_showLitChar_95_72_125_(x1){
     return (function(x2){
-        return Prelude__Show___123_showLitChar_95_83_125_(x1, x2);
+        return Prelude__Show___123_showLitChar_95_72_125_(x1, x2);
     });
 }
 
-function $partial_4_5$Snippets2__tab_95_widget___123_table_95_amendments_95_84_125_(x1, x2, x3, x4){
+function $partial_4_5$Snippets2__tab_95_widget___123_table_95_amendments_95_73_125_(x1, x2, x3, x4){
     return (function(x5){
-        return Snippets2__tab_95_widget___123_table_95_amendments_95_84_125_(x1, x2, x3, x4, x5);
+        return Snippets2__tab_95_widget___123_table_95_amendments_95_73_125_(x1, x2, x3, x4, x5);
     });
 }
 
-function $partial_6_7$Snippets2__tab_95_widget___123_table_95_composite_95_85_125_(x1, x2, x3, x4, x5, x6){
+function $partial_6_7$Snippets2__tab_95_widget___123_table_95_composite_95_74_125_(x1, x2, x3, x4, x5, x6){
     return (function(x7){
-        return Snippets2__tab_95_widget___123_table_95_composite_95_85_125_(x1, x2, x3, x4, x5, x6, x7);
+        return Snippets2__tab_95_widget___123_table_95_composite_95_74_125_(x1, x2, x3, x4, x5, x6, x7);
     });
 }
 
-function $partial_2_3$Printf___123_toFunction_95_86_125_(x1, x2){
+function $partial_2_3$Printf___123_toFunction_95_75_125_(x1, x2){
     return (function(x3){
-        return Printf___123_toFunction_95_86_125_(x1, x2, x3);
+        return Printf___123_toFunction_95_75_125_(x1, x2, x3);
     });
 }
 
-function $partial_2_3$Printf___123_toFunction_95_87_125_(x1, x2){
+function $partial_2_3$Printf___123_toFunction_95_76_125_(x1, x2){
     return (function(x3){
-        return Printf___123_toFunction_95_87_125_(x1, x2, x3);
+        return Printf___123_toFunction_95_76_125_(x1, x2, x3);
     });
 }
 
@@ -2288,7 +2270,7 @@ function $HC_1_1$Printf__FString($1){
     this.$1 = $1;
 }
 
-const $HC_0_3$DataStore__FTtermCarrier = ({type: 3});
+const $HC_0_3$DataStore__FTterm = ({type: 3});
 function $HC_2_0$DataStore__IField($1, $2){
     this.type = 0;
     this.$1 = $1;
@@ -2394,10 +2376,10 @@ function DataStore__addSchema2Vals($_0_arg, $_1_arg, $_2_arg){
             
             return new $HC_2_0$DataStore__Tt($_1_arg.$1.add($_2_arg.$1), $_1_arg.$2.add($_2_arg.$2));
         } else {
-            $JSRTS.die("*** DataStore.idr:204:1-83:unmatched case in DataStore.addSchema2Vals ***");
+            $JSRTS.die("*** DataStore.idr:200:1-76:unmatched case in DataStore.addSchema2Vals ***");
         }
     } else {
-        $JSRTS.die("*** DataStore.idr:204:1-83:unmatched case in DataStore.addSchema2Vals ***");
+        $JSRTS.die("*** DataStore.idr:200:1-76:unmatched case in DataStore.addSchema2Vals ***");
     }
 }
 
@@ -2450,7 +2432,7 @@ function Snippets2__tab_95_widget__calc_95_order_95_subtotals($_0_arg, $_1_arg, 
     $cg$6 = $_5_arg.$2;
     const $_61_in = Snippets2__read_95_cells_95_attr_95_row($_9_in, $cg$6, $_6_in);
     const $_66_in = Snippets2__tab_95_widget__insert_95_rows_95_calc($_1_arg, $_5_arg, new $HC_3_0$DataStore__MkMDList("subtotal", Prelude__List___43__43_(null, $_58_in, $_58_in), Prelude__List___43__43_(null, Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_1_3$Snippets2__tab_95_widget___123_calc_95_order_95_subtotals_95_9_125_($_5_arg), $HC_0_0$Prelude__List__Nil, $_61_in), $_30_in)), $_6_in);
-    const $_67_in = Snippets2__tab_95_widget__calc_95_order_95_t($_1_arg, $_2_arg, new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTtermCarrier)), new $HC_2_0$DataStore__MkModelSchema(new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTtermCarrier)), $_6_in);
+    const $_67_in = Snippets2__tab_95_widget__calc_95_order_95_t($_1_arg, $_2_arg, new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTterm)), new $HC_2_0$DataStore__MkModelSchema(new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTterm)), $_6_in);
     return $HC_0_0$MkUnit;
 }
 
@@ -2507,14 +2489,14 @@ function Snippets2__tab_95_widget__convert_95_2sub($_0_arg, $_1_arg, $_2_arg){
                     if(($_0_arg.$2.type === 3)) {
                         return $_2_arg;
                     } else {
-                        $JSRTS.die("*** Snippets2.idr:744:4-92:unmatched case in Snippets2.tab_widget.convert_2sub ***");
+                        $JSRTS.die("*** Snippets2.idr:744:4-78:unmatched case in Snippets2.tab_widget.convert_2sub ***");
                     }
                 } else if(($_0_arg.type === 2)) {
                     $_0_arg = $_0_arg;
                     $_1_arg = $_1_arg;
                     $_2_arg = $_2_arg;
                 } else {
-                    $JSRTS.die("*** Snippets2.idr:744:4-92:unmatched case in Snippets2.tab_widget.convert_2sub ***");
+                    $JSRTS.die("*** Snippets2.idr:744:4-78:unmatched case in Snippets2.tab_widget.convert_2sub ***");
                 }
             } else {
                 
@@ -2523,7 +2505,7 @@ function Snippets2__tab_95_widget__convert_95_2sub($_0_arg, $_1_arg, $_2_arg){
                     $_1_arg = $_1_arg;
                     $_2_arg = $_2_arg;
                 } else {
-                    $JSRTS.die("*** Snippets2.idr:744:4-92:unmatched case in Snippets2.tab_widget.convert_2sub ***");
+                    $JSRTS.die("*** Snippets2.idr:744:4-78:unmatched case in Snippets2.tab_widget.convert_2sub ***");
                 }
             }
         } else {
@@ -2533,7 +2515,7 @@ function Snippets2__tab_95_widget__convert_95_2sub($_0_arg, $_1_arg, $_2_arg){
                 $_1_arg = $_1_arg;
                 $_2_arg = $_2_arg;
             } else {
-                $JSRTS.die("*** Snippets2.idr:744:4-92:unmatched case in Snippets2.tab_widget.convert_2sub ***");
+                $JSRTS.die("*** Snippets2.idr:744:4-78:unmatched case in Snippets2.tab_widget.convert_2sub ***");
             }
         }
     }
@@ -3020,10 +3002,10 @@ function DataStore__invSchema2($_0_arg, $_1_arg){
             
             return new $HC_2_0$DataStore__Tt($_1_arg.$2, $_1_arg.$1);
         } else {
-            $JSRTS.die("*** DataStore.idr:197:1-70:unmatched case in DataStore.invSchema2 ***");
+            $JSRTS.die("*** DataStore.idr:193:1-63:unmatched case in DataStore.invSchema2 ***");
         }
     } else {
-        $JSRTS.die("*** DataStore.idr:197:1-70:unmatched case in DataStore.invSchema2 ***");
+        $JSRTS.die("*** DataStore.idr:193:1-63:unmatched case in DataStore.invSchema2 ***");
     }
 }
 
@@ -3092,27 +3074,27 @@ function Main__main($_0_in){
     const $_2_in = JSIO__SHA__calc_95_sha256("abc", $_0_in);
     const $_3_in = JSIO__JSIO__console_95_log($_1_in, $_0_in);
     const $_4_in = JSIO__JSIO__console_95_log($_2_in, $_0_in);
-    const $_5_in = Snippets2__tab_95_widget__table_95_composite(false, "Pricelist", "pricelist", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("price", $HC_0_3$DataStore__FTtermCarrier)), Main__pricelist_95_ModelDataList())($_0_in);
-    const $_6_in = Snippets2__tab_95_widget__table_95_composite(true, "Order1 Items", "order1", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTtermCarrier)), Main__items_95_ModelDataList())($_0_in);
-    const $_7_in = Snippets2__tab_95_widget__add_95_whs_95_button("order1", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTtermCarrier)), Main__items_95_ModelDataList())($_0_in);
-    const $_8_in = Snippets2__tab_95_widget__table_95_composite(false, "Order1 Subtotals", "subtotal", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTtermCarrier)), Main__subtotal_95_ModelDataList())($_0_in);
-    const $_9_in = Snippets2__tab_95_widget__insert_95_rows_95_calc("subtotal", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTtermCarrier)), Main__subtotal_95_ModelDataList(), $_0_in);
-    const $_10_in = Snippets2__tab_95_widget__table_95_composite(false, "Invoice1 Subtotals", "invoice_subtotal", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTtermCarrier)), Main__subtotal_95_ModelDataList())($_0_in);
-    const $_11_in = Snippets2__tab_95_widget__insert_95_rows_95_calc("invoice_subtotal", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTtermCarrier)), Main__subtotal_95_ModelDataList(), $_0_in);
-    const $_12_in = Snippets2__tab_95_widget__table_95_composite(false, "WHS Routing", "warehouse", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTtermCarrier)), Main__items_95_ModelDataList())($_0_in);
-    const $_13_in = Snippets2__tab_95_widget__insert_95_rows_95_calc("warehouse", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTtermCarrier)), Main__whs_95_ModelDataList(), $_0_in);
-    const $_14_in = Snippets2__tab_95_widget__table_95_composite(true, "WHS Done", "warehouse_done", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTtermCarrier)), Main__items_95_ModelDataList())($_0_in);
-    const $_15_in = Snippets2__tab_95_widget__insert_95_rows_95_x("warehouse_done", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTtermCarrier)), Main__whs_95_ModelDataList(), $_0_in);
-    const $_16_in = Snippets2__tab_95_widget__add_95_whs_95_done_95_button("warehouse_done", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTtermCarrier)), Main__items_95_ModelDataList())($_0_in);
-    const $_17_in = Snippets2__tab_95_widget__table_95_composite(false, "WHS Backorders", "warehouse_backorders", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTtermCarrier)), Main__items_95_ModelDataList())($_0_in);
-    const $_18_in = Snippets2__tab_95_widget__insert_95_rows_95_calc("warehouse_backorders", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTtermCarrier)), Main__whs_95_ModelDataList(), $_0_in);
-    const $_19_in = Snippets2__tab_95_widget__insert_95_rows_95_x("pricelist", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("price", $HC_0_3$DataStore__FTtermCarrier)), Main__pricelist_95_ModelDataList_39_(), $_0_in);
-    const $_20_in = Snippets2__tab_95_widget__insert_95_rows_95_x("order1", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTtermCarrier)), Main__items_95_ModelDataList_39_(), $_0_in);
-    const $_21_in = Snippets2__tab_95_widget__insert_95_rows_95_x("order1", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTtermCarrier)), Main__items_95_ModelDataList_39__39_(), $_0_in);
-    const $_22_in = Snippets2__tab_95_widget__table_95_composite(false, "Order Total", "order_total", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTtermCarrier)), Main__t_95_ModelDataList())($_0_in);
-    const $_23_in = Snippets2__tab_95_widget__table_95_composite(false, "Invoice Total", "invoice_total", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTtermCarrier)), Main__t_95_ModelDataList())($_0_in);
-    const $_24_in = Snippets2__tab_95_widget__table_95_composite(true, "Payment Received", "payment_received", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTtermCarrier)), Main__t_95_ModelDataList())($_0_in);
-    return Snippets2__tab_95_widget__calc_95_order_95_subtotals("order1", "subtotal", "order_total", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTtermCarrier)), new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("price", $HC_0_3$DataStore__FTtermCarrier)), new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTtermCarrier)), $_0_in);
+    const $_5_in = Snippets2__tab_95_widget__table_95_composite(false, "Pricelist", "pricelist", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("price", $HC_0_3$DataStore__FTterm)), Main__pricelist_95_ModelDataList())($_0_in);
+    const $_6_in = Snippets2__tab_95_widget__table_95_composite(true, "Order1 Items", "order1", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTterm)), Main__items_95_ModelDataList())($_0_in);
+    const $_7_in = Snippets2__tab_95_widget__add_95_whs_95_button("order1", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTterm)), Main__items_95_ModelDataList())($_0_in);
+    const $_8_in = Snippets2__tab_95_widget__table_95_composite(false, "Order1 Subtotals", "subtotal", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTterm)), Main__subtotal_95_ModelDataList())($_0_in);
+    const $_9_in = Snippets2__tab_95_widget__insert_95_rows_95_calc("subtotal", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTterm)), Main__subtotal_95_ModelDataList(), $_0_in);
+    const $_10_in = Snippets2__tab_95_widget__table_95_composite(false, "Invoice1 Subtotals", "invoice_subtotal", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTterm)), Main__subtotal_95_ModelDataList())($_0_in);
+    const $_11_in = Snippets2__tab_95_widget__insert_95_rows_95_calc("invoice_subtotal", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTterm)), Main__subtotal_95_ModelDataList(), $_0_in);
+    const $_12_in = Snippets2__tab_95_widget__table_95_composite(false, "WHS Routing", "warehouse", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTterm)), Main__items_95_ModelDataList())($_0_in);
+    const $_13_in = Snippets2__tab_95_widget__insert_95_rows_95_calc("warehouse", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTterm)), Main__whs_95_ModelDataList(), $_0_in);
+    const $_14_in = Snippets2__tab_95_widget__table_95_composite(true, "WHS Done", "warehouse_done", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTterm)), Main__items_95_ModelDataList())($_0_in);
+    const $_15_in = Snippets2__tab_95_widget__insert_95_rows_95_x("warehouse_done", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTterm)), Main__whs_95_ModelDataList(), $_0_in);
+    const $_16_in = Snippets2__tab_95_widget__add_95_whs_95_done_95_button("warehouse_done", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTterm)), Main__items_95_ModelDataList())($_0_in);
+    const $_17_in = Snippets2__tab_95_widget__table_95_composite(false, "WHS Backorders", "warehouse_backorders", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTterm)), Main__items_95_ModelDataList())($_0_in);
+    const $_18_in = Snippets2__tab_95_widget__insert_95_rows_95_calc("warehouse_backorders", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTterm)), Main__whs_95_ModelDataList(), $_0_in);
+    const $_19_in = Snippets2__tab_95_widget__insert_95_rows_95_x("pricelist", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("price", $HC_0_3$DataStore__FTterm)), Main__pricelist_95_ModelDataList_39_(), $_0_in);
+    const $_20_in = Snippets2__tab_95_widget__insert_95_rows_95_x("order1", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTterm)), Main__items_95_ModelDataList_39_(), $_0_in);
+    const $_21_in = Snippets2__tab_95_widget__insert_95_rows_95_x("order1", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTterm)), Main__items_95_ModelDataList_39__39_(), $_0_in);
+    const $_22_in = Snippets2__tab_95_widget__table_95_composite(false, "Order Total", "order_total", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTterm)), Main__t_95_ModelDataList())($_0_in);
+    const $_23_in = Snippets2__tab_95_widget__table_95_composite(false, "Invoice Total", "invoice_total", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTterm)), Main__t_95_ModelDataList())($_0_in);
+    const $_24_in = Snippets2__tab_95_widget__table_95_composite(true, "Payment Received", "payment_received", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTterm)), Main__t_95_ModelDataList())($_0_in);
+    return Snippets2__tab_95_widget__calc_95_order_95_subtotals("order1", "subtotal", "order_total", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTterm)), new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("price", $HC_0_3$DataStore__FTterm)), new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTterm)), $_0_in);
 }
 
 // Snippets2.make_cells_editable
@@ -3190,10 +3172,10 @@ function DataStore__mulSchema2Vals($_0_arg, $_1_arg, $_2_arg){
             $cg$4 = $_2_arg.$1.subtract($_2_arg.$2);
             return DataStore__integer2t($cg$3.multiply($cg$4));
         } else {
-            $JSRTS.die("*** DataStore.idr:211:1-84:unmatched case in DataStore.mulSchema2Vals ***");
+            $JSRTS.die("*** DataStore.idr:207:1-77:unmatched case in DataStore.mulSchema2Vals ***");
         }
     } else {
-        $JSRTS.die("*** DataStore.idr:211:1-84:unmatched case in DataStore.mulSchema2Vals ***");
+        $JSRTS.die("*** DataStore.idr:207:1-77:unmatched case in DataStore.mulSchema2Vals ***");
     }
 }
 
@@ -3299,7 +3281,7 @@ function Snippets2__tab_95_widget__on_95_table_95_set_95_whs_95_route($_0_arg, $
 function Snippets2__tab_95_widget__on_95_table_95_whs_95_done($_0_arg, $_1_arg, $_2_arg, $_3_in){
     const $_4_in = JSIO__JSIO__console_95_log("updating whs done", $_3_in);
     const $_5_in = Snippets2__tab_95_widget__on_95_set_95_backorders(null, $_1_arg, $_2_arg, $_3_in);
-    return Snippets2__tab_95_widget__calc_95_order_95_subtotals("warehouse_done", "invoice_subtotal", "invoice_total", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTtermCarrier)), new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("price", $HC_0_3$DataStore__FTtermCarrier)), new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTtermCarrier)), $_3_in);
+    return Snippets2__tab_95_widget__calc_95_order_95_subtotals("warehouse_done", "invoice_subtotal", "invoice_total", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTterm)), new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("price", $HC_0_3$DataStore__FTterm)), new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTterm)), $_3_in);
 }
 
 // Main.pricelist_ModelDataList
@@ -3410,27 +3392,22 @@ function Snippets2__read_95_cells($_0_arg, $_1_arg){
 
 // Snippets2.read_cells_attr
 
-function Snippets2__read_95_cells_95_attr($_0_arg, $_1_arg){
+function Snippets2__read_95_cells_95_attr($_0_arg, $_1_arg, $_4_in){
     
     if(($_1_arg.type === 2)) {
-        return $partial_3_4$Snippets2___123_read_95_cells_95_attr_95_51_125_($_0_arg, $_1_arg.$1, $_1_arg.$2);
+        const $_50_in = Snippets2__read_95_cells_95_attr($_0_arg, $_1_arg.$1, $_4_in);
+        const $_51_in = Snippets2__read_95_cells_95_attr($_0_arg, $_1_arg.$2, $_4_in);
+        return new $HC_2_0$Builtins__MkPair($_50_in, $_51_in);
     } else if(($_1_arg.type === 1)) {
         const $cg$4 = $_1_arg.$2;
-        if(($cg$4.type === 3)) {
-            return $partial_2_3$Snippets2___123_read_95_cells_95_attr_95_53_125_($_0_arg, $_1_arg.$1);
-        } else {
-            $JSRTS.die("*** Snippets2.idr:312:1-315:61:unmatched case in Snippets2.read_cells_attr ***");
-        }
-    } else if(($_1_arg.type === 0)) {
-        
-        if(($_1_arg.$2.type === 3)) {
-            const $_36_in = ($_0_arg + ("_" + $_1_arg.$1));
-            return $partial_1_2$Snippets2___123_read_95_cells_95_attr_95_61_125_($_36_in);
-        } else {
-            $JSRTS.die("*** Snippets2.idr:312:1-315:61:unmatched case in Snippets2.read_cells_attr ***");
-        }
+        const $_55_in = JSIO__JSIO__get_95_text_95_dataval(($_0_arg + ("_" + $_1_arg.$1)), $_4_in);
+        return $_55_in;
     } else {
-        $JSRTS.die("*** Snippets2.idr:312:1-315:61:unmatched case in Snippets2.read_cells_attr ***");
+        
+        const $_66_in = ($_0_arg + ("_" + $_1_arg.$1));
+        const $_67_in = JSIO__JSIO__get_95_qty_95_int_95_datadr($_66_in, $_4_in);
+        const $_68_in = JSIO__JSIO__get_95_qty_95_int_95_datacr($_66_in, $_4_in);
+        return new $HC_2_0$DataStore__Tt((new $JSRTS.jsbn.BigInteger(''+($_67_in))), (new $JSRTS.jsbn.BigInteger(''+($_68_in))));
     }
 }
 
@@ -3439,7 +3416,7 @@ function Snippets2__read_95_cells_95_attr($_0_arg, $_1_arg){
 function Snippets2__read_95_cells_95_attr_95_row($_0_arg, $_1_arg, $_4_in){
     
     if(($_0_arg.type === 1)) {
-        const $_8_in = Snippets2__read_95_cells_95_attr($_0_arg.$1, $_1_arg)($_4_in);
+        const $_8_in = Snippets2__read_95_cells_95_attr($_0_arg.$1, $_1_arg, $_4_in);
         const $_9_in = Snippets2__read_95_cells_95_attr_95_row($_0_arg.$2, $_1_arg, $_4_in);
         return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_($_8_in, $HC_0_0$Prelude__List__Nil), $_9_in);
     } else {
@@ -3617,12 +3594,12 @@ function Snippets2__render_95_wo_95_ids__renderDataWithSchema2($_0_arg, $_1_arg)
 function Snippets2__tab_95_widget__render_95_rows_95_wo_95_ids($_0_arg, $_1_arg){
     let $cg$1 = null;
     $cg$1 = $_1_arg.$2;
-    const $_2_in = Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_1_3$Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_63_125_($_0_arg), $HC_0_0$Prelude__List__Nil, $cg$1);
+    const $_2_in = Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_1_3$Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_52_125_($_0_arg), $HC_0_0$Prelude__List__Nil, $cg$1);
     let $cg$2 = null;
     $cg$2 = $_1_arg.$3;
-    const $_12_in = Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_1_3$Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_65_125_($_0_arg), $HC_0_0$Prelude__List__Nil, $cg$2);
+    const $_12_in = Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_1_3$Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_54_125_($_0_arg), $HC_0_0$Prelude__List__Nil, $cg$2);
     const $_22_in = Prelude__List__zipWith(null, null, null, $partial_0_2$Snippets2__tab_95_widget___123_calc_95_order_95_subtotals_95_6_125_(), $_2_in, $_12_in);
-    return Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows2_95_13_125_(), "", Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_68_125_(), $HC_0_0$Prelude__List__Nil, $_22_in));
+    return Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows2_95_13_125_(), "", Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_57_125_(), $HC_0_0$Prelude__List__Nil, $_22_in));
 }
 
 // Prelude.List.reverseOnto
@@ -3662,10 +3639,10 @@ function DataStore__schema2ZeroVal($_0_arg){
         if(($_0_arg.$2.type === 3)) {
             return new $HC_2_0$DataStore__Tt((new $JSRTS.jsbn.BigInteger(("0"))), (new $JSRTS.jsbn.BigInteger(("0"))));
         } else {
-            $JSRTS.die("*** DataStore.idr:173:1-54:unmatched case in DataStore.schema2ZeroVal ***");
+            $JSRTS.die("*** DataStore.idr:169:1-47:unmatched case in DataStore.schema2ZeroVal ***");
         }
     } else {
-        $JSRTS.die("*** DataStore.idr:173:1-54:unmatched case in DataStore.schema2ZeroVal ***");
+        $JSRTS.die("*** DataStore.idr:169:1-47:unmatched case in DataStore.schema2ZeroVal ***");
     }
 }
 
@@ -3674,24 +3651,14 @@ function DataStore__schema2ZeroVal($_0_arg){
 function Snippets2__set_95_cells_95_attr($_0_arg, $_1_arg, $_2_arg){
     
     if(($_0_arg.type === 2)) {
-        return $partial_4_5$Snippets2___123_set_95_cells_95_attr_95_69_125_($_2_arg, $_0_arg.$1, $_1_arg, $_0_arg.$2);
+        return $partial_4_5$Snippets2___123_set_95_cells_95_attr_95_58_125_($_2_arg, $_0_arg.$1, $_1_arg, $_0_arg.$2);
     } else if(($_0_arg.type === 1)) {
         const $cg$4 = $_0_arg.$2;
-        if(($cg$4.type === 3)) {
-            return $partial_2_3$JSIO__JSIO__set_95_text_95_dataval(($_1_arg + ("_" + $_0_arg.$1)), $_2_arg);
-        } else {
-            $JSRTS.die("*** Snippets2.idr:386:1-388:51:unmatched case in Snippets2.set_cells_attr ***");
-        }
-    } else if(($_0_arg.type === 0)) {
-        
-        if(($_0_arg.$2.type === 3)) {
-            const $_25_in = ($_1_arg + ("_" + $_0_arg.$1));
-            return $partial_2_3$Snippets2___123_set_95_cells_95_attr_95_71_125_($_25_in, $_2_arg);
-        } else {
-            $JSRTS.die("*** Snippets2.idr:386:1-388:51:unmatched case in Snippets2.set_cells_attr ***");
-        }
+        return $partial_2_3$JSIO__JSIO__set_95_text_95_dataval(($_1_arg + ("_" + $_0_arg.$1)), $_2_arg);
     } else {
-        $JSRTS.die("*** Snippets2.idr:386:1-388:51:unmatched case in Snippets2.set_cells_attr ***");
+        
+        const $_25_in = ($_1_arg + ("_" + $_0_arg.$1));
+        return $partial_2_3$Snippets2___123_set_95_cells_95_attr_95_60_125_($_25_in, $_2_arg);
     }
 }
 
@@ -3718,33 +3685,33 @@ function JSIO__JSIO__set_95_text_95_dataval($_0_x, $_1_x1, $_2_w){
 function Prelude__Show__showLitChar($_0_arg){
     
     if(($_0_arg === "\x07")) {
-        return $partial_0_1$Prelude__Show___123_showLitChar_95_72_125_();
+        return $partial_0_1$Prelude__Show___123_showLitChar_95_61_125_();
     } else if(($_0_arg === "\b")) {
-        return $partial_0_1$Prelude__Show___123_showLitChar_95_73_125_();
+        return $partial_0_1$Prelude__Show___123_showLitChar_95_62_125_();
     } else if(($_0_arg === "\t")) {
-        return $partial_0_1$Prelude__Show___123_showLitChar_95_74_125_();
+        return $partial_0_1$Prelude__Show___123_showLitChar_95_63_125_();
     } else if(($_0_arg === "\n")) {
-        return $partial_0_1$Prelude__Show___123_showLitChar_95_75_125_();
+        return $partial_0_1$Prelude__Show___123_showLitChar_95_64_125_();
     } else if(($_0_arg === "\v")) {
-        return $partial_0_1$Prelude__Show___123_showLitChar_95_76_125_();
+        return $partial_0_1$Prelude__Show___123_showLitChar_95_65_125_();
     } else if(($_0_arg === "\f")) {
-        return $partial_0_1$Prelude__Show___123_showLitChar_95_77_125_();
+        return $partial_0_1$Prelude__Show___123_showLitChar_95_66_125_();
     } else if(($_0_arg === "\r")) {
-        return $partial_0_1$Prelude__Show___123_showLitChar_95_78_125_();
+        return $partial_0_1$Prelude__Show___123_showLitChar_95_67_125_();
     } else if(($_0_arg === "\x0e")) {
-        return $partial_2_3$Prelude__Show__protectEsc($partial_0_1$Prelude__Show___123_showLitChar_95_79_125_(), "\\SO");
+        return $partial_2_3$Prelude__Show__protectEsc($partial_0_1$Prelude__Show___123_showLitChar_95_68_125_(), "\\SO");
     } else if(($_0_arg === "\\")) {
-        return $partial_0_1$Prelude__Show___123_showLitChar_95_80_125_();
+        return $partial_0_1$Prelude__Show___123_showLitChar_95_69_125_();
     } else if(($_0_arg === "\x7f")) {
-        return $partial_0_1$Prelude__Show___123_showLitChar_95_81_125_();
+        return $partial_0_1$Prelude__Show___123_showLitChar_95_70_125_();
     } else {
         const $cg$3 = Prelude__Show__showLitChar_58_getAt_58_10(null, (new $JSRTS.jsbn.BigInteger(''+((($_0_arg).charCodeAt(0)|0)))), Prelude__Show__showLitChar_58_asciiTab_58_10(null));
         if(($cg$3.type === 1)) {
-            return $partial_1_2$Prelude__Show___123_showLitChar_95_82_125_($cg$3.$1);
+            return $partial_1_2$Prelude__Show___123_showLitChar_95_71_125_($cg$3.$1);
         } else {
             
             if((Prelude__Interfaces__Prelude__Interfaces___64_Prelude__Interfaces__Ord_36_Char_58__33_compare_58_0($_0_arg, "\x7f") > 0)) {
-                return $partial_1_2$Prelude__Show___123_showLitChar_95_83_125_($_0_arg);
+                return $partial_1_2$Prelude__Show___123_showLitChar_95_72_125_($_0_arg);
             } else {
                 return $partial_1_2$prim_95__95_strCons($_0_arg);
             }
@@ -3784,7 +3751,7 @@ function Main__t_95_ModelDataList(){
 
 function Snippets2__tab_95_widget__table_95_amendments($_0_arg, $_1_arg, $_2_arg, $_3_arg){
     const $_4_in = $_1_arg;
-    return $partial_4_5$Snippets2__tab_95_widget___123_table_95_amendments_95_84_125_($_4_in, $_2_arg, $_3_arg, $_0_arg);
+    return $partial_4_5$Snippets2__tab_95_widget___123_table_95_amendments_95_73_125_($_4_in, $_2_arg, $_3_arg, $_0_arg);
 }
 
 // Snippets2.tab_widget.table_composite
@@ -3793,7 +3760,7 @@ function Snippets2__tab_95_widget__table_95_composite($_0_arg, $_1_arg, $_2_arg,
     let $cg$1 = null;
     $cg$1 = $_4_arg.$1;
     const $_5_in = ($_2_arg + ("__composite__" + $cg$1));
-    return $partial_6_7$Snippets2__tab_95_widget___123_table_95_composite_95_85_125_($_2_arg, $_5_in, $_1_arg, $_3_arg, $_4_arg, $_0_arg);
+    return $partial_6_7$Snippets2__tab_95_widget___123_table_95_composite_95_74_125_($_2_arg, $_5_in, $_1_arg, $_3_arg, $_4_arg, $_0_arg);
 }
 
 // Printf.toFunction
@@ -3805,13 +3772,13 @@ function Printf__toFunction($_0_arg, $_1_arg){
         if(($_0_arg.type === 3)) {
             return $_1_arg;
         } else if(($_0_arg.type === 0)) {
-            return $partial_2_3$Printf___123_toFunction_95_86_125_($_0_arg.$1, $_1_arg);
+            return $partial_2_3$Printf___123_toFunction_95_75_125_($_0_arg.$1, $_1_arg);
         } else if(($_0_arg.type === 2)) {
             $tco$$_1_arg = ($_1_arg + (($_0_arg.$1)+("")));
             $_0_arg = $_0_arg.$2;
             $_1_arg = $tco$$_1_arg;
         } else {
-            return $partial_2_3$Printf___123_toFunction_95_87_125_($_0_arg.$1, $_1_arg);
+            return $partial_2_3$Printf___123_toFunction_95_76_125_($_0_arg.$1, $_1_arg);
         }
     }
 }
@@ -3848,7 +3815,7 @@ function Snippets2__tab_95_widget__update_95_cells_95_ke1($_0_arg, $_1_arg, $_2_
 function Snippets2__update_95_cells_95_td($_0_arg, $_1_arg, $_2_arg){
     
     if(($_0_arg.type === 2)) {
-        return $partial_4_5$Snippets2___123_set_95_cells_95_attr_95_69_125_($_2_arg, $_0_arg.$1, $_1_arg, $_0_arg.$2);
+        return $partial_4_5$Snippets2___123_set_95_cells_95_attr_95_58_125_($_2_arg, $_0_arg.$1, $_1_arg, $_0_arg.$2);
     } else if(($_0_arg.type === 1)) {
         
         $JSRTS.die("*** Snippets2.idr:441:1-443:54:unmatched case in Snippets2.update_cells_td ***");
@@ -4408,7 +4375,7 @@ function Snippets2__tab_95_widget___123_on_95_table_95_commit_95_36_125_($_0_lif
         $_119_in = $HC_0_0$MkUnit;
     }
     
-    return Snippets2__tab_95_widget__calc_95_order_95_subtotals("order1", "subtotal", "order_total", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTtermCarrier)), new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("price", $HC_0_3$DataStore__FTtermCarrier)), new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTtermCarrier)), $_5_lift);
+    return Snippets2__tab_95_widget__calc_95_order_95_subtotals("order1", "subtotal", "order_total", new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("qty", $HC_0_3$DataStore__FTterm)), new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("price", $HC_0_3$DataStore__FTterm)), new $HC_2_0$DataStore__MkModelSchema(new $HC_2_2$DataStore_____42___(new $HC_2_1$DataStore__EField("sku", new $HC_1_3$DataStore__NSCode("asset")), new $HC_2_1$DataStore__EField("cy", new $HC_1_3$DataStore__NSCode("asset"))), new $HC_2_0$DataStore__IField("subtotal", $HC_0_3$DataStore__FTterm)), $_5_lift);
 }
 
 // Snippets2.tab_widget.{on_table_commit_37}
@@ -4488,48 +4455,25 @@ function Snippets2___123_read_95_cells_95_50_125_($_0_lift, $_1_lift, $_2_lift){
     return DataStore__integer2t((new $JSRTS.jsbn.BigInteger(''+($_32_in))));
 }
 
-// Snippets2.{read_cells_attr_51}
+// Snippets2.tab_widget.{render_rows_wo_ids_52}
 
-function Snippets2___123_read_95_cells_95_attr_95_51_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift){
-    const $_5_in = Snippets2__read_95_cells_95_attr($_0_lift, $_1_lift)($_3_lift);
-    const $_6_in = Snippets2__read_95_cells_95_attr($_0_lift, $_2_lift)($_3_lift);
-    return new $HC_2_0$Builtins__MkPair($_5_in, $_6_in);
-}
-
-// Snippets2.{read_cells_attr_53}
-
-function Snippets2___123_read_95_cells_95_attr_95_53_125_($_0_lift, $_1_lift, $_2_lift){
-    const $_16_in = JSIO__JSIO__get_95_text_95_dataval(($_0_lift + ("_" + $_1_lift)), $_2_lift);
-    return $_16_in;
-}
-
-// Snippets2.{read_cells_attr_61}
-
-function Snippets2___123_read_95_cells_95_attr_95_61_125_($_0_lift, $_1_lift){
-    const $_38_in = JSIO__JSIO__get_95_qty_95_int_95_datadr($_0_lift, $_1_lift);
-    const $_39_in = JSIO__JSIO__get_95_qty_95_int_95_datacr($_0_lift, $_1_lift);
-    return new $HC_2_0$DataStore__Tt((new $JSRTS.jsbn.BigInteger(''+($_38_in))), (new $JSRTS.jsbn.BigInteger(''+($_39_in))));
-}
-
-// Snippets2.tab_widget.{render_rows_wo_ids_63}
-
-function Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_63_125_($_0_lift, $_1_lift, $_2_lift){
+function Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_52_125_($_0_lift, $_1_lift, $_2_lift){
     let $cg$1 = null;
     $cg$1 = $_0_lift.$1;
     return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_(Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows2_95_13_125_(), "", Snippets2__render_95_wo_95_ids__renderDataWithSchema2($cg$1, $_1_lift)), $HC_0_0$Prelude__List__Nil), $_2_lift);
 }
 
-// Snippets2.tab_widget.{render_rows_wo_ids_65}
+// Snippets2.tab_widget.{render_rows_wo_ids_54}
 
-function Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_65_125_($_0_lift, $_1_lift, $_2_lift){
+function Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_54_125_($_0_lift, $_1_lift, $_2_lift){
     let $cg$1 = null;
     $cg$1 = $_0_lift.$2;
     return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_(Prelude__Foldable__Prelude__List___64_Prelude__Foldable__Foldable_36_List_58__33_foldr_58_0(null, null, $partial_0_2$Snippets2__tab_95_widget___123_insert_95_rows2_95_13_125_(), "", Snippets2__render_95_wo_95_ids__renderDataWithSchema2($cg$1, $_1_lift)), $HC_0_0$Prelude__List__Nil), $_2_lift);
 }
 
-// Snippets2.tab_widget.{render_rows_wo_ids_68}
+// Snippets2.tab_widget.{render_rows_wo_ids_57}
 
-function Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_68_125_($_0_lift, $_1_lift){
+function Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_57_125_($_0_lift, $_1_lift){
     let $cg$1 = null;
     let $cg$2 = null;
     if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
@@ -4556,17 +4500,17 @@ function Snippets2__tab_95_widget___123_render_95_rows_95_wo_95_ids_95_68_125_($
     return Prelude__List___43__43_(null, $cg$1, $_1_lift);
 }
 
-// Snippets2.{set_cells_attr_69}
+// Snippets2.{set_cells_attr_58}
 
-function Snippets2___123_set_95_cells_95_attr_95_69_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift, $_4_lift){
+function Snippets2___123_set_95_cells_95_attr_95_58_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift, $_4_lift){
     
     const $_9_in = Snippets2__set_95_cells_95_attr($_1_lift, $_2_lift, $_0_lift.$1)($_4_lift);
     return Snippets2__set_95_cells_95_attr($_3_lift, $_2_lift, $_0_lift.$2)($_4_lift);
 }
 
-// Snippets2.{set_cells_attr_71}
+// Snippets2.{set_cells_attr_60}
 
-function Snippets2___123_set_95_cells_95_attr_95_71_125_($_0_lift, $_1_lift, $_2_lift){
+function Snippets2___123_set_95_cells_95_attr_95_60_125_($_0_lift, $_1_lift, $_2_lift){
     let $cg$1 = null;
     $cg$1 = $_1_lift.$1;
     const $_29_in = JSIO__JSIO__set_95_qty_95_int_95_datadr($_0_lift, (($cg$1).intValue()|0), $_2_lift);
@@ -4575,81 +4519,81 @@ function Snippets2___123_set_95_cells_95_attr_95_71_125_($_0_lift, $_1_lift, $_2
     return JSIO__JSIO__set_95_qty_95_int_95_datacr($_0_lift, (($cg$2).intValue()|0), $_2_lift);
 }
 
-// Prelude.Show.{showLitChar_72}
+// Prelude.Show.{showLitChar_61}
 
-function Prelude__Show___123_showLitChar_95_72_125_($_0_lift){
+function Prelude__Show___123_showLitChar_95_61_125_($_0_lift){
     return ("\\a" + $_0_lift);
 }
 
-// Prelude.Show.{showLitChar_73}
+// Prelude.Show.{showLitChar_62}
 
-function Prelude__Show___123_showLitChar_95_73_125_($_0_lift){
+function Prelude__Show___123_showLitChar_95_62_125_($_0_lift){
     return ("\\b" + $_0_lift);
 }
 
-// Prelude.Show.{showLitChar_74}
+// Prelude.Show.{showLitChar_63}
 
-function Prelude__Show___123_showLitChar_95_74_125_($_0_lift){
+function Prelude__Show___123_showLitChar_95_63_125_($_0_lift){
     return ("\\t" + $_0_lift);
 }
 
-// Prelude.Show.{showLitChar_75}
+// Prelude.Show.{showLitChar_64}
 
-function Prelude__Show___123_showLitChar_95_75_125_($_0_lift){
+function Prelude__Show___123_showLitChar_95_64_125_($_0_lift){
     return ("\\n" + $_0_lift);
 }
 
-// Prelude.Show.{showLitChar_76}
+// Prelude.Show.{showLitChar_65}
 
-function Prelude__Show___123_showLitChar_95_76_125_($_0_lift){
+function Prelude__Show___123_showLitChar_95_65_125_($_0_lift){
     return ("\\v" + $_0_lift);
 }
 
-// Prelude.Show.{showLitChar_77}
+// Prelude.Show.{showLitChar_66}
 
-function Prelude__Show___123_showLitChar_95_77_125_($_0_lift){
+function Prelude__Show___123_showLitChar_95_66_125_($_0_lift){
     return ("\\f" + $_0_lift);
 }
 
-// Prelude.Show.{showLitChar_78}
+// Prelude.Show.{showLitChar_67}
 
-function Prelude__Show___123_showLitChar_95_78_125_($_0_lift){
+function Prelude__Show___123_showLitChar_95_67_125_($_0_lift){
     return ("\\r" + $_0_lift);
 }
 
-// Prelude.Show.{showLitChar_79}
+// Prelude.Show.{showLitChar_68}
 
-function Prelude__Show___123_showLitChar_95_79_125_($_0_lift){
+function Prelude__Show___123_showLitChar_95_68_125_($_0_lift){
     return ($_0_lift === "H");
 }
 
-// Prelude.Show.{showLitChar_80}
+// Prelude.Show.{showLitChar_69}
 
-function Prelude__Show___123_showLitChar_95_80_125_($_0_lift){
+function Prelude__Show___123_showLitChar_95_69_125_($_0_lift){
     return ("\\\\" + $_0_lift);
 }
 
-// Prelude.Show.{showLitChar_81}
+// Prelude.Show.{showLitChar_70}
 
-function Prelude__Show___123_showLitChar_95_81_125_($_0_lift){
+function Prelude__Show___123_showLitChar_95_70_125_($_0_lift){
     return ("\\DEL" + $_0_lift);
 }
 
-// Prelude.Show.{showLitChar_82}
+// Prelude.Show.{showLitChar_71}
 
-function Prelude__Show___123_showLitChar_95_82_125_($_0_lift, $_1_lift){
+function Prelude__Show___123_showLitChar_95_71_125_($_0_lift, $_1_lift){
     return prim_95__95_strCons("\\", ($_0_lift + $_1_lift));
 }
 
-// Prelude.Show.{showLitChar_83}
+// Prelude.Show.{showLitChar_72}
 
-function Prelude__Show___123_showLitChar_95_83_125_($_0_lift, $_1_lift){
+function Prelude__Show___123_showLitChar_95_72_125_($_0_lift, $_1_lift){
     return prim_95__95_strCons("\\", Prelude__Show__protectEsc($partial_0_1$Prelude__Chars__isDigit(), Prelude__Show__primNumShow(null, $partial_0_1$prim_95__95_toStrInt(), $HC_0_0$Prelude__Show__Open, (($_0_lift).charCodeAt(0)|0)), $_1_lift));
 }
 
-// Snippets2.tab_widget.{table_amendments_84}
+// Snippets2.tab_widget.{table_amendments_73}
 
-function Snippets2__tab_95_widget___123_table_95_amendments_95_84_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift, $_4_lift){
+function Snippets2__tab_95_widget___123_table_95_amendments_95_73_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift, $_4_lift){
     const $_6_in = Snippets2__tab_95_widget__insert_95_table_95_wo_95_ids($_0_lift, $_1_lift, $_2_lift)($_4_lift);
     let $cg$1 = null;
     if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
@@ -4675,9 +4619,9 @@ function Snippets2__tab_95_widget___123_table_95_amendments_95_84_125_($_0_lift,
     return JSIO__JSIO__insert_95_adjancent_95_html($_0_lift, "afterbegin", Printf__toFunction(Printf__format($cg$1), "")($_3_lift), $_4_lift);
 }
 
-// Snippets2.tab_widget.{table_composite_85}
+// Snippets2.tab_widget.{table_composite_74}
 
-function Snippets2__tab_95_widget___123_table_95_composite_95_85_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift, $_4_lift, $_5_lift, $_6_lift){
+function Snippets2__tab_95_widget___123_table_95_composite_95_74_125_($_0_lift, $_1_lift, $_2_lift, $_3_lift, $_4_lift, $_5_lift, $_6_lift){
     let $cg$1 = null;
     if((Decidable__Equality__Decidable__Equality___64_Decidable__Equality__DecEq_36_Bool_58__33_decEq_58_0(true, true).type === 1)) {
         $cg$1 = $HC_0_0$Prelude__List__Nil;
@@ -4801,15 +4745,15 @@ function Snippets2__tab_95_widget___123_table_95_composite_95_85_125_($_0_lift, 
     }
 }
 
-// Printf.{toFunction_86}
+// Printf.{toFunction_75}
 
-function Printf___123_toFunction_95_86_125_($_0_lift, $_1_lift, $_2_lift){
+function Printf___123_toFunction_95_75_125_($_0_lift, $_1_lift, $_2_lift){
     return Printf__toFunction($_0_lift, ($_1_lift + Prelude__Show__primNumShow(null, $partial_0_1$prim_95__95_toStrBigInt(), $HC_0_0$Prelude__Show__Open, $_2_lift)));
 }
 
-// Printf.{toFunction_87}
+// Printf.{toFunction_76}
 
-function Printf___123_toFunction_95_87_125_($_0_lift, $_1_lift, $_2_lift){
+function Printf___123_toFunction_95_76_125_($_0_lift, $_1_lift, $_2_lift){
     return Printf__toFunction($_0_lift, ($_1_lift + $_2_lift));
 }
 

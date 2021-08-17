@@ -26,13 +26,13 @@ fxType : Schema2
 fxType = (EField "p1" (NSCode "partner") ) .*. (EField "p2" (NSCode "partner"))
 
 qtyType : Schema2 
-qtyType = IField "qty" FIntCarrier
+qtyType = IField "qty" FInt
 
 priceUnitType : Schema2 
-priceUnitType = IField "price_unit" FIntCarrier
+priceUnitType = IField "price_unit" FInt
 
 priceType : Schema2 
-priceType = IField "price=qty*price_unit" FIntCarrier
+priceType = IField "price=qty*price_unit" FInt
 
 drop_key : (c:String) -> (Schema2 ) -> (Schema2 )
 drop_key c ( x@(EField n1 ns1) .*. y@(EField n2 ns2)) = case (c==n1) of 
@@ -87,13 +87,13 @@ namespace convert_s3LR_drop_col
 ----------- schema
 
 valItems : Schema2 
-valItems = (IField "qty" FTtermCarrier)
+valItems = (IField "qty" FTterm)
 
 priceItems : Schema2 
-priceItems = (IField "price" FTtermCarrier)
+priceItems = (IField "price" FTterm)
 
 subtotalItems : Schema2 
-subtotalItems = (IField "subtotal" FTtermCarrier)
+subtotalItems = (IField "subtotal" FTterm)
 
 Items_ModelSchema : ModelSchema
 Items_ModelSchema = MkModelSchema keyItems valItems "items"
@@ -142,9 +142,9 @@ namespace render_with_ids
   renderDataWithSchema2 p_id {schema = (IField name FBool)}   False = [render_text_in_td_tag2   (cell_id p_id name) "False"]
   renderDataWithSchema2 p_id {schema = (IField name FString)} item  = [render_text_in_td_tag2   (cell_id p_id name) item]
   renderDataWithSchema2 p_id {schema = (IField name FDateTime)} item  = [render_number_in_td_tag2   (cell_id p_id name) (int2integer item)]    
-  renderDataWithSchema2 p_id {schema = (IField name FTtermCarrier)}  item  = [render_tterm_in_td_tag2  (cell_id p_id name) item]
-  renderDataWithSchema2 p_id {schema = (IField name FIntCarrier)}  item  = [render_number_in_td_tag2  (cell_id p_id name) (int2integer item)]  
-  renderDataWithSchema2 p_id {schema = (IField name FOPcarrier)}  item  = [render_text_in_td_tag2  (cell_id p_id name) (show item)]    
+  renderDataWithSchema2 p_id {schema = (IField name FTterm)}  item  = [render_tterm_in_td_tag2  (cell_id p_id name) item]
+  renderDataWithSchema2 p_id {schema = (IField name FInt)}  item  = [render_number_in_td_tag2  (cell_id p_id name) (int2integer item)]  
+--  renderDataWithSchema2 p_id {schema = (IField name FOP)}  item  = [render_text_in_td_tag2  (cell_id p_id name) (show item)]    
   renderDataWithSchema2 p_id {schema = (EField name (NSInteger ns))}      item  = [render_number_in_td_tag2 (cell_id p_id name) item]
   renderDataWithSchema2 p_id {schema = (EField name (NSInt ns))}      item  = [render_number_in_td_tag2 (cell_id p_id name) (int2integer item)]  
   renderDataWithSchema2 p_id {schema = (EField name (NSSeq ns))}      item  = [render_number_in_td_tag2 (cell_id p_id name) (int2integer item)]  
@@ -176,9 +176,9 @@ namespace render_wo_ids
   renderDataWithSchema2 {schema = (IField name FBool)}   False = [render_text_in_td_tag2 "False"]
   renderDataWithSchema2 {schema = (IField name FString)} item  = [render_text_in_td_tag2 item]
   renderDataWithSchema2 {schema = (IField name FDateTime)} item  = [render_number_in_td_tag2 (int2integer item)]  
-  renderDataWithSchema2 {schema = (IField name FTtermCarrier)}  item  = [render_tterm_in_td_tag2 item]
-  renderDataWithSchema2 {schema = (IField name FIntCarrier)}  item  = [render_number_in_td_tag2 (int2integer item)]
-  renderDataWithSchema2 {schema = (IField name FOPcarrier)}  item  = [render_text_in_td_tag2 (show item)]
+  renderDataWithSchema2 {schema = (IField name FTterm)}  item  = [render_tterm_in_td_tag2 item]
+  renderDataWithSchema2 {schema = (IField name FInt)}  item  = [render_number_in_td_tag2 (int2integer item)]
+--  renderDataWithSchema2 {schema = (IField name FOP)}  item  = [render_text_in_td_tag2 (show item)]
   renderDataWithSchema2 {schema = (EField name (NSInteger ns) )}      item  = [render_number_in_td_tag2 item]
   renderDataWithSchema2 {schema = (EField name (NSInt ns) )}      item  = [render_number_in_td_tag2 (int2integer item)]  
   renderDataWithSchema2 {schema = (EField name (NSSeq ns) )}      item  = [render_number_in_td_tag2 (int2integer item)]    
@@ -196,7 +196,7 @@ get_cell_keys p_id (y .+. z)  = (get_cell_keys p_id y) ++ (get_cell_keys p_id z)
 
 public export
 make_cells_editable : String -> (s:Schema2 ) -> JS_IO ()
-make_cells_editable p_id (IField name FTtermCarrier)  = do
+make_cells_editable p_id (IField name FTterm)  = do
                    let _cell_id = cell_id p_id name
                    let _cell_input_id = cell_input_id p_id name
                    qty <- get_qty_int _cell_id
@@ -204,7 +204,7 @@ make_cells_editable p_id (IField name FTtermCarrier)  = do
                    let input_element = render_number_input _cell_input_id qty_integer
                    update_element_text (cell_id p_id name) ""
                    insert_beforeend _cell_id input_element
-make_cells_editable p_id (IField name FIntCarrier)  = do
+make_cells_editable p_id (IField name FInt)  = do
                    let _cell_id = cell_id p_id name
                    let _cell_input_id = cell_input_id p_id name
                    qty <- get_qty_int _cell_id
@@ -224,14 +224,14 @@ make_cells_editable p_id (y .+. z)  = do
 
 public export
 make_cells_ro : String -> (s:Schema2 ) -> JS_IO ()
-make_cells_ro p_id (IField name FTtermCarrier)  = do
+make_cells_ro p_id (IField name FTterm)  = do
                    let _cell_id = cell_id p_id name
                    let _cell_input_id = cell_input_id p_id name
                    -- need to get into the input tag
                    qty <- get_qty_int_value2 _cell_input_id
                    let qty_string = (the String (cast qty))
                    update_element_text (cell_id p_id name) qty_string
-make_cells_ro p_id (IField name FIntCarrier)  = do
+make_cells_ro p_id (IField name FInt)  = do
                    let _cell_id = cell_id p_id name
                    let _cell_input_id = cell_input_id p_id name
                    -- need to get into the input tag
@@ -261,12 +261,12 @@ read_cells p_id (IField name FDateTime) = do
                    let _cell_id = cell_id p_id name
                    qty <- get_qty_int _cell_id
                    pure qty
-read_cells p_id (IField name FTtermCarrier)  = do
+read_cells p_id (IField name FTterm)  = do
                    let _cell_id = cell_id p_id name
                    qty <- get_qty_int _cell_id
                    let qty_integer = the Integer (cast qty)
                    pure (integer2t qty_integer)                   
-read_cells p_id (IField name FIntCarrier)  = do
+read_cells p_id (IField name FInt)  = do
                    let _cell_id = cell_id p_id name
                    qty <- get_qty_int _cell_id
                    pure qty
@@ -318,7 +318,7 @@ read_cells_attr p_id (IField name FString) = do
                    v <- get_text_dataval _cell_id
                    pure v
                    
-read_cells_attr p_id (IField name FTtermCarrier)  = do
+read_cells_attr p_id (IField name FTterm)  = do
                    let _cell_input_id = cell_id p_id name
                    dr <- get_qty_int_datadr _cell_input_id
                    cr <- get_qty_int_datacr _cell_input_id 
@@ -326,7 +326,7 @@ read_cells_attr p_id (IField name FTtermCarrier)  = do
                    let cr_integer = the Integer (cast cr)
                    pure (Tt dr_integer cr_integer)
                    
-read_cells_attr p_id (IField name FIntCarrier)  = do
+read_cells_attr p_id (IField name FInt)  = do
                    let _cell_input_id = cell_id p_id name
                    dr <- get_qty_int_datadr _cell_input_id
                    --cr <- get_qty_int_datacr _cell_input_id 
@@ -394,12 +394,12 @@ set_cells_attr p_id {schema=(IField name FBool)} False= do
 set_cells_attr p_id {schema=(IField name FString)} item = do
                    let _cell_id = cell_id p_id name
                    set_text_dataval _cell_id item
-set_cells_attr p_id {schema=(IField name FTtermCarrier)} item= do
+set_cells_attr p_id {schema=(IField name FTterm)} item= do
                    let _cell_id = cell_id p_id name
                    set_qty_int_datadr _cell_id (integer_to_int (dr item))
                    set_qty_int_datacr _cell_id (integer_to_int (cr item))
                    
-set_cells_attr p_id {schema=(IField name FIntCarrier)} item= do
+set_cells_attr p_id {schema=(IField name FInt)} item= do
                    let _cell_id = cell_id p_id name
                    set_qty_int_datadr _cell_id item --(integer_to_int (dr item))
                    --set_qty_int_datacr _cell_id (integer_to_int (cr item))
@@ -447,11 +447,11 @@ update_cells_td p_id {schema=(IField name FBool)} False= do
 update_cells_td p_id {schema=(IField name FString)} item = do
                    let _cell_id = cell_id p_id name
                    update_element_text _cell_id item
-update_cells_td p_id {schema=(IField name FTtermCarrier)} item= do
+update_cells_td p_id {schema=(IField name FTterm)} item= do
                    let _cell_id = cell_id p_id name
                    update_element_text _cell_id (printf "%d" (t2integer item))
                    
-update_cells_td p_id {schema=(IField name FIntCarrier)} item= do
+update_cells_td p_id {schema=(IField name FInt)} item= do
                    let _cell_id = cell_id p_id name
                    update_element_text _cell_id (printf "%d" (int2integer item))
 update_cells_td p_id {schema=(IField name FDateTime)} item= do
@@ -492,10 +492,10 @@ schema2thead2 sch = ret where
   schema2th (IField name FString) = [printf "<th>%s</th>" name ]
 --  schema2th (IField name (Fm2o rel)) = [printf "<th>%s</th>" name ]  
 --  schema2th (IField name FTterm ) = [printf "<th>%s</th>" name ]     --SchemaType2 (IField name FTterm ) = Tterm
-  schema2th (IField name FTtermCarrier ) = [printf "<th>%s</th>" name ]     --SchemaType2 (IField name FTterm ) = Tterm  
-  schema2th (IField name FIntCarrier ) = [printf "<th>%s</th>" name ] 
+  schema2th (IField name FTterm ) = [printf "<th>%s</th>" name ]     --SchemaType2 (IField name FTterm ) = Tterm  
+  schema2th (IField name FInt ) = [printf "<th>%s</th>" name ] 
   schema2th (IField name FDateTime ) = [printf "<th>%s</th>" name ]   
-  schema2th (IField name FOPcarrier ) = [printf "<th>%s</th>" name ]
+--  schema2th (IField name FOP ) = [printf "<th>%s</th>" name ]
   schema2th (EField name (NSInteger ns) ) = [printf "<th>%s[%s]</th>" name ns]
   schema2th (EField name (NSInt ns) ) = [printf "<th>%s[%s]</th>" name ns]  
   schema2th (EField name (NSSeq ns) ) = [printf "<th>%s[%s]</th>" name ns]  
@@ -513,10 +513,10 @@ renderDataAsKey : (SchemaType2 schema) -> String
 renderDataAsKey {schema = (IField name FBool)}   True = "True"
 renderDataAsKey {schema = (IField name FBool)}   False = "False"
 renderDataAsKey {schema = (IField name FString)} item = item
-renderDataAsKey {schema = (IField name FTtermCarrier)}  item = the String (cast (t2integer item))
-renderDataAsKey {schema = (IField name FIntCarrier)}  item = the String (cast item)
+renderDataAsKey {schema = (IField name FTterm)}  item = the String (cast (t2integer item))
+renderDataAsKey {schema = (IField name FInt)}  item = the String (cast item)
 renderDataAsKey {schema = (IField name FDateTime)}  item = the String (cast item)
-renderDataAsKey {schema = (IField name FOPcarrier)}  item = show item
+--renderDataAsKey {schema = (IField name FOP)}  item = show item
 renderDataAsKey {schema = (EField name (NSInteger ns) )}      item = the String (cast item)
 renderDataAsKey {schema = (EField name (NSInt ns) )}      item = the String (cast item)
 renderDataAsKey {schema = (EField name (NSSeq ns) )}      item = the String (cast item)
@@ -741,8 +741,8 @@ namespace tab_widget
 
    public export
    convert_2sub : (sb: Schema2 ) -> (SchemaType2 si) -> (SchemaType2 sb)
-   convert_2sub (IField namex FTtermCarrier) {si = (IField name FTtermCarrier) } item = item
-   convert_2sub (IField namex FIntCarrier) {si = (IField name FIntCarrier) } item = item   
+   convert_2sub (IField namex FTterm) {si = (IField name FTterm) } item = item
+   convert_2sub (IField namex FInt) {si = (IField name FInt) } item = item   
    convert_2sub sb {si = (y .*. z)} it = convert_2sub sb it --(convert_items2sub sb it1, convert_items2sub sb it2)
 
    public export
