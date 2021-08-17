@@ -9,10 +9,6 @@ import JSIO.JSIO
 (>>) : Monad m => m a -> m b -> m b
 (>>) x y = x >>= (\_ => y)
 
-
---msgTypes : Schema2 Key
-
-
 keyItems : Schema2 
 keyItems = (EField "sku" (NSCode "asset") ) .*. (EField "cy" (NSCode "asset"))
 
@@ -29,120 +25,15 @@ versionType = (EField "version" (NSSeq "version"))
 fxType : Schema2 
 fxType = (EField "p1" (NSCode "partner") ) .*. (EField "p2" (NSCode "partner"))
 
-{-
-versionNode : Schema2Tree Key
-versionNode = S2Name "version" (S2Node versionType)
-
-msgNode : Schema2Tree Key
-msgNode = S2Name "msg" (S2Node msgType)
-
-fxNode : Schema2Tree Key
-fxNode =  S2Name "fx" (S2Node fxType)
-
-itemsNode : Schema2Tree Key
-itemsNode = S2Name "items" (S2Node keyItems)
-
-deliveryNode : Schema2Tree Key
-deliveryNode = S2Name "delivery" (S2Node (EField "l1" (NSCode "location") ))
-
-billingNode : Schema2Tree Key
-billingNode = S2Name "billing" (S2Node (EField "l2" (NSCode "location") ))
-
-exNode : Schema2Tree Key
-exNode = S2Name "exchange" (fxNode :: itemsNode)
-
-
-moveNode : Schema2Tree Key
-moveNode = S2Name "move" (fxNode :: (S2Node (EField "sku" (NSCode "asset") )) )
-
-payNode : Schema2Tree Key
-payNode = S2Name "pay" (fxNode :: (S2Node (EField "cy" (NSCode "asset") )) )
-
-
-orderNode : Schema2Tree Key
-orderNode = S2Name "order" (exNode :: deliveryNode :: billingNode)
-
-invoiceNode : Schema2Tree Key
-invoiceNode = S2Name "invoice" (exNode :: deliveryNode :: billingNode)
-
-
-pickingNode : Schema2Tree Key
-pickingNode = S2Name "picking" ( moveNode :: deliveryNode)
-
-paymentNode : Schema2Tree Key
-paymentNode = S2Name "payment" ( payNode :: billingNode)
-
-
---- Messages
-orderMsgNode : Schema2Tree Key
-orderMsgNode = S2Name "order_msg" (msgNode :: orderNode)
-
-orderVersionMsgNode : Schema2Tree Key
-orderVersionMsgNode = S2Name "order_msg_v" (orderMsgNode :: versionNode)
-
-
-
-invoiceMsgNode : Schema2Tree Key
-invoiceMsgNode = S2Name "invoice_msg" (msgNode :: invoiceNode)
-
-pickingMsgNode : Schema2Tree Key
-pickingMsgNode = S2Name "picking" (msgNode :: pickingNode)
-
-paymentMsgNode : Schema2Tree Key
-paymentMsgNode = S2Name "payment" (msgNode :: paymentNode)
--}
 qtyType : Schema2 
 qtyType = IFieldAlg "qty" FIntCarrier
 
 priceUnitType : Schema2 
---priceUnitType = IFieldAlg "price_unit <- pricelist[order/exchange/items].price_unit" FIntCarrier
 priceUnitType = IFieldAlg "price_unit" FIntCarrier
 
 priceType : Schema2 
 priceType = IFieldAlg "price=qty*price_unit" FIntCarrier
 
-{-
-qtyNode : Schema2Tree Val
-qtyNode = S2Name "qty" (S2Node qtyType)
-
-priceUnitNode : Schema2Tree Val
-priceUnitNode = S2Name "price_unit" (S2Node priceUnitType)
-
---priceUnitNode : Schema2Tree Val
---priceUnitNode = S2Name "price_unit" (S2Node priceUnitType)
-
-priceNode : Schema2Tree Val
-priceNode = S2Name "price" (S2Node priceType)
-
-orderValNode : Schema2Tree Val
-orderValNode = S2Name "order" (qtyNode :: priceUnitNode :: priceNode)
-
-
-orderVersionMsgVector : Vector
-orderVersionMsgVector = MkVector orderVersionMsgNode orderValNode
-
-orderMsgVector : Vector
-orderMsgVector = MkVector orderMsgNode orderValNode
-
-
-data MachineCmd : Type -> Vector -> Vector -> Type where
-    InitVector : MachineCmd () v1 v2
-    EditVector : MachineCmd () v1 v2
-    CommitVector : MachineCmd () v1 v2
-    Display : String -> MachineCmd () v1 v1    
-    Pure : ty -> MachineCmd ty v1 v1
-    (>>=) : MachineCmd a v1 v2 ->
-            (a -> MachineCmd b v2 v3) ->
-            MachineCmd b v1 v3
-data MachineIO : Vector -> Type where
-    Do : MachineCmd a v1 v2 ->
-         (a -> Inf (MachineIO v2)) -> MachineIO v1
-         
-namespace MachineDo
-    (>>=) : MachineCmd a v1 v2 ->
-          (a -> Inf (MachineIO v2)) -> MachineIO v1
-    (>>=) = Do
--}
 drop_key : (c:String) -> (Schema2 ) -> (Schema2 )
 drop_key c ( x@(EField n1 ns1) .*. y@(EField n2 ns2)) = case (c==n1) of 
                                                               True => y
@@ -152,39 +43,21 @@ drop_key c ( x@(EField n1 ns1) .*. y@(EField n2 ns2)) = case (c==n1) of
 drop_key c ( x .*. y ) = (drop_key c x) .*. (drop_key c y)
 drop_key c f = f
 
-{-
-convert_s2 : (sb: Schema2 ) -> (SchemaType2 si) -> (SchemaType2 sb)
-convert_s2 (IField namex FBool) {si = (IField name FBool) } item = item
-convert_s2 (IField namex FString) {si = (IField name FString) } item = item
-convert_s2 (EField namex ns) {si = (EField name ns2) } item = item
-convert_s2 sb {si = (y .*. z)} it = convert_s2 sb it
--}
 namespace convert_s3LR_drop_col
   convert_s3 : (sb: Schema2 ) -> (SchemaType2 si) -> (SchemaType2 sb)
   convert_s3 (IField namex FBool) {si = (IField name FBool) } item = item
   convert_s3 (IField namex FString) {si = (IField name FString) } item = item
   convert_s3 (IField namex FDateTime) {si = (IField name FDateTime) } item = item
-  convert_s3 (IField namex (Fm2o  (NSInteger ns) ) ) {si = (IField name (Fm2o (NSInteger ns2))) } item = item
-  convert_s3 (IField namex (Fm2o  (NSInt ns) ) ) {si = (IField name (Fm2o (NSInt ns2))) } item = item  
-  convert_s3 (IField namex (Fm2o  (NSSeq ns) ) ) {si = (IField name (Fm2o (NSSeq ns2))) } item = item    
-  convert_s3 (IField namex (Fm2o (NSCode ns)) ) {si = (IField name (Fm2o (NSCode ns2))) } item = item 
   convert_s3 (EField namex (NSInteger ns)) {si = (EField name (NSInteger ns2) ) } item = item
   convert_s3 (EField namex (NSInt ns)) {si = (EField name (NSInt ns2) ) } item = item  
   convert_s3 (EField namex (NSSeq ns)) {si = (EField name (NSSeq ns2) ) } item = item    
   convert_s3 (EField namex (NSCode ns)) {si = (EField name (NSCode ns2) ) } item = item
   convert_s3 sb {si = (y .*. z)} it = convert_s3 sb it
---  convert_s3 sb {si = (KeyName1 name y)} it = convert_s3 sb it
---  convert_s3 sb {si = (KeyName2 name y z)} it = convert_s3 sb it    
-
     
   convert_sL : (sb: Schema2 ) -> (SchemaType2 si) -> (SchemaType2 sb)
   convert_sL (IField namex FBool) {si = (IField name FBool) } item = item
   convert_sL (IField namex FString) {si = (IField name FString) } item = item
   convert_sL (IField namex FDateTime) {si = (IField name FDateTime) } item = item  
-  convert_sL (IField namex (Fm2o (NSInteger ns)) ) {si = (IField name (Fm2o (NSInteger ns2))) } item = item 
-  convert_sL (IField namex (Fm2o (NSInt ns)) ) {si = (IField name (Fm2o (NSInt ns2))) } item = item   
-  convert_sL (IField namex (Fm2o (NSSeq ns)) ) {si = (IField name (Fm2o (NSSeq ns2))) } item = item     
-  convert_sL (IField namex (Fm2o (NSCode ns)) ) {si = (IField name (Fm2o (NSCode ns2))) } item = item  
   convert_sL (EField namex (NSInteger ns) ) {si = (EField name (NSInteger ns2) )} item = item
   convert_sL (EField namex (NSInt ns) ) {si = (EField name (NSInt ns2) )} item = item  
   convert_sL (EField namex (NSSeq ns) ) {si = (EField name (NSSeq ns2) )} item = item    
@@ -197,15 +70,10 @@ namespace convert_s3LR_drop_col
   convert_sR (IField namex FBool) {si = (IField name FBool) } item = item
   convert_sR (IField namex FString) {si = (IField name FString) } item = item
   convert_sR (IField namex FDateTime) {si = (IField name FDateTime) } item = item  
-  convert_sR (IField namex (Fm2o (NSInteger ns)  ) ) {si = (IField name (Fm2o (NSInteger ns2) )) } item = item 
-  convert_sR (IField namex (Fm2o (NSInt ns)  ) ) {si = (IField name (Fm2o (NSInt ns2) )) } item = item   
-  convert_sR (IField namex (Fm2o (NSCode ns)  ) ) {si = (IField name (Fm2o (NSCode ns2) )) } item = item   
   convert_sR (EField namex (NSInteger ns)  ) {si = (EField name (NSInteger ns2) ) } item = item
   convert_sR (EField namex (NSInt ns)  ) {si = (EField name (NSInt ns2) ) } item = item  
   convert_sR (EField namex (NSSeq ns)  ) {si = (EField name (NSSeq ns2) ) } item = item    
   convert_sR (EField namex (NSCode ns)  ) {si = (EField name (NSCode ns2) ) } item = item  
---  convert_sR sb {si = (KeyName1 name y)} iL = convert_sR sb iL
---  convert_sR sb {si = (KeyName2 name y z)} (iL,iR) = convert_sR sb iL
   convert_sR sb {si = (y .*. z)} (iL,iR) = convert_sR sb iL
       
   drop_col : (sb: Schema2 ) -> (c:String) -> (SchemaType2 sk) -> (SchemaType2 sb )
@@ -251,9 +119,6 @@ namespace render_with_ids
   render_number_in_td_tag2 : String -> Integer -> String
   render_number_in_td_tag2 p_id v = printf   """<td id="%s" dataval="%d">%d</td>""" p_id v v
 
-  --public export
-  --render_number_in_td_tag2 : String -> Integer -> String
-  --render_number_in_td_tag2 p_id v = printf   """<td id="%s" data-val="%d">%d</td>""" p_id v v
 
   public export
   render_text_in_td_tag2 : String -> String -> String
@@ -277,12 +142,6 @@ namespace render_with_ids
   renderDataWithSchema2 p_id {schema = (IField name FBool)}   False = [render_text_in_td_tag2   (cell_id p_id name) "False"]
   renderDataWithSchema2 p_id {schema = (IField name FString)} item  = [render_text_in_td_tag2   (cell_id p_id name) item]
   renderDataWithSchema2 p_id {schema = (IField name FDateTime)} item  = [render_number_in_td_tag2   (cell_id p_id name) (int2integer item)]    
-  renderDataWithSchema2 p_id {schema = (IField name (Fm2o (NSInteger ns) ))} item  = [render_number_in_td_tag2   (cell_id p_id name) item]
-  renderDataWithSchema2 p_id {schema = (IField name (Fm2o (NSInt ns) ))} item  = [render_number_in_td_tag2   (cell_id p_id name) (int2integer item)]  
-  renderDataWithSchema2 p_id {schema = (IField name (Fm2o (NSSeq ns) ))} item  = [render_number_in_td_tag2   (cell_id p_id name) (int2integer item)]  
-  
-  renderDataWithSchema2 p_id {schema = (IField name (Fm2o (NSCode ns) ))} item  = [render_text_in_td_tag2   (cell_id p_id name) item]  
---  renderDataWithSchema2 p_id {schema = (IField name FTterm)}  item  = [render_tterm_in_td_tag2  (cell_id p_id name) item]
   renderDataWithSchema2 p_id {schema = (IFieldAlg name FTtermCarrier)}  item  = [render_tterm_in_td_tag2  (cell_id p_id name) item]
   renderDataWithSchema2 p_id {schema = (IFieldAlg name FIntCarrier)}  item  = [render_number_in_td_tag2  (cell_id p_id name) (int2integer item)]  
   renderDataWithSchema2 p_id {schema = (IFieldAlg name FOPcarrier)}  item  = [render_text_in_td_tag2  (cell_id p_id name) (show item)]    
@@ -303,10 +162,6 @@ namespace render_wo_ids
   render_number_in_td_tag2 : Integer -> String
   render_number_in_td_tag2 v = printf   """<td>%d</td>""" v
 
-  --public export
-  --render_number_in_td_tag2 : String -> Integer -> String
-  --render_number_in_td_tag2 p_id v = printf   """<td id="%s" data-val="%d">%d</td>""" p_id v v
-
   public export
   render_text_in_td_tag2 : String -> String
   render_text_in_td_tag2 v   = printf   """<td>%s</td>""" v
@@ -321,11 +176,6 @@ namespace render_wo_ids
   renderDataWithSchema2 {schema = (IField name FBool)}   False = [render_text_in_td_tag2 "False"]
   renderDataWithSchema2 {schema = (IField name FString)} item  = [render_text_in_td_tag2 item]
   renderDataWithSchema2 {schema = (IField name FDateTime)} item  = [render_number_in_td_tag2 (int2integer item)]  
-  renderDataWithSchema2 {schema = (IField name (Fm2o (NSInteger ns) ))} item  = [render_number_in_td_tag2 item]
-  renderDataWithSchema2 {schema = (IField name (Fm2o (NSInt ns) ))} item  = [render_number_in_td_tag2 (int2integer item)]  
-  renderDataWithSchema2 {schema = (IField name (Fm2o (NSSeq ns) ))} item  = [render_number_in_td_tag2 (int2integer item)]    
-  renderDataWithSchema2 {schema = (IField name (Fm2o (NSCode ns) ))} item  = [render_text_in_td_tag2 item]  
---  renderDataWithSchema2 {schema = (IField name FTterm)}  item  = [render_tterm_in_td_tag2 item]
   renderDataWithSchema2 {schema = (IFieldAlg name FTtermCarrier)}  item  = [render_tterm_in_td_tag2 item]
   renderDataWithSchema2 {schema = (IFieldAlg name FIntCarrier)}  item  = [render_number_in_td_tag2 (int2integer item)]
   renderDataWithSchema2 {schema = (IFieldAlg name FOPcarrier)}  item  = [render_text_in_td_tag2 (show item)]
@@ -640,7 +490,7 @@ schema2thead2 sch = ret where
   schema2th : Schema2  -> List String
   schema2th (IField name FBool)  =  [printf "<th>%s</th>" name ]
   schema2th (IField name FString) = [printf "<th>%s</th>" name ]
-  schema2th (IField name (Fm2o rel)) = [printf "<th>%s</th>" name ]  
+--  schema2th (IField name (Fm2o rel)) = [printf "<th>%s</th>" name ]  
 --  schema2th (IField name FTterm ) = [printf "<th>%s</th>" name ]     --SchemaType2 (IField name FTterm ) = Tterm
   schema2th (IFieldAlg name FTtermCarrier ) = [printf "<th>%s</th>" name ]     --SchemaType2 (IField name FTterm ) = Tterm  
   schema2th (IFieldAlg name FIntCarrier ) = [printf "<th>%s</th>" name ] 
@@ -663,11 +513,6 @@ renderDataAsKey : (SchemaType2 schema) -> String
 renderDataAsKey {schema = (IField name FBool)}   True = "True"
 renderDataAsKey {schema = (IField name FBool)}   False = "False"
 renderDataAsKey {schema = (IField name FString)} item = item
-renderDataAsKey {schema = (IField name (Fm2o (NSInteger ns)) )} item = the String (cast item)
-renderDataAsKey {schema = (IField name (Fm2o (NSInt ns)) )} item = the String (cast item)
-renderDataAsKey {schema = (IField name (Fm2o (NSSeq ns)) )} item = the String (cast item)
-renderDataAsKey {schema = (IField name (Fm2o (NSCode ns)) )} item = item
---renderDataAsKey {schema = (IField name FTterm)}  item = the String (cast (t2integer item))
 renderDataAsKey {schema = (IFieldAlg name FTtermCarrier)}  item = the String (cast (t2integer item))
 renderDataAsKey {schema = (IFieldAlg name FIntCarrier)}  item = the String (cast item)
 renderDataAsKey {schema = (IField name FDateTime)}  item = the String (cast item)

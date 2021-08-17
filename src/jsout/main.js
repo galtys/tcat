@@ -2400,10 +2400,10 @@ function DataStore__addSchema2Vals($_0_arg, $_1_arg, $_2_arg){
             
             return new $HC_2_0$DataStore__Tt($_1_arg.$1.add($_2_arg.$1), $_1_arg.$2.add($_2_arg.$2));
         } else {
-            $JSRTS.die("*** DataStore.idr:212:1-86:unmatched case in DataStore.addSchema2Vals ***");
+            $JSRTS.die("*** DataStore.idr:199:1-86:unmatched case in DataStore.addSchema2Vals ***");
         }
     } else {
-        $JSRTS.die("*** DataStore.idr:212:1-86:unmatched case in DataStore.addSchema2Vals ***");
+        $JSRTS.die("*** DataStore.idr:199:1-86:unmatched case in DataStore.addSchema2Vals ***");
     }
 }
 
@@ -2513,14 +2513,14 @@ function Snippets2__tab_95_widget__convert_95_2sub($_0_arg, $_1_arg, $_2_arg){
                     if(($_0_arg.$2.type === 0)) {
                         return $_2_arg;
                     } else {
-                        $JSRTS.die("*** Snippets2.idr:899:4-98:unmatched case in Snippets2.tab_widget.convert_2sub ***");
+                        $JSRTS.die("*** Snippets2.idr:744:4-98:unmatched case in Snippets2.tab_widget.convert_2sub ***");
                     }
                 } else if(($_0_arg.type === 2)) {
                     $_0_arg = $_0_arg;
                     $_1_arg = $_1_arg;
                     $_2_arg = $_2_arg;
                 } else {
-                    $JSRTS.die("*** Snippets2.idr:899:4-98:unmatched case in Snippets2.tab_widget.convert_2sub ***");
+                    $JSRTS.die("*** Snippets2.idr:744:4-98:unmatched case in Snippets2.tab_widget.convert_2sub ***");
                 }
             } else {
                 
@@ -2529,7 +2529,7 @@ function Snippets2__tab_95_widget__convert_95_2sub($_0_arg, $_1_arg, $_2_arg){
                     $_1_arg = $_1_arg;
                     $_2_arg = $_2_arg;
                 } else {
-                    $JSRTS.die("*** Snippets2.idr:899:4-98:unmatched case in Snippets2.tab_widget.convert_2sub ***");
+                    $JSRTS.die("*** Snippets2.idr:744:4-98:unmatched case in Snippets2.tab_widget.convert_2sub ***");
                 }
             }
         } else {
@@ -2539,7 +2539,7 @@ function Snippets2__tab_95_widget__convert_95_2sub($_0_arg, $_1_arg, $_2_arg){
                 $_1_arg = $_1_arg;
                 $_2_arg = $_2_arg;
             } else {
-                $JSRTS.die("*** Snippets2.idr:899:4-98:unmatched case in Snippets2.tab_widget.convert_2sub ***");
+                $JSRTS.die("*** Snippets2.idr:744:4-98:unmatched case in Snippets2.tab_widget.convert_2sub ***");
             }
         }
     }
@@ -2559,14 +2559,14 @@ function Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_s3($_0_arg, $_1_a
                     if(($cg$8.type === 3)) {
                         return $_2_arg;
                     } else {
-                        $JSRTS.die("*** Snippets2.idr:164:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_s3 ***");
+                        $JSRTS.die("*** Snippets2.idr:48:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_s3 ***");
                     }
                 } else if(($_0_arg.type === 2)) {
                     $_0_arg = $_0_arg;
                     $_1_arg = $_1_arg;
                     $_2_arg = $_2_arg;
                 } else {
-                    $JSRTS.die("*** Snippets2.idr:164:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_s3 ***");
+                    $JSRTS.die("*** Snippets2.idr:48:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_s3 ***");
                 }
             } else {
                 
@@ -2575,7 +2575,7 @@ function Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_s3($_0_arg, $_1_a
                     $_1_arg = $_1_arg;
                     $_2_arg = $_2_arg;
                 } else {
-                    $JSRTS.die("*** Snippets2.idr:164:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_s3 ***");
+                    $JSRTS.die("*** Snippets2.idr:48:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_s3 ***");
                 }
             }
         } else {
@@ -2585,7 +2585,7 @@ function Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_s3($_0_arg, $_1_a
                 $_1_arg = $_1_arg;
                 $_2_arg = $_2_arg;
             } else {
-                $JSRTS.die("*** Snippets2.idr:164:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_s3 ***");
+                $JSRTS.die("*** Snippets2.idr:48:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_s3 ***");
             }
         }
     }
@@ -2605,7 +2605,7 @@ function Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_sL($_0_arg, $_1_a
                     if(($cg$11.type === 3)) {
                         return $_2_arg;
                     } else {
-                        $JSRTS.die("*** Snippets2.idr:181:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sL ***");
+                        $JSRTS.die("*** Snippets2.idr:58:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sL ***");
                     }
                 } else if(($_0_arg.type === 2)) {
                     
@@ -2613,7 +2613,7 @@ function Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_sL($_0_arg, $_1_a
                     $_1_arg = $_1_arg;
                     $_2_arg = $_2_arg.$2;
                 } else {
-                    $JSRTS.die("*** Snippets2.idr:181:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sL ***");
+                    $JSRTS.die("*** Snippets2.idr:58:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sL ***");
                 }
             } else {
                 
@@ -2623,7 +2623,7 @@ function Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_sL($_0_arg, $_1_a
                     $_1_arg = $_1_arg;
                     $_2_arg = $_2_arg.$2;
                 } else {
-                    $JSRTS.die("*** Snippets2.idr:181:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sL ***");
+                    $JSRTS.die("*** Snippets2.idr:58:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sL ***");
                 }
             }
         } else {
@@ -2634,7 +2634,7 @@ function Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_sL($_0_arg, $_1_a
                 $_1_arg = $_1_arg;
                 $_2_arg = $_2_arg.$2;
             } else {
-                $JSRTS.die("*** Snippets2.idr:181:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sL ***");
+                $JSRTS.die("*** Snippets2.idr:58:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sL ***");
             }
         }
     }
@@ -2654,7 +2654,7 @@ function Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_sR($_0_arg, $_1_a
                     if(($cg$11.type === 3)) {
                         return $_2_arg;
                     } else {
-                        $JSRTS.die("*** Snippets2.idr:197:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sR ***");
+                        $JSRTS.die("*** Snippets2.idr:70:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sR ***");
                     }
                 } else if(($_0_arg.type === 2)) {
                     
@@ -2662,7 +2662,7 @@ function Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_sR($_0_arg, $_1_a
                     $_1_arg = $_1_arg;
                     $_2_arg = $_2_arg.$1;
                 } else {
-                    $JSRTS.die("*** Snippets2.idr:197:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sR ***");
+                    $JSRTS.die("*** Snippets2.idr:70:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sR ***");
                 }
             } else {
                 
@@ -2672,7 +2672,7 @@ function Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_sR($_0_arg, $_1_a
                     $_1_arg = $_1_arg;
                     $_2_arg = $_2_arg.$1;
                 } else {
-                    $JSRTS.die("*** Snippets2.idr:197:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sR ***");
+                    $JSRTS.die("*** Snippets2.idr:70:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sR ***");
                 }
             }
         } else {
@@ -2683,7 +2683,7 @@ function Snippets2__convert_95_s3LR_95_drop_95_col__convert_95_sR($_0_arg, $_1_a
                 $_1_arg = $_1_arg;
                 $_2_arg = $_2_arg.$1;
             } else {
-                $JSRTS.die("*** Snippets2.idr:197:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sR ***");
+                $JSRTS.die("*** Snippets2.idr:70:3-73:unmatched case in Snippets2.convert_s3LR_drop_col.convert_sR ***");
             }
         }
     }
@@ -2994,10 +2994,10 @@ function DataStore__invSchema2($_0_arg, $_1_arg){
             
             return new $HC_2_0$DataStore__Tt($_1_arg.$2, $_1_arg.$1);
         } else {
-            $JSRTS.die("*** DataStore.idr:205:1-73:unmatched case in DataStore.invSchema2 ***");
+            $JSRTS.die("*** DataStore.idr:192:1-73:unmatched case in DataStore.invSchema2 ***");
         }
     } else {
-        $JSRTS.die("*** DataStore.idr:205:1-73:unmatched case in DataStore.invSchema2 ***");
+        $JSRTS.die("*** DataStore.idr:192:1-73:unmatched case in DataStore.invSchema2 ***");
     }
 }
 
@@ -3103,10 +3103,10 @@ function Snippets2__make_95_cells_95_editable($_0_arg, $_1_arg){
             const $_24_in = ($_0_arg + ("_" + $_1_arg.$1));
             return $partial_3_4$Snippets2___123_make_95_cells_95_editable_95_24_125_($_24_in, $_0_arg, $_1_arg.$1);
         } else {
-            $JSRTS.die("*** Snippets2.idr:349:1-356:58:unmatched case in Snippets2.make_cells_editable ***");
+            $JSRTS.die("*** Snippets2.idr:199:1-206:58:unmatched case in Snippets2.make_cells_editable ***");
         }
     } else {
-        $JSRTS.die("*** Snippets2.idr:349:1-356:58:unmatched case in Snippets2.make_cells_editable ***");
+        $JSRTS.die("*** Snippets2.idr:199:1-206:58:unmatched case in Snippets2.make_cells_editable ***");
     }
 }
 
@@ -3123,10 +3123,10 @@ function Snippets2__make_95_cells_95_ro($_0_arg, $_1_arg){
         if(($_1_arg.$2.type === 0)) {
             return $partial_2_3$Snippets2___123_make_95_cells_95_ro_95_29_125_($_0_arg, $_1_arg.$1);
         } else {
-            $JSRTS.die("*** Snippets2.idr:377:1-383:69:unmatched case in Snippets2.make_cells_ro ***");
+            $JSRTS.die("*** Snippets2.idr:227:1-233:69:unmatched case in Snippets2.make_cells_ro ***");
         }
     } else {
-        $JSRTS.die("*** Snippets2.idr:377:1-383:69:unmatched case in Snippets2.make_cells_ro ***");
+        $JSRTS.die("*** Snippets2.idr:227:1-233:69:unmatched case in Snippets2.make_cells_ro ***");
     }
 }
 
@@ -3143,10 +3143,10 @@ function DataStore__mulSchema2Vals($_0_arg, $_1_arg, $_2_arg){
             $cg$4 = $_2_arg.$1.subtract($_2_arg.$2);
             return DataStore__integer2t($cg$3.multiply($cg$4));
         } else {
-            $JSRTS.die("*** DataStore.idr:219:1-87:unmatched case in DataStore.mulSchema2Vals ***");
+            $JSRTS.die("*** DataStore.idr:206:1-87:unmatched case in DataStore.mulSchema2Vals ***");
         }
     } else {
-        $JSRTS.die("*** DataStore.idr:219:1-87:unmatched case in DataStore.mulSchema2Vals ***");
+        $JSRTS.die("*** DataStore.idr:206:1-87:unmatched case in DataStore.mulSchema2Vals ***");
     }
 }
 
@@ -3347,17 +3347,17 @@ function Snippets2__read_95_cells($_0_arg, $_1_arg){
         if(($cg$4.type === 3)) {
             return $partial_2_3$Snippets2___123_read_95_cells_95_50_125_($_0_arg, $_1_arg.$1);
         } else {
-            $JSRTS.die("*** Snippets2.idr:402:1-405:61:unmatched case in Snippets2.read_cells ***");
+            $JSRTS.die("*** Snippets2.idr:252:1-255:61:unmatched case in Snippets2.read_cells ***");
         }
     } else if(($_1_arg.type === 3)) {
         
         if(($_1_arg.$2.type === 0)) {
             return $partial_2_3$Snippets2___123_read_95_cells_95_58_125_($_0_arg, $_1_arg.$1);
         } else {
-            $JSRTS.die("*** Snippets2.idr:402:1-405:61:unmatched case in Snippets2.read_cells ***");
+            $JSRTS.die("*** Snippets2.idr:252:1-255:61:unmatched case in Snippets2.read_cells ***");
         }
     } else {
-        $JSRTS.die("*** Snippets2.idr:402:1-405:61:unmatched case in Snippets2.read_cells ***");
+        $JSRTS.die("*** Snippets2.idr:252:1-255:61:unmatched case in Snippets2.read_cells ***");
     }
 }
 
@@ -3372,7 +3372,7 @@ function Snippets2__read_95_cells_95_attr($_0_arg, $_1_arg){
         if(($cg$4.type === 3)) {
             return $partial_2_3$Snippets2___123_read_95_cells_95_attr_95_61_125_($_0_arg, $_1_arg.$1);
         } else {
-            $JSRTS.die("*** Snippets2.idr:462:1-465:61:unmatched case in Snippets2.read_cells_attr ***");
+            $JSRTS.die("*** Snippets2.idr:312:1-315:61:unmatched case in Snippets2.read_cells_attr ***");
         }
     } else if(($_1_arg.type === 3)) {
         
@@ -3380,10 +3380,10 @@ function Snippets2__read_95_cells_95_attr($_0_arg, $_1_arg){
             const $_38_in = ($_0_arg + ("_" + $_1_arg.$1));
             return $partial_1_2$Snippets2___123_read_95_cells_95_attr_95_69_125_($_38_in);
         } else {
-            $JSRTS.die("*** Snippets2.idr:462:1-465:61:unmatched case in Snippets2.read_cells_attr ***");
+            $JSRTS.die("*** Snippets2.idr:312:1-315:61:unmatched case in Snippets2.read_cells_attr ***");
         }
     } else {
-        $JSRTS.die("*** Snippets2.idr:462:1-465:61:unmatched case in Snippets2.read_cells_attr ***");
+        $JSRTS.die("*** Snippets2.idr:312:1-315:61:unmatched case in Snippets2.read_cells_attr ***");
     }
 }
 
@@ -3425,7 +3425,7 @@ function Snippets2__renderDataAsKey($_0_arg, $_1_arg){
         if(($cg$5.type === 3)) {
             return $_1_arg;
         } else {
-            $JSRTS.die("*** Snippets2.idr:663:1-62:unmatched case in Snippets2.renderDataAsKey ***");
+            $JSRTS.die("*** Snippets2.idr:513:1-62:unmatched case in Snippets2.renderDataAsKey ***");
         }
     } else if(($_0_arg.type === 3)) {
         
@@ -3434,10 +3434,10 @@ function Snippets2__renderDataAsKey($_0_arg, $_1_arg){
             $cg$3 = $_1_arg.$1.subtract($_1_arg.$2);
             return (($cg$3).toString());
         } else {
-            $JSRTS.die("*** Snippets2.idr:663:1-62:unmatched case in Snippets2.renderDataAsKey ***");
+            $JSRTS.die("*** Snippets2.idr:513:1-62:unmatched case in Snippets2.renderDataAsKey ***");
         }
     } else {
-        $JSRTS.die("*** Snippets2.idr:663:1-62:unmatched case in Snippets2.renderDataAsKey ***");
+        $JSRTS.die("*** Snippets2.idr:513:1-62:unmatched case in Snippets2.renderDataAsKey ***");
     }
 }
 
@@ -3615,10 +3615,10 @@ function DataStore__schema2ZeroVal($_0_arg){
         if(($_0_arg.$2.type === 0)) {
             return new $HC_2_0$DataStore__Tt((new $JSRTS.jsbn.BigInteger(("0"))), (new $JSRTS.jsbn.BigInteger(("0"))));
         } else {
-            $JSRTS.die("*** DataStore.idr:177:1-57:unmatched case in DataStore.schema2ZeroVal ***");
+            $JSRTS.die("*** DataStore.idr:168:1-57:unmatched case in DataStore.schema2ZeroVal ***");
         }
     } else {
-        $JSRTS.die("*** DataStore.idr:177:1-57:unmatched case in DataStore.schema2ZeroVal ***");
+        $JSRTS.die("*** DataStore.idr:168:1-57:unmatched case in DataStore.schema2ZeroVal ***");
     }
 }
 
@@ -3633,7 +3633,7 @@ function Snippets2__set_95_cells_95_attr($_0_arg, $_1_arg, $_2_arg){
         if(($cg$4.type === 3)) {
             return $partial_2_3$JSIO__JSIO__set_95_text_95_dataval(($_1_arg + ("_" + $_0_arg.$1)), $_2_arg);
         } else {
-            $JSRTS.die("*** Snippets2.idr:536:1-538:51:unmatched case in Snippets2.set_cells_attr ***");
+            $JSRTS.die("*** Snippets2.idr:386:1-388:51:unmatched case in Snippets2.set_cells_attr ***");
         }
     } else if(($_0_arg.type === 3)) {
         
@@ -3641,10 +3641,10 @@ function Snippets2__set_95_cells_95_attr($_0_arg, $_1_arg, $_2_arg){
             const $_27_in = ($_1_arg + ("_" + $_0_arg.$1));
             return $partial_2_3$Snippets2___123_set_95_cells_95_attr_95_79_125_($_27_in, $_2_arg);
         } else {
-            $JSRTS.die("*** Snippets2.idr:536:1-538:51:unmatched case in Snippets2.set_cells_attr ***");
+            $JSRTS.die("*** Snippets2.idr:386:1-388:51:unmatched case in Snippets2.set_cells_attr ***");
         }
     } else {
-        $JSRTS.die("*** Snippets2.idr:536:1-538:51:unmatched case in Snippets2.set_cells_attr ***");
+        $JSRTS.die("*** Snippets2.idr:386:1-388:51:unmatched case in Snippets2.set_cells_attr ***");
     }
 }
 
@@ -3804,7 +3804,7 @@ function Snippets2__update_95_cells_95_td($_0_arg, $_1_arg, $_2_arg){
         return $partial_4_5$Snippets2___123_set_95_cells_95_attr_95_77_125_($_2_arg, $_0_arg.$1, $_1_arg, $_0_arg.$2);
     } else if(($_0_arg.type === 1)) {
         
-        $JSRTS.die("*** Snippets2.idr:591:1-593:54:unmatched case in Snippets2.update_cells_td ***");
+        $JSRTS.die("*** Snippets2.idr:441:1-443:54:unmatched case in Snippets2.update_cells_td ***");
     } else if(($_0_arg.type === 3)) {
         
         if(($_0_arg.$2.type === 0)) {
@@ -3833,10 +3833,10 @@ function Snippets2__update_95_cells_95_td($_0_arg, $_1_arg, $_2_arg){
             $cg$6 = $_2_arg.$1.subtract($_2_arg.$2);
             return $partial_2_3$JSIO__JSIO__update_95_element_95_text(($_1_arg + ("_" + $_0_arg.$1)), Printf__toFunction(Printf__format($cg$3), "")($cg$6));
         } else {
-            $JSRTS.die("*** Snippets2.idr:591:1-593:54:unmatched case in Snippets2.update_cells_td ***");
+            $JSRTS.die("*** Snippets2.idr:441:1-443:54:unmatched case in Snippets2.update_cells_td ***");
         }
     } else {
-        $JSRTS.die("*** Snippets2.idr:591:1-593:54:unmatched case in Snippets2.update_cells_td ***");
+        $JSRTS.die("*** Snippets2.idr:441:1-443:54:unmatched case in Snippets2.update_cells_td ***");
     }
 }
 
@@ -4029,13 +4029,13 @@ function Snippets2__tab_95_widget___123_calc_95_order_95_t_95_10_125_($_0_lift, 
                 $cg$8 = $_1_lift.$1;
                 $cg$1 = Snippets2__convert_95_s3LR_95_drop_95_col__drop_95_col_58_ret_58_0($cg$5.$1, $cg$5.$2, $cg$7.$1, $cg$7.$2, $cg$8, "sku", $_2_lift);
             } else {
-                $JSRTS.die("*** Snippets2.idr:212:3-217:39:unmatched case in Snippets2.convert_s3LR_drop_col.drop_col ***");
+                $JSRTS.die("*** Snippets2.idr:80:3-85:39:unmatched case in Snippets2.convert_s3LR_drop_col.drop_col ***");
             }
         } else {
-            $JSRTS.die("*** Snippets2.idr:212:3-217:39:unmatched case in Snippets2.convert_s3LR_drop_col.drop_col ***");
+            $JSRTS.die("*** Snippets2.idr:80:3-85:39:unmatched case in Snippets2.convert_s3LR_drop_col.drop_col ***");
         }
     } else {
-        $JSRTS.die("*** Snippets2.idr:212:3-217:39:unmatched case in Snippets2.convert_s3LR_drop_col.drop_col ***");
+        $JSRTS.die("*** Snippets2.idr:80:3-85:39:unmatched case in Snippets2.convert_s3LR_drop_col.drop_col ***");
     }
     
     return Prelude__List___43__43_(null, new $HC_2_1$Prelude__List___58__58_($cg$1, $HC_0_0$Prelude__List__Nil), $_3_lift);
