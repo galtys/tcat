@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- meta block -->
+		<title>Custom shape (no IE support) - DHTMLX Diagram</title>
+		<meta name="description" content="Check interactive samples of DHTMLX Diagram to explore its diagram editor and other details.">
+		<!-- end meta block -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+		<script type="text/javascript" src="../../codebase/diagram.js?v=3.1.0"></script>
+		<link rel="stylesheet" href="../../codebase/diagram.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/index.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/diagram.css?v=3.1.0">
+		<script type="text/javascript" src="../common/customsvg.js?v=3.1.0"></script>
+		<!-- custom sample head -->
+		<script type="text/javascript" src="../../codebase/diagramWithEditor.js?v=3.1.0"></script>
+		<link rel="stylesheet" href="../../codebase/diagramWithEditor.css?v=3.1.0">
+		<style>
+			body > .dhx_widget {
+				max-height: calc(100% - 61px);
+			}
+			.template {
+				height:100%;
+				border-radius: 10px;
+				overflow: hidden;
+			}
+			.template h3 {
+				text-align: center;
+				height: 40px;
+				line-height: 40px;
+			}
+			.template ul {
+				padding: 8px 5px 5px 5px;
+			}
+			.template li {
+				text-align: left;
+				list-style-type: circle;
+				margin: 5px 0 0 20px;
+				white-space: nowrap;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="dhx_sample-header">
+			<div class="dhx_sample-header__main">
+				<nav class="dhx_sample-header__breadcrumbs">
+					<ul class="dhx_sample-header-breadcrumbs">
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="../index.html" class="dhx_sample-header-breadcrumbs__link">Diagram samples</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="./index.html" class="dhx_sample-header-breadcrumbs__link">Diagram Editor</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<span class="dhx_sample-header-breadcrumbs__link">Custom shape (no IE support)</span>
+						</li>
+					</ul>
+				</nav>
+				<h1 class="dhx_sample-header__title">
+					<div class="dhx_sample-header__content">
+						An example where you can edit more than just text.
+					</div>
+				</h1>
+			</div>
+</header>
+		<script>
+			const editor = new dhx.DiagramEditor(document.body, {
+				shapeSections: {
+					"custom shapes": ["template"],
+					"flowchart shapes": [true]
+				},
+				controls: { 
+					import: false,
+					export: false,
+					gridStep: false,
+					autoLayout: false,
+					apply: false,
+					reset: false
+				},
+			});
+
+			const template = config => (
+				`<section class='template' 
+					style='background:${config.fill};border:${config.strokeWidth}px solid ${config.stroke}'>
+					<h3 style='border-bottom:${config.strokeWidth}px solid ${config.stroke}'>
+						${config.title}
+					</h3>
+					<ul>
+						<li>${config.text.join("</li><li>")}</li>
+					</ul>
+				</section>`
+			);
+
+			editor.diagram.addShape("template", {
+				template,
+				defaults: {
+					title: "Title",
+					text: ["Text"],
+					height: 90,
+					fill: "#CEEFE1",
+					stroke: "#0AB169",
+					strokeWidth: 2
+				}
+			});
+
+			editor.parse(htmlData);
+		</script>
+	</body>
+</html>

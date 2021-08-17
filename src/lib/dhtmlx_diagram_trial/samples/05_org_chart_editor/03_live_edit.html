@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- meta block -->
+		<title>Live Org chart edit - DHTMLX Diagram</title>
+		<meta name="description" content="Check interactive samples of DHTMLX Diagram to explore its org chart editor and other details.">
+		<!-- end meta block -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+		<script type="text/javascript" src="../../codebase/diagram.js?v=3.1.0"></script>
+		<link rel="stylesheet" href="../../codebase/diagram.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/index.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/diagram.css?v=3.1.0">
+		<script type="text/javascript" src="../common/data.js?v=3.1.0"></script>
+		<!-- custom sample head -->
+		<script type="text/javascript" src="../../codebase/diagramWithEditor.js?v=3.1.0"></script>
+		<link rel="stylesheet" href="../../codebase/diagramWithEditor.css?v=3.1.0">
+		<style>
+			.dhx_sample-container__without-editor {
+				height: calc(100% - 121px);
+			}
+			.dhx_sample-container__with-editor {
+				height: calc(100% - 61px);
+			}
+			.dhx_sample-widget {
+				height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="dhx_sample-header">
+			<div class="dhx_sample-header__main">
+				<nav class="dhx_sample-header__breadcrumbs">
+					<ul class="dhx_sample-header-breadcrumbs">
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="../index.html" class="dhx_sample-header-breadcrumbs__link">Diagram samples</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="./index.html" class="dhx_sample-header-breadcrumbs__link">Org Chart Editor</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<span class="dhx_sample-header-breadcrumbs__link">Live Org chart edit</span>
+						</li>
+					</ul>
+				</nav>
+				<h1 class="dhx_sample-header__title">
+					<div class="dhx_sample-header__content">
+						Live Org chart edit.
+					</div>
+				</h1>
+			</div>
+</header>
+		<section id="control" class="dhx_sample-controls">
+			<button class="dhx_sample-btn dhx_sample-btn--flat" onclick="runEditor()">Edit</button>
+		</section>
+		<section id="container" class="dhx_sample-container__without-editor">
+			<div class="dhx_sample-widget" id="diagram"></div>
+			<div class="dhx_sample-widget" id="editor" style="display: none;"></div>
+		</section>
+		<script>
+			var diagram = new dhx.Diagram("diagram", {
+				type: "org"
+			});
+
+			var editor = new dhx.DiagramEditor("editor", {
+				type: "org",
+				controls: { 
+					import: false,
+					export: false,
+					gridStep: false
+				},
+			});
+
+			var editorCont = document.querySelector("#editor");
+			var diagramCont = document.querySelector("#diagram");
+			var control = document.querySelector("#control");
+			var container = document.querySelector("#container");
+			
+			var withEditor = "dhx_sample-container__with-editor";
+			var withoutEditor = "dhx_sample-container__without-editor";
+
+			function expand() {
+				diagramCont.style.display = "none";
+				control.style.display = "none";
+				editorCont.style.display = "block";
+				container.classList.remove(withoutEditor);
+				container.classList.add(withEditor);
+			}
+
+			function collapse() {
+				diagramCont.style.display = "block";
+				control.style.display = "flex";
+				editorCont.style.display = "none";
+				container.classList.remove(withEditor);
+				container.classList.add(withoutEditor);
+			}
+
+			function runEditor() {
+				expand();
+				editor.import(diagram);
+			}
+
+			editor.events.on("ApplyButton", function () {
+				collapse();
+				diagram.data.parse(editor.serialize());
+			});
+
+			editor.events.on("ResetButton", function () {
+				collapse();
+			});
+
+			diagram.data.parse(orgChartData);
+		</script>
+	</body>
+</html>

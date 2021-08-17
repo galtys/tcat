@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- meta block -->
+		<title>HTML template without IE support - DHTMLX Diagram</title>
+		<meta name="description" content="Check interactive samples of DHTMLX Diagram to explore its diagram and other details.">
+		<!-- end meta block -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+		<script type="text/javascript" src="../../codebase/diagram.js?v=3.1.0"></script>
+		<link rel="stylesheet" href="../../codebase/diagram.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/index.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/diagram.css?v=3.1.0">
+		<script type="text/javascript" src="../common/customsvg.js?v=3.1.0"></script>
+		<!-- custom sample head -->
+		<style type="text/css">
+			.template {
+				height:100%;
+				background: rgb(206, 239, 225);
+				border: 2px solid rgb(10, 177, 105);
+				border-radius: 10px;
+				overflow: hidden;
+			}
+			.template h3 {
+				text-align: center;
+				height: 40px;
+				line-height: 40px;
+				background: rgb(206, 239, 225);
+				border-bottom: 2px solid rgb(10, 177, 105);
+			}
+			.template ul {
+				padding: 8px 5px 5px 5px;
+			}
+			.template li {
+				text-align: left;
+				list-style-type: circle;
+				margin: 5px 0 0 20px;
+				white-space: nowrap;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="dhx_sample-header">
+			<div class="dhx_sample-header__main">
+				<nav class="dhx_sample-header__breadcrumbs">
+					<ul class="dhx_sample-header-breadcrumbs">
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="../index.html" class="dhx_sample-header-breadcrumbs__link">Diagram samples</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="./index.html" class="dhx_sample-header-breadcrumbs__link">Diagram</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<span class="dhx_sample-header-breadcrumbs__link">HTML template without IE support</span>
+						</li>
+					</ul>
+				</nav>
+				<h1 class="dhx_sample-header__title">
+					<div class="dhx_sample-header__content">
+						HTML template without IE support.
+					</div>
+				</h1>
+			</div>
+</header>
+		<section class="dhx_sample-container">
+			<div class="dhx_sample-container__widget" id="diagram"></div>
+		</section>
+		<script>
+			const diagram = new dhx.Diagram("diagram");
+
+			diagram.addShape("template", {
+				template: config => (
+					`<section class='template'>
+						<h3>${config.title}</h3>
+						<ul>
+							<li>${config.text.join("</li><li>")}</li>
+						</ul>
+					</section>`
+				)
+			});
+
+			diagram.data.parse(htmlData);
+		</script>
+	</body>
+</html>

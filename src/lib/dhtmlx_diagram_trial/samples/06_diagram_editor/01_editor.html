@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- meta block -->
+		<title>Basic editor - DHTMLX Diagram</title>
+		<meta name="description" content="Check interactive samples of DHTMLX Diagram to explore its diagram editor and other details.">
+		<!-- end meta block -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+		<script type="text/javascript" src="../../codebase/diagram.js?v=3.1.0"></script>
+		<link rel="stylesheet" href="../../codebase/diagram.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/index.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/diagram.css?v=3.1.0">
+		<script type="text/javascript" src="../common/diagram.js?v=3.1.0"></script>
+		<!-- custom sample head -->
+		<script type="text/javascript" src="../../codebase/diagramWithEditor.js?v=3.1.0"></script>
+		<link rel="stylesheet" href="../../codebase/diagramWithEditor.css?v=3.1.0">
+		<style>
+			body > .dhx_widget {
+				max-height: calc(100% - 61px);
+			}
+		</style>
+	</head>
+	<body>
+		<header class="dhx_sample-header">
+			<div class="dhx_sample-header__main">
+				<nav class="dhx_sample-header__breadcrumbs">
+					<ul class="dhx_sample-header-breadcrumbs">
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="../index.html" class="dhx_sample-header-breadcrumbs__link">Diagram samples</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="./index.html" class="dhx_sample-header-breadcrumbs__link">Diagram Editor</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<span class="dhx_sample-header-breadcrumbs__link">Basic editor</span>
+						</li>
+					</ul>
+				</nav>
+				<h1 class="dhx_sample-header__title">
+					<div class="dhx_sample-header__content">
+						Basic editor.
+					</div>
+				</h1>
+			</div>
+</header>
+		<script>
+			var editor = new dhx.DiagramEditor(document.body);
+			editor.parse(freeDiagramData);
+		</script>
+	</body>
+</html>

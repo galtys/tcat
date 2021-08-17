@@ -1,0 +1,36 @@
+import { IEventSystem } from "../../ts-common/events";
+import { View } from "../../ts-common/view";
+import { Exporter } from "./helpers/Export";
+import { Selection } from "./helpers/Selection";
+import { ShapesCollection } from "./ShapesCollection";
+import { Toolbar } from "./Toolbar";
+import { DataEvents, DiagramEvents, ICoords, IDiagram, IDiagramConfig, IShape, SelectionEvents, IDiagramEventHandlersMap, ICustomShapeParam, IAutoPlacement, TreeDir } from "./types";
+export declare class Diagram extends View implements IDiagram {
+    version: string;
+    config: IDiagramConfig;
+    events: IEventSystem<DataEvents | SelectionEvents | DiagramEvents, IDiagramEventHandlersMap>;
+    data: ShapesCollection;
+    selection: Selection;
+    export: Exporter;
+    toolbar: Toolbar;
+    flowShapes: any;
+    private _htmlevents;
+    private _active;
+    private _orgTypes;
+    constructor(container: HTMLElement | any, config?: IDiagramConfig);
+    addShape(type: string, parameters: ICustomShapeParam): void;
+    locate(event: Event): IShape;
+    collapseItem(id: string, dir?: TreeDir): void;
+    expandItem(id: string, dir?: TreeDir): void;
+    getScrollState(): ICoords;
+    scrollTo(x: number, y: number): void;
+    showItem(id: string, dir?: TreeDir): void;
+    autoPlace(config?: IAutoPlacement): void;
+    destructor(): void;
+    protected _render(vm: any): any;
+    protected _init_events(): void;
+    protected _set_defaults(): void;
+    protected _init_struct(): void;
+    private _getContent;
+    private _getPoint;
+}

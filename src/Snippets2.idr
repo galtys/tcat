@@ -14,21 +14,22 @@ import JSIO.JSIO
 
 
 keyItems : Schema2 Key
-keyItems = (EField "sku" (NSCode "asset") ) .|. (EField "cy" (NSCode "asset"))
+keyItems = (EField "sku" (NSCode "asset") ) .*. (EField "cy" (NSCode "asset"))
 
 keyTotal : Schema2 Key
 keyTotal = (EField "cy" (NSCode "asset"))
 
 msgType : Schema2 Key
-msgType = (EField "uid" (NSCode "user") ) .|. (EField "msgt" (NSCode "msgt")) .|. (IField "t" FDateTime) 
+msgType = (EField "uid" (NSCode "user") ) .*. (EField "msgt" (NSCode "msgt")) .*. (IField "t" FDateTime) 
 
 versionType : Schema2 Key
 versionType = (EField "version" (NSSeq "version"))
 
 
 fxType : Schema2 Key
-fxType = (EField "p1" (NSCode "partner") ) .|. (EField "p2" (NSCode "partner"))
+fxType = (EField "p1" (NSCode "partner") ) .*. (EField "p2" (NSCode "partner"))
 
+{-
 versionNode : Schema2Tree Key
 versionNode = S2Name "version" (S2Node versionType)
 
@@ -89,7 +90,7 @@ pickingMsgNode = S2Name "picking" (msgNode :: pickingNode)
 
 paymentMsgNode : Schema2Tree Key
 paymentMsgNode = S2Name "payment" (msgNode :: paymentNode)
-
+-}
 qtyType : Schema2 Val
 qtyType = IFieldAlg "qty" FIntCarrier
 
@@ -100,7 +101,7 @@ priceUnitType = IFieldAlg "price_unit" FIntCarrier
 priceType : Schema2 Val
 priceType = IFieldAlg "price=qty*price_unit" FIntCarrier
 
-
+{-
 qtyNode : Schema2Tree Val
 qtyNode = S2Name "qty" (S2Node qtyType)
 
@@ -116,11 +117,13 @@ priceNode = S2Name "price" (S2Node priceType)
 orderValNode : Schema2Tree Val
 orderValNode = S2Name "order" (qtyNode :: priceUnitNode :: priceNode)
 
+
 orderVersionMsgVector : Vector
 orderVersionMsgVector = MkVector orderVersionMsgNode orderValNode
 
 orderMsgVector : Vector
 orderMsgVector = MkVector orderMsgNode orderValNode
+
 
 data MachineCmd : Type -> Vector -> Vector -> Type where
     InitVector : MachineCmd () v1 v2
@@ -139,14 +142,14 @@ namespace MachineDo
     (>>=) : MachineCmd a v1 v2 ->
           (a -> Inf (MachineIO v2)) -> MachineIO v1
     (>>=) = Do
-
+-}
 drop_key : (c:String) -> (Schema2 Key) -> (Schema2 Key)
-drop_key c ( x@(EField n1 ns1) .|. y@(EField n2 ns2)) = case (c==n1) of 
+drop_key c ( x@(EField n1 ns1) .*. y@(EField n2 ns2)) = case (c==n1) of 
                                                               True => y
                                                               False => case (c==n2) of 
                                                                         True => x
-                                                                        False => (x .|. y)
-drop_key c ( x .|. y ) = (drop_key c x) .|. (drop_key c y)
+                                                                        False => (x .*. y)
+drop_key c ( x .*. y ) = (drop_key c x) .*. (drop_key c y)
 drop_key c f = f
 
 {-
@@ -154,7 +157,7 @@ convert_s2 : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
 convert_s2 (IField namex FBool) {si = (IField name FBool) } item = item
 convert_s2 (IField namex FString) {si = (IField name FString) } item = item
 convert_s2 (EField namex ns) {si = (EField name ns2) } item = item
-convert_s2 sb {si = (y .|. z)} it = convert_s2 sb it
+convert_s2 sb {si = (y .*. z)} it = convert_s2 sb it
 -}
 namespace convert_s3LR_drop_col
   convert_s3 : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
@@ -169,7 +172,7 @@ namespace convert_s3LR_drop_col
   convert_s3 (EField namex (NSInt ns)) {si = (EField name (NSInt ns2) ) } item = item  
   convert_s3 (EField namex (NSSeq ns)) {si = (EField name (NSSeq ns2) ) } item = item    
   convert_s3 (EField namex (NSCode ns)) {si = (EField name (NSCode ns2) ) } item = item
-  convert_s3 sb {si = (y .|. z)} it = convert_s3 sb it
+  convert_s3 sb {si = (y .*. z)} it = convert_s3 sb it
 --  convert_s3 sb {si = (KeyName1 name y)} it = convert_s3 sb it
 --  convert_s3 sb {si = (KeyName2 name y z)} it = convert_s3 sb it    
 
@@ -188,7 +191,7 @@ namespace convert_s3LR_drop_col
   convert_sL (EField namex (NSCode ns)) {si = (EField name (NSCode ns2)) } item = item  
 --  convert_sL sb {si = (KeyName1 name y)} iR = convert_sL sb iR
 --  convert_sL sb {si = (KeyName2 name y z)} (iL,iR) = convert_sL sb iR
-  convert_sL sb {si = (y .|. z)} (iL,iR) = convert_sL sb iR
+  convert_sL sb {si = (y .*. z)} (iL,iR) = convert_sL sb iR
 
   convert_sR : (sb: Schema2 Key) -> (SchemaType2 si) -> (SchemaType2 sb)
   convert_sR (IField namex FBool) {si = (IField name FBool) } item = item
@@ -203,10 +206,10 @@ namespace convert_s3LR_drop_col
   convert_sR (EField namex (NSCode ns)  ) {si = (EField name (NSCode ns2) ) } item = item  
 --  convert_sR sb {si = (KeyName1 name y)} iL = convert_sR sb iL
 --  convert_sR sb {si = (KeyName2 name y z)} (iL,iR) = convert_sR sb iL
-  convert_sR sb {si = (y .|. z)} (iL,iR) = convert_sR sb iL
+  convert_sR sb {si = (y .*. z)} (iL,iR) = convert_sR sb iL
       
   drop_col : (sb: Schema2 Key) -> (c:String) -> (SchemaType2 sk) -> (SchemaType2 sb )
-  drop_col  sb c {sk= (y@(EField n1 ns1) .|. z@(EField n2 ns2 ) ) } item  = ret where 
+  drop_col  sb c {sk= (y@(EField n1 ns1) .*. z@(EField n2 ns2 ) ) } item  = ret where 
     ret = case (c==n1) of
         True => convert_sL sb item
         False => case (c==n2) of
@@ -289,7 +292,7 @@ namespace render_with_ids
   
   renderDataWithSchema2 p_id {schema = (EField name (NSCode ns))}      item  = [render_text_in_td_tag2 (cell_id p_id name) item]
     
-  renderDataWithSchema2 p_id {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2 p_id iteml) ++ (renderDataWithSchema2 p_id itemr)
+  renderDataWithSchema2 p_id {schema = (y .*. z)} (iteml, itemr) = (renderDataWithSchema2 p_id iteml) ++ (renderDataWithSchema2 p_id itemr)
   renderDataWithSchema2 p_id {schema = (y .+. z)} (iteml, itemr) = (renderDataWithSchema2 p_id iteml) ++ (renderDataWithSchema2 p_id itemr)
 
 
@@ -330,7 +333,7 @@ namespace render_wo_ids
   renderDataWithSchema2 {schema = (EField name (NSInt ns) )}      item  = [render_number_in_td_tag2 (int2integer item)]  
   renderDataWithSchema2 {schema = (EField name (NSSeq ns) )}      item  = [render_number_in_td_tag2 (int2integer item)]    
   renderDataWithSchema2 {schema = (EField name (NSCode ns) )}      item  = [render_text_in_td_tag2 item]  
-  renderDataWithSchema2 {schema = (y .|. z)} (iteml, itemr) = (renderDataWithSchema2 iteml) ++ (renderDataWithSchema2 itemr)
+  renderDataWithSchema2 {schema = (y .*. z)} (iteml, itemr) = (renderDataWithSchema2 iteml) ++ (renderDataWithSchema2 itemr)
   renderDataWithSchema2 {schema = (y .+. z)} (iteml, itemr) = (renderDataWithSchema2 iteml) ++ (renderDataWithSchema2 itemr)
   
 public export
@@ -338,7 +341,7 @@ get_cell_keys : String -> (s:Schema2 kv) -> List String
 get_cell_keys p_id (IField name fd)  = [cell_id p_id name]
 get_cell_keys p_id (IFieldAlg name fd)  = [cell_id p_id name]
 get_cell_keys p_id (EField name ns)  = [cell_id p_id name]
-get_cell_keys p_id (y .|. z)  = (get_cell_keys p_id y) ++ (get_cell_keys p_id z)
+get_cell_keys p_id (y .*. z)  = (get_cell_keys p_id y) ++ (get_cell_keys p_id z)
 get_cell_keys p_id (y .+. z)  = (get_cell_keys p_id y) ++ (get_cell_keys p_id z)
 
 public export
@@ -362,7 +365,7 @@ make_cells_editable p_id (IFieldAlg name FIntCarrier)  = do
 
 make_cells_editable p_id (IField name fd)  = pure ()
 make_cells_editable p_id (EField name fd)  = pure ()
-make_cells_editable p_id (y .|. z)  = do 
+make_cells_editable p_id (y .*. z)  = do 
                                     make_cells_editable p_id y
                                     make_cells_editable p_id z
 make_cells_editable p_id (y .+. z)  = do 
@@ -388,7 +391,7 @@ make_cells_ro p_id (IFieldAlg name FIntCarrier)  = do
                    
 make_cells_ro p_id (IField name fd)  = pure ()
 make_cells_ro p_id (EField name fd)  = pure ()
-make_cells_ro p_id (y .|. z)  = do 
+make_cells_ro p_id (y .*. z)  = do 
                                     make_cells_ro p_id y
                                     make_cells_ro p_id z
 
@@ -441,7 +444,7 @@ read_cells p_id (EField name (NSCode ns) )  = do
                    --let qty_integer = the Integer (cast v)                   
                    pure v
                    
-read_cells p_id (y .|. z)  =  do
+read_cells p_id (y .*. z)  =  do
                    r_y <- read_cells p_id y
                    r_z <- read_cells p_id z
                    pure (r_y,r_z)
@@ -511,7 +514,7 @@ read_cells_attr p_id (EField name (NSCode ns) )  = do
                    v <- get_text_dataval _cell_id
                    pure v
                    
-read_cells_attr p_id (y .|. z)  =  do
+read_cells_attr p_id (y .*. z)  =  do
                    r_y <- read_cells_attr p_id y
                    r_z <- read_cells_attr p_id z
                    pure (r_y,r_z)
@@ -569,7 +572,7 @@ set_cells_attr p_id {schema=(EField name (NSCode ns) )} item = do
                    let _cell_id = cell_id p_id name
                    set_text_dataval _cell_id item --(integer_to_int item)
                    
-set_cells_attr p_id {schema=(y .|. z)} (il,ir) = do
+set_cells_attr p_id {schema=(y .*. z)} (il,ir) = do
                    set_cells_attr p_id il
                    set_cells_attr p_id ir
                    
@@ -615,7 +618,7 @@ update_cells_td p_id {schema=(EField name (NSSeq ns) )} item = do
                    let _cell_id = cell_id p_id name
                    set_qty_int_dataval p_id item
 
-update_cells_td p_id {schema=(y .|. z)} (il,ir) = do
+update_cells_td p_id {schema=(y .*. z)} (il,ir) = do
                    set_cells_attr p_id il
                    set_cells_attr p_id ir
 update_cells_td p_id {schema=(y .+. z)} (il,ir) = do
@@ -647,7 +650,7 @@ schema2thead2 sch = ret where
   schema2th (EField name (NSInt ns) ) = [printf "<th>%s[%s]</th>" name ns]  
   schema2th (EField name (NSSeq ns) ) = [printf "<th>%s[%s]</th>" name ns]  
   schema2th (EField name (NSCode ns) ) = [printf "<th>%s[%s]</th>" name ns]
-  schema2th (s1 .|. s2) = (schema2th s1) ++ (schema2th s2)
+  schema2th (s1 .*. s2) = (schema2th s1) ++ (schema2th s2)
   schema2th (s1 .+. s2) = (schema2th s1) ++ (schema2th s2)
   ths : String
   ths = concat $ schema2th sch
@@ -673,7 +676,7 @@ renderDataAsKey {schema = (EField name (NSInteger ns) )}      item = the String 
 renderDataAsKey {schema = (EField name (NSInt ns) )}      item = the String (cast item)
 renderDataAsKey {schema = (EField name (NSSeq ns) )}      item = the String (cast item)
 renderDataAsKey {schema = (EField name (NSCode ns))}      item = item
-renderDataAsKey {schema = (y .|. z)} (iteml, itemr) = (renderDataAsKey iteml) ++ (renderDataAsKey itemr)
+renderDataAsKey {schema = (y .*. z)} (iteml, itemr) = (renderDataAsKey iteml) ++ (renderDataAsKey itemr)
 
 public export
 runjsio : (ty) -> List (JS_IO ty) -> JS_IO ty
@@ -895,7 +898,7 @@ namespace tab_widget
    convert_2sub : (sb: Schema2 Val) -> (SchemaType2 si) -> (SchemaType2 sb)
    convert_2sub (IFieldAlg namex FTtermCarrier) {si = (IFieldAlg name FTtermCarrier) } item = item
    convert_2sub (IFieldAlg namex FIntCarrier) {si = (IFieldAlg name FIntCarrier) } item = item   
-   convert_2sub sb {si = (y .|. z)} it = convert_2sub sb it --(convert_items2sub sb it1, convert_items2sub sb it2)
+   convert_2sub sb {si = (y .*. z)} it = convert_2sub sb it --(convert_items2sub sb it1, convert_items2sub sb it2)
 
    public export
    insert_table : String -> String -> (m:ModelSchema) -> ModelDataList m -> JS_IO ()

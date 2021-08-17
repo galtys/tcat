@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- meta block -->
+		<title>Finding necessary shape - DHTMLX Diagram</title>
+		<meta name="description" content="Check interactive samples of DHTMLX Diagram to explore its api and other details.">
+		<!-- end meta block -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+		<script type="text/javascript" src="../../codebase/diagram.js?v=3.1.0"></script>
+		<link rel="stylesheet" href="../../codebase/diagram.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/index.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/diagram.css?v=3.1.0">
+		<script type="text/javascript" src="../common/diagram.js?v=3.1.0"></script>
+		<!-- custom sample head -->
+		<style>
+			.yes_line .dhx_diagram_arrow, .yes_line .dhx_diagram_line {
+				fill: #38B551;
+				stroke: #38B551;
+			}
+			.no_line .dhx_diagram_arrow, .no_line .dhx_diagram_line {
+				fill: #E10000;
+				stroke: #E10000;
+			}
+			.yes_circle .dhx_item_shape {
+				fill: #38B551;
+				stroke: none;
+			}
+			.yes_circle text {
+				fill: white;
+				text-transform: uppercase;
+				font-size: 12px;
+				font-weight: 500;
+			}
+			.no_circle .dhx_item_shape {
+				fill: red;
+				stroke: none;
+			}
+			.no_circle text {
+				fill: white;
+				text-transform: uppercase;
+				font-size: 12px;
+				font-weight: 500;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="dhx_sample-header">
+			<div class="dhx_sample-header__main">
+				<nav class="dhx_sample-header__breadcrumbs">
+					<ul class="dhx_sample-header-breadcrumbs">
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="../index.html" class="dhx_sample-header-breadcrumbs__link">Diagram samples</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="./index.html" class="dhx_sample-header-breadcrumbs__link">Api</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<span class="dhx_sample-header-breadcrumbs__link">Finding necessary shape</span>
+						</li>
+					</ul>
+				</nav>
+				<h1 class="dhx_sample-header__title">
+					<div class="dhx_sample-header__content">
+						Finding necessary shape.
+					</div>
+				</h1>
+			</div>
+</header>
+		<section class="dhx_sample-controls">
+			<button class="dhx_sample-btn dhx_sample-btn--flat" onclick="find()">Find shape</button>
+		</section>
+		<section class="dhx_sample-container">
+			<div class="dhx_sample-container__widget" id="diagram"></div>
+			<div class="dhx_inline_cont">
+				<div>Results</div>
+				<div id="messages"></div>
+			</div>
+		</section>
+		<script>
+			var diagram = new dhx.Diagram("diagram");
+			diagram.data.parse(custom);
+			function find() {
+				var shape = diagram.data.find({by:"type",match:"decision"});
+				document.getElementById("messages").innerHTML = "Shape: <p>id:" + shape.id + ", text:" + shape.text + ", type:" + shape.type + "</p>";
+			}
+		</script>
+	</body>
+</html>

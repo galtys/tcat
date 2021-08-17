@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- meta block -->
+		<title>Medical hierarchy - DHTMLX Diagram</title>
+		<meta name="description" content="Check interactive samples of DHTMLX Diagram to explore its customization and other details.">
+		<!-- end meta block -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+		<script type="text/javascript" src="../../codebase/diagram.js?v=3.1.0"></script>
+		<link rel="stylesheet" href="../../codebase/diagram.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/index.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/diagram.css?v=3.1.0">
+		<script type="text/javascript" src="../common/customsvg.js?v=3.1.0"></script>
+		<!-- custom sample head -->
+		<script type="text/javascript" src="../common/menu/menu.js?v=3.1.0"></script>
+		<script type="text/javascript" src="../../codebase/diagramWithEditor.js?v=3.1.0"></script>
+		<link rel="stylesheet" href="../../codebase/diagramWithEditor.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/menu/menu.css?v=3.1.0">
+		<link href="https://cdn.materialdesignicons.com/4.5.95/css/materialdesignicons.min.css?v=3.1.0" media="all" rel="stylesheet" type="text/css">
+		<style>
+			.dhx_sample-container__without-editor {
+				height: calc(100% - 121px);
+			}
+			.dhx_sample-container__with-editor {
+				height: calc(100% - 61px);
+			}
+			.dhx_sample-widget {
+				height: 100%;
+			}
+			.template {
+				height: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: white;
+				color: rgba(0, 0, 0, 0.7);
+				border: 1px solid #DFDFDF;
+				padding: 10px 12px;
+			}
+			.template span {
+				display: flex;
+			}
+			.template h3, .template p {
+				text-align: left;
+				font-size: 14px;
+				line-height: 20px;
+				height: 20px;
+				margin: 0 0 4px 0;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;	
+			}
+			.template_container {
+				height: 100%;
+				width: 100%;
+				overflow: hidden;
+				position: relative;
+			}
+			.template_img-container {
+				min-width: 93px;
+				width: 93px;
+				margin-right: 12px;
+			}
+			.template_img-container img {
+				width: inherit;
+				height: auto;
+			}
+			.template_icon {
+				height: 20px;
+				width: 20px;
+				margin-right: 4px;
+			}
+			.toggle_container {
+				position: absolute;
+				right: 2px;
+				top: 10px;
+				cursor: pointer;
+				height: 20px;
+				width: 20px;
+			}
+			.toggle_container .template_icon {
+				height: 14px;
+				width: 4px;
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="dhx_sample-header">
+			<div class="dhx_sample-header__main">
+				<nav class="dhx_sample-header__breadcrumbs">
+					<ul class="dhx_sample-header-breadcrumbs">
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="../index.html" class="dhx_sample-header-breadcrumbs__link">Diagram samples</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="./index.html" class="dhx_sample-header-breadcrumbs__link">Customization</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<span class="dhx_sample-header-breadcrumbs__link">Medical hierarchy</span>
+						</li>
+					</ul>
+				</nav>
+				<h1 class="dhx_sample-header__title">
+					<div class="dhx_sample-header__content">
+						Medical hierarchy.
+					</div>
+				</h1>
+			</div>
+</header>
+		<section id="control" class="dhx_sample-controls">
+			<button class="dhx_sample-btn dhx_sample-btn--flat" onclick="runEditor()">Edit</button>
+		</section>
+		<section id="container" class="dhx_sample-container__without-editor">
+			<div class="dhx_sample-widget" id="diagram"></div>
+			<div class="dhx_sample-widget" id="editor" style="display: none;"></div>
+		</section>
+		<script>
+			const diagram = new dhx.Diagram("diagram", {
+				type: "org",
+				defaultShapeType: "template"
+			});
+			
+			const editor = new dhx.DiagramEditor("editor", {
+				type: "org",
+				shapeType: "template",
+				controls: { 
+					gridStep: false
+				},
+			});
+			
+			function template(config) {
+				let template = '<section class="template">';
+					template += '<div class="template_container template_img-container">';
+					template += '<img src="'+ config.photo +'" alt="'+ config.name + "-" + config.post +'"></img>';
+					template += '</div>';
+					template += '<div class="template_container">';
+					template += '<h3>'+ config.name +'</h3>';
+					template += '<p>'+ config.post +'</p>';
+					template += '<span>';
+					template += '<img class="template_icon" src="../common/img/icons/cellphone-android.svg" alt="phone number"></img>';
+					template += '<p>'+ config.phone +'</p>';
+					template += '</span>';
+					template += '<span>';
+					template += '<img class="template_icon" src="../common/img/icons/email-outline.svg" alt="email"></img>';
+					template += '<a style="color:#0288D1" href="mailto:'+ config.mail +'" target="_blank">'+ config.mail +'</a> ';
+					template += '</span></div>';
+					template += '<div class="toggle_container"><img class="template_icon" src="../common/img/icons/toggle.svg" alt="toggle"></img></div>';
+					template += '</section>';
+				return template;
+			}
+
+			diagram.addShape("template", {
+				template: template,
+				defaults: {
+					height: 115,
+					width: 330
+				},
+				eventHandlers: {
+					onclick: {
+						"toggle_container": show,
+					}
+				},
+			});
+
+			editor.diagram.addShape("template", {
+				template: template,
+				defaults: {
+					name: "Name and First name",
+					post: "Position held",
+					phone: "(405) 000-00-00",
+					mail: "some@mail.com",
+					photo: "../common/big_img/big-avatar-1.jpg",
+
+					height: 115, width: 330
+				},
+				properties: [
+					{ type: "position" },
+					{ type: "size" },
+					{ type: "text", label: "name", property: "name" },
+					{ type: "text", label: "post", property: "post" },
+					{ type: "text", label: "phone", property: "phone" },
+					{ type: "text", label: "email", property: "mail" },
+					{ type: "img", label: "photo",  property: "photo" }
+				],
+				eventHandlers: {
+					onclick: {
+						"toggle_container": show,
+					}
+				},
+			});
+
+			let item;
+
+			diagram.events.on("ShapeClick", function (id) {
+				item = diagram.data.getItem(id);
+			});
+
+			const contextMenu = new dhx.ContextMenu(null, {
+				css: "dhx_widget--bg_gray"
+			});
+
+			contextMenu.data.parse([
+				{
+					"type": "menuItem",
+					"id": "mail",
+					"value": "Mail",
+					"icon": "mdi mdi-email"
+				},
+				{
+					"type": "menuItem",
+					"id": "call",
+					"value": "Call",
+					"icon": "mdi mdi-phone"
+				},
+				{
+					"type": "menuItem",
+					"id": "site",
+					"value": "Open Site",
+					"icon": "mdi mdi-open-in-new"
+				}
+			]);
+
+			contextMenu.events.on("click", function (id) {
+				switch (id) {
+					case "mail":
+						window.open('mailto:' + item.mail + ',_blank');
+						break;
+					case "call":
+						window.open('tel:' + item.phone + ',_blank');
+						break;
+					case "site":
+						window.open('https://dhtmlx.com/docs/products/dhtmlxDiagram/', '_blank');
+						break;
+				}
+			});
+
+			let toggleItem;
+
+			function show(event, shape) {
+				console.log(event, shape);
+				event.preventDefault();
+				contextMenu.showAt(event.target, "bottom");
+			}
+
+			const editorCont = document.querySelector("#editor");
+			const diagramCont = document.querySelector("#diagram");
+			const controls = document.querySelector("#control");
+			const container = document.querySelector("#container");
+			
+			const WITH_EDITOR = "dhx_sample-container__with-editor";
+			const WITHOUT_EDITOR = "dhx_sample-container__without-editor";
+
+			function expand() {
+				diagramCont.style.display = "none";
+				controls.style.display = "none";
+				editorCont.style.display = "block";
+				container.classList.remove(WITHOUT_EDITOR);
+				container.classList.add(WITH_EDITOR);
+			}
+
+			function collapse() {
+				diagramCont.style.display = "block";
+				controls.style.display = "flex";
+				editorCont.style.display = "none";
+				container.classList.remove(WITH_EDITOR);
+				container.classList.add(WITHOUT_EDITOR);
+			}
+
+			function runEditor() {
+				expand();
+				editor.import(diagram);
+			}
+
+			editor.events.on("ApplyButton", function () {
+				collapse();
+				diagram.data.parse(editor.serialize());
+			});
+
+			editor.events.on("ResetButton", function () {
+				collapse();
+			});
+
+			diagram.data.parse(medCardShape);
+		</script>
+	</body>
+</html>

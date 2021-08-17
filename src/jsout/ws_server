@@ -1,0 +1,345 @@
+#!/usr/bin/env node
+"use strict";
+
+(function(){
+
+const $JSRTS = {
+    throw: function (x) {
+        throw x;
+    },
+    Lazy: function (e) {
+        this.js_idris_lazy_calc = e;
+        this.js_idris_lazy_val = void 0;
+    },
+    force: function (x) {
+        if (x === undefined || x.js_idris_lazy_calc === undefined) {
+            return x
+        } else {
+            if (x.js_idris_lazy_val === undefined) {
+                x.js_idris_lazy_val = x.js_idris_lazy_calc()
+            }
+            return x.js_idris_lazy_val
+        }
+    },
+    prim_strSubstr: function (offset, len, str) {
+        return str.substr(Math.max(0, offset), Math.max(0, len))
+    }
+};
+$JSRTS.os = require('os');
+
+$JSRTS.fs = require('fs');
+
+$JSRTS.prim_systemInfo = function (index) {
+    switch (index) {
+        case 0:
+            return "node";
+        case 1:
+            return $JSRTS.os.platform();
+    }
+    return "";
+};
+
+$JSRTS.prim_writeStr = function (x) { return process.stdout.write(x) };
+
+$JSRTS.prim_readStr = function () {
+    var ret = '';
+    var b = Buffer.alloc(1024);
+    var i = 0;
+    while (true) {
+        $JSRTS.fs.readSync(0, b, i, 1)
+        if (b[i] == 10) {
+            ret = b.toString('utf8', 0, i);
+            break;
+        }
+        i++;
+        if (i == b.length) {
+            var nb = Buffer.alloc(b.length * 2);
+            b.copy(nb)
+            b = nb;
+        }
+    }
+    return ret;
+};
+
+$JSRTS.die = function (message) {
+    console.error(message);
+    process.exit(-1);
+};
+
+
+var WebSocketServer = require('websocket').server;
+var http = require('http');
+
+function originIsAllowed(origin) {
+  return true;
+}
+
+var nodeAppState = (function () {    
+  /* The object that holds the state 
+  var state = {};
+  console.log("wsServer1----");
+  */
+
+  var server = http.createServer( function(request, response) {
+    console.log((new Date()) + ' Received request for ' + request.url);
+    response.writeHead(404);
+    response.end();
+  });
+  server.listen(8080, function() {
+    console.log((new Date()) + ' Server is listening on port 8080');
+  });
+
+  var wsServer = new WebSocketServer({
+    httpServer: server,
+    autoAcceptConnections: false
+  });
+
+    return {
+/*	
+      newState : function () {
+        state = { state: 'SAFE' };	  
+    },
+      
+    readState : function () {
+      return state.state;
+    },
+    
+    readHealth : function () {
+      return state.health;
+    },
+    
+    readEnemy : function () {
+      return state.enemy;
+    },
+    
+    writeStateStr : function (stateStr) {
+      state.state = stateStr;
+    },
+    
+    writeHealth : function (health) {
+      state.health = health;
+    },
+     
+    writeEnemy : function (enemy) {
+      state.enemy = enemy;
+    },
+*/
+    wsServerOnRequest : function (on_request) {
+	wsServer.on('request', on_request);
+    },
+    acceptConnection : function (req) {
+    	console.log(req.origin, req.url);
+	var conn = req.accept('echo-protocol',req.origin);
+	//state.conn = conn;
+
+        return conn;
+    },
+    
+    setOnMsgHandler : function (c,fc) {
+          c.on('message', fc);
+    },
+    setOnCloseHandler : function (c,fc) {
+          c.on('close', fc);
+    },
+    getUtf8Data : function (msg) {
+        if (msg.type==='utf8') {
+	    return msg.utf8Data;
+	} else {
+	    return "";
+	}	    
+    },
+    sendUTF : function (c,a) {
+	  c.sendUTF( a ); //connection.sendUTF
+    },
+  }
+
+}());
+
+
+
+/*
+#!/usr/bin/env node
+var WebSocketServer = require('websocket').server;
+var http = require('http');
+
+var server = http.createServer(function(request, response) {
+    console.log((new Date()) + ' Received request for ' + request.url);
+    response.writeHead(404);
+    response.end();
+});
+server.listen(8080, function() {
+    console.log((new Date()) + ' Server is listening on port 8080');
+});
+
+wsServer = new WebSocketServer({
+    httpServer: server,
+    // You should not use autoAcceptConnections for production
+    // applications, as it defeats all standard cross-origin protection
+    // facilities built into the protocol and the browser.  You should
+    // *always* verify the connection's origin and decide whether or not
+    // to accept it.
+    autoAcceptConnections: false
+});
+
+function originIsAllowed(origin) {
+  // put logic here to detect whether the specified origin is allowed.
+  return true;
+}
+
+wsServer.on('request', function(request) {
+    if (!originIsAllowed(request.origin)) {
+      // Make sure we only accept requests from an allowed origin
+      request.reject();
+      console.log((new Date()) + ' Connection from origin ' + request.origin + ' rejected.');
+      return;
+    }
+    
+    var connection = request.accept('echo-protocol', request.origin);
+    console.log((new Date()) + ' Connection accepted.');
+    connection.on('message', function(message) {
+        if (message.type === 'utf8') {
+            console.log('Received Message: ' + message.utf8Data);
+            connection.sendUTF(message.utf8Data);
+        }
+        else if (message.type === 'binary') {
+            console.log('Received Binary Message of ' + message.binaryData.length + ' bytes');
+            connection.sendBytes(message.binaryData);
+        }
+    });
+    connection.on('close', function(reasonCode, description) {
+        console.log((new Date()) + ' Peer ' + connection.remoteAddress + ' disconnected.');
+    });
+});
+*/
+
+
+var forge = require('node-forge');
+
+function calc_sha1(msg) {
+   var md1 = forge.md.sha1.create();
+   md1.update(msg);
+   return md1.digest().toHex();
+}
+
+function calc_sha256(msg) {
+   var md1 = forge.md.sha256.create();
+   md1.update(msg);
+   return md1.digest().toHex();
+}
+
+
+function $partial_1_2$Main__console_95_log(x1){
+    return (function(x2){
+        return Main__console_95_log(x1, x2);
+    });
+}
+
+function $partial_1_3$Main__on_95_msg_95_recv2(x1){
+    return (function(x2){
+        return (function(x3){
+            return Main__on_95_msg_95_recv2(x1, x2, x3);
+        });
+    });
+}
+
+function $partial_0_2$Main__on_95_req(){
+    return (function(x1){
+        return (function(x2){
+            return Main__on_95_req(x1, x2);
+        });
+    });
+}
+
+function $partial_0_1$Main___123_on_95_req_95_0_125_(){
+    return (function(x1){
+        return Main___123_on_95_req_95_0_125_(x1);
+    });
+}
+
+const $HC_0_0$TheWorld = ({type: 0});
+// Main.acceptConnection
+
+function Main__acceptConnection($_0_arg, $_1_w){
+    return (nodeAppState.acceptConnection(($_0_arg)));
+}
+
+// JSIO.SHA.calc_sha1
+
+function JSIO__SHA__calc_95_sha1($_0_x, $_1_w){
+    return (calc_sha1(($_0_x)));
+}
+
+// Main.console_log
+
+function Main__console_95_log($_0_x, $_1_w){
+    return (console.log(($_0_x)));
+}
+
+// Main.getUtf8Data
+
+function Main__getUtf8Data($_0_arg, $_1_w){
+    return (nodeAppState.getUtf8Data(($_0_arg)));
+}
+
+// Main.on_msg_recv2
+
+function Main__on_95_msg_95_recv2($_0_arg, $_1_arg, $_2_in){
+    const $_3_in = Main__getUtf8Data($_1_arg, $_2_in);
+    const $_4_in = JSIO__SHA__calc_95_sha1($_3_in, $_2_in);
+    return Main__sendUTF($_0_arg, ($_3_in + (" " + $_4_in)), $_2_in);
+}
+
+// Main.on_req
+
+function Main__on_95_req($_0_arg, $_1_in){
+    const $_2_in = Main__acceptConnection($_0_arg, $_1_in);
+    const $_3_in = Main__setOnMsgHandler($_2_in, $partial_1_3$Main__on_95_msg_95_recv2($_2_in), $_1_in);
+    return Main__setOnCloseHandler($_2_in, $partial_0_1$Main___123_on_95_req_95_0_125_(), $_1_in);
+}
+
+// Main.sendUTF
+
+function Main__sendUTF($_0_arg, $_1_arg, $_2_w){
+    return (nodeAppState.sendUTF(($_0_arg),($_1_arg)));
+}
+
+// Main.setOnCloseHandler
+
+function Main__setOnCloseHandler($_0_arg, $_1_arg, $_2_w){
+    return (nodeAppState.setOnCloseHandler(($_0_arg),((function(x){
+        return $_1_arg(x)(null);
+    }))));
+}
+
+// Main.setOnMsgHandler
+
+function Main__setOnMsgHandler($_0_arg, $_1_arg, $_2_w){
+    return (nodeAppState.setOnMsgHandler(($_0_arg),((function(x){
+        return $_1_arg(x)(null);
+    }))));
+}
+
+// Main.wsServerOnRequest
+
+function Main__wsServerOnRequest($_0_arg, $_1_w){
+    return (nodeAppState.wsServerOnRequest(((function(x){
+        return $_0_arg(x)(null);
+    }))));
+}
+
+// Main.{on_req_0}
+
+function Main___123_on_95_req_95_0_125_($_0_lift){
+    return $partial_1_2$Main__console_95_log(("connection closed: " + $_0_lift));
+}
+
+// {runMain_0}
+
+function $_0_runMain(){
+    const $_4_in = Main__console_95_log("Starting ws", $HC_0_0$TheWorld);
+    return $JSRTS.force(Main__wsServerOnRequest($partial_0_2$Main__on_95_req(), $HC_0_0$TheWorld));
+}
+
+
+$_0_runMain();
+}.call(this))

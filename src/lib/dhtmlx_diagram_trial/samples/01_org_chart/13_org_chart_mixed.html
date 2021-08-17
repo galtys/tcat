@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- meta block -->
+		<title>Mixed - DHTMLX Diagram</title>
+		<meta name="description" content="Check interactive samples of DHTMLX Diagram to explore its org chart and other details.">
+		<!-- end meta block -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+		<script type="text/javascript" src="../../codebase/diagram.js?v=3.1.0"></script>
+		<link rel="stylesheet" href="../../codebase/diagram.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/index.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/diagram.css?v=3.1.0">
+		<script type="text/javascript" src="../common/data.js?v=3.1.0"></script>
+		<!-- custom sample head -->
+		<style>
+			.template {
+				height: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: white;
+				color: rgba(0, 0, 0, 0.7);
+				border: 1px solid #DFDFDF;
+				padding: 10px 12px;
+			}
+			.template span {
+				display: flex;
+			}
+			.template h3, .template p {
+				text-align: left;
+				font-size: 14px;
+				line-height: 20px;
+				height: 20px;
+				margin: 0 0 4px 0;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			.template_container {
+				height: 100%;
+				width: 100%;
+				overflow: hidden;
+			}
+			.template_img-container {
+				min-width: 93px;
+				width: 93px;
+				margin-right: 12px;
+			}
+			.template_img-container img {
+				width: inherit;
+				height: auto;
+			}
+			.template_icon {
+				height: 20px;
+				width: 20px;
+				margin-right: 4px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="dhx_sample-header">
+			<div class="dhx_sample-header__main">
+				<nav class="dhx_sample-header__breadcrumbs">
+					<ul class="dhx_sample-header-breadcrumbs">
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="../index.html" class="dhx_sample-header-breadcrumbs__link">Diagram samples</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="./index.html" class="dhx_sample-header-breadcrumbs__link">Org chart</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<span class="dhx_sample-header-breadcrumbs__link">Mixed</span>
+						</li>
+					</ul>
+				</nav>
+				<h1 class="dhx_sample-header__title">
+					<div class="dhx_sample-header__content">
+						Mixed.
+					</div>
+				</h1>
+			</div>
+</header>
+		<section class="dhx_sample-container">
+			<div class="dhx_sample-container__widget" id="diagram"></div>
+		</section>
+		<script>
+			function template(config) {
+				var template = '<section class="template">';
+				template += '<div class="template_container template_img-container">';
+				template += '<img src="'+ config.img +'" alt="'+ config.title + "-" + config.post +'"></img>';
+				template += '</div>';
+				template += '<div class="template_container">';
+				template += '<h3>'+ config.title +'</h3>';
+				template += '<p>'+ config.post +'</p>';
+				template += '<span>';
+				template += '<img class="template_icon" src="../common/img/icons/cellphone-android.svg" alt="phone number"></img>';
+				template += '<p>'+ config.phone +'</p>';
+				template += '</span>';
+				template += '<span>';
+				template += '<img class="template_icon" src="../common/img/icons/email-outline.svg" alt="email"></img>';
+				template += '<p style="color:#0288D1">'+ config.email +'</p>';
+				template += '</span></div></section>';
+				return template;
+			}
+
+			var diagram = new dhx.Diagram("diagram", {
+				type: "org",
+				defaults: {
+					template: {
+						height: 115,
+						width: 330
+					}
+				}
+			});
+
+			diagram.addShape("template", {
+				template: template
+			});
+
+			diagram.data.parse(orgChartDataMixed);
+		</script>
+	</body>
+</html>

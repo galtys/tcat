@@ -101,7 +101,7 @@ Semigroup SymbolOP where
 
 --------------------------------------
 
-infixr 5 .|.
+infixr 5 .*.
 infixr 5 .+.
 
 
@@ -141,15 +141,15 @@ data KV = Key | Val
 data Schema2 : KV -> Type where
      IField : (name:String) -> (ft: FieldDefKey) -> Schema2 Key    
      EField : (name:String) -> (ns :SymbolType)-> Schema2 Key -- id implementation
-     (.|.) : (s1 : Schema2 Key) -> (s2 :Schema2 Key) -> Schema2 Key         
+     (.*.) : (s1 : Schema2 Key) -> (s2 :Schema2 Key) -> Schema2 Key         
      IFieldAlg : (name:String) -> (ft: AlgebraCarriers) -> Schema2 Val  -- algebra carrier          
      (.+.) : (s1 : Schema2 Val) -> (s2 :Schema2 Val) -> Schema2 Val
-
+{-
 data Schema2Tree : (kv:KV)  -> Type where
      S2Node : (s1 : Schema2 kv) -> Schema2Tree kv
      (::) : (s1 : Schema2Tree kv) -> (s2 : Schema2Tree kv) -> Schema2Tree kv
      S2Name : (name :String) -> (s1 : Schema2Tree kv)  -> Schema2Tree kv
-
+-}
 SchemaType2 : Schema2 kv-> Type
 SchemaType2 (IField name FBool)= Bool
 SchemaType2 (IField name FString )= String
@@ -165,7 +165,7 @@ SchemaType2 (EField name (NSInteger ns) ) = Integer
 SchemaType2 (EField name (NSInt ns) ) = Int
 SchemaType2 (EField name (NSSeq ns) ) = Int
 SchemaType2 (EField name (NSCode ns) ) = String
-SchemaType2 (x .|. y) = (SchemaType2 x, SchemaType2 y)
+SchemaType2 (x .*. y) = (SchemaType2 x, SchemaType2 y)
 SchemaType2 (x .+. y) = (SchemaType2 x, SchemaType2 y)
 --SchemaType2 (KeyName1 name s1) = SchemaType2 s1
 --SchemaType2 (KeyName2 name s1 s2) = (SchemaType2 s1, SchemaType2 s2)
@@ -192,7 +192,7 @@ eqSchema2 {schema = (EField name (NSInteger ns))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (EField name (NSInt ns))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (EField name (NSSeq ns))} item1 item2 = (item1 == item2)
 eqSchema2 {schema = (EField name (NSCode ns))} item1 item2 = (item1 == item2)
-eqSchema2 {schema = (y .|. z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqSchema2  i1r i2r)
+eqSchema2 {schema = (y .*. z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqSchema2  i1r i2r)
 --eqSchema2 {schema = (KeyName1 name y)} item1 item2 = (eqSchema2  item1 item2)
 --eqSchema2 {schema = (KeyName2 name y z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqSchema2  i1r i2r)
 eqSchema2 {schema = (y .+. z)} (i1l,i1r) (i2l,i2r) = (eqSchema2 i1l i2l) && (eqSchema2  i1r i2r)
@@ -218,12 +218,12 @@ mulSchema2Vals {schema = (IFieldAlg name FIntCarrier)} item1 item2 = item1 * ite
 mulSchema2Vals {schema = (IFieldAlg name FOPcarrier)} item1 item2 = item1 <+> item2  -- For Tterm, add
 mulSchema2Vals {schema = (y .+. z)} (i1l,i1r) (i2l,i2r) = ( mulSchema2Vals i1l i2l, mulSchema2Vals i1r i2r)
 
-
+{-
 record Vector where
     constructor MkVector
     key : Schema2Tree Key
     val : Schema2Tree Val
-     
+-}     
                
 record ModelSchema where
      constructor MkModelSchema

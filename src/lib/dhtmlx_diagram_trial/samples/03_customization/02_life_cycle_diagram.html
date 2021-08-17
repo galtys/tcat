@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- meta block -->
+		<title>Life cycle diagram - DHTMLX Diagram</title>
+		<meta name="description" content="Check interactive samples of DHTMLX Diagram to explore its customization and other details.">
+		<!-- end meta block -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+		<script type="text/javascript" src="../../codebase/diagram.js?v=3.1.0"></script>
+		<link rel="stylesheet" href="../../codebase/diagram.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/index.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/diagram.css?v=3.1.0">
+		<script type="text/javascript" src="../common/customsvg.js?v=3.1.0"></script>
+		<!-- custom sample head -->
+		<script type="text/javascript" src="../../codebase/diagramWithEditor.js?v=3.1.0"></script>
+		<link rel="stylesheet" href="../../codebase/diagramWithEditor.css?v=3.1.0">
+		<style>
+			html, body, .dhx_diagram {
+				background: #fff;
+			}
+			.dhx_sample-container__without-editor {
+				height: calc(100% - 121px);
+			}
+			.dhx_sample-container__with-editor {
+				height: calc(100% - 61px);
+			}
+			.dhx_sample-widget {
+				height: 100%;
+			}
+			.template {
+				height: 100%;
+				background-repeat: no-repeat;
+				background-size: cover;
+				background-position: center;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-weight: 500;
+				overflow: hidden;
+			}
+			.template span {
+				text-align: center;
+				word-wrap: break-word;
+				white-space: pre-wrap;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="dhx_sample-header">
+			<div class="dhx_sample-header__main">
+				<nav class="dhx_sample-header__breadcrumbs">
+					<ul class="dhx_sample-header-breadcrumbs">
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="../index.html" class="dhx_sample-header-breadcrumbs__link">Diagram samples</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="./index.html" class="dhx_sample-header-breadcrumbs__link">Customization</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<span class="dhx_sample-header-breadcrumbs__link">Life cycle diagram</span>
+						</li>
+					</ul>
+				</nav>
+				<h1 class="dhx_sample-header__title">
+					<div class="dhx_sample-header__content">
+						Life cycle diagram.
+					</div>
+				</h1>
+			</div>
+</header>
+		<section id="control" class="dhx_sample-controls">
+			<button class="dhx_sample-btn dhx_sample-btn--flat" onclick="runEditor()">Edit</button>
+		</section>
+		<section id="container" class="dhx_sample-container__without-editor">
+			<div class="dhx_sample-widget" id="diagram"></div>
+			<div class="dhx_sample-widget" id="editor" style="display: none;"></div>
+		</section>
+		<script>
+			const defaultYellow = {
+				width: 160,
+				height: 160,
+				text: "Sticky yellow",
+				background: "../common/img/other_image/yellow.svg",
+			};
+
+			const defaultBlue = {
+				width: 160,
+				height: 160,
+				text: "Sticky blue",
+				background: "../common/img/other_image/blue.svg",
+			};
+
+			const diagram = new dhx.Diagram("diagram");
+
+			const editor = new dhx.DiagramEditor("editor", {
+				controls: { autoLayout: false },
+				shapeSections: {
+					"sticky notes": ["blue", "yellow"],
+					"flowchart shapes": [true],
+				}
+			});
+
+			function template(config) {
+				let template = '<section class="template" style="background-image: url('+ config.background +')">';
+				template += '<span>'+ config.text +'</span>';
+				template += '</section>'
+				return template;
+			}
+
+			diagram.addShape("yellow", {
+				template: template,
+				defaults: defaultYellow
+			});
+
+			diagram.addShape("blue", {
+				template: template,
+				defaults: defaultBlue
+			});
+
+			editor.diagram.addShape("yellow", {
+				template: template,
+				defaults: defaultYellow
+			});
+
+			editor.diagram.addShape("blue", {
+				template: template,
+				defaults: defaultBlue
+			});
+
+			const editorCont = document.querySelector("#editor");
+			const diagramCont = document.querySelector("#diagram");
+			const controls = document.querySelector("#control");
+			const container = document.querySelector("#container");
+
+			const WITH_EDITOR = "dhx_sample-container__with-editor";
+			const WITHOUT_EDITOR = "dhx_sample-container__without-editor";
+
+			function expand() {
+				diagramCont.style.display = "none";
+				controls.style.display = "none";
+				editorCont.style.display = "block";
+				container.classList.remove(WITHOUT_EDITOR);
+				container.classList.add(WITH_EDITOR);
+			}
+
+			function collapse() {
+				diagramCont.style.display = "block";
+				controls.style.display = "flex";
+				editorCont.style.display = "none";
+				container.classList.remove(WITH_EDITOR);
+				container.classList.add(WITHOUT_EDITOR);
+			}
+
+			function runEditor() {
+				expand();
+				editor.import(diagram);
+			}
+
+			editor.events.on("ApplyButton", function () {
+				collapse();
+				diagram.data.parse(editor.serialize());
+			});
+
+			editor.events.on("ResetButton", function () {
+				collapse();
+			});
+
+			diagram.data.parse(stickyNote);
+		</script>
+	</body>
+</html>

@@ -6,6 +6,9 @@ data Input = COIN
            | CHANGE 
            | REFILL Nat
 
+Muf : List (a->b)
+
+
 strToInput : String -> Maybe Input
 strToInput "insert" = Just COIN
 strToInput "vend" = Just VEND

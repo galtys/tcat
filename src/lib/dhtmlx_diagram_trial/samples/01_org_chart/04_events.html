@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- meta block -->
+		<title>Org chart events - DHTMLX Diagram</title>
+		<meta name="description" content="Check interactive samples of DHTMLX Diagram to explore its org chart and other details.">
+		<!-- end meta block -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+		<script type="text/javascript" src="../../codebase/diagram.js?v=3.1.0"></script>
+		<link rel="stylesheet" href="../../codebase/diagram.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/index.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/diagram.css?v=3.1.0">
+		<script type="text/javascript" src="../common/data.js?v=3.1.0"></script>
+		<!-- custom sample head -->
+		<style>
+			.dhx_sample-container {
+				width: 1000px;
+			}
+
+			.dhx_sample-container__widget {
+				width: 600px;
+				flex: 0 1 auto
+			}
+
+			.dhx_sample-container__sidebar {
+				background: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="dhx_sample-header">
+			<div class="dhx_sample-header__main">
+				<nav class="dhx_sample-header__breadcrumbs">
+					<ul class="dhx_sample-header-breadcrumbs">
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="../index.html" class="dhx_sample-header-breadcrumbs__link">Diagram samples</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="./index.html" class="dhx_sample-header-breadcrumbs__link">Org chart</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<span class="dhx_sample-header-breadcrumbs__link">Org chart events</span>
+						</li>
+					</ul>
+				</nav>
+				<h1 class="dhx_sample-header__title">
+					<div class="dhx_sample-header__content">
+						Org chart events.
+					</div>
+				</h1>
+			</div>
+</header>
+		<section class="dhx_sample-container">
+			<div class="dhx_sample-container__widget" id="diagram"></div>
+			<div class="dhx_sample-container__sidebar" id="events"></div>
+		</section>
+		<script>
+			var diagram = new dhx.Diagram("diagram", { type: "org" });
+
+			diagram.data.parse(orgChartData);
+
+			var events = [
+				"scroll",
+				"beforecollapse",
+				"aftercollapse",
+				"beforeexpand",
+				"afterexpand",
+				"shapemousedown",
+				"shapeclick",
+				"shapedblclick",
+				"shapeiconclick",
+				"beforerender",
+				"shapeHover",
+				"emptyAreaClick"
+			];
+
+			var eventsContainer = document.querySelector(".dhx_sample-container__sidebar");
+
+			var counter = 1;
+			events.forEach(function (event) {
+				diagram.events.on(event, function () {
+					eventsContainer.insertAdjacentHTML('afterbegin', getEvent(event, arguments));
+				});
+			});
+
+			function getEvent(event, args) {
+				var argsList = "<div class='arguments'>Arguments:</div>";
+				for (var i = 0; i < args.length; i++) {
+
+					argsList += "<div>" + args[i] + "</div>";
+				}
+				return "<div class=\"dhx_sample-event\">Event " + counter++ + ": " + event + argsList + "</div>";
+			}
+		</script>
+	</body>
+</html>

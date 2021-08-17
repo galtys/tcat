@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- meta block -->
+		<title>Site map and user flow example - DHTMLX Diagram</title>
+		<meta name="description" content="Check interactive samples of DHTMLX Diagram to explore its customization and other details.">
+		<!-- end meta block -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+		<script type="text/javascript" src="../../codebase/diagram.js?v=3.1.0"></script>
+		<link rel="stylesheet" href="../../codebase/diagram.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/index.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/diagram.css?v=3.1.0">
+		<script type="text/javascript" src="../common/customsvg.js?v=3.1.0"></script>
+		<!-- custom sample head -->
+		<link href="https://cdn.materialdesignicons.com/4.5.95/css/materialdesignicons.min.css?v=3.1.0" media="all" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="../../codebase/diagramWithEditor.js?v=3.1.0"></script>
+		<link rel="stylesheet" href="../../codebase/diagramWithEditor.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/window/window.css?v=3.1.0">
+		<script type="text/javascript" src="../common/window/window.js?v=3.1.0"></script>
+		<style>
+			html, body, .dhx_diagram {
+				background: #fff;
+			}
+			.dhx_sample-container__without-editor {
+				height: calc(100% - 121px);
+			}
+			.dhx_sample-container__with-editor {
+				height: calc(100% - 61px);
+			}
+			.dhx_sample-widget {
+				height: 100%;
+			}
+
+			/* css template for DHTMLX Diagram */
+			/* the latest version is available here: https://snippet.dhtmlx.com/diagram_template_b */
+			/* you can find more css templates here: https://dhtmlx.com/docs/products/dhtmlxSuite/how-to-create-javascript-applications/ */
+			.dhx_diagram_template_b {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				border: 1px solid #E6E6E6;
+				background-size: cover;
+				background-repeat: no-repeat;
+				cursor: pointer;
+			}
+			.dhx_diagram_template_b__lable {
+				position: absolute;
+				left: -4px;
+				top: -4px;
+				display: inline-block;
+				padding: 4px 8px;
+				border-radius: 2px;
+				background: #FF4D00;
+				color: #FFF;
+				font: normal 14px Roboto, sans-serif;
+				line-height: 16px;
+				font-weight: 500;
+			}
+			.dhx_diagram_template_b__cover {
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(32, 161, 241, 0.8);
+				outline: 1px solid #E6E6E6;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-direction: column;
+				overflow: hidden;
+			}
+			.dhx_diagram_template_b__cover--visibility {
+				display: none;
+			}
+			.dhx_selected .dhx_diagram_template_b__cover--visibility {
+				display: flex;
+			}
+			.dhx_selected .dhx_diagram_template_b {
+				cursor: default;
+			}
+			.dhx_diagram_template_b__info {
+				display: flex;
+			}
+			.dhx_diagram_template_b__item {
+				margin: 4px 6px;
+				color: rgba(255, 255, 255, 0.7);
+				font-weight: normal;
+			}
+			.dhx_diagram_template_b__value, .dhx_diagram_template_b__title {
+				margin-left: 4px;
+				font: normal 14px Roboto, sans-serif;
+				font-weight: 500;
+				color: #FFF;
+				line-height: 20px;
+			}
+			.dhx_diagram_template_b__control {
+				display: flex;
+				position: absolute;
+				right: -10px;
+				bottom: 0;
+				transform: translate(0, 25%);
+			}
+			.dhx_diagram_template_b__button {
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				width: 36px;
+				height: 36px;
+				border-radius: 50%;
+				background: #FFF;
+				box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1), 0px 2px 16px rgba(0, 0, 0, 0.12);
+				margin: 0 4px;
+			}
+			.dhx_diagram_template_b__icon {
+				color: #0094EF;
+				font-size: 20px;
+			}
+			.dhx_diagram_template_b__button:hover .dhx_diagram_template_b__icon,
+			.dhx_diagram_template_b__button:active .dhx_diagram_template_b__icon {
+				color: #3db5ff;
+			}
+			.dhx_diagram_template_b__link {
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 100%;
+				height: 100%;
+			}
+			/* end of code for diagram_template_b */
+		</style>
+	</head>
+	<body>
+		<header class="dhx_sample-header">
+			<div class="dhx_sample-header__main">
+				<nav class="dhx_sample-header__breadcrumbs">
+					<ul class="dhx_sample-header-breadcrumbs">
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="../index.html" class="dhx_sample-header-breadcrumbs__link">Diagram samples</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="./index.html" class="dhx_sample-header-breadcrumbs__link">Customization</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<span class="dhx_sample-header-breadcrumbs__link">Site map and user flow example</span>
+						</li>
+					</ul>
+				</nav>
+				<h1 class="dhx_sample-header__title">
+					<div class="dhx_sample-header__content">
+						Site map and user flow example.
+					</div>
+				</h1>
+			</div>
+		</header>
+		<section id="controls" class="dhx_sample-controls">
+			<button class="dhx_sample-btn dhx_sample-btn--flat" onclick="runEditor()">Edit</button>
+		</section>
+		<section id="container" class="dhx_sample-container__without-editor">
+			<div class="dhx_sample-widget" id="diagram"></div>
+			<div class="dhx_sample-widget" id="editor" style="display: none;"></div>
+		</section>
+		<script>
+			function template({ title, view, cr, br, conversion, link }) {
+				const conversionVisable = conversion > 15 ? "inline-block" : "none";
+				return `
+					<div class="dhx_diagram_template_b" style="background-image: url(${view});">
+						<div class="dhx_diagram_template_b__cover dhx_diagram_template_b__cover--visibility" aria-haspopup="true">
+							<div class="dhx_diagram_template_b__title">${title}</div>
+							<div class="dhx_diagram_template_b__info">
+								<div class="dhx_diagram_template_b__item">
+									CR
+									<span class="dhx_diagram_template_b__value">${cr}%</span>
+								</div>
+								<div class="dhx_diagram_template_b__item">
+									BR
+									<span class="dhx_diagram_template_b__value">${br}%</span>
+								</div>
+							</div>
+						</div>
+						<div class="dhx_diagram_template_b__control">
+							<span class="dhx_diagram_template_b__button info">
+								<span class="dhx_diagram_template_b__icon mdi mdi-information-outline"></span>
+							</span>
+							<span class="dhx_diagram_template_b__button">
+								<a class="dhx_diagram_template_b__link" href="${link}" target="_blank"></a>
+								<span class="dhx_diagram_template_b__icon mdi mdi-link-variant"></span>
+							</span>
+						</div>
+						<div class="dhx_diagram_template_b__lable" style="display:${conversionVisable}">+${conversion}%</div>
+					</div>
+				`
+			}
+
+			const diagram = new dhx.Diagram("diagram", {
+				type: "mindmap",
+				defaultShapeType: "flowView",
+				typeConfig: {
+					direction: "reverse",
+				},
+			});
+
+			const editor = new dhx.DiagramEditor("editor", {
+				type: "mindmap",
+				shapeType: "flowView",
+				controls: { 
+					gridStep: false
+				},
+			});
+
+			const SHAPE_WIDTH = 190;
+			const SHAPE_HEIGHT = 97;
+
+			diagram.addShape("flowView", {
+				template: template,
+				defaults: {
+					width: SHAPE_WIDTH,
+					height: SHAPE_HEIGHT,
+				},
+				eventHandlers: {
+					onclick: {
+						info: function(event, item) {
+							openModalInfo(item.title, item.info);
+						},
+					}
+				},
+			});
+
+			editor.diagram.addShape("flowView", {
+				template: template,
+				defaults: {
+					width: SHAPE_WIDTH,
+					height: SHAPE_HEIGHT,
+					title: "New page",
+					cr: 0,
+					br: 0,
+					conversion: 0,
+					view: "../common/img/flow_views/img_01.png",
+					info: "Additional Information",
+					link: "https://dhtmlx.com/",
+				},
+				properties: [
+					{ type: "img", label: "View",  property: "view" },
+					{ type: "title", },
+					{ type: "text", label: "CR", property: "cr" },
+					{ type: "text", label: "BR", property: "br" },
+					{ type: "text", label: "Conversion", property: "conversion" },
+					{ type: "text", label: "Info", property: "info" },
+					{ type: "text", label: "Link", property: "link" },
+				],
+				eventHandlers: {
+					onclick: {
+						info: function(event, item) {
+							openModalInfo(item.title, item.info);
+						},
+					}
+				},
+			});
+
+			const editorCont = document.querySelector("#editor");
+			const diagramCont = document.querySelector("#diagram");
+			const controls = document.querySelector("#controls");
+			const container = document.querySelector("#container");
+			
+			const WITH_EDITOR = "dhx_sample-container__with-editor";
+			const WITHOUT_EDITOR = "dhx_sample-container__without-editor";
+
+			function expand() {
+				diagramCont.style.display = "none";
+				controls.style.display = "none";
+				editorCont.style.display = "block";
+				container.classList.remove(WITHOUT_EDITOR);
+				container.classList.add(WITH_EDITOR);
+			}
+
+			function collapse() {
+				diagramCont.style.display = "block";
+				controls.style.display = "flex";
+				editorCont.style.display = "none";
+				container.classList.remove(WITH_EDITOR);
+				container.classList.add(WITHOUT_EDITOR);
+			}
+
+			function runEditor() {
+				expand();
+				editor.import(diagram);
+			}
+
+			function openModalInfo(title, text) {
+				const content = `<p>${text}</h1>`;
+				const dhxWindow = new dhx.Window({
+					title: title,
+					width: 440,
+					height: 520,
+					modal: true,
+					closable: true
+				});
+				dhxWindow.attachHTML(content);
+				dhxWindow.show();
+			}
+
+			diagram.events.on("EmptyAreaClick", function() {
+				diagram.selection.add(null);
+			});
+
+			diagram.events.on("ShapeClick", function(id) {
+				diagram.selection.add(id);
+			});
+
+			editor.events.on("ApplyButton", function () {
+				collapse();
+				diagram.data.parse(editor.serialize());
+			});
+
+			editor.events.on("ResetButton", function () {
+				collapse();
+			});
+
+			diagram.data.parse(libraryData);
+		</script>
+	</body>
+</html>

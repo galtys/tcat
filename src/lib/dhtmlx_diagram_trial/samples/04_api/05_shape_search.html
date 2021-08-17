@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- meta block -->
+		<title>Shape search - DHTMLX Diagram</title>
+		<meta name="description" content="Check interactive samples of DHTMLX Diagram to explore its api and other details.">
+		<!-- end meta block -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+		<script type="text/javascript" src="../../codebase/diagram.js?v=3.1.0"></script>
+		<link rel="stylesheet" href="../../codebase/diagram.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/index.css?v=3.1.0">
+		<link rel="stylesheet" href="../common/diagram.css?v=3.1.0">
+		<script type="text/javascript" src="../common/customsvg.js?v=3.1.0"></script>
+		<!-- custom sample head -->
+		<script type="text/javascript" src="../common/combobox/combobox.min.js?v=3.1.0"></script>
+		<link rel="stylesheet" href="../common/combobox/combobox.min.css?v=3.1.0">
+		<script type="text/javascript" src="../common/menu/menu.js?v=3.1.0"></script>
+		<link rel="stylesheet" href="../common/menu/menu.css?v=3.1.0">
+		<link href="https://cdn.materialdesignicons.com/4.5.95/css/materialdesignicons.min.css?v=3.1.0" media="all" rel="stylesheet" type="text/css">
+		<style>
+			.dhx_sample-container {
+				height: calc(100% - 120px);
+				margin-top: 0;
+			}
+			.dhx_sample-container__widget {
+				height: 500px;
+				width: 80%;
+				border-style: solid;
+				border-color: #DFDFDF;
+				border-width: 0 1px 1px 1px;
+			}
+			.dhx_sample-controls {
+				background: #fff;
+			}
+			.dhx_sample-combobox__container {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 400px;
+			}
+			.dhx_combobox {
+				margin: 0;
+			}
+			.dhx_selected .template {
+				outline: 2px solid #8c8c8c;
+			}
+			.template {
+				height: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: white;
+				color: rgba(0, 0, 0, 0.7);
+				border: 1px solid #DFDFDF;
+				padding: 10px 12px;
+			}
+			.template span {
+				display: flex;
+			}
+			.template h3, .template p {
+				text-align: left;
+				font-size: 14px;
+				line-height: 20px;
+				height: 20px;
+				margin: 0 0 4px 0;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			.template_container {
+				height: 100%;
+				width: 100%;
+				overflow: hidden;
+				position: relative;
+			}
+			.template_img-container {
+				min-width: 93px;
+				width: 93px;
+				margin-right: 12px;
+			}
+			.template_img-container img {
+				width: inherit;
+				height: auto;
+			}
+			.template_icon {
+				height: 20px;
+				width: 20px;
+				margin-right: 4px;
+			}
+			.toggle_container {
+				position: absolute;
+				right: 2px;
+				top: 10px;
+				cursor: pointer;
+				height: 20px;
+				width: 20px;
+			}
+			.toggle_container .template_icon {
+				height: 14px;
+				width: 4px;
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="dhx_sample-header">
+			<div class="dhx_sample-header__main">
+				<nav class="dhx_sample-header__breadcrumbs">
+					<ul class="dhx_sample-header-breadcrumbs">
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="../index.html" class="dhx_sample-header-breadcrumbs__link">Diagram samples</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<a href="./index.html" class="dhx_sample-header-breadcrumbs__link">Api</a>
+						</li>
+						<li class="dhx_sample-header-breadcrumbs__item">
+							<span class="dhx_sample-header-breadcrumbs__link">Shape search</span>
+						</li>
+					</ul>
+				</nav>
+				<h1 class="dhx_sample-header__title">
+					<div class="dhx_sample-header__content">
+						Shape search.
+					</div>
+				</h1>
+			</div>
+</header>
+		<section class="dhx_sample-controls">
+			<div class="dhx_sample-combobox__container" id="combobox"></div>
+		</section>
+		<section class="dhx_sample-container">
+			<div class="dhx_sample-container__widget" id="diagram"></div>
+		</section>
+		<script>
+			var comboData = medCardShape.map(function(item) {
+				return {
+					value: item.name,
+					id: item.id
+				}
+			});
+
+			var combobox = new dhx.Combobox("combobox", {
+				label: "Search:",
+				labelPosition:"left"
+			});
+
+			combobox.data.parse(comboData);
+
+			var diagram = new dhx.Diagram("diagram", {
+				type: "org",
+				defaultShapeType: "template"
+			});
+
+			function template(config) {
+				var template = '<section class="template">';
+				template += '<div class="template_container template_img-container">';
+				template += '<img src="'+ config.photo +'" alt="'+ config.name + "-" + config.post +'"></img>';
+				template += '</div>';
+				template += '<div class="template_container">';
+				template += '<h3>'+ config.name +'</h3>';
+				template += '<p>'+ config.post +'</p>';
+				template += '<span>';
+				template += '<img class="template_icon" src="../common/img/icons/cellphone-android.svg" alt="phone number"></img>';
+				template += '<p>'+ config.phone +'</p>';
+				template += '</span>';
+				template += '<span>';
+				template += '<img class="template_icon" src="../common/img/icons/email-outline.svg" alt="email"></img>';
+				template += '<a style="color:#0288D1" href="mailto:'+ config.mail +'" target="_blank">'+ config.mail +'</a> ';
+				template += '</span></div>';
+				template += '<div class="toggle_container"><img class="template_icon" src="../common/img/icons/toggle.svg" alt="toggle"></img></div>';
+				template += '</section>';
+				return template;
+			}
+
+			diagram.addShape("template", {
+				template: template,
+				defaults: {
+					height: 115,
+					width: 330
+				}
+			});
+
+			diagram.data.parse(medCardShape);
+
+			var item;
+
+			var contextMenu = new dhx.ContextMenu(null, {
+				css: "dhx_widget--bg_gray"
+			});
+
+			contextMenu.data.parse([
+				{
+					"type": "menuItem",
+					"id": "mail",
+					"value": "Mail",
+					"icon": "mdi mdi-email"
+				},
+				{
+					"type": "menuItem",
+					"id": "call",
+					"value": "Call",
+					"icon": "mdi mdi-phone"
+				},
+				{
+					"type": "menuItem",
+					"id": "site",
+					"value": "Open Site",
+					"icon": "mdi mdi-open-in-new"
+				}
+			]);
+
+			contextMenu.events.on("click", function (id) {
+				switch (id) {
+					case "mail":
+						window.open('mailto:' + item.mail + ',_blank');
+						break;
+					case "call":
+						window.open('tel:' + item.phone + ',_blank');
+						break;
+					case "site":
+						window.open('https://dhtmlx.com/docs/products/dhtmlxDiagram/', '_blank');
+						break;
+				}
+			});
+
+			var toggleItem;
+
+			function show(event) {
+				event.preventDefault();
+				contextMenu.showAt(event.target, "bottom");
+			}
+
+			function showMenu() {
+				dhx.awaitRedraw().then(function () {
+					if (toggleItem) {
+						for (var index = 0; index < toggleItem.length; index++) {
+							toggleItem[index].removeEventListener("click", show);
+						}
+					}
+					toggleItem = document.querySelectorAll(".toggle_container");
+					for (var index = 0; index < toggleItem.length; index++) {
+						toggleItem[index].addEventListener("click", show);
+					}
+				});
+			}
+
+			showMenu();
+
+			diagram.events.on("afterexpand", function() {
+				showMenu();
+			});
+
+			combobox.events.on("Change", function(id) {
+				if (id) {
+					diagram.showItem(id);
+					diagram.selection.add(id);
+				}
+			});
+
+			combobox.events.on("Open", function(){
+				combobox.clear();
+			});
+
+			diagram.events.on("EmptyAreaClick", function() {
+				diagram.selection.add(null);
+				combobox.clear();
+			});
+
+			diagram.events.on("ShapeClick", function(id) {
+				diagram.selection.add(id);
+				item = diagram.data.getItem(id);
+				combobox.setValue(item.id);
+			});
+		</script>
+	</body>
+</html>

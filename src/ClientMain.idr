@@ -55,10 +55,10 @@ items_ModelDataList = MkMDList "items" [] []
                                                                               
 items_ModelDataList' : ModelDataList Items_ModelSchema
 items_ModelDataList' = MkMDList "items" [ ("a1","£"), ("a2","£"), ("a3","£"), ("a4","£") ] 
-                        [ ( Tt 0 0 ),
-                          ( Tt 0 0 ),
-                          ( Tt 0 0 ),
-                          ( Tt 0 0 )]
+                        [ ( Tt 4 0 ),
+                          ( Tt 2 0 ),
+                          ( Tt 7 0 ),
+                          ( Tt 1 0 )]
 
 --warehouse_ModelDataList : (ModelDataList Val) Items_ModelSchema
 --warehouse_ModelDataList = MkMDList "warehouse" [(1,100), (2,100), (3,100), (4,100)] [(Tt 0 0),(Tt 0 0),(Tt 0 0),(Tt 0 0)]
@@ -133,8 +133,8 @@ main = do
 
                   
    tab_widget.insert_rows_x "pricelist" Pricelist_ModelSchema pricelist_ModelDataList'
-   --tab_widget.insert_rows_x "order1" Items_ModelSchema items_ModelDataList'
-   --tab_widget.insert_rows_x "order1" Items_ModelSchema items_ModelDataList''
+   tab_widget.insert_rows_x "order1" Items_ModelSchema items_ModelDataList'
+   tab_widget.insert_rows_x "order1" Items_ModelSchema items_ModelDataList''
    
    tab_widget.table_composite False "Order Total" "order_total" Total_ModelSchema t_ModelDataList
    
